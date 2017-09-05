@@ -1,0 +1,251 @@
+/*滚动条--颜色*/
+::-webkit-scrollbar-thumb:hover {
+  background: #7d7d7d;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  background: #999;
+}
+::-webkit-scrollbar-track {
+  border: 1px #d3d3d3 solid;
+  box-shadow: 0px 0px 3px #dfdfdf inset;
+  border-radius: 0px;
+  background: #eee;
+}
+/*滚动条颜色设置*/
+body{
+    background-color: #f0f0f0;
+}
+
+button, button:focus{
+    outline: none;
+}
+
+.main-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.no-padding{
+    padding: 0px;
+}
+
+h4{
+    font-size: 16px;
+    padding: 10px;
+}
+
+.ant-popover-content{
+    width: 250px;
+}
+
+.control-label{
+    font-weight: normal;
+}
+.ant-table table{
+    table-layout: fixed;
+}
+.ant-table .text-overflow {
+    overflow: hidden;
+    /*white-space: nowrap;*/
+    text-overflow:ellipsis;
+    max-height:38px;
+}
+nz-content.ant-layout-content {
+  margin: 20px 10px;
+}
+/*导航--样式*/
+.ant-menu-item{
+  &:focus,&:active{
+    outline: none;
+  }
+}
+.ant-layout {
+  height: 100%;
+  background: #f5f7f9 !important;
+}
+.ant-layout-header {
+  background: #495060 !important;
+  padding: 0 !important;
+}
+.ant-layout-sider{
+  background: #495060 !important;
+}
+.ant-menu.ant-menu-dark .ant-menu-item.active {
+  background-color: #108ee9;
+  color: #fff;
+}
+.ant-menu-dark, .ant-menu-dark .ant-menu-sub {
+  color: rgba(255, 255, 255, 0.67);
+  background: #363e4f !important;
+}
+.ant-breadcrumb {
+  padding:20px 24px 10px;
+}
+nz-content.ant-layout-content {
+  margin: 0 10px 20px;
+  padding: 10px;
+}
+/*table 样式修改*/
+.ant-table-thead > tr > th, .ant-table-tbody > tr > td {
+  padding: 0 8px !important;
+  height: 44px;
+  text-align: center !important;
+  border: 1px solid #e9eaec;
+  border-bottom: 0 !important;
+  border-right: 0;
+}
+.ant-table {
+  border-radius: 0 !important;
+}
+.ant-table table{
+  border-radius: 0 !important;
+  border-right: 1px solid #e9eaec;
+  border-bottom: 1px solid #e9eaec;
+}
+.ant-table-placeholder{
+  border: 1px solid #e9e9e9;
+  border-top: 0;
+}
+/*table end*/
+.ant-checkbox-wrapper:not(:last-child) {
+  width: 45%;
+}
+.mgt20{
+  margin-top: 20px;
+}
+.right-btns{
+  text-align:right;
+  margin-bottom: 20px;
+}
+.spanW80 {
+  display: inline-block;
+  width: 80px;
+  text-align: right;
+}
+.spanW60 {
+  display: inline-block;
+  width: 60px;
+  text-align: right;
+}
+.spanW80 + nz-input,.spanW80 + .ant-select{
+  display: inline-block;
+  width:calc(~'100% - 84px');
+}
+.spanW60 + nz-input,.spanW60 + .ant-select{
+  display: inline-block;
+  width:calc(~'100% - 64px');
+}
+.bank-logo{
+  display: block;
+  height: 40px;
+  margin: 4px auto;
+}
+
+/*loading 动画*/
+.ant-spin .ant-spin-dot {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  margin: -10px;
+}
+.ant-spin {
+  color: #108ee9;
+  vertical-align: middle;
+  text-align: center;
+  opacity: 0;
+  position: absolute;
+  transition: -webkit-transform .3s cubic-bezier(.78,.14,.15,.86);
+  transition: transform .3s cubic-bezier(.78,.14,.15,.86);
+  font-size: 12px;
+  display: none;
+}
+.ant-spin-spinning {
+  opacity: 1;
+  position: static;
+  display: inline-block;
+}
+.ant-spin-lg .ant-spin-dot {
+  width: 32px;
+  height: 32px;
+}
+.ant-spin-dot {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-animation: antRotate 1.2s infinite linear;
+  animation: antRotate 1.2s infinite linear;
+}
+.ant-spin-dot i {
+  width: 14px;
+  height: 14px;
+  border-radius: 100%;
+  background-color: #108ee9;
+  -webkit-transform: scale(.75);
+  transform: scale(.75);
+  display: block;
+  position: absolute;
+  opacity: .3;
+  -webkit-animation: antSpinMove 1s infinite linear alternate;
+  animation: antSpinMove 1s infinite linear alternate;
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
+.ant-spin-dot i:first-child {
+  left: 0;
+  top: 0;
+}
+.ant-spin-dot i:nth-child(2) {
+  right: 0;
+  top: 0;
+  -webkit-animation-delay: .4s;
+  animation-delay: .4s;
+}
+.ant-spin-dot i:nth-child(3) {
+  right: 0;
+  bottom: 0;
+  -webkit-animation-delay: .8s;
+  animation-delay: .8s;
+}
+.ant-spin-dot i:nth-child(4) {
+  left: 0;
+  bottom: 0;
+  -webkit-animation-delay: 1.2s;
+  animation-delay: 1.2s;
+}
+@keyframes antSpinMove {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes antRotate {
+  to {
+    transform: rotate(405deg);
+  }
+}
+/*loading 动画结束*/
+
+.markdown blockquote {
+  font-size: 12px;
+  background: rgba(240, 240, 240, 0.37);
+  padding: 10px;
+  border-left: 4px solid #108ee9;
+  padding-left: 12px;
+  margin: 10px 0 30px;
+}
+.markdown blockquote p {
+  margin: 0;
+}
+.size-tips{
+  font-size: 12px;
+  float: left;
+  margin:0 10px;
+}

@@ -1,0 +1,65 @@
+
+<h4>银行列表</h4>
+<form nz-form class="">
+  <div nz-row [nzGutter]="40" class="mgt20">
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <span class="spanW60">银行名称：</span>
+      <nz-input [nzSize]="'large'" [nzPlaceHolder]="'银行名称'" [(ngModel)]="valselect.bankName" name="valselect.bankName"></nz-input>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <span class="spanW60">状态选择：</span>
+      <nz-select [nzSize]="'large'" [(ngModel)]="valselect.status" name="valselect.status">
+        <nz-option
+          *ngFor="let option of options"
+          [nzLabel]="option.name"
+          [nzValue]="option.id"
+          [nzDisabled]="option.disabled">
+        </nz-option>
+      </nz-select>
+    </div>
+  </div>
+  <div  nz-row>
+    <div nz-col [nzSpan]="24" class="right-btns">
+      <button nz-button [routerLink]="['/banks/add']"><i class="anticon anticon-plus"></i><span>添加</span></button>
+      <button nz-button (click)="clear()">清空</button>
+      <button nz-button [nzType]="'primary'" (click)="query()">查询</button>
+    </div>
+  </div>
+</form>
+
+
+
+<nz-table #nzTable
+    [nzAjaxData]="_dataSet"
+    [nzIsPagination]="false"
+    [nzLoading]="_loading"
+    [nzTotal]="_total"
+    [(nzPageIndex)]="_current"
+    [(nzPageSize)]="_pageSize">
+  <thead nz-thead>
+    <tr>
+      <th nz-th><span>银行ID</span></th>
+      <th nz-th><span>银行名称</span></th>
+      <th nz-th><span>图标</span></th>
+      <th nz-th><span>服务区域</span></th>
+      <th nz-th><span>推广标签</span></th>
+      <th nz-th><span>推广文案/关键词</span></th>
+      <th nz-th><span>最后编辑时间</span></th>
+      <th nz-th><span>状态</span></th>
+      <th nz-th><span>操作</span></th>
+    </tr>
+  </thead>
+  <tbody nz-tbody>
+    <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+      <td nz-td>{{data.id}}</td>
+      <td nz-td>{{data.bankName}}</td>
+      <td nz-td><img class="bank-logo" src="{{data.logoUrl}}" alt=""></td>
+      <td nz-td><div class="text-overflow" title="{{data.serviceArea}}">{{data.serviceArea}}</div></td>
+      <td nz-td>{{data.label}}</td>
+      <td nz-td>{{data.adSlogan}}</td>
+      <td nz-td>{{data.updateTime}}</td>
+      <td nz-td>{{data.status}}</td>
+      <td nz-td><button nz-button nzSize="small" [routerLink]="['/banks/edit', data.id]">编辑</button></td>
+    </tr>
+  </tbody>
+</nz-table>

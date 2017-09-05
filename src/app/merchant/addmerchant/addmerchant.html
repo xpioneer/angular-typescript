@@ -1,0 +1,83 @@
+<h4>添加商户</h4>
+<form nz-form [nzType]="'horizontal'" [formGroup]="formGroup">
+  <!-- 基本信息 -->
+  <div nz-row class="markdown">
+    <blockquote><p>商户基本信息</p></blockquote>
+  </div>
+  <div nz-form-item nz-row>
+    <div nz-form-label nz-col [nzSpan]="4">
+      <label nz-form-item-required>商户名称</label>
+    </div>
+    <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="getFormControl('merchantName')">
+      <nz-input formControlName="merchantName" [nzSize]="'large'" name="merchantName"></nz-input>
+      <div nz-form-explain *ngIf="getFormControl('merchantName').dirty&&getFormControl('merchantName').hasError('required')">必须填写!</div>
+    </div>
+    <div nz-form-label nz-col [nzSpan]="4">
+      <label nz-form-item-required>状态</label>
+    </div>
+    <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="getFormControl('status')">
+      <nz-select formControlName="status" name="status" [nzSize]="'large'" [nzPlaceHolder]="'状态'">
+        <nz-option *ngFor="let option of options"
+          [nzLabel]="option.name"
+          [nzValue]="option.id">
+        </nz-option>
+      </nz-select>
+      <div nz-form-explain *ngIf="getFormControl('status').dirty&&getFormControl('status').hasError('required')">必须填写!</div>
+    </div>
+  </div>
+
+  <div nz-form-item nz-row>
+    <div nz-form-label nz-col [nzSpan]="4">
+      <label nz-form-item-required>商户类型</label>
+    </div>
+    <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="getFormControl('merchantType')">
+      <nz-select formControlName="merchantType" name="merchantType" [nzSize]="'large'">
+        <nz-option *ngFor="let option of merchantTypeList"
+          [nzLabel]="option.name"
+          [nzValue]="option.id">
+        </nz-option>
+      </nz-select>
+      <div nz-form-explain *ngIf="getFormControl('merchantType').dirty&&getFormControl('merchantType').hasError('required')">必须填写!</div>
+    </div>
+    <div nz-form-label nz-col [nzSpan]="4">
+      <label>联系人</label>
+    </div>
+    <div nz-form-control nz-col [nzSpan]="6">
+      <nz-input formControlName="contactsName" [nzSize]="'large'" name="contactsName"></nz-input>
+    </div>
+  </div>
+
+  <div nz-form-item nz-row>
+    <div nz-form-label nz-col [nzSpan]="4">
+      <label>联系方式</label>
+    </div>
+    <div nz-col [nzSpan]="6" nz-form-control nzHasFeedback>
+      <nz-input formControlName="contactsTel" [nzPlaceHolder]="'联系方式'" [nzSize]="'large'" name="contactsTel"></nz-input>
+    </div>
+  </div>
+  <div nz-row class="markdown">
+    <blockquote><p>负责人信息</p></blockquote>
+  </div>
+  <div nz-form-item nz-row>
+    <div nz-form-label nz-col [nzSpan]="4">
+      <label>商务</label>
+    </div>
+    <div nz-form-control nz-col [nzSpan]="6">
+      <nz-input formControlName="business" [nzSize]="'large'" name="business"></nz-input>
+    </div>
+    <div nz-form-label nz-col [nzSpan]="4">
+      <label>联系方式</label>
+    </div>
+    <div nz-form-control nz-col [nzSpan]="6">
+      <nz-input formControlName="businesTel" [nzSize]="'large'" name="businesTel"></nz-input>
+    </div>
+  </div>
+
+  <div nz-form-item nz-row>
+    <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="4">
+      <button nz-button nzType="primary" [nzSize]="'large'" (click)="save()" [nzLoading]="isConfirmLoading">保存并返回</button>
+      <button nz-button nzType="default" [nzSize]="'large'" (click)="back()">取消</button>
+    </div>
+  </div>
+
+</form>

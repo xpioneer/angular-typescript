@@ -1,0 +1,100 @@
+<h4>添加银行</h4>
+<form nz-form [nzType]="'horizontal'" style="margin-top: 20px;" [formGroup]="formGroup">
+  <!-- 银行基本信息 -->
+  <div nz-row class="markdown">
+    <blockquote><p>银行基本信息</p></blockquote>
+  </div>
+  <div nz-row >
+    <div nz-col [nzSm]="12" [nzXl]="8">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="6">
+          <label nz-form-item-required>银行名称</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="18" [nzValidateStatus]="getFormControl('bankName')">
+          <nz-input formControlName="bankName" [nzSize]="'large'" name="bankName"></nz-input>
+          <div nz-form-explain *ngIf="getFormControl('bankName').dirty&&getFormControl('bankName').invalid">必须填写!</div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="6">
+          <label nz-form-item-required>状态</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="18" [nzValidateStatus]="getFormControl('status')">
+          <nz-select formControlName="status" name="status" [nzSize]="'large'">
+            <nz-option *ngFor="let option of options"
+              [nzLabel]="option.name"
+              [nzValue]="option.id">
+            </nz-option>
+          </nz-select>
+          <div nz-form-explain *ngIf="getFormControl('status').dirty&&getFormControl('status').invalid">必须填写!</div>
+        </div>
+      </div>
+    </div>
+    <div nz-col [nzSm]="12">
+      <div nz-form-item row>
+        <div nz-form-label nz-col [nzSpan]="4">
+          <label nz-form-item-required>银行logo</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="12" [nzValidateStatus]="getFormControl('logoUrl')">
+          <app-upload-file (fileUploaded)="uploadSuccess($event)" maxSize="100" name="logoUrl"></app-upload-file>
+          <div nz-form-explain *ngIf="getFormControl('logoUrl').dirty&&getFormControl('logoUrl').invalid">必须上传!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div nz-form-item nz-row>
+    <div nz-form-label nz-col [nzSm]="3" [nzXl]="2">
+      <label>办卡进度查询地址</label>
+    </div>
+    <div nz-col [nzSpan]="12" nz-form-control nzHasFeedback>
+      <nz-input formControlName="queryUrl" [nzRows]="4" [nzType]="'textarea'" [nzPlaceHolder]="'请输入查询地址'" [nzSize]="'large'" name="queryUrl"></nz-input>
+    </div>
+  </div>
+
+  <div nz-form-item nz-row>
+    <div nz-form-label nz-col [nzSm]="3" [nzXl]="2">
+      <label>服务区域</label>
+    </div>
+    <div nz-col [nzSpan]="18" nz-form-control style="min-height:80px;">
+      <nz-popover *ngFor="let citys of cityLists;let i = index" [nzTitle]="citys.province" [nzVisible]="visible[i]" nzTrigger="click">
+        <button nz-button nz-popover [nzType]="'default'" (click)="show(i)">{{citys.province}}</button>
+        <ng-template #nzTemplate>
+          <label *ngFor="let item of citys.cityList" nz-checkbox [(ngModel)]="cityChecked[item.id]" name="'city_'+{{item.id}}" [ngModelOptions]="{standalone: true}">
+            <span>{{item.city}}</span>
+          </label>
+          <p style="text-align:right"><a (click)='close(i)'>点击关闭</a></p>
+        </ng-template>
+      </nz-popover>
+    </div>
+  </div>
+
+  <!-- 推广信息 -->
+  <div nz-row class="markdown">
+    <blockquote><p>推广信息</p></blockquote>
+  </div>
+  <div nz-form-item nz-row>
+    <div nz-form-label nz-col [nzSm]="3" [nzXl]="2">
+      <label>推广标签</label>
+    </div>
+    <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="getFormControl('label')">
+      <nz-input formControlName="label" [nzSize]="'large'" name="label" nzPlaceHolder="2个字以内"></nz-input>
+      <div nz-form-explain *ngIf="getFormControl('label').dirty&&getFormControl('label').invalid">2个字以内!</div>
+    </div>
+    <div nz-form-label nz-col [nzSm]="3" [nzXl]="2">
+      <label>推广文案/关键词</label>
+    </div>
+    <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="getFormControl('adSlogan')">
+      <nz-input formControlName="adSlogan" [nzSize]="'large'" name="adSlogan" nzPlaceHolder="8-12个字"></nz-input>
+      <div nz-form-explain *ngIf="getFormControl('adSlogan').dirty&&getFormControl('adSlogan').invalid">8-12个字!</div>
+    </div>
+  </div>
+
+  <div nz-form-item nz-row>
+    <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="2">
+      <button nz-button nzType="primary" [nzSize]="'large'" (click)="save()"  [nzLoading]="isConfirmLoading">保存并返回</button>
+      <button nz-button nzType="default" [nzSize]="'large'" (click)="back()">取消</button>
+    </div>
+  </div>
+
+</form>

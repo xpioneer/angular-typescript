@@ -1,0 +1,11 @@
+<nav class="sidebar" style="position: absolute;top:0;left:0;width: 220px;">
+    <div class="list-group">
+        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ '首页' }}
+        </a>
+        <a [routerLink]="['/banklist']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ '银行列表' }}
+        </a>
+
+    </div>
+</nav>

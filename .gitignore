@@ -1,0 +1,16 @@
+
+.DS_Store
+
+.idea
+
+node_modules
+.npm
+
+.tmp
+dist
+tests
+deploy.js
+
+logs
+*.log
+npm-debug.log*

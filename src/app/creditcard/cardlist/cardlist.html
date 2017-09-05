@@ -1,0 +1,118 @@
+
+<h4>信用卡列表</h4>
+<form nz-form class="mgt20">
+  <div nz-row [nzGutter]="40">
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <span class="spanW80">信用卡名称：</span>
+      <nz-input [nzSize]="'large'"  [nzPlaceHolder]="'信用卡名称'" [(ngModel)]="valselect.creditCardName" name="valselect.creditCardName"></nz-input>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <span class="spanW80">银行：</span>
+      <nz-select
+              nzSize="large"
+              name="bankId"
+              nzPlaceHolder="银行"
+              [nzFilter]="false"
+              [(ngModel)]="valselect.bankId"
+              (nzSearchChange)="searchChange($event)"
+              [nzNotFoundContent]="'无法找到'"
+              [nzShowSearch]="true">
+        <nz-option *ngFor="let option of bankAjaxList"
+                   [nzLabel]="option.bankName"
+                   [nzValue]="option.id">
+        </nz-option>
+      </nz-select>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <span class="spanW80">等级：</span>
+      <nz-select [nzSize]="'large'" [(ngModel)]="valselect.level" name="valselect.level"  nzPlaceHolder="等级">
+        <nz-option *ngFor="let option of levelOptions"
+                   [nzLabel]="option.name"
+                   [nzValue]="option.id">
+        </nz-option>
+      </nz-select>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <span class="spanW80">分类：</span>
+      <nz-select [nzSize]="'large'" [(ngModel)]="valselect.classifyId" name="valselect.classifyId"  nzPlaceHolder="分类">
+        <nz-option *ngFor="let option of categoryOptions"
+                   [nzLabel]="option.name"
+                   [nzValue]="option.id">
+        </nz-option>
+      </nz-select>
+    </div>
+  </div>
+  <div nz-row [nzGutter]="40" class="mgt20">
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <span class="spanW80">币种：</span>
+      <nz-select [nzSize]="'large'" [(ngModel)]="valselect.currency" name="valselect.currency" nzPlaceHolder="币种">
+        <nz-option *ngFor="let option of currencyOptions"
+                   [nzLabel]="option.name"
+                   [nzValue]="option.id">
+        </nz-option>
+      </nz-select>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <span class="spanW80">年费：</span>
+      <nz-select [nzSize]="'large'" [(ngModel)]="valselect.annualFee" name="valselect.annualFee"  nzPlaceHolder="年费">
+        <nz-option *ngFor="let option of feeOptions"
+                   [nzLabel]="option.name"
+                   [nzValue]="option.id">
+        </nz-option>
+      </nz-select>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <span class="spanW80">状态：</span>
+      <nz-select [nzSize]="'large'" [(ngModel)]="valselect.status" name="valselect.status"  nzPlaceHolder="状态">
+        <nz-option *ngFor="let option of statusOptions"
+                   [nzLabel]="option.name"
+                   [nzValue]="option.id">
+        </nz-option>
+      </nz-select>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col [nzSpan]="24" class="right-btns">
+      <button nz-button [routerLink]="['/creditcard/add']"><i class="anticon anticon-plus"></i><span>添加</span></button>
+      <button nz-button (click)="clear()">清空</button>
+      <button nz-button [nzType]="'primary'" (click)="query()">查询</button>
+    </div>
+  </div>
+</form>
+
+<nz-table #nzTable
+  [nzAjaxData]="_dataSet"
+  [nzShowSizeChanger]="false"
+  [nzLoading]="_loading"
+  [nzTotal]="_total"
+  [(nzPageIndex)]="_current"
+  (nzPageIndexChange)="query()"
+  [(nzPageSize)]="_pageSize"
+  (nzPageSizeChange)="query()">
+  <thead nz-thead>
+    <tr>
+      <th nz-th><span>信用卡ID</span></th>
+      <th nz-th><span>信用卡名称</span></th>
+      <th nz-th><span>银行</span></th>
+      <th nz-th><span>等级</span></th>
+      <th nz-th><span>币种</span></th>
+      <th nz-th><span>年费</span></th>
+      <th nz-th><span>最后编辑时间</span></th>
+      <th nz-th><span>状态</span></th>
+      <th nz-th><span>操作</span></th>
+    </tr>
+  </thead>
+  <tbody nz-tbody>
+    <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+      <td nz-td>{{data.id}}</td>
+      <td nz-td>{{data.creditCardName}}</td>
+      <td nz-td>{{data.bankName}}</td>
+      <td nz-td>{{data.level}}</td>
+      <td nz-td>{{data.currency}}</td>
+      <td nz-td>{{data.annualFee}}</td>
+      <td nz-td>{{data.updateTime}}</td>
+      <td nz-td>{{data.status}}</td>
+      <td nz-td><button nz-button nzSize="small" [routerLink]="['/creditcard/edit', data.id]">编辑</button></td>
+    </tr>
+  </tbody>
+</nz-table>
