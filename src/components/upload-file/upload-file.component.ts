@@ -1,11 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
-import {
-    DomSanitizer,
-    SafeHtml,
-    SafeUrl,
-    SafeStyle
-} from '@angular/platform-browser';
 import { NzNotificationService } from 'ng-zorro-antd';
 
 @Component({
@@ -70,15 +65,26 @@ import { NzNotificationService } from 'ng-zorro-antd';
         height: 80px;  
         border:1px solid #ccc;
       }
-    `]
+    `],
+    providers    : [
+      {
+        provide    : NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => UploadFileComponent),
+        multi      : true
+      }
+    ],
 })
-export class UploadFileComponent {
+export class UploadFileComponent implements ControlValueAccessor {
   baseUrl: string = '/api/file/uploadFile';
+  _value: string;
   show: boolean = true;
   uploading: boolean = false;
   @Input() imgSrc: any;
   @Input() maxSize: number;
   @Output() fileUploaded:EventEmitter<Object> = new EventEmitter();
+
+  onChange: any = Function.prototype;
+  onTouched: any = Function.prototype;
 
   constructor(
     private http: HttpClient,
@@ -114,7 +120,8 @@ export class UploadFileComponent {
                 this.show = true;
               }
               reader.readAsDataURL(file);
-              this.fileUploaded.emit(res.data);
+              this.writeValue(res.data);
+              // this.fileUploaded.emit(res.data);
             }else{
               event.target.value = '';
               this.notification.error('提示', res.msg);
@@ -128,6 +135,29 @@ export class UploadFileComponent {
       }
 
     }
+  }
+
+  get fileUrl(){
+    return this._value;
+  }
+
+  set fileUrl(url: any){
+    if (url !== this._value) {
+      this._value = url;
+      this.onChange(url);
+    }
+  }
+
+  writeValue(value: any):void{
+    this.fileUrl = value;
+  }
+
+  registerOnChange(fn: (_: any) => {}): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => {}): void {
+    this.onTouched = fn;
   }
 
 }

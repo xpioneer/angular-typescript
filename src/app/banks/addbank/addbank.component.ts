@@ -1,10 +1,11 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   Validators,
-  FormControl
+  FormControl,
+  NgForm
 } from '@angular/forms';
 import { NzNotificationService } from 'ng-zorro-antd';
 import { AddBankService } from './addbank.service';
@@ -18,9 +19,9 @@ import { AddBankService } from './addbank.service';
 export class AddBankComponent implements OnInit {
   formGroup: FormGroup;
   isConfirmLoading = false;
-  resetForm() {
-    // this.formGroup.reset();
-  }
+  addBank:BankModel = new BankModel();
+  test: string;
+  @ViewChild('form') private form: NgForm;
 
   visible = {};
   options: Array<any>;
@@ -45,7 +46,7 @@ export class AddBankComponent implements OnInit {
       label            : [ null, [ Validators.pattern(/^(\S){0,2}$/) ] ],
       serviceCity      : [ [  ], [  ] ]
     });
-
+    console.log(this.addBank)
     this.getData();
   }
 
@@ -61,25 +62,31 @@ export class AddBankComponent implements OnInit {
   }
 
   save(){
-    for (const i in this.formGroup.controls) {
-      this.formGroup.controls[ i ].markAsDirty();
+    for (const i in this.form.controls) {
+      this.form.controls[ i ].markAsDirty();
     }
-    if(this.formGroup.valid){
-      this.formGroup.controls['serviceCity'].setValue(this.getSelectedCity());
-      this.isConfirmLoading = true;
-      this.addBankService.insertBank(this.formGroup.value).subscribe((res: any)=>{
-        this.isConfirmLoading = false;
-        if(res.success){
-          this.notification.success('成功', res.msg);
-          this.router.navigate(['/banks']);
-        } else {
-          this.notification.warning('警告', res.msg);
-        }
-      }, (err: any)=>{
-        this.notification.error('警告', err.msg);
-          this.isConfirmLoading = false;
-      });
-    }
+    console.log(this.addBank, this.form)
+    // if(this.formGroup.valid){
+    //   this.formGroup.controls['serviceCity'].setValue(this.getSelectedCity());
+    //   this.isConfirmLoading = true;
+    //   this.addBankService.insertBank(this.formGroup.value).subscribe((res: any)=>{
+    //     this.isConfirmLoading = false;
+    //     if(res.success){
+    //       this.notification.success('成功', res.msg);
+    //       this.router.navigate(['/banks']);
+    //     } else {
+    //       this.notification.warning('警告', res.msg);
+    //     }
+    //   }, (err: any)=>{
+    //     this.notification.error('警告', err.msg);
+    //       this.isConfirmLoading = false;
+    //   });
+    // }
+  }
+
+  getStatus(a: any){
+    console.log(this.form.controls[a])
+    return this.form.controls[a];
   }
 
   getFormControl(name: string) {
@@ -114,3 +121,12 @@ export class AddBankComponent implements OnInit {
 
 }
 
+class BankModel{
+  public bankName    : string;
+  public status      : string;
+  public logoUrl     : string;
+  public queryUrl    : string;
+  public adSlogan    : string;
+  public label       : string;
+  public serviceCity : Array<number>;
+}

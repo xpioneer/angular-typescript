@@ -4,7 +4,7 @@
         </label>
         <input class="upload-file-input" id="_bankLogo" type="file" accpet="image/gif,image/png,image/jpeg,image/jpg,image/bmp"
         (change)="fileChange($event)"
-        [disabled]="disabledStatus"/>
+        [(ngModel)]="fileUrl"/>
         <i *ngIf="uploading" class="file-uploading">正在上传...</i>
     </div>
     <div class="file-list">
