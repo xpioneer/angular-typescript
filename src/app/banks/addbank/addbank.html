@@ -111,7 +111,7 @@
           <label nz-form-item-required>银行名称</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="18" [nzValidateStatus]="bankName.control">
-          <nz-input name="bankName" required [(ngModel)]="addBank.bankName" [nzSize]="'large'" #bankName="ngModel"></nz-input>
+          <nz-input name="bankName" required [(ngModel)]="addBank.bankName" nzSize="large" #bankName="ngModel"></nz-input>
           <div nz-form-explain *ngIf="bankName.dirty&&bankName.invalid">必须填写!</div>
         </div>
       </div>
