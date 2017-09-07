@@ -142,6 +142,9 @@ export class UploadFileComponent implements ControlValueAccessor {
   }
 
   set fileUrl(url: any){
+    if ((this._value === url) || (((this._value === undefined) || (this._value === null)) && ((url === undefined) || (url === null)))) {
+      return;
+    }
     if (url !== this._value) {
       this._value = url;
       this.onChange(url);

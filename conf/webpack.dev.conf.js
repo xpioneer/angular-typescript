@@ -12,7 +12,7 @@ config.devServer = {
     },
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:8080',
+        target: 'http://121.43.183.201',
         secure: false,
         changeOrigin: true,
       }

@@ -83,6 +83,10 @@ const config = {
             name: ['common', 'vendor1', 'vendor', 'polyfills'],
             minChunks: 2
         }),
+        new webpack.ContextReplacementPlugin(
+            /angular(\\|\/)core(\\|\/)@angular/,
+            path.resolve(__dirname, '../src')
+        ),
         new HtmlWebpackPlugin({
             title: 'CMS-FE DEV',
             filename: 'index.html',
