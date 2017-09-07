@@ -1,26 +1,19 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormControl,
-  NgForm
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
 import { NzNotificationService } from 'ng-zorro-antd';
+import { BankModel } from '../model/bank.model';
 import { AddBankService } from './addbank.service';
 
 @Component({
   selector: 'app-add-bank',
   templateUrl: './addbank.html',
-
   styles: []
 })
 export class AddBankComponent implements OnInit {
   formGroup: FormGroup;
   isConfirmLoading = false;
   addBank:BankModel = new BankModel();
-  test: string;
   @ViewChild('form') private form: NgForm;
 
   visible = {};
@@ -46,7 +39,6 @@ export class AddBankComponent implements OnInit {
       label            : [ null, [ Validators.pattern(/^(\S){0,2}$/) ] ],
       serviceCity      : [ [  ], [  ] ]
     });
-    console.log(this.addBank)
     this.getData();
   }
 
@@ -84,10 +76,10 @@ export class AddBankComponent implements OnInit {
     // }
   }
 
-  getStatus(a: any){
-    console.log(this.form.controls[a])
-    return this.form.controls[a];
-  }
+  // getStatus(a: any){
+  //   console.log(this.form.controls[a])
+  //   return this.form.controls[a];
+  // }
 
   getFormControl(name: string) {
     return this.formGroup.controls[ name ];
@@ -119,14 +111,4 @@ export class AddBankComponent implements OnInit {
     this.router.navigate(['./banks']);
   }
 
-}
-
-class BankModel{
-  public bankName    : string;
-  public status      : string;
-  public logoUrl     : string;
-  public queryUrl    : string;
-  public adSlogan    : string;
-  public label       : string;
-  public serviceCity : Array<number>;
 }

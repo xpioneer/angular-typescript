@@ -36,7 +36,7 @@
         <div nz-form-label nz-col [nzSpan]="4">
           <label nz-form-item-required>银行logo</label>
         </div>
-        <div nz-form-control nz-col [nzSpan]="12" [nzValidateStatus]="getStatus('logoUrl')">
+        <div nz-form-control nz-col [nzSpan]="12" [nzValidateStatus]="addBank.logoUrl">
           <app-upload-file required [(ngModel)]="addBank.logoUrl" #logoUrl="ngModel" maxSize="100" name="logoUrl"></app-upload-file>
           <div nz-form-explain *ngIf="logoUrl.dirty&&logoUrl.invalid">必须上传!</div>
         </div>
@@ -49,7 +49,7 @@
       <label>办卡进度查询地址</label>
     </div>
     <div nz-col [nzSpan]="12" nz-form-control nzHasFeedback>
-      <nz-input name="queryUrl" [(ngModel)]="addBank.queryUrl" [nzRows]="4" [nzType]="'textarea'" [nzPlaceHolder]="'请输入查询地址'" [nzSize]="'large'" name="queryUrl"></nz-input>
+      <nz-input name="queryUrl" [(ngModel)]="addBank.queryUrl" [nzRows]="4" [nzType]="'textarea'" [nzPlaceHolder]="'请输入查询地址'" [nzSize]="'large'"></nz-input>
     </div>
   </div>
 

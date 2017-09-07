@@ -1,12 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormControl
-} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { NzNotificationService } from 'ng-zorro-antd';
+import { BankModel } from '../model/bank.model';
 import { EditBankService } from './editbank.service';
 
 @Component({
@@ -15,12 +11,9 @@ import { EditBankService } from './editbank.service';
   styles: []
 })
 export class EditBankComponent implements OnInit {
-  formGroup: FormGroup;
   isConfirmLoading = false;
-
-  resetForm() {
-    // this.formGroup.reset();
-  }
+  editBank:BankModel = new BankModel();
+  @ViewChild('form') private form: NgForm;
 
   visible = {};
   options: Array<object> = [];
@@ -32,7 +25,6 @@ export class EditBankComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private fb: FormBuilder,
     private editBankService: EditBankService,
     private notification: NzNotificationService
     ) {
@@ -40,16 +32,6 @@ export class EditBankComponent implements OnInit {
 
   ngOnInit() {
     this.options = [{id:0, name:'未生效'},{id:1, name:'有效'}];
-    this.formGroup = this.fb.group({
-      id: [null],
-      bankName         : [ null, [ Validators.required ] ],
-      status           : [ null, [ Validators.required ] ],
-      logoUrl          : [ null, [ Validators.required ] ],
-      queryUrl         : [ null, [  ] ],
-      adSlogan         : [ null, [ Validators.pattern(/^(\S){8,12}$/) ] ],
-      label            : [ null, [ Validators.pattern(/^(\S){0,2}$/) ] ],
-      serviceCity      : [ [  ], [  ] ]
-    });
 
     let id = this.route.params['value']['id'];
     if(id) {
@@ -62,13 +44,11 @@ export class EditBankComponent implements OnInit {
     this.editBankService.getBank(id).subscribe((res: any)=>{
       if(res.success){
         let data = res.data;
-        for(let key in this.formGroup.value){
-          this.formGroup.controls[key].setValue(data[key]);
-        }
+        this.editBank = data;
+        console.log(this.editBank)
         for(let i of data.serviceCity){
           this.cityChecked[i] = true;
         }
-        this.imgSrc = this.formGroup.controls['logoUrl'].value;
       }
     },(err: any)=>{
       this.notification.error('错误', err.msg);
@@ -86,13 +66,13 @@ export class EditBankComponent implements OnInit {
   }
 
   save(){
-    for (const i in this.formGroup.controls) {
-      this.formGroup.controls[ i ].markAsDirty();
+    for (const i in this.form.controls) {
+      this.form.controls[ i ].markAsDirty();
     }
-    if(this.formGroup.valid){
-      this.formGroup.controls['serviceCity'].setValue(this.getSelectedCity());
+    this.editBank.serviceCity = this.getSelectedCity();
+    if(this.form.valid){
       this.isConfirmLoading = true;
-      this.editBankService.updateBank(this.formGroup.value).subscribe((res: any)=>{
+      this.editBankService.updateBank(this.editBank).subscribe((res: any)=>{
         this.isConfirmLoading = false;
         if(res.success){
           this.notification.success('成功', res.msg);
@@ -105,14 +85,6 @@ export class EditBankComponent implements OnInit {
         this.isConfirmLoading = false;
       });
     }
-  }
-
-  getFormControl(name: string) {
-    return this.formGroup.controls[ name ];
-  }
-
-  uploadSuccess(url:string){
-    this.formGroup.controls['logoUrl'].setValue(url);
   }
 
   show(i: number){
