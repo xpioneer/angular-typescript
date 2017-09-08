@@ -1,13 +1,8 @@
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormControl
-} from '@angular/forms';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { NzNotificationService } from 'ng-zorro-antd';
+import { CreditCardModel } from '../model/creditcard.model';
 
 import { EditCardService } from './editcard.service';
 
@@ -17,63 +12,30 @@ import { EditCardService } from './editcard.service';
   // styles: []
 })
 export class EditCreditomponent implements OnInit {
-  formGroup: FormGroup;
   imgSrc: string;
   isConfirmLoading = false;
-
-  resetForm() {
-    // this.formGroup.reset();
-  }
+  editCard: CreditCardModel = new CreditCardModel();
+  @ViewChild('form') private form: NgForm;
 
   // init data
-  statusOptions: Array<object> = [];
-  levelOptions: Array<object> = [];
-  currencyOptions: Array<object> = [];
-  feeOptions: Array<object> = [];
-  classifyOptions: Array<object> = [];
+  
+  statusOptions = [{id:0, name:'未生效'},{id:1, name:'有效'}];
+  levelOptions = [{id:0, name: '普通'},{id:1, name: '金卡'},{id:2, name: '白金卡'}];
+  currencyOptions = [{id:0, name:'CNY'},{id:1, name:'多币种'}];
+  feeOptions = [{id:0, name:'免首年，交易免年费'},{id:1, name:'终身免年费'},{id:2, name: '有年费'}];
+  classifyOptions = [{id:0, name:'车主卡'},{id:1, name:'商旅卡'},{id:2, name: '网购卡'},{id:3, name:'超市卡'},{id:4, name:'女性卡'},{id:5, name:'小白卡'}];
 
   bankAjaxList:Array<any> = [];
-
-  rangeValidator = (control: FormControl): { [s: string]: boolean } => {
-    let val = control.value;
-    if (val && val.length >= 5 && val.length <= 10) {
-      return { required: false };
-    } else {
-      return { required: true };
-    }
-  };
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private fb: FormBuilder,
     private editCardService: EditCardService,
     private notification: NzNotificationService
     ) {
   }
 
   ngOnInit() {
-    this.statusOptions = [{id:0, name:'未生效'},{id:1, name:'有效'}];
-    this.levelOptions = [{id:0, name: '普通'},{id:1, name: '金卡'},{id:2, name: '白金卡'}];
-    this.currencyOptions = [{id:0, name:'CNY'},{id:1, name:'多币种'}];
-    this.feeOptions = [{id:0, name:'免首年，交易免年费'},{id:1, name:'终身免年费'},{id:2, name: '有年费'}];
-    this.classifyOptions = [{id:0, name:'车主卡'},{id:1, name:'商旅卡'},{id:2, name: '网购卡'},{id:3, name:'超市卡'},{id:4, name:'女性卡'},{id:5, name:'小白卡'}];
-    this.formGroup = this.fb.group({
-      id: [null],
-      creditCardName  : [ null, [ Validators.required, Validators.minLength(5), Validators.maxLength(10) ] ],
-      status          : [ null, [ Validators.required ] ],
-      logo            : [ '', [ Validators.required ] ],
-      level           : [ null, [ Validators.required ] ],
-      currency        : [ null, [ Validators.required ] ],
-      annualFee       : [ null, [ Validators.required ] ],
-      classifyId      : [ null, [ Validators.required ] ],
-      bankId          : [ null, [ Validators.required ] ],
-      introduction    : [ null, [ Validators.maxLength(300) ] ],
-      label1          : [ null, [ Validators.pattern(/^(\S){0,2}$/) ] ],
-      label2          : [ null, [ Validators.pattern(/^(\S){0,2}$/) ] ],
-      adSlogan1       : [ null, [ Validators.pattern(/^(\S){8,12}$/) ] ],
-      adSlogan2       : [ null, [ Validators.pattern(/^(\S){8,12}$/) ] ],
-    });
     let id = this.route.params['value']['id'];
     if(id){
       this.getData(id);
@@ -84,10 +46,7 @@ export class EditCreditomponent implements OnInit {
   getData(id: any) {
     this.editCardService.getCard(id).subscribe((res: any)=>{
       if(res.success){
-        for(let key in this.formGroup.value){
-          this.formGroup.controls[key].setValue(res.data[key]);
-        }
-        this.imgSrc = this.formGroup.controls['logo'].value;
+        this.editCard = res.data;
       }
     }, (err: any)=>{
       this.notification.error('警告', err.msg);
@@ -95,12 +54,12 @@ export class EditCreditomponent implements OnInit {
   }
 
   save(){
-    for (const i in this.formGroup.controls) {
-      this.formGroup.controls[ i ].markAsDirty();
+    for (const i in this.form.controls) {
+      this.form.controls[ i ].markAsDirty();
     }
-    if(this.formGroup.valid){
+    if(this.form.valid){
       this.isConfirmLoading = true;
-      this.editCardService.updateCard(this.formGroup.value).subscribe((res: any)=>{
+      this.editCardService.updateCard(this.editCard).subscribe((res: any)=>{
         this.isConfirmLoading = false;
         if(res.success){
           this.notification.success('成功', res.msg);
@@ -115,10 +74,6 @@ export class EditCreditomponent implements OnInit {
     }
   }
 
-  getFormControl(name: string) {
-    return this.formGroup.controls[ name ];
-  }
-
   searchChange() {
     this.editCardService.getBankList().subscribe((res: any)=>{
       if(res.success){
@@ -127,10 +82,6 @@ export class EditCreditomponent implements OnInit {
     },err=>{
       this.notification.success('错误', err.msg);
     })
-  }
-
-  uploadSuccess(url:string){
-    this.formGroup.controls['logo'].setValue(url);
   }
 
   back(){

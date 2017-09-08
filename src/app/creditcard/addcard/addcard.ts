@@ -1,14 +1,8 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormControl
-} from '@angular/forms';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { NzNotificationService } from 'ng-zorro-antd';
-
+import { CreditCardModel } from '../model/creditcard.model';
 import { AddCardService } from './addcard.service';
 
 @Component({
@@ -17,8 +11,9 @@ import { AddCardService } from './addcard.service';
   styles: []
 })
 export class AddCardomponent implements OnInit {
-  formGroup: FormGroup;
   isConfirmLoading = false;
+  addCard: CreditCardModel = new CreditCardModel();
+  @ViewChild('form') private form: NgForm;
 
   // init data
   statusOptions = [{id:0, name:'未生效'},{id:1, name:'有效'}];
@@ -29,51 +24,25 @@ export class AddCardomponent implements OnInit {
 
   bankAjaxList:Array<any> = [];
 
-  rangeValidator = (control: FormControl): { [s: string]: boolean } => {
-    let val = control.value;
-    if (val && val.length >= 5 && val.length <= 10) {
-      return { required: false };
-    } else {
-      return { required: true };
-    }
-  };
-
   constructor(
     private router: Router,
-    private fb: FormBuilder,
     private addCardService: AddCardService,
     private notification: NzNotificationService
     ) {
   }
 
   ngOnInit() {
-    // 
-    this.formGroup = this.fb.group({
-      creditCardName  : [ null, [ Validators.required, Validators.minLength(5), Validators.maxLength(10) ] ],
-      status          : [ null, [ Validators.required ] ],
-      logo            : [ '', [ Validators.required ] ],
-      level           : [ null, [ Validators.required ] ],
-      currency        : [ null, [ Validators.required ] ],
-      annualFee       : [ null, [ Validators.required ] ],
-      classifyId      : [ null, [ Validators.required ] ],
-      bankId          : [ null, [ Validators.required ] ],
-      introduction    : [ null, [ Validators.maxLength(300) ] ],
-      label1          : [ null, [ Validators.pattern(/^(\S){0,2}$/) ] ],
-      label2          : [ null, [ Validators.pattern(/^(\S){0,2}$/) ] ],
-      adSlogan1       : [ null, [ Validators.pattern(/^(\S){8,12}$/) ] ],
-      adSlogan2       : [ null, [ Validators.pattern(/^(\S){8,12}$/) ] ],
-    });
 
-    this.searchChange(null);
+    this.searchChange();
   }
 
   save(){
-    for (const i in this.formGroup.controls) {
-      this.formGroup.controls[ i ].markAsDirty();
+    for (const i in this.form.controls) {
+      this.form.controls[ i ].markAsDirty();
     }
-    if(this.formGroup.valid){
+    if(this.form.valid){
       this.isConfirmLoading = true;
-      this.addCardService.insertCard(this.formGroup.value).subscribe((res: any)=>{
+      this.addCardService.insertCard(this.addCard).subscribe((res: any)=>{
         this.isConfirmLoading = false;
         if(res.success){
           this.notification.success('成功', res.msg);
@@ -88,11 +57,7 @@ export class AddCardomponent implements OnInit {
     }
   }
 
-  getFormControl(name: string) {
-    return this.formGroup.controls[ name ];
-  }
-
-  searchChange(event: any) {
+  searchChange() {
     this.addCardService.getBankList().subscribe((res: any)=>{
       if(res.success){
         this.bankAjaxList = res.data;
@@ -100,10 +65,6 @@ export class AddCardomponent implements OnInit {
     },err=>{
       this.notification.success('错误', err.msg);
     });
-  }
-
-  uploadSuccess(url:string){
-    this.formGroup.controls['logo'].setValue(url);
   }
   
   back() {
