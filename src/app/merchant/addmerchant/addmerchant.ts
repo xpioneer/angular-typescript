@@ -1,12 +1,8 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormControl
-} from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { NzNotificationService } from 'ng-zorro-antd';
+import { MerchantModel } from '../model/merchant.model';
 
 import { AddMerchantService } from './addmerchant.service';
 
@@ -17,43 +13,31 @@ import { AddMerchantService } from './addmerchant.service';
   styles: []
 })
 export class AddMerchantComponent implements OnInit {
-  formGroup: FormGroup;
   isConfirmLoading = false;
-  resetForm() {
-    // this.valselect = {};
-  }
+  addMerchant: MerchantModel = new MerchantModel();
+  @ViewChild('form') private form: NgForm;
 
   options = [{id:0, name:'未生效'},{id:1, name:'有效'}];
   merchantTypeList = [{id:0, name:'银行'},{id:1, name:'一级代理'},{id:2, name:'二级代理'},{id:3, name:'三级代理'}];
 
   constructor(
     private router: Router,
-    private fb: FormBuilder,
     private addMerchantService: AddMerchantService,
     private notification: NzNotificationService
     ) {
   }
 
   ngOnInit() {
-    this.formGroup = this.fb.group({
-      merchantName    : [ null, [ Validators.required ] ],
-      status          : [ '', [ Validators.required ] ],
-      merchantType    : [ null, [ Validators.required ] ],
-      contactsName    : [ null ],
-      contactsTel     : [ null ],
-      business        : [ null ],
-      businesTel      : [ null ]
-    });
-    
+    // 
   }
 
   save(){
-    for (const i in this.formGroup.controls) {
-      this.formGroup.controls[ i ].markAsDirty();
+    for (const i in this.form.controls) {
+      this.form.controls[ i ].markAsDirty();
     }
-    if(this.formGroup.valid){
+    if(this.form.valid){
       this.isConfirmLoading = true;
-      this.addMerchantService.insertMerchant(this.formGroup.value).subscribe((res: any)=>{
+      this.addMerchantService.insertMerchant(this.addMerchant).subscribe((res: any)=>{
         this.isConfirmLoading = false;
         if(res.success){
           this.notification.success('成功', res.msg);
@@ -66,10 +50,6 @@ export class AddMerchantComponent implements OnInit {
         this.isConfirmLoading = false;
       });
     }
-  }
-
-  getFormControl(name: string) {
-    return this.formGroup.controls[ name ];
   }
 
   back() {

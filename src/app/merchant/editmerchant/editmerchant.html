@@ -1,5 +1,5 @@
 <h4>编辑商户</h4>
-<form nz-form [nzType]="'horizontal'" [formGroup]="formGroup">
+<form nz-form [nzType]="'horizontal'" #form="ngForm">
   <!-- 基本信息 -->
   <div nz-row class="markdown">
     <blockquote><p>商户基本信息</p></blockquote>
@@ -8,21 +8,21 @@
     <div nz-form-label nz-col [nzSpan]="4">
       <label nz-form-item-required>商户名称</label>
     </div>
-    <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="getFormControl('merchantName')">
-      <nz-input formControlName="merchantName" [nzSize]="'large'" name="merchantName"></nz-input>
-      <div nz-form-explain *ngIf="getFormControl('merchantName').dirty&&getFormControl('merchantName').hasError('required')">必须填写!</div>
+    <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="merchantName.control">
+      <nz-input required [(ngModel)]="editMerchant.merchantName" #merchantName="ngModel" [nzSize]="'large'" name="merchantName"></nz-input>
+      <div nz-form-explain *ngIf="merchantName.dirty&&merchantName.invalid">必须填写!</div>
     </div>
     <div nz-form-label nz-col [nzSpan]="4">
       <label nz-form-item-required>状态</label>
     </div>
-    <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="getFormControl('status')">
-      <nz-select formControlName="status" name="status" [nzSize]="'large'" [nzPlaceHolder]="'状态'">
+    <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="status.control">
+      <nz-select required [(ngModel)]="editMerchant.status" #status="ngModel" name="status" [nzSize]="'large'" [nzPlaceHolder]="'状态'">
         <nz-option *ngFor="let option of options"
           [nzLabel]="option.name"
           [nzValue]="option.id">
         </nz-option>
       </nz-select>
-      <div nz-form-explain *ngIf="getFormControl('status').dirty&&getFormControl('status').hasError('required')">必须填写!</div>
+      <div nz-form-explain *ngIf="status.dirty&&status.invalid">必须填写!</div>
     </div>
   </div>
 
@@ -30,20 +30,20 @@
     <div nz-form-label nz-col [nzSpan]="4">
       <label nz-form-item-required>商户类型</label>
     </div>
-    <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="getFormControl('merchantType')">
-      <nz-select formControlName="merchantType" name="merchantType" [nzSize]="'large'">
+    <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="merchantType.control">
+      <nz-select required [(ngModel)]="editMerchant.merchantType" #merchantType="ngModel" name="merchantType" [nzSize]="'large'">
         <nz-option *ngFor="let option of merchantTypeList"
           [nzLabel]="option.name"
           [nzValue]="option.id">
         </nz-option>
       </nz-select>
-      <div nz-form-explain *ngIf="getFormControl('merchantType').dirty&&getFormControl('merchantType').hasError('required')">必须填写!</div>
+      <div nz-form-explain *ngIf="merchantType.dirty&&merchantType.invalid">必须填写!</div>
     </div>
     <div nz-form-label nz-col [nzSpan]="4">
       <label>联系人</label>
     </div>
     <div nz-form-control nz-col [nzSpan]="6">
-      <nz-input formControlName="contactsName" [nzSize]="'large'" name="contactsName"></nz-input>
+      <nz-input [(ngModel)]="editMerchant.contactsName" #contactsName="ngModel" [nzSize]="'large'" name="contactsName"></nz-input>
     </div>
   </div>
 
@@ -52,7 +52,7 @@
       <label>联系方式</label>
     </div>
     <div nz-col [nzSpan]="6" nz-form-control nzHasFeedback>
-      <nz-input formControlName="contactsTel" [nzPlaceHolder]="'联系方式'" [nzSize]="'large'" name="contactsTel"></nz-input>
+      <nz-input [(ngModel)]="editMerchant.contactsTel" #contactsName="ngModel" [nzPlaceHolder]="'联系方式'" [nzSize]="'large'" name="contactsTel"></nz-input>
     </div>
   </div>
   <div nz-row class="markdown">
@@ -63,13 +63,13 @@
       <label>商务</label>
     </div>
     <div nz-form-control nz-col [nzSpan]="6">
-      <nz-input formControlName="business" [nzSize]="'large'" name="business"></nz-input>
+      <nz-input [(ngModel)]="editMerchant.business" #business="ngModel" [nzSize]="'large'" name="business"></nz-input>
     </div>
     <div nz-form-label nz-col [nzSpan]="4">
       <label>联系方式</label>
     </div>
     <div nz-form-control nz-col [nzSpan]="6">
-      <nz-input formControlName="businesTel" [nzSize]="'large'" name="businesTel"></nz-input>
+      <nz-input [(ngModel)]="editMerchant.businesTel" #businesTel="ngModel" [nzSize]="'large'" name="businesTel"></nz-input>
     </div>
   </div>
 
