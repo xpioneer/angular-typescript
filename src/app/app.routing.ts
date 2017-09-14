@@ -9,6 +9,7 @@ const appRoutes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
+            { path: 'article', loadChildren: './article/article.module#ArticleModule' },
             { path: 'banks', loadChildren: './banks/banks.module#BanksModule' },
             { path: 'creditcard', loadChildren: './creditcard/creditcard.module#CreditCardModule' },
             { path: 'merchant', loadChildren: './merchant/merchant.module#MerchantModule' },

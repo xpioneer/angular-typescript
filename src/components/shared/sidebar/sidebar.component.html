@@ -1,10 +1,11 @@
 <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
-  <li nz-submenu [(nzOpen)]="isOpenThree" (nzOpenChange)="openChange('three')">
-    <span title><i class="anticon anticon-setting"></i> 信用卡申请</span>
+    <li nz-submenu [(nzOpen)]="isOpenThree" (nzOpenChange)="openChange('three')">
+    <span title><i class="anticon anticon-setting"></i> 个人博客管理</span>
     <ul>
-      <li nz-menu-item [routerLink]="['/banks']" routerLinkActive="active">银行列表</li>
-      <li nz-menu-item [routerLink]="['/creditcard']" routerLinkActive="active">信用卡管理</li>
-      <li nz-menu-item [routerLink]="['/merchant']" routerLinkActive="active">商户管理</li>
+        <li nz-menu-item [routerLink]="['/article']" routerLinkActive="active">文章列表</li>
+        <li nz-menu-item [routerLink]="['/banks']" routerLinkActive="active">银行列表</li>
+        <li nz-menu-item [routerLink]="['/creditcard']" routerLinkActive="active">信用卡管理</li>
+        <li nz-menu-item [routerLink]="['/merchant']" routerLinkActive="active">商户管理</li>
     </ul>
-  </li>
+    </li>
 </ul>
