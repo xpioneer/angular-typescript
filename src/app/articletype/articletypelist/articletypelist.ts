@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ArticleListService } from './articlelist.service';
-import { ArticleModel } from '../model/article.model';
+import { ArticleTypeListService } from './articletypelist.service';
+import { ArticleTypeModel } from '../model/articletype.model';
 
 @Component({
     selector: 'app-article-list',
-    templateUrl: './articlelist.html',
+    templateUrl: './articletypelist.html',
 })
-export class ArticleListComponent implements OnInit {
+export class ArticleTypeListComponent implements OnInit {
 
     current_page = 1;
     per_page = 10;
     total = 1;
-    dataSet:Array<ArticleModel> = [];
+    dataSet:Array<ArticleTypeModel> = [];
     _loading = true;
 
     valselect = {}
@@ -21,7 +21,7 @@ export class ArticleListComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private articleListService: ArticleListService
+        private articleListService: ArticleTypeListService
     ) {
     }
 
@@ -36,7 +36,7 @@ export class ArticleListComponent implements OnInit {
         this.valselect['current_page'] = this.current_page;
         this.valselect['per_page'] = this.per_page;
         console.log(this.valselect)
-        this.articleListService.getArticleList(this.valselect).subscribe((res:any) => {
+        this.articleListService.getArticleTypeList(this.valselect).subscribe((res:any) => {
             this.dataSet = res.data;
             this.current_page = res.meta.current_page;
             this.total = res.meta.total;
