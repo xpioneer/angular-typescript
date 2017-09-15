@@ -8,7 +8,7 @@ import { ArticleComponent }         from './article.component';
 import { ArticleListComponent } from './articlelist/articlelist';
 import { ArticleListService } from './articlelist/articlelist.service';
 import { AddArticleComponent }  from './addarticle/addarticle';
-// import { AddBankService }  from './addbank/addbank.service';
+import { AddArticleTypeService }  from './addarticle/addarticle.service';
 // import { EditBankComponent }  from './editbank/editbank.component';
 // import { EditBankService }  from './editbank/editbank.service';
 import { UploadFileModule } from '../../components/upload-file/upload-file.module';
@@ -29,7 +29,7 @@ import { UploadFileModule } from '../../components/upload-file/upload-file.modul
     ],
     providers: [
         ArticleListService,
-        // AddBankService,
+        AddArticleTypeService,
         // EditBankService,
     ]
 })

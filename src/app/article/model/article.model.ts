@@ -3,6 +3,7 @@
 export class ArticleModel {
     public id: string;
     public title: string;
+    public is_top: number;
     public abstract: string;
     public pics: string;
     public praise: number;

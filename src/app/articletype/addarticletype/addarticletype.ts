@@ -34,7 +34,7 @@ export class AddArticleTypeComponent implements OnInit {
             this.addArticleTypeService.addArticleType(this.addArticleType).subscribe((res: any)=>{
                 this.isConfirmLoading = false;
                 this.notification.success('成功', res.msg);
-                // this.router.navigate(['/banks']);
+                this.router.navigate(['/articletype']);
             }, (err: any)=>{
                 this.notification.error('警告', err.msg);
                 this.isConfirmLoading = false;

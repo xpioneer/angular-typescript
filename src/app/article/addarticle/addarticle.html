@@ -1,3 +1,76 @@
-<div>
-    add
-</div>
+
+<h4>添加文章</h4>
+<form nz-form [nzType]="'horizontal'" style="margin-top: 20px;" #form="ngForm">
+  <!-- <div nz-row class="markdown">
+    <blockquote><p>银行基本信息</p></blockquote>
+  </div> -->
+  <div nz-row >
+    <div nz-col [nzSm]="12" [nzXl]="8">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="6">
+          <label nz-form-item-required>文章标题</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="18" [nzValidateStatus]="title.control">
+          <nz-input name="title" required [(ngModel)]="addArticle.title" [nzSize]="'large'" #title="ngModel"></nz-input>
+          <div nz-form-explain *ngIf="title.dirty&&title.invalid">必须填写!</div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="6">
+          <label nz-form-item-required>是否置顶</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="18" [nzValidateStatus]="is_top.control">
+          <nz-select name="is_top" required [(ngModel)]="addArticle.is_top" #is_top="ngModel" [nzSize]="'large'">
+            <nz-option nzLabel="否" nzValue="0"> </nz-option>
+            <nz-option nzLabel="是" nzValue="1"> </nz-option>
+          </nz-select>
+          <div nz-form-explain *ngIf="is_top.dirty&&is_top.invalid">必须填写!</div>
+        </div>
+      </div>
+    </div>
+    <div nz-col [nzSm]="12">
+      <div nz-form-item row>
+        <div nz-form-label nz-col [nzSpan]="6">
+          <label nz-form-item-required>banner图片</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="18" [nzValidateStatus]="addArticle.pics">
+          <app-upload-file [(ngModel)]="addArticle.pics" #pics="ngModel" maxSize="100" name="pics"></app-upload-file>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div nz-form-item nz-row>
+    <div nz-form-label nz-col [nzSm]="3" [nzXl]="2">
+      <label>摘要</label>
+    </div>
+    <div nz-col [nzSpan]="12" nz-form-control nzHasFeedback>
+      <nz-input name="abstract" [(ngModel)]="addArticle.abstract" [nzRows]="4" [nzType]="'textarea'" [nzPlaceHolder]="'摘要'" [nzSize]="'large'"></nz-input>
+    </div>
+  </div>
+
+  <!-- <div nz-form-item nz-row>
+    <div nz-form-label nz-col [nzSm]="3" [nzXl]="2">
+      <label>服务区域</label>
+    </div>
+    <div nz-col [nzSpan]="18" nz-form-control style="min-height:80px;">
+      <nz-popover *ngFor="let citys of cityLists;let i = index" [nzTitle]="citys.province" [nzVisible]="visible[i]" nzTrigger="click">
+        <button nz-button nz-popover [nzType]="'default'" (click)="show(i)">{{citys.province}}</button>
+        <ng-template #nzTemplate>
+          <label *ngFor="let item of citys.cityList" nz-checkbox [(ngModel)]="cityChecked[item.id]" name="'city_'+{{item.id}}" [ngModelOptions]="{standalone: true}">
+            <span>{{item.city}}</span>
+          </label>
+          <p style="text-align:right"><a (click)='close(i)'>点击关闭</a></p>
+        </ng-template>
+      </nz-popover>
+    </div>
+  </div> -->
+
+  <div nz-form-item nz-row>
+    <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="2">
+      <button nz-button nzType="primary" [nzSize]="'large'" (click)="save()"  [nzLoading]="isConfirmLoading">保存</button>
+      <button nz-button nzType="default" [nzSize]="'large'" (click)="back()">取消</button>
+    </div>
+  </div>
+
+</form>
