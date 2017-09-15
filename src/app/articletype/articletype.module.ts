@@ -8,9 +8,10 @@ import { ArticleTypeComponent }     from './articletype.component';
 import { ArticleTypeListComponent } from './articletypelist/articletypelist';
 import { ArticleTypeListService } from './articletypelist/articletypelist.service';
 import { AddArticleTypeComponent }  from './addarticletype/addarticletype';
+import { AddArticleTypeService }  from './addarticletype/addarticletype.service';
 import { EditArticleTypeComponent }  from './editarticletype/editarticletype';
 import { EditArticleTypeService }  from './editarticletype/editarticletype.service';
-import { UploadFileModule } from '../../components/upload-file/upload-file.module';
+// import { UploadFileModule } from '../../components/upload-file/upload-file.module';
 
 @NgModule({
     imports: [
@@ -18,7 +19,7 @@ import { UploadFileModule } from '../../components/upload-file/upload-file.modul
         CommonModule,
         ArticleTypeRouting,
         NgZorroAntdModule.forRoot(),
-        UploadFileModule
+        // UploadFileModule
     ],
     declarations: [
         ArticleTypeComponent,
@@ -28,7 +29,7 @@ import { UploadFileModule } from '../../components/upload-file/upload-file.modul
     ],
     providers: [
         ArticleTypeListService,
-        // AddBankService,
+        AddArticleTypeService,
         EditArticleTypeService,
     ]
 })

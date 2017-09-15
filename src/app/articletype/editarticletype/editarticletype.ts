@@ -41,7 +41,6 @@ export class EditArticleTypeComponent implements OnInit {
         for (const i in this.form.controls) {
             this.form.controls[ i ].markAsDirty();
         }
-        console.log(this.editArticleType)
         if(this.form.valid){
             this.isConfirmLoading = true;
             this.editArticleTypeService.updateArticleType(this.editArticleType).subscribe((res: any)=>{
