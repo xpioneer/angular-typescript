@@ -35,7 +35,6 @@ export class ArticleListComponent implements OnInit {
         this._loading = true;
         this.valselect['current_page'] = this.current_page;
         this.valselect['per_page'] = this.per_page;
-        console.log(this.valselect)
         this.articleListService.getArticleList(this.valselect).subscribe((res:any) => {
             this.dataSet = res.data;
             this.current_page = res.meta.current_page;

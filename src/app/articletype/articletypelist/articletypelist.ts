@@ -15,7 +15,9 @@ export class ArticleTypeListComponent implements OnInit {
     dataSet:Array<ArticleTypeModel> = [];
     _loading = true;
 
-    valselect = {}
+    valselect = {};
+    _startDate = '';
+    __endDate = '';
 
     options: Array<object>;
 
@@ -35,7 +37,6 @@ export class ArticleTypeListComponent implements OnInit {
         this._loading = true;
         this.valselect['current_page'] = this.current_page;
         this.valselect['per_page'] = this.per_page;
-        console.log(this.valselect)
         this.articleListService.getArticleTypeList(this.valselect).subscribe((res:any) => {
             this.dataSet = res.data;
             this.current_page = res.meta.current_page;
@@ -48,15 +49,24 @@ export class ArticleTypeListComponent implements OnInit {
 
     clear() {
         this.valselect = {
-            title: {
+            type_name: {
                 val: '',
                 exp: 'like'
             },
-            abstract: {
+            remark: {
                 val: '',
                 exp: 'like'
+            },
+            created_at: {
+                val: '',
+                exp: 'between'
             }
         };
+    }
+
+    _startValueChange(){
+        console.log(this._startDate, this.__endDate)
+        this.__endDate = this._startDate;
     }
 
 }

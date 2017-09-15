@@ -8,6 +8,8 @@ import { ArticleTypeComponent }     from './articletype.component';
 import { ArticleTypeListComponent } from './articletypelist/articletypelist';
 import { ArticleTypeListService } from './articletypelist/articletypelist.service';
 import { AddArticleTypeComponent }  from './addarticletype/addarticletype';
+import { EditArticleTypeComponent }  from './editarticletype/editarticletype';
+import { EditArticleTypeService }  from './editarticletype/editarticletype.service';
 import { UploadFileModule } from '../../components/upload-file/upload-file.module';
 
 @NgModule({
@@ -22,12 +24,12 @@ import { UploadFileModule } from '../../components/upload-file/upload-file.modul
         ArticleTypeComponent,
         ArticleTypeListComponent,
         AddArticleTypeComponent,
-        // EditBankComponent,
+        EditArticleTypeComponent,
     ],
     providers: [
         ArticleTypeListService,
         // AddBankService,
-        // EditBankService,
+        EditArticleTypeService,
     ]
 })
 export class ArticleTypeModule {}
