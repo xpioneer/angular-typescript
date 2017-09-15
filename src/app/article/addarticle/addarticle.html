@@ -19,12 +19,22 @@
         <div nz-form-label nz-col [nzSpan]="6">
           <label nz-form-item-required>是否置顶</label>
         </div>
-        <div nz-form-control nz-col [nzSpan]="18" [nzValidateStatus]="is_top.control">
+        <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="is_top.control">
           <nz-select name="is_top" required [(ngModel)]="addArticle.is_top" #is_top="ngModel" [nzSize]="'large'">
-            <nz-option nzLabel="否" nzValue="0"> </nz-option>
-            <nz-option nzLabel="是" nzValue="1"> </nz-option>
+            <nz-option nzLabel="否" [nzValue]="0"> </nz-option>
+            <nz-option nzLabel="是" [nzValue]="1"> </nz-option>
           </nz-select>
           <div nz-form-explain *ngIf="is_top.dirty&&is_top.invalid">必须填写!</div>
+        </div>
+        <div nz-form-label nz-col [nzSpan]="6">
+          <label nz-form-item-required>是否原创</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="is_original.control">
+          <nz-select name="is_original" required [(ngModel)]="addArticle.is_original" #is_original="ngModel" [nzSize]="'large'">
+            <nz-option nzLabel="是" [nzValue]="true"> </nz-option>
+            <nz-option nzLabel="否" [nzValue]="false"> </nz-option>
+          </nz-select>
+          <div nz-form-explain *ngIf="is_original.dirty&&is_original.invalid">必须填写!</div>
         </div>
       </div>
     </div>
@@ -46,6 +56,15 @@
     </div>
     <div nz-col [nzSpan]="12" nz-form-control nzHasFeedback>
       <nz-input name="abstract" [(ngModel)]="addArticle.abstract" [nzRows]="4" [nzType]="'textarea'" [nzPlaceHolder]="'摘要'" [nzSize]="'large'"></nz-input>
+    </div>
+  </div>
+
+  <div nz-form-item nz-row>
+    <div nz-form-label nz-col [nzSm]="3" [nzXl]="2">
+      <label>文章内容</label>
+    </div>
+    <div nz-col [nzSpan]="21" nz-form-control>
+      <div #editor></div>
     </div>
   </div>
 
