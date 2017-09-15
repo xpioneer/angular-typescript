@@ -15,7 +15,7 @@ export class ArticleTypeListComponent implements OnInit {
     dataSet:Array<ArticleTypeModel> = [];
     _loading = true;
 
-    valselect = {};
+    value = {};
     _startDate = '';
     __endDate = '';
 
@@ -28,16 +28,15 @@ export class ArticleTypeListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.options = [{id:0, name:'未生效'},{id:1, name:'有效'}];
         this.clear();
         this.query();
     }
 
     query() {
         this._loading = true;
-        this.valselect['current_page'] = this.current_page;
-        this.valselect['per_page'] = this.per_page;
-        this.articleListService.getArticleTypeList(this.valselect).subscribe((res:any) => {
+        this.value['current_page'] = this.current_page;
+        this.value['per_page'] = this.per_page;
+        this.articleListService.getArticleTypeList(this.value).subscribe((res:any) => {
             this.dataSet = res.data;
             this.current_page = res.meta.current_page;
             this.total = res.meta.total;
@@ -48,7 +47,7 @@ export class ArticleTypeListComponent implements OnInit {
     }
 
     clear() {
-        this.valselect = {
+        this.value = {
             type_name: {
                 val: '',
                 exp: 'like'

@@ -13,7 +13,7 @@ const appRoutes: Routes = [
             { path: 'articletype', loadChildren: './articletype/articletype.module#ArticleTypeModule' },
             { path: 'banks', loadChildren: './banks/banks.module#BanksModule' },
             { path: 'creditcard', loadChildren: './creditcard/creditcard.module#CreditCardModule' },
-            { path: 'merchant', loadChildren: './merchant/merchant.module#MerchantModule' },
+            { path: 'tag', loadChildren: './tag/tag.module#TagModule' },
         ]
     },
 ];

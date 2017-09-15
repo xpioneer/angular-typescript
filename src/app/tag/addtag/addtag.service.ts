@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
 @Injectable()
-export class AddMerchantService {
+export class AddTagService {
   constructor(
     private http: HttpClient
   ){}
 
-  insertMerchant(data: any){
-    return this.http.post('/api/creditCardMerchant/add', data);
+  addTag(data: any){
+    return this.http.post('/api/tag', data);
   }
 
 }

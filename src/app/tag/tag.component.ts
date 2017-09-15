@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-merchant',
+  selector: 'app-tag',
   template: '<router-outlet></router-outlet>',
 })
-export class MerchantComponent{
+export class TagComponent{
 }
 

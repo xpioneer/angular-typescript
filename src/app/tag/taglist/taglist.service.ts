@@ -3,14 +3,14 @@ import { HttpClient } from "@angular/common/http";
 import { Params } from '../../../utils/params.service'
 
 @Injectable()
-export class MerchantListService {
+export class TagListService {
   constructor(
     private http: HttpClient,
     private params: Params
   ){}
 
-  getMerchantList(data: any) {
-    return this.http.get('/api/creditCardMerchant/list?' + this.params.format(data));
+  getTagList(data: any) {
+    return this.http.get('/api/tag?' + this.params.fmtpages(data));
   }
 
 }
