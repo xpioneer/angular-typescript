@@ -8,10 +8,11 @@ import { ArticleComponent }         from './article.component';
 import { ArticleListComponent } from './articlelist/articlelist';
 import { ArticleListService } from './articlelist/articlelist.service';
 import { AddArticleComponent }  from './addarticle/addarticle';
-import { AddArticleTypeService }  from './addarticle/addarticle.service';
-// import { EditBankComponent }  from './editbank/editbank.component';
-// import { EditBankService }  from './editbank/editbank.service';
+import { AddArticleService }  from './addarticle/addarticle.service';
+import { EditArticleComponent }  from './editarticle/editarticle';
+import { EditArticleService }  from './editarticle/editarticle.service';
 import { UploadFileModule } from '../../components/upload-file/upload-file.module';
+import { EditorModule } from '../../components/editor/editor.module';
 
 @NgModule({
     imports: [
@@ -19,18 +20,19 @@ import { UploadFileModule } from '../../components/upload-file/upload-file.modul
         CommonModule,
         ArticleRouting,
         NgZorroAntdModule.forRoot(),
-        UploadFileModule
+        UploadFileModule,
+        EditorModule
     ],
     declarations: [
         ArticleComponent,
         ArticleListComponent,
         AddArticleComponent,
-        // EditBankComponent,
+        EditArticleComponent
     ],
     providers: [
         ArticleListService,
-        AddArticleTypeService,
-        // EditBankService,
+        AddArticleService,
+        EditArticleService,
     ]
 })
 export class ArticleModule {}

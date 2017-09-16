@@ -3,14 +3,18 @@ import { HttpClient } from "@angular/common/http";
 import { Params } from '../../../utils/params.service';
 
 @Injectable()
-export class AddArticleService {
+export class EditArticleService {
   constructor(
     private http: HttpClient,
     private params: Params
   ){}
 
-  insertArticle(data: any) {
-    return this.http.post('/api/article', data);
+  getArticle(id: string) {
+    return this.http.get('/api/article/' + id);
+  }
+
+  updateArticle(data: any) {
+    return this.http.put('/api/article/'+data.id, data);
   }
 
   getTags() {

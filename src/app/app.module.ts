@@ -13,8 +13,6 @@ import { Params } from '../utils/params.service'
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home';
 import { HeaderComponent, SidebarComponent, BreadCrumbComponent } from '../components/shared';
-import { UploadFileComponent } from '../components/upload-file/upload-file.component';
-import { UploadFileModule } from '../components/upload-file/upload-file.module'
 
 @NgModule({
     declarations: [

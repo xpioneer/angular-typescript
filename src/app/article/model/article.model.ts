@@ -11,5 +11,6 @@ export class ArticleModel {
     public praise: number;
     public view_count: number;
     public is_original: boolean = true;
+    public tag: string;
     public created_at: string;
 }

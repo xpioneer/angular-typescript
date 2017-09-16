@@ -8,7 +8,7 @@
           <label nz-form-item-required>文章标题</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="18" [nzValidateStatus]="title.control">
-          <nz-input name="title" required [(ngModel)]="addArticle.title" [nzSize]="'large'" #title="ngModel"></nz-input>
+          <nz-input name="title" required [(ngModel)]="mainModel.title" [nzSize]="'large'" #title="ngModel"></nz-input>
           <div nz-form-explain *ngIf="title.dirty&&title.invalid">必须填写!</div>
         </div>
       </div>
@@ -17,7 +17,7 @@
           <label nz-form-item-required>是否置顶</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="is_top.control">
-          <nz-select name="is_top" required [(ngModel)]="addArticle.is_top" #is_top="ngModel" [nzSize]="'large'">
+          <nz-select name="is_top" required [(ngModel)]="mainModel.is_top" #is_top="ngModel" [nzSize]="'large'">
             <nz-option nzLabel="否" [nzValue]="0"> </nz-option>
             <nz-option nzLabel="是" [nzValue]="1"> </nz-option>
           </nz-select>
@@ -27,7 +27,7 @@
           <label nz-form-item-required>是否原创</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="is_original.control">
-          <nz-select name="is_original" required [(ngModel)]="addArticle.is_original" #is_original="ngModel" [nzSize]="'large'">
+          <nz-select name="is_original" required [(ngModel)]="mainModel.is_original" #is_original="ngModel" [nzSize]="'large'">
             <nz-option nzLabel="是" [nzValue]="true"> </nz-option>
             <nz-option nzLabel="否" [nzValue]="false"> </nz-option>
           </nz-select>
@@ -40,8 +40,8 @@
         <div nz-form-label nz-col [nzSpan]="6">
           <label nz-form-item-required>banner图片</label>
         </div>
-        <div nz-form-control nz-col [nzSpan]="18" [nzValidateStatus]="addArticle.pics">
-          <app-upload-file [(ngModel)]="addArticle.pics" #pics="ngModel" maxSize="100" name="pics"></app-upload-file>
+        <div nz-form-control nz-col [nzSpan]="18" [nzValidateStatus]="mainModel.pics">
+          <app-upload-file [(ngModel)]="mainModel.pics" #pics="ngModel" maxSize="100" name="pics"></app-upload-file>
         </div>
       </div>
     </div>
@@ -59,7 +59,7 @@
         nzPlaceHolder="文章类型"
         #type_id="ngModel"
         [nzFilter]="false"
-        [(ngModel)]="addArticle.type_id"
+        [(ngModel)]="mainModel.type_id"
         [nzNotFoundContent]="'无法找到'"
         [nzShowSearch]="true">
         <nz-option *ngFor="let option of typeAjaxList"
@@ -76,7 +76,7 @@
       <label>摘要</label>
     </div>
     <div nz-col [nzSpan]="12" nz-form-control>
-      <nz-input name="abstract" [(ngModel)]="addArticle.abstract" [nzRows]="4" [nzType]="'textarea'" [nzPlaceHolder]="'摘要'" [nzSize]="'large'"></nz-input>
+      <nz-input name="abstract" [(ngModel)]="mainModel.abstract" [nzRows]="4" [nzType]="'textarea'" [nzPlaceHolder]="'摘要'" [nzSize]="'large'"></nz-input>
     </div>
   </div>
 
@@ -85,7 +85,7 @@
       <label>文章内容</label>
     </div>
     <div nz-col [nzSpan]="21" nz-form-control [nzValidateStatus]="content.control">
-      <app-editor required [(ngModel)]="addArticle.content" #content="ngModel" name="content"></app-editor>
+      <app-editor required [(ngModel)]="mainModel.content" #content="ngModel" name="content"></app-editor>
       <div nz-form-explain *ngIf="content.dirty&&content.invalid">必须填写!</div>
     </div>
   </div>
@@ -95,7 +95,7 @@
       <label>标签</label>
     </div>
     <div nz-col [nzSpan]="21" nz-form-control>
-      <label *ngFor="let item of tagList" nz-checkbox [(ngModel)]="checkedTag[item.id]" name="tag_{{item.id}}" [ngModelOptions]="{standalone: true}">
+      <label *ngFor="let item of tagList" nz-checkbox [(ngModel)]="checkedTag[item.name]" name="tag_{{item.id}}" [ngModelOptions]="{standalone: true}">
         <span>{{item.name}}</span>
       </label>
     </div>

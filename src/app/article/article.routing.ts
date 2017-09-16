@@ -3,7 +3,7 @@ import { Routes, RouterModule }  from '@angular/router';
 import { ArticleComponent } from './article.component';
 import { ArticleListComponent } from './articlelist/articlelist';
 import { AddArticleComponent } from './addarticle/addarticle';
-// import { EditBankComponent } from './editbank/editbank.component';
+import { EditArticleComponent } from './editarticle/editarticle';
 
 const routes: Routes = [
     {
@@ -13,7 +13,7 @@ const routes: Routes = [
             { path: '', redirectTo: 'list', pathMatch: 'full' },
             { path: 'list', component: ArticleListComponent },
             { path: 'add', component: AddArticleComponent },
-            // { path: 'edit/:id', component: EditBankComponent },
+            { path: 'edit/:id', component: EditArticleComponent },
         ]
     }
 ];
