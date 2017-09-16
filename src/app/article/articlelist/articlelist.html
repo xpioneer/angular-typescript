@@ -4,15 +4,15 @@
     <div nz-row [nzGutter]="40" class="mgt20">
         <div nz-col class="gutter-row" [nzSpan]="6">
             <span class="spanW60">文章名称：</span>
-            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'文章名称'" [(ngModel)]="valselect.title.val" name="valselect.title.val"></nz-input>
+            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'文章名称'" [(ngModel)]="value.title.val" name="value.title.val"></nz-input>
         </div>
         <div nz-col class="gutter-row" [nzSpan]="6">
             <span class="spanW60">文章摘要：</span>
-            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'文章摘要'" [(ngModel)]="valselect.abstract.val" name="valselect.abstract.val"></nz-input>
+            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'文章摘要'" [(ngModel)]="value.abstract.val" name="value.abstract.val"></nz-input>
         </div>
         <!-- <div nz-col class="gutter-row" [nzSpan]="6">
             <span class="spanW60">状态选择：</span>
-            <nz-select [nzSize]="'large'" [(ngModel)]="valselect.status.val" name="valselect.status.val">
+            <nz-select [nzSize]="'large'" [(ngModel)]="value.status.val" name="value.status.val">
                 <nz-option
                     *ngFor="let option of options"
                     [nzLabel]="option.name"

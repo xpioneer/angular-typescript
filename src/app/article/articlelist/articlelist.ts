@@ -15,7 +15,7 @@ export class ArticleListComponent implements OnInit {
     dataSet:Array<ArticleModel> = [];
     _loading = true;
 
-    valselect = {}
+    value = {}
 
     options: Array<object>;
 
@@ -33,9 +33,9 @@ export class ArticleListComponent implements OnInit {
 
     query() {
         this._loading = true;
-        this.valselect['current_page'] = this.current_page;
-        this.valselect['per_page'] = this.per_page;
-        this.articleListService.getArticleList(this.valselect).subscribe((res:any) => {
+        this.value['current_page'] = this.current_page;
+        this.value['per_page'] = this.per_page;
+        this.articleListService.getArticleList(this.value).subscribe((res:any) => {
             this.dataSet = res.data;
             this.current_page = res.meta.current_page;
             this.total = res.meta.total;
@@ -46,7 +46,7 @@ export class ArticleListComponent implements OnInit {
     }
 
     clear() {
-        this.valselect = {
+        this.value = {
             title: {
                 val: '',
                 exp: 'like'

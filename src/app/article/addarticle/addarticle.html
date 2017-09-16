@@ -54,8 +54,29 @@
     <div nz-form-label nz-col [nzSm]="3" [nzXl]="2">
       <label>摘要</label>
     </div>
-    <div nz-col [nzSpan]="12" nz-form-control nzHasFeedback>
+    <div nz-col [nzSpan]="9" nz-form-control nzHasFeedback>
       <nz-input name="abstract" [(ngModel)]="addArticle.abstract" [nzRows]="4" [nzType]="'textarea'" [nzPlaceHolder]="'摘要'" [nzSize]="'large'"></nz-input>
+    </div>
+    <div nz-form-label nz-col [nzSm]="3" [nzXl]="2">
+      <label>文章类型</label>
+    </div>
+    <div nz-col [nzSpan]="9" nz-form-control nzHasFeedback>
+      <nz-select
+        required
+        nzSize="large"
+        name="type_id"
+        nzPlaceHolder="文章类型"
+        #type_id="ngModel"
+        [nzFilter]="false"
+        [(ngModel)]="addArticle.type_id"
+        [nzNotFoundContent]="'无法找到'"
+        [nzShowSearch]="true">
+        <nz-option *ngFor="let option of typeAjaxList"
+          [nzLabel]="option.type_name"
+          [nzValue]="option.id">
+        </nz-option>
+      </nz-select>
+      <div nz-form-explain *ngIf="type_id.dirty&&type_id.invalid">必须填写!</div>
     </div>
   </div>
 
@@ -68,22 +89,16 @@
     </div>
   </div>
 
-  <!-- <div nz-form-item nz-row>
+  <div nz-form-item nz-row>
     <div nz-form-label nz-col [nzSm]="3" [nzXl]="2">
-      <label>服务区域</label>
+      <label>标签</label>
     </div>
-    <div nz-col [nzSpan]="18" nz-form-control style="min-height:80px;">
-      <nz-popover *ngFor="let citys of cityLists;let i = index" [nzTitle]="citys.province" [nzVisible]="visible[i]" nzTrigger="click">
-        <button nz-button nz-popover [nzType]="'default'" (click)="show(i)">{{citys.province}}</button>
-        <ng-template #nzTemplate>
-          <label *ngFor="let item of citys.cityList" nz-checkbox [(ngModel)]="cityChecked[item.id]" name="'city_'+{{item.id}}" [ngModelOptions]="{standalone: true}">
-            <span>{{item.city}}</span>
-          </label>
-          <p style="text-align:right"><a (click)='close(i)'>点击关闭</a></p>
-        </ng-template>
-      </nz-popover>
+    <div nz-col [nzSpan]="21" nz-form-control>
+      <label *ngFor="let item of tagList" nz-checkbox [(ngModel)]="checkedTag[item.id]" name="tag_{{item.id}}" [ngModelOptions]="{standalone: true}">
+        <span>{{item.name}}</span>
+      </label>
     </div>
-  </div> -->
+  </div>
 
   <div nz-form-item nz-row>
     <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="2">

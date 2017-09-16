@@ -43,7 +43,10 @@ export class AddArticleComponent implements OnInit {
     @ViewChild('form') private form: NgForm;
     @ViewChild('editor') private editor: ElementRef;
 
-    quillEditor = {};
+    quillEditor:any = {};
+    tagList:Array<object> = [];
+    checkedTag = {};
+    typeAjaxList: Array<any> = [];
 
     constructor(
         private router: Router,
@@ -52,7 +55,6 @@ export class AddArticleComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        console.log('ngOnInit', this.addArticle);
         this.quillEditor = new Quill(this.editor.nativeElement, {
             debug: false,
             modules: {
@@ -61,24 +63,27 @@ export class AddArticleComponent implements OnInit {
             placeholder: '请写下你的想法...',
             readOnly: false,
             theme: 'snow'
-        })
+        });
+        this.getTypeList();
+        this.getTagList();
     }
 
-    ngAfterViewInit(){
-        console.log('ngAfterViewInit')
-    }
+    // ngAfterViewInit(){
+    //     console.log('ngAfterViewInit')
+    // }
 
-    ngAfterContentInit(){
-        console.log('ngAfterContentInit')
-    }
+    // ngAfterContentInit(){
+    //     console.log('ngAfterContentInit')
+    // }
 
     save(){
         for (const i in this.form.controls) {
             this.form.controls[ i ].markAsDirty();
         }
+        this.addArticle.content = this.quillEditor.root.innerHTML;
         if(this.form.valid){
             this.isConfirmLoading = true;
-            this.addArticleTypeService.addArticle(this.addArticle).subscribe((res: any)=>{
+            this.addArticleTypeService.insertArticle(this.addArticle).subscribe((res: any)=>{
                 this.isConfirmLoading = false;
                 this.notification.success('成功', res.msg);
                 this.router.navigate(['/article']);
@@ -87,6 +92,32 @@ export class AddArticleComponent implements OnInit {
                 this.isConfirmLoading = false;
             });
         }
+    }
+
+    getTypeList(){
+        this.addArticleTypeService.getTypes().subscribe((res: any)=>{
+            this.typeAjaxList = res.data;
+        }, (err:any)=>{
+            // 
+        });
+    }
+
+    getTagList(){
+        this.addArticleTypeService.getTags().subscribe((res: any)=>{
+            this.tagList = res.data;
+        }, (err:any)=>{
+            // 
+        });
+    }
+
+    getCheckedTag(){
+        let arr = [];
+        for(let item of this.tagList){
+            if(this.checkedTag[item['id']]){
+                arr.push(item['name']);
+            }
+        }
+        return arr.join(',');
     }
 
     back() {

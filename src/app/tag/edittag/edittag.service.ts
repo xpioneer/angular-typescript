@@ -12,7 +12,7 @@ export class EditTagService {
   }
 
   updateTag(data: any) {
-    return this.http.put(`/api/tag/{data.id}`, data);
+    return this.http.put(`/api/tag/${data.id}`, data);
   }
 
 }
