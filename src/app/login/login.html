@@ -1,6 +1,11 @@
 <!-- <canvas #canvas></canvas> -->
 <form nz-form class="login-form" #form="ngForm">
   <div nz-form-item>
+    <h1>
+      后台管理系统 Angular4
+    </h1>
+  </div>
+  <div nz-form-item>
     <div nz-form-control [nzValidateStatus]="username.control">
       <nz-input required [(ngModel)]="loginData.username" #username="ngModel" [nzPlaceHolder]="'用户名'" [nzSize]="'large'" name="username">
         <ng-template #prefix>
