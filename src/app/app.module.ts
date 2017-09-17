@@ -12,6 +12,7 @@ import { AppInterceptor } from "../utils/appInterceptor.service";
 import { Params } from '../utils/params.service'
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home';
+import { LoginComponent } from './login/login.component';
 import { HeaderComponent, SidebarComponent, BreadCrumbComponent } from '../components/shared';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { HeaderComponent, SidebarComponent, BreadCrumbComponent } from '../compo
         HeaderComponent,
         SidebarComponent,
         BreadCrumbComponent,
+        LoginComponent
     ],
     imports: [
         BrowserModule,

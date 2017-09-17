@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule }  from '@angular/router';
 import { HomeComponent } from './home';
-
+import { LoginComponent } from './login/login.component';
+// 
 const appRoutes: Routes = [
+    {
+        path: 'login',
+        component: LoginComponent
+    },
     {
         path: '',
         component: HomeComponent,
@@ -14,8 +19,9 @@ const appRoutes: Routes = [
             { path: 'banks', loadChildren: './banks/banks.module#BanksModule' },
             { path: 'creditcard', loadChildren: './creditcard/creditcard.module#CreditCardModule' },
             { path: 'tag', loadChildren: './tag/tag.module#TagModule' },
+            { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
         ]
-    },
+    }
 ];
 
 @NgModule({
