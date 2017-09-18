@@ -20,7 +20,7 @@ export class AppInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       const request = req.clone({
-          headers: req.headers.set('AuthToken', 'authService.getToken()')
+          headers: req.headers.set('Authorization-User', localStorage.getItem('ACCESS_TOKEN'))
       });
       return next.handle(request).map(event => {
         if (event instanceof HttpResponse) {

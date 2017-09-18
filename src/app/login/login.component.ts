@@ -44,9 +44,11 @@ export class LoginComponent implements OnInit {
     }
     if(this.form.valid){
       this.http.post('/api/login',this.loginData).subscribe((res:any)=>{
-        // 
+        localStorage.setItem('ACCESS_TOKEN', res.msg);
+        localStorage.setItem('USER_INFO', JSON.stringify(res.data));
+        location.href = '/dashboard';
       }, (err: any)=>{
-        // 
+        // alert(err);
       });
     }
   }
