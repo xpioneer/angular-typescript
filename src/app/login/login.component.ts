@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { NzNotificationService } from 'ng-zorro-antd';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -26,12 +27,12 @@ export class LoginComponent implements OnInit {
   _window: any;
   @ViewChild('canvas') private canvas: ElementRef;
   @ViewChild('form') private form: NgForm;
-  loginData = {
-    username: '',
-    password: ''
-  }
+  userInfo:UserModel = new UserModel();
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private notification: NzNotificationService
+    ) {
   }
 
   ngOnInit() {
@@ -43,12 +44,13 @@ export class LoginComponent implements OnInit {
       this.form.controls[ i ].markAsDirty();
     }
     if(this.form.valid){
-      this.http.post('/api/login',this.loginData).subscribe((res:any)=>{
+      this.http.post('/api/login',this.userInfo).subscribe((res:any)=>{
         localStorage.setItem('ACCESS_TOKEN', res.msg);
         localStorage.setItem('USER_INFO', JSON.stringify(res.data));
-        location.href = '/dashboard';
+        location.href = '#/dashboard';
       }, (err: any)=>{
-        // alert(err);
+        console.log(err, 'err')
+        this.notification.warning('错误', err.msg);
       });
     }
   }
@@ -60,3 +62,7 @@ export class LoginComponent implements OnInit {
   
 }
 
+class UserModel {
+  public username: string;
+  public password: string;
+}

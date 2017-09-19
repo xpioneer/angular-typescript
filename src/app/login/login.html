@@ -7,7 +7,7 @@
   </div>
   <div nz-form-item>
     <div nz-form-control [nzValidateStatus]="username.control">
-      <nz-input required [(ngModel)]="loginData.username" #username="ngModel" [nzPlaceHolder]="'用户名'" [nzSize]="'large'" name="username">
+      <nz-input required [(ngModel)]="userInfo.username" #username="ngModel" [nzPlaceHolder]="'用户名'" [nzSize]="'large'" name="username">
         <ng-template #prefix>
           <i class="anticon anticon-user"></i>
         </ng-template>
@@ -17,7 +17,7 @@
   </div>
   <div nz-form-item>
     <div nz-form-control [nzValidateStatus]="password.control">
-      <nz-input required [(ngModel)]="loginData.password" #password="ngModel" [nzType]="'password'" [nzPlaceHolder]="'Password'" [nzSize]="'large'" name="password">
+      <nz-input required [(ngModel)]="userInfo.password" #password="ngModel" [nzType]="'password'" [nzPlaceHolder]="'Password'" [nzSize]="'large'" name="password">
         <ng-template #prefix>
           <i class="anticon anticon-lock"></i>
         </ng-template>

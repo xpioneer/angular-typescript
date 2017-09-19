@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DashBoardService } from "./dashboard.service";
 
 
 @Component({
@@ -8,7 +7,7 @@ import { DashBoardService } from "./dashboard.service";
 })
 export class Dashboard {
 
-    constructor(private _service: DashBoardService) {
+    constructor() {
         // 
     }
 

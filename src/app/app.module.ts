@@ -3,7 +3,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
@@ -28,7 +27,7 @@ import { HeaderComponent, SidebarComponent, BreadCrumbComponent } from '../compo
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,ReactiveFormsModule,
-  	    HttpClientModule,HttpModule,
+        HttpClientModule,
         RouterModule,
   	    AppRouting,
         // 
