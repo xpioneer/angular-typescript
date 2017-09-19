@@ -9,6 +9,7 @@ import {
 import { Injectable, Inject } from "@angular/core";
 import { Router } from '@angular/router';
 import { Observable } from "rxjs";
+import { NzNotificationService } from 'ng-zorro-antd';
 
 
 @Injectable()
@@ -17,7 +18,7 @@ export class AppInterceptor implements HttpInterceptor {
     @Inject('window') private window: any
 
     constructor(
-      // private authService: AuthService
+        private notification: NzNotificationService,
       ) {
       this.localStorage = localStorage;
     }
@@ -25,17 +26,17 @@ export class AppInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       const request = req.clone({
         setHeaders: {
-          'Authorization-User': `this.localStorage.getItem('ACCESS_TOKEN')`
+          'Authorization-User': this.localStorage.getItem('ACCESS_TOKEN')
         }
       });
-      return next.handle(request).do((res: any)=>{
-          console.log(res, 'res');
-          return res.data;
+      return next.handle(request).do((res: HttpResponse<any>) => {
+          return res.body;
         }, (err: any)=>{
-          console.log(err, err instanceof HttpErrorResponse);
           if(err.status === 401){
-            console.log('relogin')
-          } else {
+            this.notification.error('未授权', '请重新登陆！');
+          }else if(err.status === 500){
+            this.notification.error('服务器错误', '请联系管理员！');
+          }  else {
             return err.error;
           }
         });

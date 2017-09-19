@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
         location.href = '#/dashboard';
       }, (err: any)=>{
         console.log(err, 'err')
-        this.notification.warning('错误', err.msg);
+        this.notification.warning('错误', err.error.msg);
       });
     }
   }

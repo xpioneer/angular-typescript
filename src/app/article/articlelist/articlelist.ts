@@ -26,7 +26,6 @@ export class ArticleListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.options = [{id:0, name:'未生效'},{id:1, name:'有效'}];
         this.clear();
         this.query();
     }
@@ -42,6 +41,7 @@ export class ArticleListComponent implements OnInit {
             this._loading = false;
         }, e => {
             this._loading = false;
+            console.log(e)
         });
     }
 
