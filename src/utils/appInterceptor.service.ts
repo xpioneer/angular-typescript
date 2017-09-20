@@ -15,20 +15,20 @@ import { HelperService } from './helper.service';
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
     baseUrl: string = '/api';
-    localStorage: any;
+    store: any;
 
     constructor(
       private helper: HelperService,
       private notification: NzNotificationService,
     ) {
-      this.localStorage = localStorage;
+      this.store = localStorage;
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       const request = req.clone({
         url: this.baseUrl + req.url,
         setHeaders: {
-          'Authorization-User': this.localStorage.getItem('ACCESS_TOKEN') || "no_token"
+          'Authorization-User': this.store.getItem('ACCESS_TOKEN') || "no_token"
         },
         withCredentials: true
       });

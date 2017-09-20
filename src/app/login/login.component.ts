@@ -6,7 +6,6 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
-
   styles: [ `
     .login-form {
       max-width: 300px;
