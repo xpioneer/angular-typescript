@@ -10,7 +10,7 @@ export class ArticleListService {
   ){}
 
   getArticleList(data: any) {
-    return this.http.get('/api/article?' + this.params.fmtpages(data));
+    return this.http.get('/article?' + this.params.fmtpages(data));
   }
 
 }

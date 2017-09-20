@@ -10,11 +10,11 @@ export class EditArticleTypeService {
   ){}
 
   getArticleType(id: string) {
-    return this.http.get('/api/articletype/'+id);
+    return this.http.get('/articletype/'+id);
   }
 
   updateArticleType(data: any) {
-    return this.http.put('/api/articletype/'+data.id, data);
+    return this.http.put('/articletype/'+data.id, data);
   }
 
 }

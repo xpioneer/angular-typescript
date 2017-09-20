@@ -44,14 +44,11 @@ export class LoginComponent implements OnInit {
       this.form.controls[ i ].markAsDirty();
     }
     if(this.form.valid){
-      this.http.post('/api/login',this.userInfo).subscribe((res:any)=>{
+      this.http.post('/login',this.userInfo).subscribe((res:any)=>{
         localStorage.setItem('ACCESS_TOKEN', res.msg);
         localStorage.setItem('USER_INFO', JSON.stringify(res.data));
-        location.href = '#/dashboard';
-      }, (err: any)=>{
-        console.log(err, 'err')
-        this.notification.warning('错误', err.error.msg);
-      });
+        location.href = '/#/dashboard';
+      }, (err: any)=>{ });
     }
   }
 

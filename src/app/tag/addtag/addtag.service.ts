@@ -8,7 +8,7 @@ export class AddTagService {
   ){}
 
   addTag(data: any){
-    return this.http.post('/api/tag', data);
+    return this.http.post('/tag', data);
   }
 
 }

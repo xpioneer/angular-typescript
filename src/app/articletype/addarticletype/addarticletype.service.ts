@@ -10,7 +10,7 @@ export class AddArticleTypeService {
     ){}
 
     addArticleType(data: any) {
-        return this.http.post('/api/articletype', data);
+        return this.http.post('/articletype', data);
     }
 
 }

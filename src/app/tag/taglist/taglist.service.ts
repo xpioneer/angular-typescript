@@ -10,7 +10,7 @@ export class TagListService {
   ){}
 
   getTagList(data: any) {
-    return this.http.get('/api/tag?' + this.params.fmtpages(data));
+    return this.http.get('/tag?' + this.params.fmtpages(data));
   }
 
 }

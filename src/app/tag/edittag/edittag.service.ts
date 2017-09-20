@@ -8,11 +8,11 @@ export class EditTagService {
   ){}
 
   getTag(id: any) {
-    return this.http.get(`/api/tag/${id}`);
+    return this.http.get(`/tag/${id}`);
   }
 
   updateTag(data: any) {
-    return this.http.put(`/api/tag/${data.id}`, data);
+    return this.http.put(`/tag/${data.id}`, data);
   }
 
 }

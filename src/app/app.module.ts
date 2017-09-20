@@ -7,12 +7,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 import { AppRouting } from './app.routing';
-import { AppInterceptor } from "../utils/appInterceptor.service";
-import { Params } from '../utils/params.service'
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent, SidebarComponent, BreadCrumbComponent } from '../components/shared';
+
+import { AppInterceptor } from "../utils/appInterceptor.service";
+import { Params } from '../utils/params.service'
+import { HelperService } from '../utils/helper.service'
 
 @NgModule({
     declarations: [
@@ -40,6 +42,7 @@ import { HeaderComponent, SidebarComponent, BreadCrumbComponent } from '../compo
             multi: true
         },
         Params,
+        HelperService,
     ],
     bootstrap: [AppComponent]
 })
