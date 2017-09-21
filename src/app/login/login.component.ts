@@ -46,7 +46,9 @@ export class LoginComponent implements OnInit {
       this.http.post('/login',this.userInfo).subscribe((res:any)=>{
         localStorage.setItem('ACCESS_TOKEN', res.msg);
         localStorage.setItem('USER_INFO', JSON.stringify(res.data));
-        location.href = '/#/dashboard';
+        setTimeout(()=>{
+          location.href = '/#/dashboard';
+        }, 1000)
       }, (err: any)=>{ });
     }
   }

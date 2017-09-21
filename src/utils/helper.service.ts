@@ -39,9 +39,9 @@ export class HelperService {
         case 401:
           this.store.clear();
           this.notification.error('未授权', '请重新登录');
-          // setTimeout(()=>{
-          //   this.router.navigate(['/login']);
-          // }, 1000);
+          setTimeout(()=>{
+            this.router.navigate(['/login']);
+          }, 1000);
           break;
         case 403:
           this.notification.error('错误', '禁止访问');

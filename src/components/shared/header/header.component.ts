@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NzNotificationService } from 'ng-zorro-antd';
 
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.userInfo = JSON.parse(this.store.getItem('USER_INFO'));
+        this.userInfo = JSON.parse(this.store.getItem('USER_INFO')) || {};
     }
 
     logout(){
