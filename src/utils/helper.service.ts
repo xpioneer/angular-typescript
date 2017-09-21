@@ -55,14 +55,20 @@ export class HelperService {
         case 406:
           this.notification.error('错误', '此方法不接受,请检查');
           break;
-        case 500:
-          this.notification.error('错误', err.error.msg||err.error.data);
-          break;
         case 406:
           this.notification.error('错误', '此方法不接受,请检查');
           break;
+        case 500:
+          this.notification.error('错误', err.error.msg||err.error.data);
+          break;
+        case 503:
+          this.notification.error('连接被拒绝', '服务不可用');
+          break;
+        case 504:
+          this.notification.error('网关超时', '请与运维小郭联系');
+          break;
         default:
-          this.notification.error('错误', '服务端内部未知错误');
+          this.notification.error('错误', '服务端未知错误');
           break;
       }
     }
