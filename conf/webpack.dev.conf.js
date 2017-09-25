@@ -6,6 +6,7 @@ const path = require('path'),
 config.devServer = {
     port: '9100',
     host: 'localhost',
+    historyApiFallback: true,
     watchOptions: {
         aggregateTimeout: 300,
         poll: 1000

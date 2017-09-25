@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('ACCESS_TOKEN', res.msg);
         localStorage.setItem('USER_INFO', JSON.stringify(res.data));
         setTimeout(()=>{
-          location.href = '/#/dashboard';
+          location.href = '/dashboard';
         }, 1000)
       }, (err: any)=>{ });
     }

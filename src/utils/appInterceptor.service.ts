@@ -28,6 +28,7 @@ export class AppInterceptor implements HttpInterceptor {
       const request = req.clone({
         url: this.baseUrl + req.url,
         setHeaders: {
+          'X-Requested-With': 'XMLHttpRequest',
           'Authorization-User': this.store.getItem('ACCESS_TOKEN') || "no_token"
         },
         withCredentials: true

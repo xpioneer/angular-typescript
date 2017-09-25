@@ -19,13 +19,14 @@ const appRoutes: Routes = [
             { path: 'banks', loadChildren: './banks/banks.module#BanksModule' },
             { path: 'creditcard', loadChildren: './creditcard/creditcard.module#CreditCardModule' },
             { path: 'tag', loadChildren: './tag/tag.module#TagModule' },
+            { path: 'user', loadChildren: './user/user.module#UserModule' },
             { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
         ]
     }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(appRoutes, { useHash: true })],
+    imports: [RouterModule.forRoot(appRoutes, { useHash: false })],
     exports: [RouterModule]
 })
 export class AppRouting { }
