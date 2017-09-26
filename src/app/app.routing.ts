@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule }  from '@angular/router';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard }            from '../utils/auth/auth-guard.service';
+import { AuthService }          from '../utils/auth/auth.service';
 // 
 const appRoutes: Routes = [
     {
@@ -13,13 +15,13 @@ const appRoutes: Routes = [
         component: HomeComponent,
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-            { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
-            { path: 'article', loadChildren: './article/article.module#ArticleModule' },
-            { path: 'articletype', loadChildren: './articletype/articletype.module#ArticleTypeModule' },
-            { path: 'banks', loadChildren: './banks/banks.module#BanksModule' },
-            { path: 'creditcard', loadChildren: './creditcard/creditcard.module#CreditCardModule' },
-            { path: 'tag', loadChildren: './tag/tag.module#TagModule' },
-            { path: 'user', loadChildren: './user/user.module#UserModule' },
+            { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule', canLoad: [AuthGuard] },
+            { path: 'article', loadChildren: './article/article.module#ArticleModule', canLoad: [AuthGuard] },
+            { path: 'articletype', loadChildren: './articletype/articletype.module#ArticleTypeModule', canLoad: [AuthGuard] },
+            { path: 'banks', loadChildren: './banks/banks.module#BanksModule', canLoad: [AuthGuard] },
+            { path: 'creditcard', loadChildren: './creditcard/creditcard.module#CreditCardModule', canLoad: [AuthGuard] },
+            { path: 'tag', loadChildren: './tag/tag.module#TagModule', canLoad: [AuthGuard] },
+            { path: 'user', loadChildren: './user/user.module#UserModule', canLoad: [AuthGuard] },
             { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
         ]
     }

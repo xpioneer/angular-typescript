@@ -13,8 +13,11 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent, SidebarComponent, BreadCrumbComponent } from '../components/shared';
 
 import { AppInterceptor } from "../utils/appInterceptor.service";
-import { Params } from '../utils/params.service'
-import { HelperService } from '../utils/helper.service'
+import { Params } from '../utils/params.service';
+import { HelperService } from '../utils/helper.service';
+
+import { AuthGuard }            from '../utils/auth/auth-guard.service';
+import { AuthService }          from '../utils/auth/auth.service';
 
 @NgModule({
     declarations: [
@@ -43,6 +46,8 @@ import { HelperService } from '../utils/helper.service'
         },
         Params,
         HelperService,
+        AuthGuard,
+        AuthService
     ],
     bootstrap: [AppComponent]
 })

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NzNotificationService } from 'ng-zorro-antd';
 import { NgForm } from '@angular/forms';
+import { AuthService }      from '../../utils/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private notification: NzNotificationService
+    private authService: AuthService
     ) {
   }
 
@@ -43,18 +44,8 @@ export class LoginComponent implements OnInit {
       this.form.controls[ i ].markAsDirty();
     }
     if(this.form.valid){
-      this.http.post('/login',this.userInfo).subscribe((res:any)=>{
-        localStorage.setItem('ACCESS_TOKEN', res.msg);
-        localStorage.setItem('USER_INFO', JSON.stringify(res.data));
-        setTimeout(()=>{
-          location.href = '/dashboard';
-        }, 1000)
-      }, (err: any)=>{ });
+        this.authService.login(this.userInfo);
     }
-  }
-
-  start(){
-    // 
   }
 
   

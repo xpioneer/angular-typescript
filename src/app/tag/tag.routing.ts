@@ -5,9 +5,13 @@ import { TagListComponent } from './taglist/taglist';
 import { AddTagComponent } from './addtag/addtag';
 import { EditTagComponent } from './edittag/edittag';
 
+import { AuthGuard }            from '../../utils/auth/auth-guard.service';
+import { AuthService }          from '../../utils/auth/auth.service';
+
 const routes: Routes = [
     {
         path: '',
+        // canActivate: [AuthGuard],
         component: TagComponent,
         children: [
             { path: '', redirectTo: 'list', pathMatch: 'full' },
