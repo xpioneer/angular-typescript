@@ -48,7 +48,6 @@ export class EditArticleTypeComponent implements OnInit {
                 this.notification.success('成功', res.msg);
                 this.router.navigate(['/articletype']);
             }, (err: any)=>{
-                this.notification.error('警告', err.msg);
                 this.isConfirmLoading = false;
             });
         }

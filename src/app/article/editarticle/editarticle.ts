@@ -46,7 +46,7 @@ export class EditArticleComponent implements OnInit {
                 this.checkedTag[v] = true;
             });
         },(err: any)=>{
-          this.notification.error('错误', err.msg);
+            // 
         });
     }
 
@@ -62,7 +62,6 @@ export class EditArticleComponent implements OnInit {
                 this.notification.success('成功', res.msg);
                 this.router.navigate(['/article']);
             }, (err: any)=>{
-                this.notification.error('警告', err.msg);
                 this.isConfirmLoading = false;
             });
         }

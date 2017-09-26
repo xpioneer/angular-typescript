@@ -38,7 +38,6 @@ export class AddUserComponent implements OnInit {
         this.notification.success('成功', res.msg);
         this.router.navigate(['/user']);
       }, (err: any)=>{
-        this.notification.error('警告', err.msg);
         this.isConfirmLoading = false;
       });
     }

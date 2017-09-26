@@ -26,9 +26,7 @@ export class HeaderComponent implements OnInit {
     logout(){
         this.http.post('/logout', {}).subscribe((res:any)=>{
             this.store.clear();
-            location.href = '/#/login';
-        }, (err:any)=>{
-            this.notification.error('错误', err.error.msg);
-        });
+            location.href = '/login';
+        }, (err:any)=>{ });
     }
 }
