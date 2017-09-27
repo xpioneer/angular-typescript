@@ -4,10 +4,12 @@ import { ArticleComponent } from './article.component';
 import { ArticleListComponent } from './articlelist/articlelist';
 import { AddArticleComponent } from './addarticle/addarticle';
 import { EditArticleComponent } from './editarticle/editarticle';
+import { AuthGuard }            from '../../utils/auth/auth-guard.service';
 
 const routes: Routes = [
     {
         path: '',
+        canActivateChild: [AuthGuard],
         component: ArticleComponent,
         children: [
             { path: '', redirectTo: 'list', pathMatch: 'full' },

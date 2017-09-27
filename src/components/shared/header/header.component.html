@@ -5,7 +5,7 @@
         <button nz-button nz-popover>{{userInfo.nick_name}}</button>
         <ng-template #nzTemplate>
             <div>
-                <p (click)="logout()">退出登录({{userInfo.username}})</p>
+                <p style="cursor: pointer;" (click)="logout()">退出登录({{userInfo.username}})</p>
             </div>
         </ng-template>
     </nz-popover>

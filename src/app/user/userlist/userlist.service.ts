@@ -13,4 +13,8 @@ export class UserListService {
     return this.http.get('/user?' + this.params.fmtpages(data));
   }
 
+  deleteUser(id: string) {
+    return this.http.delete('/user/' + id);
+  }
+
 }

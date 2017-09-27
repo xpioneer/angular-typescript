@@ -17,7 +17,7 @@
       <label nz-form-item-required>用户密码</label>
     </div>
     <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="password.control">
-      <nz-input required [(ngModel)]="editUser.password" #password="ngModel" [nzSize]="'large'" nzType="password" name="password"></nz-input>
+      <nz-input [(ngModel)]="editUser.password" #password="ngModel" [nzSize]="'large'" nzPlaceHolder="密码不填写将不会更改" nzType="password" name="password"></nz-input>
       <div nz-form-explain *ngIf="password.dirty&&password.invalid">必须填写!</div>
     </div>
   </div>

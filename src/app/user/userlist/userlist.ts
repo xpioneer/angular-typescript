@@ -14,6 +14,9 @@ export class UserListComponent implements OnInit {
   _loading = true;
 
   value = {};
+  isVisible = false;
+  isConfirmLoading = false;
+  deleteId: string;
 
   constructor(
     private userListService: UserListService
@@ -58,6 +61,22 @@ export class UserListComponent implements OnInit {
           exp: 'between'
       }
     };
+  }
+
+  delUser(id: string){
+    if(id){
+      this.deleteId = id;
+      this.isVisible = true;
+    }else{
+      this.isConfirmLoading = true;
+      this.userListService.deleteUser(this.deleteId).subscribe((res: any) => {
+        this.isVisible = false;
+        this.query();
+        this.isConfirmLoading = false;
+      }, (err: any)=>{
+        this.isConfirmLoading = false;
+      });
+    }
   }
 }
 

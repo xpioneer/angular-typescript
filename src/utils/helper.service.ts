@@ -33,7 +33,7 @@ export class HelperService {
           if(arr[arr.length-1] === '/login'){
             this.notification.error('错误', '用户名或密码错误');
           }else{
-            this.notification.error('错误', '参数错误,请检查');
+            this.notification.error('请求错误', err.error.msg||err.error.data);
           }
           break;
         case 401:

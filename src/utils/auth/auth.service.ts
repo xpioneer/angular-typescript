@@ -7,7 +7,6 @@ import { Observable } from 'rxjs/Observable';
 export class AuthService {
     store: any;
     isLogged: boolean = false;
-    redirectUrl: string = '';
 
     constructor(
         private router: Router,
@@ -19,14 +18,20 @@ export class AuthService {
                         && this.store.getItem('USER_INFO') ? true : false;
     }
 
+    get redirectUrl(){
+        return sessionStorage.getItem('RedirectUrl') || '';
+    }
+
+    set redirectUrl(url: string){
+        sessionStorage.setItem('RedirectUrl', url);
+    }
+
     login(userInfo: object) {
         this.http.post('/login', userInfo).subscribe((res:any)=>{
             this.isLogged = true;
             localStorage.setItem('ACCESS_TOKEN', res.msg);
             localStorage.setItem('USER_INFO', JSON.stringify(res.data));
-            setTimeout(()=>{
-                this.router.navigate([!!this.redirectUrl ? this.redirectUrl : 'dashboard']);
-            }, 1000)
+            this.router.navigate([!!this.redirectUrl ? this.redirectUrl : 'dashboard']);
           }, (err: any)=>{ });
     }
 
@@ -34,7 +39,9 @@ export class AuthService {
         this.http.post('/logout', {}).subscribe((res:any)=>{
             this.isLogged = false;
             this.store.clear();
-            this.router.navigate(['login']);
+            setTimeout(()=>{
+                this.router.navigate(['login']);
+            }, 1000);
         }, (err:any)=>{ });
     }
 }
