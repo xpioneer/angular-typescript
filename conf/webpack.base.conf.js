@@ -8,9 +8,9 @@ const _DEV_ = process.env.NODE_ENV === 'development';
 const config = {
     entry: {
         'index': path.resolve(__dirname, '../src/index.ts'),
-        'polyfills': path.resolve(__dirname, '../src/polyfills.ts'),
-        'vendor': path.resolve(__dirname, '../src/vendor.ts'),
-        'vendor1': 'ng-zorro-antd',
+        // 'polyfills': path.resolve(__dirname, '../src/polyfills.ts'),
+        // 'vendor': path.resolve(__dirname, '../src/vendor.ts'),
+        // 'vendor1': 'ng-zorro-antd',
     },
 
     output: {
@@ -78,20 +78,24 @@ const config = {
     // plugins
     plugins: [
         new ExtractTextPlugin({ filename: "css/[name].[hash:6].css", allChunks: true }),
-        new webpack.NamedModulesPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['common', 'vendor1', 'vendor', 'polyfills'],
-            minChunks: 2
+            name: ['common'],
+            // name: ['common', 'vendor1', 'vendor', 'polyfills'],
+            minChunks: Infinity
         }),
+        new webpack.optimize.ModuleConcatenationPlugin(),
+        // new webpack.optimize.LimitChunkCountPlugin({
+        //     maxChunks: 5,
+        //     minChunkSize: 1000
+        // }),
+        // new webpack.DllReferencePlugin({
+        //     context: __dirname,
+        //     manifest: path.resolve(__dirname, "../dist/manifest.json")
+        // }),
         new webpack.ContextReplacementPlugin(
             /angular(\\|\/)core(\\|\/)@angular/,
             path.resolve(__dirname, '../src')
-        ),
-        new HtmlWebpackPlugin({
-            title: 'CMS-FE DEV',
-            filename: 'index.html',
-            template: 'src/index.html',
-        })
+        )
     ]
 };
 

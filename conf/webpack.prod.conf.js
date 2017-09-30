@@ -2,6 +2,7 @@ const path = require('path'),
     webpack = require('webpack'),
     UglifyJSPlugin = require("uglifyjs-webpack-plugin"),
     config = require('./webpack.base.conf.js'),
+    HtmlWebpackPlugin = require("html-webpack-plugin"),
     CleanWebpackPlugin = require('clean-webpack-plugin');
 
 
@@ -16,14 +17,20 @@ config.plugins = (config.plugins || []).concat([
         },
         warnings: false
     }),
-    new CleanWebpackPlugin(
-        ['dist/*'],　 //匹配删除的文件
-        {
-            root: path.join(__dirname, '../'),       　　　　　　　　　　//根目录
-            verbose:  true,        　　　　　　　　　　//开启在控制台输出信息
-            dry:      false        　　　　　　　　　　//启用删除文件
-        }
-    )
+    new webpack.NamedModulesPlugin(),
+    // new CleanWebpackPlugin(
+    //     ['dist/*'],　 //匹配删除的文件
+    //     {
+    //         root: path.join(__dirname, '../'),
+    //         verbose:  true,
+    //         dry:      false
+    //     }
+    // ),
+    new HtmlWebpackPlugin({
+        title: 'CMS-Angular4',
+        filename: 'index.html',
+        template: 'dist/index.html',
+    })
 ]);
 
 module.exports = config;

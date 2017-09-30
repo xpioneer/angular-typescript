@@ -1,6 +1,7 @@
 const path = require('path'),
     webpack = require('webpack'),
     UglifyJSPlugin = require("uglifyjs-webpack-plugin"),
+    HtmlWebpackPlugin = require("html-webpack-plugin"),
     config = require('./webpack.base.conf.js');
 
 config.devServer = {
@@ -19,5 +20,14 @@ config.devServer = {
       }
     }
 }
+
+config.plugins = (config.plugins || []).concat([
+    new webpack.NamedModulesPlugin(),
+    new HtmlWebpackPlugin({
+        title: 'CMS-FE DEV',
+        filename: 'index.html',
+        template: 'src/index.html',
+    })
+]);
 
 module.exports = config;

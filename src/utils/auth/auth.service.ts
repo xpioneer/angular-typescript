@@ -39,7 +39,8 @@ export class AuthService {
         this.http.post('/logout', {}).subscribe((res:any)=>{
             this.isLogged = false;
             this.store.clear();
-            setTimeout(()=>{
+            sessionStorage.clear();
+            setTimeout(() => {
                 this.router.navigate(['login']);
             }, 1000);
         }, (err:any)=>{ });

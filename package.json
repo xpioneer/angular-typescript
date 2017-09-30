@@ -14,6 +14,7 @@
     "license": "MIT",
     "scripts": {
         "start": "NODE_ENV=development webpack-dev-server --inline --colors --progress --config conf/webpack.dev.conf.js",
+        "dll": "NODE_ENV=production webpack --config conf/webpack.dll.conf.js",
         "build": "NODE_ENV=production webpack --config conf/webpack.prod.conf.js",
         "test": "NODE_ENV=development webpack --config conf/webpack.dev.conf.js"
     },
