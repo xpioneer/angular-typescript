@@ -2579,12 +2579,13 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-ng-zorro-antd@^0.5.0-rc.2:
-  version "0.5.0-rc.4"
-  resolved "https://registry.yarnpkg.com/ng-zorro-antd/-/ng-zorro-antd-0.5.0-rc.4.tgz#dc022673a3fa0785732c5f579936701d3d9f052b"
+ng-zorro-antd@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/ng-zorro-antd/-/ng-zorro-antd-0.5.3.tgz#ba2f2974b8e2f60d14255d05844572a5822db414"
   dependencies:
     "@angular/cdk" "2.0.0-beta.8"
     moment "^2.18.1"
+    tslib "^1.7.1"
 
 no-case@^2.2.0:
   version "2.3.1"

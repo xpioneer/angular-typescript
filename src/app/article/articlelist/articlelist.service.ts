@@ -13,4 +13,8 @@ export class ArticleListService {
     return this.http.get('/article?' + this.params.fmtpages(data));
   }
 
+  deleteArticle(id: string) {
+      return this.http.delete('/article/' + id);
+  }
+
 }

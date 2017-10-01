@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ArticleListService } from './articlelist.service';
 import { ArticleModel } from '../model/article.model';
+import { NzModalService } from 'ng-zorro-antd';
 
 @Component({
     selector: 'app-article-list',
@@ -15,12 +16,16 @@ export class ArticleListComponent implements OnInit {
     dataSet:Array<ArticleModel> = [];
     _loading = true;
 
-    value = {}
+    value = {};
+    isVisible = false;
+    isConfirmLoading = false;
+    deleteId: string;
 
     options: Array<object>;
 
     constructor(
         private router: Router,
+        private modalService: NzModalService,
         private articleListService: ArticleListService
     ) {
     }
@@ -41,7 +46,8 @@ export class ArticleListComponent implements OnInit {
             this._loading = false;
         }, e => {
             this._loading = false;
-            console.log(e)
+        }, ()=>{
+            console.log('加载完成')
         });
     }
 
@@ -56,6 +62,28 @@ export class ArticleListComponent implements OnInit {
                 exp: 'like'
             }
         };
+    }
+
+    delArticle (id: string) {
+        let that = this;
+        this.modalService.confirm({
+            title  : '您是否确认要删除这篇文章',
+            content: '<b>删除后将无法找回</b>',
+            showConfirmLoading: true,
+            onOk() {
+                return new Promise((resolve) => {
+                    that.articleListService.deleteArticle(id).subscribe((res: any) => {
+                        that.query();
+                    }, (err: any)=>{}, () => {
+                        console.log('123');
+                        resolve();
+                    });
+                })
+                
+            },
+            onCancel() {
+            }
+        });
     }
 
 }

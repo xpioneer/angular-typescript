@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router }     from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
@@ -9,7 +8,6 @@ export class AuthService {
     isLogged: boolean = false;
 
     constructor(
-        private router: Router,
         private http: HttpClient
         ){
         this.store = localStorage;
@@ -31,7 +29,7 @@ export class AuthService {
             this.isLogged = true;
             localStorage.setItem('ACCESS_TOKEN', res.msg);
             localStorage.setItem('USER_INFO', JSON.stringify(res.data));
-            this.router.navigate([!!this.redirectUrl ? this.redirectUrl : 'dashboard']);
+            location.href = !!this.redirectUrl ? this.redirectUrl : 'dashboard';
           }, (err: any)=>{ });
     }
 
@@ -41,7 +39,7 @@ export class AuthService {
             this.store.clear();
             sessionStorage.clear();
             setTimeout(() => {
-                this.router.navigate(['login']);
+                location.href = 'login';
             }, 1000);
         }, (err:any)=>{ });
     }

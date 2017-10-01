@@ -26,7 +26,7 @@ config.plugins = (config.plugins || []).concat([
     new HtmlWebpackPlugin({
         title: 'CMS-FE DEV',
         filename: 'index.html',
-        template: 'src/index.html',
+        template: 'src/template/index_base.html',
     })
 ]);
 

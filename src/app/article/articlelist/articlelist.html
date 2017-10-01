@@ -63,7 +63,16 @@
             <td nz-td>{{data.view_count}}</td>
             <td nz-td>{{data.is_original?'是':'否'}}</td>
             <td nz-td>{{data.created_at}}</td>
-            <td nz-td><a href="#" [routerLink]="['/article/edit', data.id]">编辑</a></td>
+            <td nz-td>
+                <a href="#" [routerLink]="['/article/edit', data.id]">编辑</a>
+                <a href="javascript:;" (click)="delArticle(data.id)">删除</a>
+            </td>
         </tr>
     </tbody>
 </nz-table>
+
+<nz-modal [nzVisible]="isVisible" [nzContent]="modalContent" (nzOnCancel)="isVisible=false" (nzOnOk)="delUser()" [nzConfirmLoading]="isConfirmLoading">
+  <ng-template #modalContent>
+    <p>确认删除该条信息？</p>
+  </ng-template>
+</nz-modal>

@@ -8,9 +8,9 @@ const _DEV_ = process.env.NODE_ENV === 'development';
 const config = {
     entry: {
         'index': path.resolve(__dirname, '../src/index.ts'),
-        // 'polyfills': path.resolve(__dirname, '../src/polyfills.ts'),
-        // 'vendor': path.resolve(__dirname, '../src/vendor.ts'),
-        // 'vendor1': 'ng-zorro-antd',
+        'polyfills': path.resolve(__dirname, '../src/polyfills.ts'),
+        'vendor': path.resolve(__dirname, '../src/vendor.ts'),
+        'vendor1': 'ng-zorro-antd',
     },
 
     output: {
@@ -79,8 +79,8 @@ const config = {
     plugins: [
         new ExtractTextPlugin({ filename: "css/[name].[hash:6].css", allChunks: true }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['common'],
-            // name: ['common', 'vendor1', 'vendor', 'polyfills'],
+            // name: ['common'],
+            name: ['common', 'vendor1', 'vendor', 'polyfills'],
             minChunks: Infinity
         }),
         new webpack.optimize.ModuleConcatenationPlugin(),
