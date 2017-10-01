@@ -30,7 +30,6 @@ export class EditArticleComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        console.log(this.route, this.router)
         let id = this.route.params['value']['id'];
         if(id) {
           this.getData(id);
@@ -57,13 +56,12 @@ export class EditArticleComponent implements OnInit {
         this.mainModel.tag = this.getCheckedTag();
         if(this.form.valid){
             this.isConfirmLoading = true;
-            this.editArticleService.updateArticle(this.mainModel).subscribe((res: any)=>{
-                this.isConfirmLoading = false;
-                this.notification.success('成功', res.msg);
-                this.router.navigate(['/article']);
-            }, (err: any)=>{
-                this.isConfirmLoading = false;
-            });
+            this.editArticleService.updateArticle(this.mainModel)
+                .finally(()=>this.isConfirmLoading = false)
+                .subscribe((res: any)=>{
+                    this.router.navigate(['/article']);
+                }, (err: any)=>{
+                });
         }
     }
 

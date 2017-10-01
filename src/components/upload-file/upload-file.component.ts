@@ -67,100 +67,93 @@ import { NzNotificationService } from 'ng-zorro-antd';
       }
     `],
     providers    : [
-      {
-        provide    : NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => UploadFileComponent),
-        multi      : true
-      }
+        {
+            provide    : NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => UploadFileComponent),
+            multi      : true
+        }
     ],
 })
 export class UploadFileComponent implements ControlValueAccessor {
-  baseUrl: string = '/api/file/uploadFile';
-  _value: any;
-  show: boolean = true;
-  uploading: boolean = false;
-  @Input() imgSrc: any;
-  @Input() maxSize: number;
-  @Output() fileUploaded:EventEmitter<Object> = new EventEmitter();
+    baseUrl: string = '/upload-file';
+    _value: any;
+    show: boolean = true;
+    uploading: boolean = false;
+    @Input() imgSrc: any;
+    @Input() maxSize: number;
+    @Output() fileUploaded:EventEmitter<Object> = new EventEmitter();
 
-  onChange: any = Function.prototype;
-  onTouched: any = Function.prototype;
+    onChange: any = Function.prototype;
+    onTouched: any = Function.prototype;
 
-  constructor(
-    private http: HttpClient,
-    private notification: NzNotificationService
-  ){}
+    constructor(
+        private http: HttpClient,
+        private notification: NzNotificationService
+    ){}
 
-  ngOnInit(){
+    ngOnInit(){
     if(!this.imgSrc){
-      this.imgSrc = '';
-      this.show = false;
+        this.imgSrc = '';
+        this.show = false;
     }
-  }
+    }
 
-  ngOnChanges(){
-    this.show = !!this.baseUrl;
-  }
+    ngOnChanges(){
+        this.show = !!this.baseUrl;
+    }
   
-  fileChange(event: any):void{
-    if(event.target && event.target.files.length > 0){
-      let reader = new FileReader(),
-          file = event.target.files[0],
-          formData = new FormData();
-      formData.append('file', file);
-      if(this.maxSize && file.size > this.maxSize * 1024){
-          event.target.value = '';
-          this.notification.warning('警告', `图片大小超出${this.maxSize}K！`);
-      }else{
-          this.uploading = true;
-          this.http.post(this.baseUrl, formData).subscribe((res: any) => {
-            if(res.success){
-              reader.onload = (e: any) => {
-                this.imgSrc = reader.result;
-                this.show = true;
-              }
-              reader.readAsDataURL(file);
-              this.writeValue(res.data);
-              // this.fileUploaded.emit(res.data);
+    fileChange(event: any):void{
+        if(event.target && event.target.files.length > 0){
+            let reader = new FileReader(),
+                file = event.target.files[0],
+                formData = new FormData();
+                formData.append('file', file);
+            if(this.maxSize && file.size > this.maxSize * 1024){
+                event.target.value = '';
+                this.notification.warning('警告', `图片大小超出${this.maxSize}K！`);
             }else{
-              event.target.value = '';
-              this.notification.error('提示', res.msg);
+                this.uploading = true;
+                this.http.post(this.baseUrl, formData)
+                    .finally(() => this.uploading = false)
+                    .subscribe((res: any) => {
+                        reader.onload = (e: any) => {
+                            this.imgSrc = reader.result;
+                            this.show = true;
+                        }
+                        reader.readAsDataURL(file);
+                        this.onChange(res.data.path);
+                    }, (err: any) => {
+                        event.target.value = '';
+                    });
             }
-            this.uploading = false;
-          }, (err: any) => {
-            event.target.value = '';
-            this.uploading = false;
-            this.notification.error('错误', err.msg);
-          });
-      }
 
+        }
     }
-  }
 
-  get fileUrl(){
-    return this._value;
-  }
-
-  set fileUrl(url: any){
-    if ((this._value === url) || (((this._value === undefined) || (this._value === null)) && ((url === undefined) || (url === null)))) {
-      return;
+    get fileUrl(){
+        return this._value;
     }
-    if (url !== this._value) {
-      this._value = url;
-      this.onChange(url);
+
+    set fileUrl(url: any){
+        if ((this._value === url) || (((this._value === undefined) || (this._value === null)) && ((url === undefined) || (url === null)))) {
+            return;
+        }
+        if (url !== this._value) {
+            this._value = url;
+            this.onChange(url);
+        }
     }
-  }
 
-  writeValue(value: any):void{
-    this.fileUrl = value;
-  }
+    writeValue(value: any):void{
+        this.fileUrl = value;
+    }
 
-  registerOnChange(fn: (_: any) => {}): void {
-    this.onChange = fn;
-  }
+    registerOnChange(fn: (_: any) => {}): void {
+        this.onChange = fn;
+    }
 
-  registerOnTouched(fn: () => {}): void {
-    this.onTouched = fn;
-  }
+    registerOnTouched(fn: () => {}): void {
+        this.onTouched = fn;
+    }
 
 }

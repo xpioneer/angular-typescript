@@ -17,6 +17,11 @@ config.devServer = {
         target: 'http://127.0.0.1:9901',
         secure: false,
         changeOrigin: true,
+      },
+      '/uploads': {
+        target: 'http://127.0.0.1:9901',
+        secure: false,
+        changeOrigin: true,
       }
     }
 }

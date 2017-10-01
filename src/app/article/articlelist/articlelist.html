@@ -57,7 +57,7 @@
         <tr nz-tbody-tr *ngFor="let data of nzTable.data">
             <td nz-td><div style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;" title="{{data.title}}">{{data.title}}</div>
             </td>
-            <td nz-td><img class="bank-logo" src="{{data.pics}}" alt=""></td>
+            <td nz-td><img class="bank-logo" src="{{getPics(data.pics)}}" alt=""></td>
             <td nz-td><div style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;" title="{{data.abstract}}">{{data.abstract}}</div>
             </td>
             <td nz-td>{{data.view_count}}</td>

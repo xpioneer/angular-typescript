@@ -47,7 +47,7 @@ const toolbarOptions = [
     ],
 })
 export class EditorComponent implements ControlValueAccessor {
-  baseUrl: string = '/api/upload-file';
+  baseUrl: string = '/upload-file';
   _value: any;
   @ViewChild('editor') private editor: ElementRef;
 
@@ -74,14 +74,12 @@ export class EditorComponent implements ControlValueAccessor {
         readOnly: false,
         theme: 'snow'
     });
-    console.log(this.quillEditor, 'this.quillEditor')
-    // this.quillEditor.on('text-change', (eventName:any, arg:any) => {
-    //   console.log(eventName, arg)
-    // });
     this.quillEditor.on('editor-change', (delta:any, oldDelta:any, source:any) => {
       console.log('editor-change')
       let _html = this.quillEditor.root.innerHTML;
-      if (_html === '<p><br></p>') { _html = null; }
+      if (_html === '<p><br></p>') {
+        _html = null; return;
+      }
       this.onChange(_html);
     });
   }

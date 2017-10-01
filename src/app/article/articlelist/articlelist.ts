@@ -79,5 +79,10 @@ export class ArticleListComponent implements OnInit {
         });
     }
 
+
+    getPics(url: string) {
+        return url + '?Authorization-User=' + localStorage.getItem('ACCESS_TOKEN');
+    }
+
 }
 
