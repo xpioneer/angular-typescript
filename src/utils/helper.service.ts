@@ -1,6 +1,5 @@
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd';
 
 @Injectable()
@@ -8,7 +7,6 @@ export class HelperService {
     store: any;
 
     constructor(
-      private router: Router,
       private notification: NzNotificationService,
     ) {
       this.store = localStorage;
@@ -26,7 +24,6 @@ export class HelperService {
     }
 
     errorHelper(err: HttpErrorResponse){
-      console.log(err)
       switch (err.status) {
         case 400:
           let arr = err.url.split("/api");
@@ -40,7 +37,7 @@ export class HelperService {
           this.store.clear();
           this.notification.error('未授权', '请重新登录');
           setTimeout(()=>{
-            this.router.navigate(['/login']);
+            location.href = 'login';
           }, 1000);
           break;
         case 403:

@@ -43,6 +43,8 @@ export class AppInterceptor implements HttpInterceptor {
             this.helper.errorHelper(err);
           }
           return err.error;
+        }, () => {
+          console.log('request done!');
         });
     }
 }

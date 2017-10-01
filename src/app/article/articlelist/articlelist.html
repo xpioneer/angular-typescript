@@ -70,9 +70,3 @@
         </tr>
     </tbody>
 </nz-table>
-
-<nz-modal [nzVisible]="isVisible" [nzContent]="modalContent" (nzOnCancel)="isVisible=false" (nzOnOk)="delUser()" [nzConfirmLoading]="isConfirmLoading">
-  <ng-template #modalContent>
-    <p>确认删除该条信息？</p>
-  </ng-template>
-</nz-modal>

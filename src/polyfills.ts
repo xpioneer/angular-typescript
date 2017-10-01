@@ -19,7 +19,9 @@ import 'core-js/es6/reflect';
 import 'core-js/es6/promise';
 import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';
+
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/mergeMap';

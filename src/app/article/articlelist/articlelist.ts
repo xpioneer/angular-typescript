@@ -46,9 +46,7 @@ export class ArticleListComponent implements OnInit {
             this._loading = false;
         }, e => {
             this._loading = false;
-        }, ()=>{
-            console.log('加载完成')
-        });
+        }, ()=>{ });
     }
 
     clear() {
@@ -67,22 +65,17 @@ export class ArticleListComponent implements OnInit {
     delArticle (id: string) {
         let that = this;
         this.modalService.confirm({
-            title  : '您是否确认要删除这篇文章',
-            content: '<b>删除后将无法找回</b>',
+            title  : '确认是否删除',
+            content: '<b>删除后将无法找回这篇文章</b>',
             showConfirmLoading: true,
             onOk() {
                 return new Promise((resolve) => {
-                    that.articleListService.deleteArticle(id).subscribe((res: any) => {
-                        that.query();
-                    }, (err: any)=>{}, () => {
-                        console.log('123');
-                        resolve();
-                    });
-                })
-                
+                    that.articleListService.deleteArticle(id)
+                        .finally(()=>{ resolve() })
+                        .subscribe((res: any) => { that.query() }, err=>{ });
+                });
             },
-            onCancel() {
-            }
+            onCancel() { }
         });
     }
 
