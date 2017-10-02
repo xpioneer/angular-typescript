@@ -8,7 +8,9 @@
         <i *ngIf="uploading" class="file-uploading">正在上传...</i>
     </div>
     <div class="file-list">
-        <img *ngIf="show"  [src]="imgSrc" alt="图片加载失败" #preView/>
+        <ng-container *ngIf="show">
+            <img [src]="imgSrc" alt="图片加载失败" title="点击预览" [preViewImg]="imgSrc"/>
+        </ng-container>
     </div>
     <div class="size-tips" *ngIf="maxSize">
         图片大小不超过{{maxSize}}K

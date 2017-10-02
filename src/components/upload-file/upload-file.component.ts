@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, OnInit, Input, Output, forwardRef, ViewChild, ElementRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
 import { NzNotificationService } from 'ng-zorro-antd';
@@ -59,6 +59,7 @@ import { NzNotificationService } from 'ng-zorro-antd';
       }
  
       .file-list img{
+          cursor: pointer;
         display: block;
         float: left;
         width: 80px;
@@ -81,7 +82,8 @@ export class UploadFileComponent implements ControlValueAccessor {
     uploading: boolean = false;
     @Input() imgSrc: any;
     @Input() maxSize: number;
-    @Output() fileUploaded:EventEmitter<Object> = new EventEmitter();
+    @ViewChild('preView') private preViewDiv: ElementRef;
+
 
     onChange: any = Function.prototype;
     onTouched: any = Function.prototype;
@@ -92,10 +94,10 @@ export class UploadFileComponent implements ControlValueAccessor {
     ){}
 
     ngOnInit(){
-    if(!this.imgSrc){
-        this.imgSrc = '';
-        this.show = false;
-    }
+        if(!this.imgSrc){
+            this.imgSrc = '';
+            this.show = false;
+        }
     }
 
     ngOnChanges(){

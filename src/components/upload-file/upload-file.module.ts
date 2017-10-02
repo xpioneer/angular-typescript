@@ -2,7 +2,8 @@ import { NgModule }      from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { CommonModule }  from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { UploadFileComponent } from './upload-file.component'
+import { UploadFileComponent } from './upload-file.component';
+import { PreViewDirective } from './upload-file.directvie'
 
 @NgModule({
     imports: [
@@ -11,6 +12,10 @@ import { UploadFileComponent } from './upload-file.component'
     ],
     declarations: [
         UploadFileComponent,
+        PreViewDirective,
+    ],
+    providers: [
+        // 
     ],
     exports: [
         UploadFileComponent,

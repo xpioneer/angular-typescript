@@ -44,7 +44,7 @@ export class AppInterceptor implements HttpInterceptor {
           }
           return err.error;
         }, () => {
-          console.log('request done!');
+          // 
         });
     }
 }

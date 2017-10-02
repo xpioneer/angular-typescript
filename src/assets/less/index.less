@@ -260,3 +260,95 @@ app-login{
   display: block;
   padding-top: 15%;
 }
+
+/*overview*/
+.pre-view-wrap{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  background-color: rgba(80, 80, 80, 0.8);
+
+  .pre-view-content {
+    position: absolute;
+    z-index: 9999;
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 25px;
+    box-shadow: 0 0 8px #ccc;
+    animation: view-fade-in 0.5s ease 0s 1 normal running none;
+
+    &:hover .pre-close-btn {
+      transform: rotate(180deg);
+    }
+
+    .pre-close-btn {
+      background-color: rgba(80, 80, 80, 1);
+      transition: all 0.5s;
+      border: none;
+      position: absolute;
+      display: block;
+      cursor: pointer;
+      right: 0px;
+      top: 0px;
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      text-align: center;
+      line-height: 30px;
+      font-weight: 600;
+      font-size: 12px;
+
+      &:before, &:after {
+        position: absolute;
+        display: block;
+        content: '';
+        top: 5px;
+        width: 3px;
+        height: 20px;
+        background-color: #ffffff;
+        transform: rotate(45deg);
+        left: 13px;
+        transform-origin: center center;
+      }
+
+      &:after {
+        transform: rotate(-45deg);
+      }
+    }
+
+    img{
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+
+  .view-fade-out{
+    animation: view-fade-out 0.31s ease 0s 1 normal running none;
+  }
+}
+
+@keyframes view-fade-in{
+  from{
+    top: 40%;
+    opacity: 0;
+  }
+  to{
+    top: 50%;
+  }
+}
+
+@keyframes view-fade-out{
+  from{
+    top: 50%;
+  }
+  to{
+    top: 40%;
+    opacity: 0;
+  }
+}

@@ -41,7 +41,7 @@
           <label nz-form-item-required>banner图片</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="18" [nzValidateStatus]="mainModel.pics">
-          <app-upload-file [(ngModel)]="mainModel.pics" #pics="ngModel" maxSize="100" name="pics"></app-upload-file>
+          <app-upload-file [(ngModel)]="mainModel.pics" #pics="ngModel" [imgSrc]="getPics(mainModel.pics)" maxSize="100" name="pics"></app-upload-file>
         </div>
       </div>
     </div>

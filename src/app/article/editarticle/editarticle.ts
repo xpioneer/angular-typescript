@@ -49,6 +49,10 @@ export class EditArticleComponent implements OnInit {
         });
     }
 
+    getPics(url: string) {
+        return !!url ? url + '?Authorization-User=' + localStorage.getItem('ACCESS_TOKEN') : '';
+    }
+
     save(){
         for (const i in this.form.controls) {
             this.form.controls[ i ].markAsDirty();
