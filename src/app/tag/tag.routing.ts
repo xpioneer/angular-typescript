@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule }  from '@angular/router';
-import { TagComponent } from './tag.component';
-import { TagListComponent } from './taglist/taglist';
+import { RouterModule, Routes }  from '@angular/router';
+import { AuthGuard }            from '../../utils/auth/auth-guard.service';
 import { AddTagComponent } from './addtag/addtag';
 import { EditTagComponent } from './edittag/edittag';
-import { AuthGuard }            from '../../utils/auth/auth-guard.service';
+import { TagComponent } from './tag.component';
+import { TagListComponent } from './taglist/taglist';
 
 const routes: Routes = [
     {
@@ -16,12 +16,12 @@ const routes: Routes = [
             { path: 'list', component: TagListComponent },
             { path: 'add', component: AddTagComponent },
             { path: 'edit/:id', component: EditTagComponent },
-        ]
-    }
+        ],
+    },
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
-export class TagRouting{};
+export class TagRouting {}

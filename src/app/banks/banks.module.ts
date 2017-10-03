@@ -1,17 +1,17 @@
-import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule }      from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { BanksRouting }       from './banks.routing';
-import { BanksComponent }         from './banks.component';
-import { BankListComponent } from './banklist/banklist.component';
-import { BankListService } from './banklist/banklist.service';
+import { UploadFileModule } from '../../components/upload-file/upload-file.module';
 import { AddBankComponent }  from './addbank/addbank.component';
 import { AddBankService }  from './addbank/addbank.service';
+import { BankListComponent } from './banklist/banklist.component';
+import { BankListService } from './banklist/banklist.service';
+import { BanksComponent }         from './banks.component';
+import { BanksRouting }       from './banks.routing';
 import { EditBankComponent }  from './editbank/editbank.component';
 import { EditBankService }  from './editbank/editbank.service';
-import { UploadFileModule } from '../../components/upload-file/upload-file.module';
 
 @NgModule({
     imports: [
@@ -19,7 +19,7 @@ import { UploadFileModule } from '../../components/upload-file/upload-file.modul
         CommonModule,
         BanksRouting,
         NgZorroAntdModule.forRoot(),
-        UploadFileModule
+        UploadFileModule,
     ],
     declarations: [
         BanksComponent,
@@ -31,6 +31,6 @@ import { UploadFileModule } from '../../components/upload-file/upload-file.modul
         BankListService,
         AddBankService,
         EditBankService,
-    ]
+    ],
 })
 export class BanksModule {}

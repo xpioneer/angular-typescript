@@ -3,18 +3,16 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls  : ['./sidebar.component.less']
+  styleUrls  : ['./sidebar.component.less'],
 })
 export class SidebarComponent implements OnInit {
-  isOpenThree = true;
 
-  openChange(value: string) {
-    // 
+  public isOpenThree = true;
+
+  public openChange (value: string) {
+    //
   }
 
-  constructor() {
-  }
-
-  ngOnInit() {
+  public ngOnInit () {
   }
 }

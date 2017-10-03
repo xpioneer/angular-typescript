@@ -1,14 +1,14 @@
-import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule }      from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { ArticleTypeRouting }       from './articletype.routing';
-import { ArticleTypeComponent }     from './articletype.component';
-import { ArticleTypeListComponent } from './articletypelist/articletypelist';
-import { ArticleTypeListService } from './articletypelist/articletypelist.service';
 import { AddArticleTypeComponent }  from './addarticletype/addarticletype';
 import { AddArticleTypeService }  from './addarticletype/addarticletype.service';
+import { ArticleTypeComponent }     from './articletype.component';
+import { ArticleTypeRouting }       from './articletype.routing';
+import { ArticleTypeListComponent } from './articletypelist/articletypelist';
+import { ArticleTypeListService } from './articletypelist/articletypelist.service';
 import { EditArticleTypeComponent }  from './editarticletype/editarticletype';
 import { EditArticleTypeService }  from './editarticletype/editarticletype.service';
 // import { UploadFileModule } from '../../components/upload-file/upload-file.module';
@@ -31,6 +31,6 @@ import { EditArticleTypeService }  from './editarticletype/editarticletype.servi
         ArticleTypeListService,
         AddArticleTypeService,
         EditArticleTypeService,
-    ]
+    ],
 })
 export class ArticleTypeModule {}

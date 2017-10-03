@@ -1,33 +1,32 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NzNotificationService } from 'ng-zorro-antd';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { NzNotificationService } from 'ng-zorro-antd';
 
 @Component({
     selector: 'app-demos',
-    templateUrl: './demos.html'
+    templateUrl: './demos.html',
 })
 export class DemosComponent {
     // @ViewChild('form') private form: NgForm;
 
-    status: number;
+    public status: number;
 
-    constructor(
-        private http: HttpClient
+    constructor (
+        private http: HttpClient,
     ) {
     }
 
-    ngOnInit() {
-        // 
+    public ngOnInit () {
+        //
     }
 
-    testStatus() {
-        this.http.post('/test/status/'+this.status, {}).subscribe(res=>{
+    public testStatus () {
+        this.http.post('/test/status/' + this.status, {}).subscribe((res) => {
             console.log(res);
-        }, err => {
+        }, (err) => {
             console.log(err);
         });
     }
 
-  
 }

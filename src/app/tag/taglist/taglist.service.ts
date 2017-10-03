@@ -1,15 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Params } from '../../../utils/params.service'
+import { Params } from '../../../utils/params.service';
 
 @Injectable()
 export class TagListService {
-  constructor(
+  constructor (
     private http: HttpClient,
-    private params: Params
-  ){}
+    private params: Params,
+  ) {}
 
-  getTagList(data: any) {
+  public getTagList (data: any) {
     return this.http.get('/tag?' + this.params.fmtpages(data));
   }
 

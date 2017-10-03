@@ -1,23 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs/Observable';
 // import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AddCardService {
-  constructor(
-    private http: HttpClient
-  ){}
+  constructor (
+    private http: HttpClient,
+  ) {}
 
-  insertCard(data: any){
+  public insertCard (data: any) {
     return this.http.post('/api/creditCard/add', data);
   }
 
-  getBankList() {
+  public getBankList () {
     return this.http.get('/api/creditCardBank/list');
   }
 
-  getCityList() {
+  public getCityList () {
     return this.http.get('/api/creditCardBank/addressList');
   }
 

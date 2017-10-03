@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
 
-
 @Component({
   selector: 'dashboard',
-  templateUrl: './dashboard.html'
+  templateUrl: './dashboard.html',
 })
 export class Dashboard {
 
-    constructor() {
-        // 
+    constructor () {
+        //
     }
 
-    ngOnInit(){
+    public ngOnInit () {
         // console.log(this)
     }
 

@@ -1,6 +1,6 @@
-import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd';
 import { BankModel } from '../model/bank.model';
 import { AddBankService } from './addbank.service';
@@ -8,56 +8,56 @@ import { AddBankService } from './addbank.service';
 @Component({
   selector: 'app-add-bank',
   templateUrl: './addbank.html',
-  styles: []
+  styles: [],
 })
 export class AddBankComponent implements OnInit {
-  formGroup: FormGroup;
-  isConfirmLoading = false;
-  addBank:BankModel = new BankModel();
+  public formGroup: FormGroup;
+  public isConfirmLoading = false;
+  public addBank: BankModel = new BankModel();
   @ViewChild('form') private form: NgForm;
 
-  visible = {};
-  options: Array<any>;
-  cityLists: Array<any> = [];
-  cityChecked = {};
+  public visible = {};
+  public options: any[];
+  public cityLists: any[] = [];
+  public cityChecked = {};
 
-  constructor(
+  constructor (
     private router: Router,
     private fb: FormBuilder,
     private addBankService: AddBankService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
     ) {
   }
 
-  ngOnInit() {
+  public ngOnInit () {
     this.formGroup = this.fb.group({
-      bankName         : [ null, [ Validators.required ] ],
-      status           : [ null, [ Validators.required ] ],
-      logoUrl          : [ null, [ Validators.required ] ],
-      queryUrl         : [ null, [  ] ],
-      adSlogan         : [ null, [ Validators.pattern(/^(\S){8,12}$/) ] ],
-      label            : [ null, [ Validators.pattern(/^(\S){0,2}$/) ] ],
-      serviceCity      : [ [  ], [  ] ]
+        bankName         : [ null, [ Validators.required ] ],
+        status           : [ null, [ Validators.required ] ],
+        logoUrl          : [ null, [ Validators.required ] ],
+        queryUrl         : [ null, [  ] ],
+        adSlogan         : [ null, [ Validators.pattern(/^(\S){8,12}$/) ] ],
+        label            : [ null, [ Validators.pattern(/^(\S){0,2}$/) ] ],
+        serviceCity      : [ [  ], [  ] ],
     });
     this.getData();
   }
 
-  getData() {
-    this.options = [{id:'0', name:'未生效'},{id:'1', name:'有效'}];
+  public getData () {
+    this.options = [{id: '0', name: '未生效'}, {id: '1', name: '有效'}];
     this.addBankService.getCityList().subscribe((res: any) => {
-      if(res.success){
+        if (res.success) {
         this.cityLists = res.data;
-      }
-    },err=>{
-      this.notification.success('错误', err.msg);
+        }
+    }, (err) => {
+        this.notification.success('错误', err.msg);
     });
   }
 
-  save(){
+  public save () {
     for (const i in this.form.controls) {
-      this.form.controls[ i ].markAsDirty();
+        this.form.controls[ i ].markAsDirty();
     }
-    console.log(this.addBank, this.form)
+    console.log(this.addBank, this.form);
     // if(this.formGroup.valid){
     //   this.formGroup.controls['serviceCity'].setValue(this.getSelectedCity());
     //   this.isConfirmLoading = true;
@@ -81,33 +81,33 @@ export class AddBankComponent implements OnInit {
   //   return this.form.controls[a];
   // }
 
-  getFormControl(name: string) {
+  public getFormControl (name: string) {
     return this.formGroup.controls[ name ];
   }
 
-  uploadSuccess(url:string){
-    this.formGroup.controls['logoUrl'].setValue(url);
+  public uploadSuccess (url: string) {
+    this.formGroup.controls.logoUrl.setValue(url);
   }
 
-  show(i: number){
+  public show (i: number) {
     this.visible[i] = true;
   }
 
-  close(i: number) {
+  public close (i: number) {
     this.visible[i] = false;
   }
 
-  getSelectedCity(){
-    let arr = [];
-    for(let key in this.cityChecked){
-      if(this.cityChecked[key]){
+  public getSelectedCity () {
+    const arr = [];
+    for (const key in this.cityChecked) {
+        if (this.cityChecked[key]) {
         arr.push(Number(key));
-      }
+        }
     }
     return arr;
   }
 
-  back() {
+  public back () {
     this.router.navigate(['./banks']);
   }
 

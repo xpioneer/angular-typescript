@@ -1,1 +1,1 @@
-// export * from './merchant.component';
+export * from './user.component';

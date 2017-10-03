@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, forwardRef, ViewChild, ElementRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
+import { forwardRef, Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NzNotificationService } from 'ng-zorro-antd';
 
 @Component({
@@ -57,13 +57,13 @@ import { NzNotificationService } from 'ng-zorro-antd';
         text-align: center;
         padding-top: 20px;
       }
- 
+
       .file-list img{
           cursor: pointer;
         display: block;
         float: left;
         width: 80px;
-        height: 80px;  
+        height: 80px;
         border:1px solid #ccc;
       }
     `],
@@ -71,49 +71,48 @@ import { NzNotificationService } from 'ng-zorro-antd';
         {
             provide    : NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => UploadFileComponent),
-            multi      : true
-        }
+            multi      : true,
+        },
     ],
 })
 export class UploadFileComponent implements ControlValueAccessor {
-    baseUrl: string = '/upload-file';
-    _value: any;
-    show: boolean = true;
-    uploading: boolean = false;
-    @Input() imgSrc: any;
-    @Input() maxSize: number;
+    public baseUrl: string = '/upload-file';
+    public _value: any;
+    public show: boolean = true;
+    public uploading: boolean = false;
+    @Input() public imgSrc: any;
+    @Input() public maxSize: number;
     @ViewChild('preView') private preViewDiv: ElementRef;
 
+    public onChange: any = Function.prototype;
+    public onTouched: any = Function.prototype;
 
-    onChange: any = Function.prototype;
-    onTouched: any = Function.prototype;
-
-    constructor(
+    constructor (
         private http: HttpClient,
-        private notification: NzNotificationService
-    ){}
+        private notification: NzNotificationService,
+    ) {}
 
-    ngOnInit(){
-        if(!this.imgSrc){
+    public ngOnInit () {
+        if (!this.imgSrc) {
             this.imgSrc = '';
             this.show = false;
         }
     }
 
-    ngOnChanges(){
+    public ngOnChanges () {
         this.show = !!this.baseUrl;
     }
-  
-    fileChange(event: any):void{
-        if(event.target && event.target.files.length > 0){
-            let reader = new FileReader(),
+
+    public fileChange (event: any): void {
+        if (event.target && event.target.files.length > 0) {
+            const reader: FileReader = new FileReader(),
                 file = event.target.files[0],
                 formData = new FormData();
-                formData.append('file', file);
-            if(this.maxSize && file.size > this.maxSize * 1024){
+            formData.append('file', file);
+            if (this.maxSize && file.size > this.maxSize * 1024) {
                 event.target.value = '';
                 this.notification.warning('警告', `图片大小超出${this.maxSize}K！`);
-            }else{
+            }else {
                 this.uploading = true;
                 this.http.post(this.baseUrl, formData)
                     .finally(() => this.uploading = false)
@@ -121,7 +120,7 @@ export class UploadFileComponent implements ControlValueAccessor {
                         reader.onload = (e: any) => {
                             this.imgSrc = reader.result;
                             this.show = true;
-                        }
+                        };
                         reader.readAsDataURL(file);
                         this.onChange(res.data.path);
                     }, (err: any) => {
@@ -132,11 +131,11 @@ export class UploadFileComponent implements ControlValueAccessor {
         }
     }
 
-    get fileUrl(){
+    get fileUrl () {
         return this._value;
     }
 
-    set fileUrl(url: any){
+    set fileUrl (url: any) {
         if ((this._value === url) || (((this._value === undefined) || (this._value === null)) && ((url === undefined) || (url === null)))) {
             return;
         }
@@ -146,15 +145,15 @@ export class UploadFileComponent implements ControlValueAccessor {
         }
     }
 
-    writeValue(value: any):void{
+    public writeValue (value: any): void {
         this.fileUrl = value;
     }
 
-    registerOnChange(fn: (_: any) => {}): void {
+    public registerOnChange (fn: (_: any) => {}): void {
         this.onChange = fn;
     }
 
-    registerOnTouched(fn: () => {}): void {
+    public registerOnTouched (fn: () => {}): void {
         this.onTouched = fn;
     }
 

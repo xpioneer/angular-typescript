@@ -1,5 +1,4 @@
 
-
 export class ArticleTypeModel {
     public id: string;
     public type_name: string;
@@ -7,7 +6,7 @@ export class ArticleTypeModel {
     public created_at: string;
 }
 
-export class ArticleTypeEditModel{
+export class ArticleTypeEditModel {
     public type_name: string;
     public remark: string;
 }

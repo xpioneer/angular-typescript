@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NzNotificationService } from 'ng-zorro-antd';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { NzNotificationService } from 'ng-zorro-antd';
 import { AuthService }      from '../../utils/auth/auth.service';
 
 @Component({
@@ -20,35 +20,34 @@ import { AuthService }      from '../../utils/auth/auth.service';
     .login-form-button {
       width: 100%;
     }
-  `
-  ]
+  `,
+  ],
 })
 export class LoginComponent implements OnInit {
-  _window: any;
+  public _window: any;
   @ViewChild('canvas') private canvas: ElementRef;
   @ViewChild('form') private form: NgForm;
-  userInfo:UserModel = new UserModel();
+  public userInfo: UserModel = new UserModel();
 
-  constructor(
+  constructor (
     private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
     ) {
   }
 
-  ngOnInit() {
-    // 
+  public ngOnInit () {
+    //
   }
 
-  login() {
+  public login () {
     for (const i in this.form.controls) {
-      this.form.controls[ i ].markAsDirty();
+        this.form.controls[ i ].markAsDirty();
     }
-    if(this.form.valid){
+    if (this.form.valid) {
         this.authService.login(this.userInfo);
     }
   }
 
-  
 }
 
 class UserModel {

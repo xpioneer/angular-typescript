@@ -1,22 +1,22 @@
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
-import { AppRouting }     from './app.routing';
+import { BreadCrumbComponent, HeaderComponent, SidebarComponent } from '../components/shared';
 import { AppComponent }   from './app.component';
+import { AppRouting }     from './app.routing';
 import { HomeComponent }  from './home';
 import { LoginComponent } from './login/login.component';
-import { HeaderComponent, SidebarComponent, BreadCrumbComponent } from '../components/shared';
 
-import { AppInterceptor }    from "../utils/appInterceptor.service";
-import { Params }            from '../utils/params.service';
-import { HelperService }     from '../utils/helper.service';
+import { AppInterceptor }    from '../utils/appInterceptor.service';
 import { AuthGuard }         from '../utils/auth/auth-guard.service';
 import { AuthService }       from '../utils/auth/auth.service';
+import { HelperService }     from '../utils/helper.service';
+import { Params }            from '../utils/params.service';
 
 @NgModule({
     declarations: [
@@ -25,7 +25,7 @@ import { AuthService }       from '../utils/auth/auth.service';
         HeaderComponent,
         SidebarComponent,
         BreadCrumbComponent,
-        LoginComponent
+        LoginComponent,
     ],
     imports: [
         BrowserModule,
@@ -33,23 +33,23 @@ import { AuthService }       from '../utils/auth/auth.service';
         FormsModule, ReactiveFormsModule,
         HttpClientModule,
         RouterModule,
-  	    AppRouting,
-        // 
+            AppRouting,
+        //
         NgZorroAntdModule.forRoot(),
     ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AppInterceptor,
-            multi: true
+            multi: true,
         },
         Params,
         HelperService,
         AuthGuard,
-        AuthService
+        AuthService,
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule {
-	constructor() {}
+    constructor () {}
 }

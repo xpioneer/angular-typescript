@@ -1,15 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { Params } from '../../../utils/params.service';
 
 @Injectable()
 export class ArticleTypeListService {
-  constructor(
+  constructor (
     private http: HttpClient,
-    private params: Params
-  ){}
+    private params: Params,
+  ) {}
 
-  getArticleTypeList(data: any) {
+  public getArticleTypeList (data: any) {
     return this.http.get('/articletype?' + this.params.fmtpages(data));
   }
 

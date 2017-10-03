@@ -1,22 +1,22 @@
-import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
+import { NgModule }      from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { UserRouting }       from './user.routing';
-import { UserComponent } from './user.component';
-import { UserListComponent } from './userlist/userlist';
 import { AddUserComponent } from './adduser/adduser';
-import { EditUserComponent } from './edituser/edituser';
-import { UserListService } from './userlist/userlist.service';
 import { AddUserService }  from './adduser/adduser.service';
+import { EditUserComponent } from './edituser/edituser';
 import { EditUserService }  from './edituser/edituser.service';
+import { UserComponent } from './user.component';
+import { UserRouting }       from './user.routing';
+import { UserListComponent } from './userlist/userlist';
+import { UserListService } from './userlist/userlist.service';
 
 @NgModule({
     imports: [
         FormsModule, ReactiveFormsModule,
         CommonModule,
         UserRouting,
-        NgZorroAntdModule.forRoot()
+        NgZorroAntdModule.forRoot(),
     ],
     declarations: [
         UserComponent,
@@ -28,6 +28,6 @@ import { EditUserService }  from './edituser/edituser.service';
         UserListService,
         AddUserService,
         EditUserService,
-    ]
+    ],
 })
 export class UserModule {}

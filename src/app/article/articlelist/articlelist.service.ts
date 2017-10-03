@@ -1,21 +1,21 @@
-import { Observable } from "rxjs";
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { Observable } from 'rxjs';
 import { Params } from '../../../utils/params.service';
 
 @Injectable()
 export class ArticleListService {
-  constructor(
+  constructor (
     private http: HttpClient,
-    private params: Params
-  ){}
+    private params: Params,
+  ) {}
 
-  getArticleList(data: any) {
+  public getArticleList (data: any) {
     return this.http.get('/article?' + this.params.fmtpages(data));
   }
 
-  deleteArticle(id: string) {
-      return this.http.delete('/article/' + id);
+  public deleteArticle (id: string) {
+        return this.http.delete('/article/' + id);
   }
 
 }

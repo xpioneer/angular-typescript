@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-breadcrumb',
   templateUrl: './breadcrumb.component.html',
-  styleUrls  : ['./breadcrumb.component.less']
+  styleUrls  : ['./breadcrumb.component.less'],
 })
 export class BreadCrumbComponent implements OnInit {
-    currentTitle: string = '';
-    currentUrl: string = '';
+    public currentTitle: string = '';
+    public currentUrl: string = '';
 
-  constructor(
+  constructor (
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
    ) {
     this.currentUrl = router.url;
-    let children = router.config[0]['children'];
+    const children = router.config[0].children;
     // for(let i of children){
     //   if(this.currentUrl == ('/' + i.path)){
     //     this.currentTitle = i.data['title'];
@@ -24,11 +24,11 @@ export class BreadCrumbComponent implements OnInit {
     // }
   }
 
-  ngOnInit() {
-    // 
+  public ngOnInit () {
+    //
   }
 
-  dashBoard() {
-      this.router.navigate(['./dashboard']);
+  public dashBoard () {
+        this.router.navigate(['./dashboard']);
   }
 }

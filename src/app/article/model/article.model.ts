@@ -1,5 +1,4 @@
 
-
 export class ArticleModel {
     public id: string;
     public title: string;
@@ -13,4 +12,9 @@ export class ArticleModel {
     public is_original: boolean = true;
     public tag: string;
     public created_at: string;
+}
+
+export interface ITag {
+    id: string;
+    name: string;
 }

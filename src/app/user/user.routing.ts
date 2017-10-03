@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule }  from '@angular/router';
-import { UserComponent } from './user.component';
-import { UserListComponent } from './userlist/userlist';
+import { RouterModule, Routes }  from '@angular/router';
 import { AddUserComponent } from './adduser/adduser';
 import { EditUserComponent } from './edituser/edituser';
+import { UserComponent } from './user.component';
+import { UserListComponent } from './userlist/userlist';
 
 const routes: Routes = [
     {
@@ -14,12 +14,12 @@ const routes: Routes = [
             { path: 'list', component: UserListComponent },
             { path: 'add', component: AddUserComponent },
             { path: 'edit/:id', component: EditUserComponent },
-        ]
-    }
+        ],
+    },
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
-export class UserRouting{};
+export class UserRouting {}

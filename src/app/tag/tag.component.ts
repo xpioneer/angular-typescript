@@ -4,6 +4,5 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-tag',
   template: '<router-outlet></router-outlet>',
 })
-export class TagComponent{
+export class TagComponent {
 }
-

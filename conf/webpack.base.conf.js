@@ -31,6 +31,17 @@ const config = {
         rules: [
             {
                 test: /\.ts$/,
+                enforce: 'pre',
+                loader: 'tslint-loader',
+                include: [path.resolve(__dirname, '../src')],
+                options: {
+                    // configFile: 'tslint.json',
+                    emitErrors: true,
+                    fix: true
+                }
+            },
+            {
+                test: /\.ts$/,
                 use: [
                     'awesome-typescript-loader',
                     'angular2-template-loader',

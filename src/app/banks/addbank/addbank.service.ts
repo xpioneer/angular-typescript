@@ -1,17 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class AddBankService {
-  constructor(
-    private http: HttpClient
-  ){}
+  constructor (
+    private http: HttpClient,
+  ) {}
 
-  insertBank(data: any) {
+  public insertBank (data: any) {
     return this.http.post('/api/creditCardBank/add', data);
   }
 
-  getCityList() {
+  public getCityList () {
     return this.http.get('/api/creditCardBank/addressList');
   }
 

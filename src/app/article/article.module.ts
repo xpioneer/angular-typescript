@@ -1,18 +1,18 @@
-import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule }      from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { ArticleRouting }       from './article.routing';
-import { ArticleComponent }         from './article.component';
-import { ArticleListComponent } from './articlelist/articlelist';
-import { ArticleListService } from './articlelist/articlelist.service';
+import { EditorModule } from '../../components/editor/editor.module';
+import { UploadFileModule } from '../../components/upload-file/upload-file.module';
 import { AddArticleComponent }  from './addarticle/addarticle';
 import { AddArticleService }  from './addarticle/addarticle.service';
+import { ArticleComponent }         from './article.component';
+import { ArticleRouting }       from './article.routing';
+import { ArticleListComponent } from './articlelist/articlelist';
+import { ArticleListService } from './articlelist/articlelist.service';
 import { EditArticleComponent }  from './editarticle/editarticle';
 import { EditArticleService }  from './editarticle/editarticle.service';
-import { UploadFileModule } from '../../components/upload-file/upload-file.module';
-import { EditorModule } from '../../components/editor/editor.module';
 
 @NgModule({
     imports: [
@@ -21,18 +21,18 @@ import { EditorModule } from '../../components/editor/editor.module';
         ArticleRouting,
         NgZorroAntdModule.forRoot(),
         UploadFileModule,
-        EditorModule
+        EditorModule,
     ],
     declarations: [
         ArticleComponent,
         ArticleListComponent,
         AddArticleComponent,
-        EditArticleComponent
+        EditArticleComponent,
     ],
     providers: [
         ArticleListService,
         AddArticleService,
         EditArticleService,
-    ]
+    ],
 })
 export class ArticleModule {}

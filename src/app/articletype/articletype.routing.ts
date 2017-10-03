@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule }  from '@angular/router';
+import { RouterModule, Routes }  from '@angular/router';
+import { AuthGuard }            from '../../utils/auth/auth-guard.service';
+import { AddArticleTypeComponent } from './addarticletype/addarticletype';
 import { ArticleTypeComponent } from './articletype.component';
 import { ArticleTypeListComponent } from './articletypelist/articletypelist';
-import { AddArticleTypeComponent } from './addarticletype/addarticletype';
 import { EditArticleTypeComponent } from './editarticletype/editarticletype';
-import { AuthGuard }            from '../../utils/auth/auth-guard.service';
 
 const routes: Routes = [
     {
@@ -16,12 +16,12 @@ const routes: Routes = [
             { path: 'list', component: ArticleTypeListComponent },
             { path: 'add', component: AddArticleTypeComponent },
             { path: 'edit/:id', component: EditArticleTypeComponent },
-        ]
-    }
+        ],
+    },
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
-export class ArticleTypeRouting{};
+export class ArticleTypeRouting {}

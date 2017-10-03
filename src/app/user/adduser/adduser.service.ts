@@ -1,13 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class AddUserService {
-  constructor(
-    private http: HttpClient
-  ){}
+  constructor (
+    private http: HttpClient,
+  ) {}
 
-  addUser(data: any){
+  public addUser (data: any) {
     return this.http.post('/user', data);
   }
 

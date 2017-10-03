@@ -16,7 +16,9 @@
         "start": "NODE_ENV=development webpack-dev-server --inline --colors --progress --config conf/webpack.dev.conf.js",
         "dll": "NODE_ENV=production webpack --config conf/webpack.dll.conf.js",
         "build": "NODE_ENV=production webpack --config conf/webpack.prod.conf.js",
-        "test": "NODE_ENV=development webpack --config conf/webpack.dev.conf.js"
+        "test": "NODE_ENV=development webpack --config conf/webpack.dev.conf.js",
+        "lint": "NODE_ENV=development node_modules/.bin/tslint -c tslint.json -p tsconfig.json",
+        "lintfix": "NODE_ENV=development node_modules/.bin/tslint -c tslint.json -p tsconfig.json --fix --force"
     },
     "dependencies": {
         "@angular/animations": "^4.3.6",
@@ -50,6 +52,8 @@
         "less-loader": "^4.0.5",
         "raw-loader": "^0.5.1",
         "style-loader": "^0.18.2",
+        "tslint": "^5.7.0",
+        "tslint-loader": "^3.5.3",
         "typescript": "^2.4.2",
         "uglifyjs-webpack-plugin": "^0.4.6",
         "url-loader": "^0.5.9",

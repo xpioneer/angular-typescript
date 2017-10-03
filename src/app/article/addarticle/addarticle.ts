@@ -1,80 +1,80 @@
-import { Router } from '@angular/router';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd';
-import { ArticleModel } from '../model/article.model';
+import { ArticleModel, ITag } from '../model/article.model';
 import { AddArticleService } from './addarticle.service';
 
 @Component({
     selector: 'app-add-article',
     templateUrl: './addarticle.html',
-    styles: [``]
+    styles: [``],
 })
 export class AddArticleComponent implements OnInit {
-    isConfirmLoading = false;
-    addArticle:ArticleModel = new ArticleModel();
+    public isConfirmLoading = false;
+    public addArticle: ArticleModel = new ArticleModel();
     @ViewChild('form') private form: NgForm;
-    
-    tagList:Array<object> = [];
-    checkedTag = {};
-    typeAjaxList: Array<any> = [];
 
-    constructor(
+    public tagList: ITag[] = [];
+    public checkedTag: object = {};
+    public typeAjaxList: any[] = [];
+
+    constructor (
         private router: Router,
         private addArticleService: AddArticleService,
-        private notification: NzNotificationService
+        private notification: NzNotificationService,
     ) { }
 
-    ngOnInit() {
+    public ngOnInit () {
         this.getTypeList();
         this.getTagList();
     }
 
-    save(){
+    public save () {
         for (const i in this.form.controls) {
             this.form.controls[ i ].markAsDirty();
         }
         this.addArticle.tag = this.getCheckedTag();
-        if(this.form.valid){
+        if (this.form.valid) {
             this.isConfirmLoading = true;
-            this.addArticleService.insertArticle(this.addArticle).subscribe((res: any)=>{
+            this.addArticleService.insertArticle(this.addArticle).subscribe((res: any) => {
                 this.isConfirmLoading = false;
                 this.notification.success('成功', res.msg);
                 this.router.navigate(['/article']);
-            }, (err: any)=>{
+            }, (err: any) => {
                 this.isConfirmLoading = false;
             });
         }
     }
 
-    getTypeList(){
-        this.addArticleService.getTypes().subscribe((res: any)=>{
+    public getTypeList () {
+        this.addArticleService.getTypes().subscribe((res: any) => {
             this.typeAjaxList = res.data;
-        }, (err:any)=>{
-            // 
+        }, (err: any) => {
+            //
         });
     }
 
-    getTagList(){
-        this.addArticleService.getTags().subscribe((res: any)=>{
+    public getTagList () {
+        this.addArticleService.getTags().subscribe((res: any) => {
             this.tagList = res.data;
-        }, (err:any)=>{
-            // 
+        }, (err: any) => {
+            //
         });
     }
 
-    getCheckedTag(){
-        let arr = [];
-        for(let item of this.tagList){
-            if(this.checkedTag[item['id']]){
-                arr.push(item['name']);
+    public getCheckedTag () {
+        const arr = [];
+        for (const item of this.tagList) {
+            if (this.checkedTag[item.id]) {
+                arr.push(item.name);
             }
         }
         return arr.join(',');
     }
 
-    back() {
-      this.router.navigate(['article']);
+    public back () {
+        this.router.navigate(['article']);
     }
 
 }

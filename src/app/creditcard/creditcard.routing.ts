@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule }  from '@angular/router';
-import { CreditCardComponent } from './creditcard.component';
-import { CardListComponent } from './cardlist/cardlist';
+import { RouterModule, Routes }  from '@angular/router';
 import { AddCardomponent } from './addcard/addcard';
+import { CardListComponent } from './cardlist/cardlist';
+import { CreditCardComponent } from './creditcard.component';
 import { EditCreditomponent } from './editcard/editcard';
 
 const routes: Routes = [
@@ -14,12 +14,12 @@ const routes: Routes = [
             { path: 'list', component: CardListComponent },
             { path: 'add', component: AddCardomponent },
             { path: 'edit/:id', component: EditCreditomponent },
-        ]
-    }
+        ],
+    },
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
-export class CreditCardRouting{};
+export class CreditCardRouting {}

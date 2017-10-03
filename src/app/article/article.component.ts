@@ -4,10 +4,5 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-article',
   template: '<router-outlet></router-outlet>',
 })
-export class ArticleComponent{
-
-  constructor() {
-  }
-
+export class ArticleComponent {
 }
-

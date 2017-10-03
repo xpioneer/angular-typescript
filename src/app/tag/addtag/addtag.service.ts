@@ -1,13 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class AddTagService {
-  constructor(
-    private http: HttpClient
-  ){}
+  constructor (
+    private http: HttpClient,
+  ) {}
 
-  addTag(data: any){
+  public addTag (data: any) {
     return this.http.post('/tag', data);
   }
 

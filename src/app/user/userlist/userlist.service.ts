@@ -1,19 +1,19 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Params } from '../../../utils/params.service'
+import { Params } from '../../../utils/params.service';
 
 @Injectable()
 export class UserListService {
-  constructor(
+  constructor (
     private http: HttpClient,
-    private params: Params
-  ){}
+    private params: Params,
+  ) {}
 
-  getUserList(data: any) {
+  public getUserList (data: any) {
     return this.http.get('/user?' + this.params.fmtpages(data));
   }
 
-  deleteUser(id: string) {
+  public deleteUser (id: string) {
     return this.http.delete('/user/' + id);
   }
 

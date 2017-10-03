@@ -5,10 +5,9 @@ import { Router } from '@angular/router';
   selector: 'app-articletype',
   template: '<router-outlet></router-outlet>',
 })
-export class ArticleTypeComponent{
+export class ArticleTypeComponent {
 
-  constructor() {
+  constructor () {
   }
 
 }
-

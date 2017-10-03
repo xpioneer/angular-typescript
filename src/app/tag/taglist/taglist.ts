@@ -7,53 +7,51 @@ import { TagListService } from './taglist.service';
 })
 export class TagListComponent implements OnInit {
 
-  current_page = 1;
-  per_page = 10;
-  total = 1;
-  dataSet:any = [];
-  _loading = true;
+  public current_page = 1;
+  public per_page = 10;
+  public total = 1;
+  public dataSet: any = [];
+  public _loading = true;
 
-  value = {};
+  public value: any = {};
 
-  constructor(
-    private tagListService: TagListService
+  constructor (
+    private tagListService: TagListService,
     ) {
   }
 
-  ngOnInit() {
+  public ngOnInit () {
     this.clear();
     this.query();
   }
 
-  query() {
-    this.value['current_page'] = this.current_page;
-    this.value['per_page'] = this.per_page;
+  public query () {
+    this.value.current_page = this.current_page;
+    this.value.per_page = this.per_page;
     this._loading = true;
-    this.tagListService.getTagList(this.value).subscribe((res: any) => {
-      this._loading = false;
-      this.dataSet = res.data;
-      this.current_page = res.meta.current_page;
-      this.total = res.meta.total;
-    }, (err: any)=>{
-      this._loading = false;
-    });
+    this.tagListService.getTagList(this.value)
+        .finally(() => this._loading = false)
+        .subscribe((res: any) => {
+            this.dataSet = res.data;
+            this.current_page = res.meta.current_page;
+            this.total = res.meta.total;
+        }, (err: any) => { });
   }
 
-  clear() {
+  public clear () {
     this.value = {
-      name: {
-          val: '',
-          exp: 'like'
-      },
-      remark: {
-          val: '',
-          exp: 'like'
-      },
-      created_at: {
-          val: '',
-          exp: 'between'
-      }
+        name: {
+            val: '',
+            exp: 'like',
+        },
+        remark: {
+            val: '',
+            exp: 'like',
+        },
+        created_at: {
+            val: '',
+            exp: 'between',
+        },
     };
   }
 }
-

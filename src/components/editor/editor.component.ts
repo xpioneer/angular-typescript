@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef, ElementRef, ViewChild } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
+import { forwardRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NzNotificationService } from 'ng-zorro-antd';
 
 const Quill = require('quill');
@@ -9,22 +9,22 @@ const toolbarOptions = [
     ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
     ['blockquote', 'code-block'],
 
-    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-    [{ 'direction': 'rtl' }],                         // text direction
+    [{ header: 1 }, { header: 2 }],               // custom button values
+    [{ list: 'ordered'}, { list: 'bullet' }],
+    [{ script: 'sub'}, { script: 'super' }],      // superscript/subscript
+    [{ indent: '-1'}, { indent: '+1' }],          // outdent/indent
+    [{ direction: 'rtl' }],                         // text direction
 
-    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+    [{ size: ['small', false, 'large', 'huge'] }],  // custom dropdown
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
 
-    [{ 'color': <any>[] }, { 'background': <any>[] }],          // dropdown with defaults from theme
-    [{ 'font': <any>[] }],
-    [{ 'align': <any>[] }],
+    [{ color: [] as any }, { background: [] as any }],          // dropdown with defaults from theme
+    [{ font: [] as any }],
+    [{ align: [] as any }],
 
     ['link', 'image'],
 
-    ['clean']                                         // remove formatting button
+    ['clean'],                                         // remove formatting button
 ];
 
 @Component({
@@ -34,86 +34,84 @@ const toolbarOptions = [
       <input [(ngModel)]="editorVal" style="display:none;"/>
     `,
     styles: [
-      `
+        `
         .ql-container{min-height:600px;}
-      `
+      `,
     ],
     providers    : [
-      {
+        {
         provide    : NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => EditorComponent),
-        multi      : true
-      }
+        multi      : true,
+        },
     ],
 })
 export class EditorComponent implements ControlValueAccessor {
-  baseUrl: string = '/upload-file';
-  _value: any;
+  public baseUrl: string = '/upload-file';
+  public _value: any;
   @ViewChild('editor') private editor: ElementRef;
 
-  @Input() imgSrc: any;
-  @Output() fileUploaded:EventEmitter<Object> = new EventEmitter();
-    
-  quillEditor:any = {};
+  @Input() public imgSrc: any;
+  @Output() public fileUploaded: EventEmitter<object> = new EventEmitter();
 
-  onChange: any = Function.prototype;
-  onTouched: any = Function.prototype;
+  public quillEditor: any = {};
 
-  constructor(
+  public onChange: any = Function.prototype;
+  public onTouched: any = Function.prototype;
+
+  constructor (
     private http: HttpClient,
-    private notification: NzNotificationService
-  ){}
+    private notification: NzNotificationService,
+  ) {}
 
-  ngOnInit(){
+  public ngOnInit () {
     this.quillEditor = new Quill(this.editor.nativeElement, {
         debug: false,
         modules: {
-            toolbar: toolbarOptions
+            toolbar: toolbarOptions,
         },
         placeholder: '请在这里写下你的内容...',
         readOnly: false,
-        theme: 'snow'
+        theme: 'snow',
     });
-    this.quillEditor.on('editor-change', (delta:any, oldDelta:any, source:any) => {
-      console.log('editor-change')
-      let _html = this.quillEditor.root.innerHTML;
-      if (_html === '<p><br></p>') {
+    this.quillEditor.on('editor-change', (delta: any, oldDelta: any, source: any) => {
+        console.log('editor-change');
+        let _html = this.quillEditor.root.innerHTML;
+        if (_html === '<p><br></p>') {
         _html = null; return;
-      }
-      this.onChange(_html);
+        }
+        this.onChange(_html);
     });
   }
 
-  ngOnChanges(){
-    // 
+  public ngOnChanges () {
+    //
   }
-  
-  
 
-  get editorVal(){
+  get editorVal () {
     return this._value;
   }
 
-  set editorVal(val: any){
+  set editorVal (val: any) {
     if ((this._value === val) || (((this._value === undefined) || (this._value === null)) && ((val === undefined) || (val === null)))) {
-      return;
+        return;
     }
     if (val !== this._value) {
-      this._value = val;
-      this.onChange(val);
-      this.quillEditor.root.innerHTML = val;
+        this._value = val;
+        this.onChange(val);
+        this.quillEditor.root.innerHTML = val;
     }
   }
 
-  writeValue(value: any): void{
+  public writeValue (value: any): void {
     this.editorVal = value;
   }
 
-  registerOnChange(fn: (_: any) => {}): void {
+  public registerOnChange (fn: (_: any) => {}): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => {}): void {
+  public registerOnTouched (fn: () => {}): void {
     this.onTouched = fn;
   }
 
