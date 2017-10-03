@@ -4,13 +4,13 @@ import { Params } from '../../../utils/params.service';
 
 @Injectable()
 export class TagListService {
-  constructor (
-    private http: HttpClient,
-    private params: Params,
-  ) {}
+    constructor (
+        private http: HttpClient,
+        private params: Params,
+    ) {}
 
-  public getTagList (data: any) {
-    return this.http.get('/tag?' + this.params.fmtpages(data));
-  }
+    public getTagList (data: any) {
+        return this.http.get('/tag?' + this.params.fmtpages(data));
+    }
 
 }
