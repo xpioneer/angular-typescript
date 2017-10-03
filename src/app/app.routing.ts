@@ -21,6 +21,7 @@ const appRoutes: Routes = [
             { path: 'creditcard', loadChildren: './creditcard/creditcard.module#CreditCardModule' },
             { path: 'tag', loadChildren: './tag/tag.module#TagModule' },
             { path: 'user', loadChildren: './user/user.module#UserModule' },
+            { path: 'demos', loadChildren: './demos/demos.module#DemosModule' },
             { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
         ]
     }

@@ -14,9 +14,7 @@ export class EditArticleComponent implements OnInit {
     isConfirmLoading = false;
     mainModel:ArticleModel = new ArticleModel();
     @ViewChild('form') private form: NgForm;
-    @ViewChild('editor') private editor: ElementRef;
 
-    quillEditor:any = {};
     tagList:Array<object> = [];
     _tagList:Array<object> = [];
     checkedTag = {};

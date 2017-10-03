@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-creditcard',
+  selector: 'app-demos-outlet',
   template: '<router-outlet></router-outlet>'
 })
-export class CreditCardComponent {
-  
-}
-
+export class OutletComponent { }

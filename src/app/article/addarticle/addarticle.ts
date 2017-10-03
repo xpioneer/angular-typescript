@@ -14,9 +14,7 @@ export class AddArticleComponent implements OnInit {
     isConfirmLoading = false;
     addArticle:ArticleModel = new ArticleModel();
     @ViewChild('form') private form: NgForm;
-    @ViewChild('editor') private editor: ElementRef;
-
-    quillEditor:any = {};
+    
     tagList:Array<object> = [];
     checkedTag = {};
     typeAjaxList: Array<any> = [];

@@ -29,7 +29,7 @@ config.plugins = (config.plugins || []).concat([
     new HtmlWebpackPlugin({
         title: 'CMS-Angular4',
         filename: 'index.html',
-        template: 'dist/index.html',
+        template: 'src/template/index_base.html',
     })
 ]);
 

@@ -6,18 +6,17 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
-import { AppRouting } from './app.routing';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home';
+import { AppRouting }     from './app.routing';
+import { AppComponent }   from './app.component';
+import { HomeComponent }  from './home';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent, SidebarComponent, BreadCrumbComponent } from '../components/shared';
 
-import { AppInterceptor } from "../utils/appInterceptor.service";
-import { Params } from '../utils/params.service';
-import { HelperService } from '../utils/helper.service';
-
-import { AuthGuard }            from '../utils/auth/auth-guard.service';
-import { AuthService }          from '../utils/auth/auth.service';
+import { AppInterceptor }    from "../utils/appInterceptor.service";
+import { Params }            from '../utils/params.service';
+import { HelperService }     from '../utils/helper.service';
+import { AuthGuard }         from '../utils/auth/auth-guard.service';
+import { AuthService }       from '../utils/auth/auth.service';
 
 @NgModule({
     declarations: [
@@ -31,7 +30,7 @@ import { AuthService }          from '../utils/auth/auth.service';
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        FormsModule,ReactiveFormsModule,
+        FormsModule, ReactiveFormsModule,
         HttpClientModule,
         RouterModule,
   	    AppRouting,
