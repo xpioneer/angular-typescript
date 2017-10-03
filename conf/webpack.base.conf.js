@@ -5,6 +5,17 @@ const path = require('path'),
 
 const _DEV_ = process.env.NODE_ENV === 'development';
 
+const postCSSLoader = {
+    loader: "postcss-loader",
+    options: {
+        plugins: () => [
+            require("autoprefixer")({
+                browsers: ["Android 4.1", "iOS 7.1", "Chrome > 31", "ff > 31", "ie >= 8"]
+            })
+        ]
+    }
+};
+
 const config = {
     entry: {
         'index': path.resolve(__dirname, '../src/index.ts'),
@@ -65,14 +76,14 @@ const config = {
                 test: /\.less$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: [ "css-loader", "less-loader" ]
+                    use: [ "css-loader", "less-loader", postCSSLoader ]
                 })
             },
             {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: [ {loader:"css-loader"} ]
+                    use: [ "css-loader", postCSSLoader]
                 })
             },
             {
