@@ -3,6 +3,8 @@ const path = require('path'),
     UglifyJSPlugin = require("uglifyjs-webpack-plugin"),
     HtmlWebpackPlugin = require("html-webpack-plugin");
 
+const _DEV_ = process.env.NODE_ENV === 'development';
+
 const config = {
     entry: {
         polyfills: [path.resolve(__dirname, '../src/polyfills.ts')],
@@ -11,9 +13,9 @@ const config = {
     },
 
     output: {
-        path: path.resolve(__dirname, "../dist"),
+        path: path.resolve(__dirname, "../dist/vendor"),
         filename: "[name].[chunkhash].dll.js",
-        library: "[name]_[chunkhash]"
+        library: "[name]_[chunkhash]_lib"
     },
 
     // plugins
@@ -21,28 +23,28 @@ const config = {
         new UglifyJSPlugin({
             output: {
                 comments: false,
-                beautify: false,
+                beautify: !_DEV_ ? false : true,
             },
-            compress: {
+            compress: !_DEV_ ? {
                 drop_console: true,
-            },
+            } : false,
             warnings: false
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: ['vendor1', 'vendor', 'polyfills'],
-        }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: ['vendor1', 'vendor', 'polyfills'],
+        // }),
         new webpack.DllPlugin({
-            context: __dirname,
-            name: "[name]_[chunkhash]",
-            path: path.resolve(__dirname, "../dist/[name].manifest.json")
+            // context: __dirname,
+            name: "[name]_[chunkhash]_lib",
+            path: path.join(__dirname, "../dist/vendor", "[name].manifest.json")
         }),
-        new HtmlWebpackPlugin({
-            title: 'CMS-Angular4',
-            filename: 'index.html',
-            template: 'src/template/index_base.html',
-            // filename: 'index.html',
-            // template: 'src/index.html',
-        }),
+        // new HtmlWebpackPlugin({
+        //     title: 'CMS-Angular4',
+        //     filename: 'index.html',
+        //     template: 'src/template/index_base.html',
+        //     // filename: 'index.html',
+        //     // template: 'src/index.html',
+        // }),
         // new webpack.ContextReplacementPlugin(
         //     /angular(\\|\/)core(\\|\/)@angular/,
         //     path.resolve(__dirname, '../src')

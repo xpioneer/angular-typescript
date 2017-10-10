@@ -19,9 +19,9 @@ const postCSSLoader = {
 const config = {
     entry: {
         'index': path.resolve(__dirname, '../src/index.ts'),
-        'polyfills': path.resolve(__dirname, '../src/polyfills.ts'),
-        'vendor': path.resolve(__dirname, '../src/vendor.ts'),
-        'vendor1': 'ng-zorro-antd',
+        // 'polyfills': path.resolve(__dirname, '../src/polyfills.ts'),
+        // 'vendor': path.resolve(__dirname, '../src/vendor.ts'),
+        // 'vendor1': 'ng-zorro-antd',
     },
 
     output: {
@@ -99,20 +99,28 @@ const config = {
 
     // plugins
     plugins: [
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: require("../dist/vendor/polyfills.manifest.json")
+        }),
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: require("../dist/vendor/vendor.manifest.json")
+        }),
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: require("../dist/vendor/vendor1.manifest.json")
+        }),
         new ExtractTextPlugin({ filename: "css/[name].[hash:6].css", allChunks: true }),
         new webpack.optimize.CommonsChunkPlugin({
-            // name: ['common'],
-            name: ['common', 'vendor1', 'vendor', 'polyfills'],
+            name: ['common'],
+            // name: ['common', 'vendor1', 'vendor', 'polyfills'],
             minChunks: Infinity
         }),
         new webpack.optimize.ModuleConcatenationPlugin(),
         // new webpack.optimize.LimitChunkCountPlugin({
         //     maxChunks: 5,
         //     minChunkSize: 1000
-        // }),
-        // new webpack.DllReferencePlugin({
-        //     context: __dirname,
-        //     manifest: path.resolve(__dirname, "../dist/manifest.json")
         // }),
         new webpack.ContextReplacementPlugin(
             /angular(\\|\/)core(\\|\/)@angular/,
