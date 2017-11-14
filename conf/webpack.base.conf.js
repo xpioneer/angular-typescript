@@ -19,9 +19,9 @@ const postCSSLoader = {
 const config = {
     entry: {
         'index': path.resolve(__dirname, '../src/index.ts'),
-        // 'polyfills': path.resolve(__dirname, '../src/polyfills.ts'),
-        // 'vendor': path.resolve(__dirname, '../src/vendor.ts'),
-        // 'vendor1': 'ng-zorro-antd',
+        'polyfills': path.resolve(__dirname, '../src/polyfills.ts'),
+        'vendor': path.resolve(__dirname, '../src/vendor.ts'),
+        'vendor1': 'ng-zorro-antd',
     },
 
     output: {
@@ -32,7 +32,7 @@ const config = {
         filename: './[name].bundle.[chunkhash:8].js'
     },
 
-    devtool: _DEV_?'cheap-module-source-map':false,
+    devtool: _DEV_?'#cheap-module-source-map':false,
 
     resolve: {
         extensions: ['.ts', '.js']
@@ -90,7 +90,7 @@ const config = {
                 test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif|mp4|webm)(\?\S*)?$/,
                 loader: "url-loader",
                 options: {
-                    name: "assets/[name]-[hash].[ext]",
+                    name: "assets/[name]-[hash:8].[ext]",
                     limit: 2048
                 }
             }
@@ -99,22 +99,24 @@ const config = {
 
     // plugins
     plugins: [
-        new webpack.DllReferencePlugin({
-            context: __dirname,
-            manifest: require("../dist/vendor/polyfills.manifest.json")
+        // new webpack.DllReferencePlugin({
+        //     context: path.resolve(__dirname, '../dist'),
+        //     manifest: require("../dist/vendor/polyfills.manifest.json")
+        // }),
+        // new webpack.DllReferencePlugin({
+        //     context: path.resolve(__dirname, '../dist'),
+        //     manifest: require("../dist/vendor/vendor.manifest.json")
+        // }),
+        // new webpack.DllReferencePlugin({
+        //     context: path.resolve(__dirname, '../dist'),
+        //     manifest: require("../dist/vendor/vendor1.manifest.json")
+        // }),
+        new ExtractTextPlugin({
+            filename: "css/[name].[contenthash:8].css",
+            allChunks: true
         }),
-        new webpack.DllReferencePlugin({
-            context: __dirname,
-            manifest: require("../dist/vendor/vendor.manifest.json")
-        }),
-        new webpack.DllReferencePlugin({
-            context: __dirname,
-            manifest: require("../dist/vendor/vendor1.manifest.json")
-        }),
-        new ExtractTextPlugin({ filename: "css/[name].[hash:6].css", allChunks: true }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['common'],
-            // name: ['common', 'vendor1', 'vendor', 'polyfills'],
+            name: ['common', 'vendor1', 'vendor', 'polyfills'],
             minChunks: Infinity
         }),
         new webpack.optimize.ModuleConcatenationPlugin(),
@@ -122,10 +124,10 @@ const config = {
         //     maxChunks: 5,
         //     minChunkSize: 1000
         // }),
-        new webpack.ContextReplacementPlugin(
-            /angular(\\|\/)core(\\|\/)@angular/,
-            path.resolve(__dirname, '../src')
-        )
+        // new webpack.ContextReplacementPlugin(
+        //     /angular(\\|\/)core(\\|\/)@angular/,
+        //     path.resolve(__dirname, '../src')
+        // )
     ]
 };
 

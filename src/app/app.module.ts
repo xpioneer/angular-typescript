@@ -28,12 +28,11 @@ import { Params }            from '../utils/params.service';
         LoginComponent,
     ],
     imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
+        BrowserModule, BrowserAnimationsModule,
         FormsModule, ReactiveFormsModule,
         HttpClientModule,
-        RouterModule,
-            AppRouting,
+        // RouterModule,
+        AppRouting,
         //
         NgZorroAntdModule.forRoot(),
     ],

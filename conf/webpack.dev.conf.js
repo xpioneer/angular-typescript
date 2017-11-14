@@ -12,6 +12,7 @@ config.devServer = {
         aggregateTimeout: 300,
         poll: 1000
     },
+    contentBase:path.join(__dirname, '../dist'),
     proxy: {
       '/api': {
         target: 'http://127.0.0.1:9901',
@@ -31,7 +32,7 @@ config.plugins = (config.plugins || []).concat([
     new HtmlWebpackPlugin({
         title: 'CMS-FE DEV',
         filename: 'index.html',
-        template: 'src/template/index_base.html',
+        template: 'dist/index.html',
     })
 ]);
 

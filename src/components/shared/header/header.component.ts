@@ -11,10 +11,7 @@ export class HeaderComponent implements OnInit {
     public store: any;
     public userInfo: object = {};
 
-    constructor (
-        private http: HttpClient,
-        private authService: AuthService,
-    ) {
+    constructor (private authService: AuthService) {
         this.store = localStorage;
     }
 

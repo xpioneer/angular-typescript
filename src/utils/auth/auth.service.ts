@@ -1,15 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
     public store: any;
     public isLogged: boolean = false;
 
-    constructor (
-        private http: HttpClient,
-        ) {
+    constructor (private http: HttpClient) {
         this.store = localStorage;
         this.isLogged = this.store.getItem('ACCESS_TOKEN')
                         && this.store.getItem('ACCESS_TOKEN').length == 64

@@ -12,7 +12,7 @@ import { AuthService }      from './auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
-  constructor (private authService: AuthService, private router: Router) {}
+  constructor (private authService: AuthService) {}
 
   public canActivate (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const url: string = state.url;
@@ -33,7 +33,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
         return true;
     }else {
         this.authService.redirectUrl = url;
-        this.router.navigate(['login']);
+        location.href = 'login';
         return false;
     }
   }

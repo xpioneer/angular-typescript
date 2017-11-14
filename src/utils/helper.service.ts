@@ -6,9 +6,7 @@ import { NzNotificationService } from 'ng-zorro-antd';
 export class HelperService {
     public store: any;
 
-    constructor (
-        private notification: NzNotificationService,
-    ) {
+    constructor (private notification: NzNotificationService) {
         this.store = localStorage;
     }
 
@@ -17,11 +15,11 @@ export class HelperService {
         case 201:
             const arr = res.url.split('/api');
             if (arr[arr.length - 1] === '/login') {
-            this.notification.success('成功', '登陆成功');
+                this.notification.success('成功', '登陆成功');
             }else if (arr[arr.length - 1] === '/upload-file') {
-            this.notification.success('成功', '文件上传成功');
+                this.notification.success('成功', '文件上传成功');
             }else {
-            this.notification.success('成功', '操作成功');
+                this.notification.success('成功', '操作成功');
             }
             break;
         default:
@@ -35,18 +33,18 @@ export class HelperService {
         case 400:
             const arr = err.url.split('/api');
             if (arr[arr.length - 1] === '/login') {
-            this.notification.error('错误', '用户名或密码错误');
+                this.notification.error('错误', '用户名或密码错误');
             }else if (arr[arr.length - 1] === '/upload-file') {
-            this.notification.error('失败', '文件上传失败');
+                this.notification.error('失败', '文件上传失败');
             }else {
-            this.notification.error('请求错误', err.error.msg || err.error.data);
+                this.notification.error('请求错误', err.error.msg || err.error.data);
             }
             break;
         case 401:
             this.store.clear();
             this.notification.error('未授权', '请重新登录');
             setTimeout(() => {
-            location.href = 'login';
+                location.href = 'login';
             }, 1000);
             break;
         case 403:

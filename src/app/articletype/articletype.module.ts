@@ -11,7 +11,6 @@ import { ArticleTypeListComponent } from './articletypelist/articletypelist';
 import { ArticleTypeListService } from './articletypelist/articletypelist.service';
 import { EditArticleTypeComponent }  from './editarticletype/editarticletype';
 import { EditArticleTypeService }  from './editarticletype/editarticletype.service';
-// import { UploadFileModule } from '../../components/upload-file/upload-file.module';
 
 @NgModule({
     imports: [
@@ -19,7 +18,6 @@ import { EditArticleTypeService }  from './editarticletype/editarticletype.servi
         CommonModule,
         ArticleTypeRouting,
         NgZorroAntdModule.forRoot(),
-        // UploadFileModule
     ],
     declarations: [
         ArticleTypeComponent,

@@ -30,21 +30,19 @@ const config = {
             } : false,
             warnings: false
         }),
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     name: ['vendor1', 'vendor', 'polyfills'],
-        // }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['vendor1', 'vendor', 'polyfills'],
+        }),
         new webpack.DllPlugin({
-            // context: __dirname,
+            context: path.resolve(__dirname, '../dist'),
             name: "[name]_[chunkhash]_lib",
             path: path.join(__dirname, "../dist/vendor", "[name].manifest.json")
         }),
-        // new HtmlWebpackPlugin({
-        //     title: 'CMS-Angular4',
-        //     filename: 'index.html',
-        //     template: 'src/template/index_base.html',
-        //     // filename: 'index.html',
-        //     // template: 'src/index.html',
-        // }),
+        new HtmlWebpackPlugin({
+            title: 'CMS-Angular4',
+            filename: '../index.html',
+            template: 'src/template/index_base.html',
+        }),
         // new webpack.ContextReplacementPlugin(
         //     /angular(\\|\/)core(\\|\/)@angular/,
         //     path.resolve(__dirname, '../src')
