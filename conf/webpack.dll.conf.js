@@ -39,7 +39,7 @@ const config = {
             path: path.join(__dirname, "../dist/vendor", "[name].manifest.json")
         }),
         new HtmlWebpackPlugin({
-            title: 'CMS-Angular4',
+            title: 'CMS-管理后台',
             filename: '../index.html',
             template: 'src/template/index_base.html',
         }),
