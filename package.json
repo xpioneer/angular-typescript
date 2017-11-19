@@ -16,7 +16,7 @@
         "start": "NODE_ENV=development webpack-dev-server --inline --colors --progress --config conf/webpack.dev.conf.js",
         "dll": "webpack --config conf/webpack.dll.conf.js",
         "clean": "rm -rf dist",
-        "build": "NODE_ENV=production yarn run clean && yarn run dll && webpack --config conf/webpack.prod.conf.js",
+        "build": "NODE_ENV=production yarn run clean && webpack --config conf/webpack.prod.conf.js",
         "test": "NODE_ENV=development yarn run dll && webpack --config conf/webpack.dev.conf.js",
         "lint": "NODE_ENV=development node_modules/.bin/tslint -c tslint.json -p tsconfig.json",
         "lintfix": "NODE_ENV=development node_modules/.bin/tslint -c tslint.json -p tsconfig.json --fix --force"

@@ -39,7 +39,6 @@ export class AddArticleComponent implements OnInit {
             this.isConfirmLoading = true;
             this.addArticleService.insertArticle(this.addArticle).subscribe((res: any) => {
                 this.isConfirmLoading = false;
-                this.notification.success('成功', res.msg);
                 this.router.navigate(['/article']);
             }, (err: any) => {
                 this.isConfirmLoading = false;

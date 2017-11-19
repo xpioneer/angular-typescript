@@ -10,24 +10,13 @@ config.plugins = (config.plugins || []).concat([
     new UglifyJSPlugin({
         output: {
             comments: false,
-            beautify: true,
+            beautify: false,
         },
-        compress: false,
-        // {
-        //     drop_console: true,
-        // },
+        compress: {
+            drop_console: true,
+        },
         warnings: false
     }),
-    // new UglifyJSPlugin({
-    //     output: {
-    //         comments: false,
-    //         beautify: false,
-    //     },
-    //     compress: {
-    //         drop_console: true,
-    //     },
-    //     warnings: false
-    // }),
     new webpack.HashedModuleIdsPlugin(),
     new webpack.NamedModulesPlugin(),
     // new CleanWebpackPlugin(
@@ -39,9 +28,9 @@ config.plugins = (config.plugins || []).concat([
     //     }
     // ),
     new HtmlWebpackPlugin({
-        title: 'CMS-Angular4',
+        title: 'CMS-管理后台',
         filename: 'index.html',
-        template: 'dist/index.html',
+        template: 'src/template/index_base.html',
     })
 ]);
 
