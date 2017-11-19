@@ -3,12 +3,16 @@
 <form nz-form class="">
     <div nz-row [nzGutter]="40" class="mgt20">
         <div nz-col class="gutter-row" [nzSpan]="6">
-            <span class="spanW60">文章名称：</span>
-            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'文章名称'" [(ngModel)]="value.title.val" name="value.title.val"></nz-input>
+            <span class="spanW60">请求ip：</span>
+            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请求ip'" [(ngModel)]="value.request_ip.val" name="value.request_ip.val"></nz-input>
         </div>
         <div nz-col class="gutter-row" [nzSpan]="6">
-            <span class="spanW60">文章摘要：</span>
-            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'文章摘要'" [(ngModel)]="value.abstract.val" name="value.abstract.val"></nz-input>
+            <span class="spanW60">请求类型：</span>
+            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请求类型'" [(ngModel)]="value.request_method.val" name="value.request_method.val"></nz-input>
+        </div>
+        <div nz-col class="gutter-row" [nzSpan]="6">
+            <span class="spanW60">请求客户端：</span>
+            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请求客户端'" [(ngModel)]="value.request_client.val" name="value.request_client.val"></nz-input>
         </div>
         <!-- <div nz-col class="gutter-row" [nzSpan]="6">
             <span class="spanW60">状态选择：</span>
@@ -45,27 +49,33 @@
     <thead nz-thead>
         <tr>
             <th nz-th><span>ip</span></th>
-            <th nz-th><span>url</span></th>
-            <th nz-th style="width:300px;"><span>参数</span></th>
+            <th nz-th style="width:120px;"><span>url</span></th>
+            <th nz-th style="width:120px;"><span>参数</span></th>
             <th nz-th><span>请求类型</span></th>
-            <th nz-th><span>客户端类型</span></th>
+            <th nz-th><span>客户端版本</span></th>
+            <th nz-th><span>请求状态</span></th>
+            <th nz-th><span>处理时间</span></th>
             <th nz-th><span>创建时间</span></th>
             <th nz-th><span>操作</span></th>
         </tr>
     </thead>
     <tbody nz-tbody>
         <tr nz-tbody-tr *ngFor="let data of nzTable.data">
-            <td nz-td><div style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;" title="{{data.title}}">{{data.title}}</div>
+            <td nz-td>{{data.request_ip}}</td>
+            <td nz-td>
+                <div style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;" title="{{data.request_url}}">{{data.request_url}}</div>
             </td>
-            <td nz-td><img class="bank-logo" src="{{getPics(data.pics)}}" alt=""></td>
-            <td nz-td><div style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;" title="{{data.abstract}}">{{data.abstract}}</div>
+            <td nz-td>
+                <div style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;" title="{{data.request_params}}">{{data.request_params}}</div>
             </td>
-            <td nz-td>{{data.view_count}}</td>
-            <td nz-td>{{data.is_original?'是':'否'}}</td>
+            <td nz-td>{{data.request_method}}</td>
+            <td nz-td>{{data.client_version}}</td>
+            <td nz-td>{{data.status}}</td>
+            <td nz-td>{{data.time}}ms</td>
             <td nz-td>{{data.created_at}}</td>
             <td nz-td>
-                <a href="#" [routerLink]="['/article/edit', data.id]">编辑</a>
-                <a href="javascript:;" (click)="delArticle(data.id)">删除</a>
+                <a href="#" [routerLink]="['/systemlog/detail', data.id]">详情</a>
+                <a href="javascript:;" (click)="delSystemLog(data.id)">删除</a>
             </td>
         </tr>
     </tbody>

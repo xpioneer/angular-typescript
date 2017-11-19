@@ -87,10 +87,7 @@ export class UploadFileComponent implements ControlValueAccessor {
     public onChange: any = Function.prototype;
     public onTouched: any = Function.prototype;
 
-    constructor (
-        private http: HttpClient,
-        private notification: NzNotificationService,
-    ) {}
+    constructor (private http: HttpClient, private notification: NzNotificationService) {}
 
     public ngOnInit () {
         if (!this.imgSrc) {

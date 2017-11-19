@@ -51,11 +51,15 @@ export class SystemLogListComponent implements OnInit {
 
     public clear () {
         this.value = {
-            method: {
+            request_ip: {
                 val: '',
                 exp: 'like',
             },
-            request_ip: {
+            request_method: {
+                val: '',
+                exp: 'like',
+            },
+            request_client: {
                 val: '',
                 exp: 'like',
             },
