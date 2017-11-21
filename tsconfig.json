@@ -12,7 +12,14 @@
     "lib": [ "es2015", "dom" ],
     "typeRoots": [
       "./node_modules/@types/"
-    ]
+    ],
+    "baseUrl": "./src",
+    "paths": {
+        "@app/*": ["app/*"],
+        "@assets/*": ["assets/*"],
+        "@components": ["src/components"],
+        "@utils": ["src/utils"]
+    }
   },
   "compileOnSave": true,
   "exclude": [
