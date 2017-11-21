@@ -35,7 +35,14 @@ const config = {
     devtool: _DEV_?'#cheap-module-source-map':false,
 
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js'],
+        modules: [path.resolve(process.cwd(), "src"), "node_modules"],
+        alias: {
+            '@app': path.join(process.cwd(), 'src/app'),
+            '@assets': path.join(process.cwd(), 'src/assets'),
+            '@components': path.join(process.cwd(), 'src/components'),
+            '@utils': path.join(process.cwd(), 'src/utils'),
+        }
     },
 
     module: {
