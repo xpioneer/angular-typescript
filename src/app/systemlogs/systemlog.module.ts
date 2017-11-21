@@ -6,6 +6,8 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { SystemLogComponent }  from './systemlog.component';
 import { SystemLogListComponent }  from './systemloglist/systemloglist';
 import { SystemLogListService }  from './systemloglist/systemloglist.service';
+import { SystemLogDetailComponent }  from './systemlogdetail/systemlogdetail';
+import { SystemLogDetailService }  from './systemlogdetail/systemlogdetail.service';
 import { SystemLogRouting }       from './systemlog.routing';
 
 @NgModule({
@@ -18,10 +20,11 @@ import { SystemLogRouting }       from './systemlog.routing';
     declarations: [
         SystemLogComponent,
         SystemLogListComponent,
+        SystemLogDetailComponent,
     ],
     providers: [
         SystemLogListService,
-        // EditArticleService,
+        SystemLogDetailService,
     ],
 })
 export class SystemLogModule {}

@@ -32,14 +32,13 @@ export class UserListComponent implements OnInit {
     this.value.current_page = this.current_page;
     this.value.per_page = this.per_page;
     this._loading = true;
-    this.userListService.getUserList(this.value).subscribe((res: any) => {
-        this._loading = false;
+    this.userListService.getUserList(this.value)
+    .finally(() => { this._loading = false; })
+    .subscribe((res: any) => {
         this.dataSet = res.data;
         this.current_page = res.meta.current_page;
         this.total = res.meta.total;
-    }, (err: any) => {
-        this._loading = false;
-    });
+    }, (err: any) => { });
   }
 
   public clear () {

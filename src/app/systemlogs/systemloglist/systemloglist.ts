@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
 import { SystemLogModel } from '../model/systemlog.model';
@@ -9,7 +10,8 @@ import { SystemLogListService } from './systemloglist.service';
     templateUrl: './systemloglist.html',
 })
 export class SystemLogListComponent implements OnInit {
-
+    @ViewChild('form') private form: NgForm;
+    private timer: number = 0;
     public current_page = 1;
     public per_page = 10;
     public total = 1;
@@ -32,21 +34,27 @@ export class SystemLogListComponent implements OnInit {
 
     public ngOnInit () {
         this.clear();
-        this.query();
+        this.query(undefined);
     }
 
-    public query () {
-        this._loading = true;
+    public query (cur_page: number) {
+        if (cur_page) {
+            this.current_page = 1;
+        }
         this.value.current_page = this.current_page;
         this.value.per_page = this.per_page;
-        this.systemLogListService.getSystemLogList(this.value).subscribe((res: any) => {
-            this.dataSet = res.data;
-            this.current_page = res.meta.current_page;
-            this.total = res.meta.total;
-            this._loading = false;
-        }, (e) => {
-            this._loading = false;
-        }, () => { });
+        this._loading = true;
+        if (this.timer) {
+            clearTimeout(this.timer);
+        }
+        this.timer = setTimeout(() => {
+            this.systemLogListService.getSystemLogList(this.value)
+            .finally(() => { this._loading = false; })
+            .subscribe((res: any) => {
+                this.dataSet = res.data;
+                this.total = res.meta.total;
+            }, (e) => { });
+        });
     }
 
     public clear () {
@@ -59,9 +67,17 @@ export class SystemLogListComponent implements OnInit {
                 val: '',
                 exp: 'like',
             },
-            request_client: {
+            client_type: {
                 val: '',
                 exp: 'like',
+            },
+            status: {
+                val: '',
+                exp: 'in',
+            },
+            time: {
+                val: '',
+                exp: 'between',
             },
         };
     }
@@ -76,15 +92,46 @@ export class SystemLogListComponent implements OnInit {
                 return new Promise((resolve) => {
                     that.systemLogListService.deleteSystemLog(id)
                         .finally(() => { resolve(); })
-                        .subscribe((res: any) => { that.query(); }, (err) => { });
+                        .subscribe((res: any) => { that.query(undefined); }, (err) => { });
                 });
             },
             onCancel () { },
         });
     }
 
-    // public getPics (url: string) {
-    //     return !!url ? url + '?Authorization-User=' + localStorage.getItem('ACCESS_TOKEN') : '';
-    // }
+    public getStatus (status: number) {
+        let nzStatus = '';
+        switch (status) {
+            case 200:
+            case 201:
+                nzStatus = 'success';
+                break;
+            case 400:
+            case 401:
+            case 403:
+            case 404:
+            case 405:
+            case 406:
+                nzStatus = 'warning';
+                break;
+            case 500:
+            case 501:
+            case 502:
+            case 503:
+            case 504:
+            case 505:
+                nzStatus = 'error';
+                break;
+
+            default:
+                nzStatus = 'default';
+                break;
+        }
+        return nzStatus;
+    }
+
+    public ngDoDestory () {
+        clearTimeout(this.timer);
+    }
 
 }

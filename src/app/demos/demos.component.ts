@@ -17,7 +17,11 @@ export class DemosComponent {
     public urlObj: UrlModel = new UrlModel();
     public jsonData: string;
 
-    constructor (private http: HttpClient, private params: Params) {
+    constructor (
+        private http: HttpClient,
+        private params: Params,
+        private notificationService: NzNotificationService,
+    ) {
     }
 
     public ngOnInit () {
@@ -25,6 +29,10 @@ export class DemosComponent {
     }
 
     public testStatus () {
+        if (!(this.status >= 200 && this.status < 600)) {
+            this.notificationService.warning('警告', '请输入正确格式的状态码');
+            return;
+        }
         this.http.post('/test/status/' + this.status, {}).subscribe((res) => {
             console.log(res);
         }, (err) => {
@@ -33,8 +41,12 @@ export class DemosComponent {
     }
 
     public testUrl () {
+        if (!this.urlObj.url || (this.urlObj.url && this.urlObj.url.indexOf('/') !== 0)) {
+            this.notificationService.warning('警告', '请输入正确格式的url');
+            return;
+        }
         this.requestUrl().subscribe((res) => {
-            this.jsonData = JSON.stringify(res);
+            this.jsonData = JSON.stringify(res, null, '    ');
         }, (err) => {
             console.log(err);
         });

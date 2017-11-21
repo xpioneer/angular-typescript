@@ -25,7 +25,7 @@
         <label nz-form-item-required>url</label>
       </div>
       <div nz-form-control nz-col [nzSpan]="12">
-        <nz-input name="urlObj" required [(ngModel)]="urlObj.url" [nzSize]="'large'" pattern="(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]"></nz-input>
+        <nz-input name="urlObj" required [(ngModel)]="urlObj.url" [nzSize]="'large'" [nzPlaceHolder]="'url(如：/api/user/123)'" pattern="(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]"></nz-input>
       </div>
       <div nz-form-control nz-col [nzSpan]="2" [nzOffset]="1">
         <nz-select name="method" required [(ngModel)]="urlObj.method" [nzSize]="'large'">

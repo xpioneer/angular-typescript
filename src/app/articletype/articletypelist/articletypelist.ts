@@ -36,14 +36,13 @@ export class ArticleTypeListComponent implements OnInit {
         this._loading = true;
         this.value.current_page = this.current_page;
         this.value.per_page = this.per_page;
-        this.articleListService.getArticleTypeList(this.value).subscribe((res: any) => {
+        this.articleListService.getArticleTypeList(this.value)
+        .finally(() => { this._loading = false; })
+        .subscribe((res: any) => {
             this.dataSet = res.data;
             this.current_page = res.meta.current_page;
             this.total = res.meta.total;
-            this._loading = false;
-        }, (e) => {
-            this._loading = false;
-        });
+        }, (e) => { });
     }
 
     public clear () {

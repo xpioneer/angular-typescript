@@ -1,7 +1,7 @@
 
 <h4>系统日志列表</h4>
-<form nz-form class="">
-    <div nz-row [nzGutter]="40" class="mgt20">
+<form nz-form class="" #form="ngForm">
+    <div nz-form-item nz-row [nzGutter]="40">
         <div nz-col class="gutter-row" [nzSpan]="6">
             <span class="spanW60">请求ip：</span>
             <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请求ip'" [(ngModel)]="value.request_ip.val" name="value.request_ip.val"></nz-input>
@@ -11,26 +11,25 @@
             <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请求类型'" [(ngModel)]="value.request_method.val" name="value.request_method.val"></nz-input>
         </div>
         <div nz-col class="gutter-row" [nzSpan]="6">
-            <span class="spanW60">请求客户端：</span>
-            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请求客户端'" [(ngModel)]="value.request_client.val" name="value.request_client.val"></nz-input>
+            <span class="spanW60">客户端：</span>
+            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'客户端'" [(ngModel)]="value.client_type.val" name="value.client_type.val"></nz-input>
         </div>
-        <!-- <div nz-col class="gutter-row" [nzSpan]="6">
-            <span class="spanW60">状态选择：</span>
-            <nz-select [nzSize]="'large'" [(ngModel)]="value.status.val" name="value.status.val">
-                <nz-option
-                    *ngFor="let option of options"
-                    [nzLabel]="option.name"
-                    [nzValue]="option.id"
-                    [nzDisabled]="option.disabled">
-                </nz-option>
-            </nz-select>
-        </div> -->
+        <div nz-col class="gutter-row" [nzSpan]="6">
+            <span class="spanW60">状态：</span>
+            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'状态(如:400,500)'" [(ngModel)]="value.status.val" name="value.status.val"></nz-input>
+        </div>
+    </div>
+    <div nz-form-item nz-row [nzGutter]="40">
+        <div nz-col class="gutter-row" [nzSpan]="6">
+            <span class="spanW60">处理时间：</span>
+            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'处理时间(如:100,200)'" [(ngModel)]="value.time.val" name="value.time.val"></nz-input>
+        </div>
     </div>
     <div nz-row>
         <div nz-col [nzSpan]="24" class="right-btns">
             <button nz-button [routerLink]="['/article/add']"><i class="anticon anticon-plus"></i><span>添加</span></button>
             <button nz-button (click)="clear()">清空</button>
-            <button nz-button [nzType]="'primary'" (click)="query()">查询</button>
+            <button nz-button [nzType]="'primary'" (click)="query(1)">查询</button>
         </div>
     </div>
 </form>
@@ -40,12 +39,13 @@
 <nz-table #nzTable
     [nzAjaxData]="dataSet"
     [nzShowSizeChanger]="false"
+    [nzShowTotal]="true"
     [nzLoading]="_loading"
     [nzTotal]="total"
     [(nzPageIndex)]="current_page"
     (nzPageIndexChange)="query()"
     [(nzPageSize)]="per_page"
-    (nzPageSizeChange)="query()">
+    (nzPageSizeChange)="query(1)">
     <thead nz-thead>
         <tr>
             <th nz-th><span>ip</span></th>
@@ -70,7 +70,7 @@
             </td>
             <td nz-td>{{data.request_method}}</td>
             <td nz-td>{{data.client_version}}</td>
-            <td nz-td>{{data.status}}</td>
+            <td nz-td><nz-badge [nzStatus]="getStatus(data.status)" [nzText]="data.status"></nz-badge></td>
             <td nz-td>{{data.time}}ms</td>
             <td nz-td>{{data.created_at}}</td>
             <td nz-td>

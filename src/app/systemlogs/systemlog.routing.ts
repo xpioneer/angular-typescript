@@ -3,7 +3,7 @@ import { RouterModule, Routes }  from '@angular/router';
 import { AuthGuard }            from '../../utils/auth/auth-guard.service';
 import { SystemLogComponent } from './systemlog.component';
 import { SystemLogListComponent } from './systemloglist/systemloglist';
-// import { EditArticleComponent } from './editarticle/editarticle';
+import { SystemLogDetailComponent } from './systemlogdetail/systemlogdetail';
 
 const routes: Routes = [
     {
@@ -13,8 +13,7 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'list', pathMatch: 'full' },
             { path: 'list', component: SystemLogListComponent },
-            // { path: 'add', component: AddArticleComponent },
-            // { path: 'edit/:id', component: EditArticleComponent },
+            { path: 'detail/:id', component: SystemLogDetailComponent },
         ],
     },
 ];
