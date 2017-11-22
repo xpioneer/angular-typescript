@@ -20,7 +20,7 @@ export class DemosComponent {
     constructor (
         private http: HttpClient,
         private params: Params,
-        private notificationService: NzNotificationService,
+        private notification: NzNotificationService,
     ) {
     }
 
@@ -30,7 +30,7 @@ export class DemosComponent {
 
     public testStatus () {
         if (!(this.status >= 200 && this.status < 600)) {
-            this.notificationService.warning('警告', '请输入正确格式的状态码');
+            this.notification.warning('警告', '请输入正确格式的状态码');
             return;
         }
         this.http.post('/test/status/' + this.status, {}).subscribe((res) => {
@@ -42,30 +42,45 @@ export class DemosComponent {
 
     public testUrl () {
         if (!this.urlObj.url || (this.urlObj.url && this.urlObj.url.indexOf('/') !== 0)) {
-            this.notificationService.warning('警告', '请输入正确格式的url');
+            this.notification.warning('警告', '请输入正确格式的url');
             return;
         }
-        this.requestUrl().subscribe((res) => {
+        let params = null, error = false;
+        try {
+            if (this.urlObj.params) {
+                params = JSON.parse(this.urlObj.params);
+                if (typeof params !== 'object') {
+                    throw new Error('not json');
+                }
+            }
+        }catch (e) {
+            error = true;
+            this.notification.warning('警告', '请输入正确的json格式');
+        }
+        if (error) {
+            return;
+        }
+        this.requestUrl(params).subscribe((res) => {
             this.jsonData = JSON.stringify(res, null, '    ');
         }, (err) => {
             console.log(err);
         });
     }
 
-    private requestUrl () {
+    private requestUrl (params: object) {
         let request: Observable<object>;
         switch (this.urlObj.method) {
             case 'POST':
-                request = this.http.post(this.urlObj.url, this.urlObj.params);
+                request = this.http.post(this.urlObj.url, params);
                 break;
             case 'PUT':
-                request = this.http.put(this.urlObj.url, this.urlObj.params);
+                request = this.http.put(this.urlObj.url, params);
                 break;
             case 'DELET':
                 request = this.http.delete(this.urlObj.url);
                 break;
             default:
-                request = this.http.get(`${this.urlObj.url}?${this.params.fmtpages(this.urlObj.params)}`);
+                request = this.http.get(`${this.urlObj.url}?${this.params.fmtpages(params)}`);
                 break;
         }
         return request;
