@@ -17,8 +17,8 @@
     "paths": {
         "@app/*": ["app/*"],
         "@assets/*": ["assets/*"],
-        "@components": ["src/components"],
-        "@utils": ["src/utils"]
+        "@components": ["components"],
+        "@utils/*": ["utils/*"]
     }
   },
   "compileOnSave": true,

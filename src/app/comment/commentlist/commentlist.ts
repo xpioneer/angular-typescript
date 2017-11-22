@@ -43,6 +43,7 @@ export class CommentListComponent implements OnInit {
         }
         this.value.current_page = this.current_page;
         this.value.per_page = this.per_page;
+        this.value.hehe = 'this.per_page';
         this._loading = true;
         if (this.timer) {
             clearTimeout(this.timer);
@@ -75,10 +76,7 @@ export class CommentListComponent implements OnInit {
                 val: '',
                 exp: 'between',
             },
-            article_title: {
-                val: '',
-                exp: 'like',
-            },
+            article_title: '',
         };
     }
 

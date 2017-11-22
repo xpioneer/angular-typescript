@@ -1,5 +1,5 @@
 import { UserModel } from '@app/user/model/user.model';
-import { ArticleModel } from '../../article/model/article.model';
+import { ArticleModel } from '@app/article/model/article.model';
 
 export class CommentModel {
     public id: string;
