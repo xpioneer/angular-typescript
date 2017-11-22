@@ -88,6 +88,9 @@ h4 {
   font-size: 16px;
   padding: 10px 0px !important;
 }
+.text-center {
+  text-align: center;
+}
 .ant-popover-content {
   width: 250px;
 }
@@ -438,6 +441,16 @@ app-login {
     top: 40%;
     opacity: 0;
   }
+}
+/*charts*/
+.chart-wrap {
+  height: 300px;
+  border: 1px solid #eeeeee;
+  margin-bottom: 20px;
+}
+.chart-wrap .chart-content {
+  height: 100%;
+  width: 100%;
 }
 /*!
  * Quill Editor v1.3.2

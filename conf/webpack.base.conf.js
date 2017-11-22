@@ -28,8 +28,8 @@ const config = {
         path: path.resolve(__dirname, '../dist'),
         publicPath: '/',
         sourceMapFilename: '[name].map',
-        chunkFilename: '[id].chunk.[hash:8].js',
-        filename: './[name].bundle.[hash:8].js'
+        chunkFilename: '[id].chunk.[chunkhash:8].js',
+        filename: './[name].bundle.[chunkhash:8].js'
     },
 
     devtool: _DEV_?'#cheap-module-source-map':false,
