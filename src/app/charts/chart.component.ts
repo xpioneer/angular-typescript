@@ -57,18 +57,12 @@ export class ChartComponent {
         // console.log(this.date);
     }
 
-    public changedDate (e: any) {
-        this.disable = true;
-        console.log(e);
-        this.getSysLogDate();
-    }
-
     public getData () {
         this.chartService.getSystemLog().subscribe((res: any) => {
             this.initSystemLogChart(res.data);
         }, (err) => {});
 
-        this.getSysLogDate();
+        this.changedDate();
 
         this.chartService.getArticleType().subscribe((res: any) => {
             this.initArticleTypeChart(res.data);
@@ -79,8 +73,9 @@ export class ChartComponent {
         }, (err) => {});
     }
 
-    private getSysLogDate () {
-        console.log('this.date:', this.date.toString());
+    // 日期选择
+    public changedDate () {
+        this.disable = true;
         this.chartService.getSystemLogDate(this.date.toString())
         .finally(() => this.disable = false)
         .subscribe((res: any) => {
@@ -93,6 +88,9 @@ export class ChartComponent {
         const sysLogChart = echarts.init(this.systemLog.nativeElement);
         const xAxis = list.map((m: ISystemLog) => m.date);
         const data = list.map((m: ISystemLog) => m.total);
+        window.addEventListener('resize', () => {
+            sysLogChart.resize();
+        });
         sysLogChart.setOption({
             title: {
                 text: '系统日志',
@@ -117,6 +115,9 @@ export class ChartComponent {
         const keys = Object.keys(dataS);
         const xAxis = keys.filter((k: string) => k.match(/^\d{1,2}时$/));
         const data = xAxis.map((k: string) => dataS[k]);
+        window.addEventListener('resize', () => {
+            sysLogDateChart.resize();
+        });
         sysLogDateChart.setOption({
             title: {
                 text: '系统日志分时统计',
@@ -171,6 +172,9 @@ export class ChartComponent {
         const articleTypeChart = echarts.init(this.articleType.nativeElement);
         const xAxis = list.map((m: IArticleType) => m.type_name);
         const data = list.map((m: IArticleType) => ({value: m.total, name: m.type_name}));
+        window.addEventListener('resize', () => {
+            articleTypeChart.resize();
+        });
         articleTypeChart.setOption({
             title: {
                 text: '文章类型',
@@ -201,6 +205,9 @@ export class ChartComponent {
         const articleTagChart = echarts.init(this.tag.nativeElement);
         const xAxis = list.map((m: IArticleTag) => m.name);
         const data = list.map((m: IArticleTag) => ({value: m.total, name: m.name}));
+        window.addEventListener('resize', () => {
+            articleTagChart.resize();
+        });
         articleTagChart.setOption({
             title: {
                 text: '文章标签',
@@ -240,6 +247,9 @@ export class ChartComponent {
     // 官方例子
     private testData () {
         const myChart = echarts.init(this.testChart.nativeElement);
+        window.addEventListener('resize', () => {
+            myChart.resize();
+        });
         myChart.setOption({
             title: {
                 text: '示例',
