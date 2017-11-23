@@ -14,6 +14,10 @@ export class ChartService {
     return this.http.get('/chart/systemlog?' + this.params.fmtpages(null));
   }
 
+  public getSystemLogDate (date: string) {
+    return this.http.get('/chart/systemlogdate?' + this.params.fmtpages({date}));
+  }
+
   public getArticleType () {
     return this.http.get('/chart/articletype?' + this.params.fmtpages(null));
   }

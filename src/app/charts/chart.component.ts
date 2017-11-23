@@ -10,10 +10,12 @@ import { Params } from '@utils/params.service';
 const echarts = require('echarts/lib/echarts');
 // 引入柱状图
 require('echarts/lib/chart/bar');
+require('echarts/lib/chart/line');
 require('echarts/lib/chart/pie');
 // 引入提示框和标题组件
-require('echarts/lib/component/tooltip');
 require('echarts/lib/component/title');
+require('echarts/lib/component/tooltip');
+require('echarts/lib/component/toolbox');
 require('echarts/lib/component/legend');
 require('echarts/lib/component/legend/ScrollableLegendModel');
 require('echarts/lib/component/legend/ScrollableLegendAction');
@@ -26,9 +28,13 @@ require('echarts/lib/component/legend/ScrollableLegendView');
 export class ChartComponent {
     // @ViewChild('form') private form: NgForm;
     @ViewChild('systemLog') public systemLog: ElementRef;
+    @ViewChild('systemLogDate') public systemLogDate: ElementRef;
     @ViewChild('articleType') public articleType: ElementRef;
     @ViewChild('tag') public tag: ElementRef;
     @ViewChild('test') public testChart: ElementRef;
+
+    public disable: boolean = false;
+    public date: any = new Date();
 
     constructor (
         private http: HttpClient,
@@ -47,10 +53,22 @@ export class ChartComponent {
         // setTimeout(() => this.testData());
     }
 
+    public ngDoCheck () {
+        // console.log(this.date);
+    }
+
+    public changedDate (e: any) {
+        this.disable = true;
+        console.log(e);
+        this.getSysLogDate();
+    }
+
     public getData () {
         this.chartService.getSystemLog().subscribe((res: any) => {
             this.initSystemLogChart(res.data);
         }, (err) => {});
+
+        this.getSysLogDate();
 
         this.chartService.getArticleType().subscribe((res: any) => {
             this.initArticleTypeChart(res.data);
@@ -58,6 +76,15 @@ export class ChartComponent {
 
         this.chartService.getArticleTag().subscribe((res: any) => {
             this.initArticleTagChart(res.data);
+        }, (err) => {});
+    }
+
+    private getSysLogDate () {
+        console.log('this.date:', this.date.toString());
+        this.chartService.getSystemLogDate(this.date.toString())
+        .finally(() => this.disable = false)
+        .subscribe((res: any) => {
+            this.initSystemLogDateChart(res.data);
         }, (err) => {});
     }
 
@@ -80,6 +107,61 @@ export class ChartComponent {
                 name: '数量',
                 type: 'bar',
                 data,
+            }],
+        });
+    }
+
+    // 系统日志分时统计
+    private initSystemLogDateChart (dataS: object) {
+        const sysLogDateChart = echarts.init(this.systemLogDate.nativeElement);
+        const keys = Object.keys(dataS);
+        const xAxis = keys.filter((k: string) => k.match(/^\d{1,2}时$/));
+        const data = xAxis.map((k: string) => dataS[k]);
+        sysLogDateChart.setOption({
+            title: {
+                text: '系统日志分时统计',
+                x: 'center',
+            },
+            toolbox: {
+                feature: {
+                    dataView: {show: true, readOnly: false},
+                    magicType: {show: true, type: ['line', 'bar']},
+                    restore: {show: true},
+                    saveAsImage: {show: true},
+                },
+            },
+            tooltip : {
+                trigger: 'axis',
+                formatter (a: any, b: string) {
+                    return `${a[0].seriesName} <br/>${a[0].name} : ${a[0].value} (次)`;
+                },
+            },
+            xAxis: {
+                type: 'category',
+                data: xAxis,
+                axisPointer: {
+                    type: 'shadow',
+                },
+            },
+            yAxis: {},
+            series: [{
+                name: '次数',
+                type: 'bar',
+                data,
+                itemStyle: {
+                    normal: {
+                        color: '#0f375f',
+                    },
+                },
+            }, {
+                name: '次数',
+                type: 'line',
+                data,
+                lineStyle: {
+                    normal: {
+                        color: '#60a0a8',
+                    },
+                },
             }],
         });
     }
@@ -173,5 +255,9 @@ export class ChartComponent {
                 data: [5, 20, 36, 10, 10, 20],
             }],
         });
+    }
+
+    public disabledDate (current: any) {
+        return current && current.getTime() > Date.now();
     }
 }

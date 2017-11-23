@@ -12,6 +12,20 @@
     </div>
   </div>
 
+  <div nz-form-item nz-row >
+    <div nz-col [nzSm]="24">
+      <div class="chart-wrap">
+        <div class="chart-content" #systemLogDate></div>
+      </div>
+    </div>
+    <div nz-col [nzSm]="20" class="text-center">
+      系统日志分时统计
+    </div>
+    <div nz-col [nzSm]="4">
+      <nz-datepicker name="date" [(ngModel)]="date" nzPlaceHolder="选择日期" [nzDisabled]="disable" [nzDisabledDate]="disabledDate" (ngModelChange)="changedDate($event)"></nz-datepicker>
+    </div>
+  </div>
+
   <div nz-form-item nz-row [nzGutter]="20">
     <div nz-col [nzSm]="12">
       <div class="chart-wrap" style="height: 400px;">
