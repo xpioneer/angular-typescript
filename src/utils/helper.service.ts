@@ -5,9 +5,11 @@ import { NzNotificationService } from 'ng-zorro-antd';
 @Injectable()
 export class HelperService {
     public store: any;
+    public seStore: any;
 
     constructor (private notification: NzNotificationService) {
         this.store = localStorage;
+        this.seStore = sessionStorage;
     }
 
     public successHelper (res: HttpResponse<any>) {
@@ -43,6 +45,7 @@ export class HelperService {
         case 401:
             this.store.clear();
             this.notification.error('未授权', '请重新登录');
+            this.seStore.setItem('RedirectUrl', location.pathname);
             setTimeout(() => {
                 location.href = 'login';
             }, 1000);

@@ -18,6 +18,23 @@
 
     </div>
   </div>
+  
+  <div nz-form-item nz-row style="border-top: 1px solid red;">
+    <div nz-col [nzSm]="24" [nzXl]="24">
+      <div nz-form-label nz-col [nzSpan]="4">
+        <label nz-form-item-required>文件上传测试</label>
+      </div>
+      <div nz-form-control nz-col [nzSpan]="8">
+        <app-upload-file [(ngModel)]="uploadFile" maxSize="100" name="uploadFile"></app-upload-file>
+      </div>
+
+      <!-- <div nz-col [nzSpan]="4" [nzOffset]="2">
+        <button nz-button nzType="primary" [nzSize]="'large'" (click)="testStatus()" >发送</button>
+      </div> -->
+
+    </div>
+  </div>
+
   <div style="border-top: 1px solid red;">
     <div nz-form-item nz-row >
       <div nz-col [nzSm]="24" [nzXl]="24">
