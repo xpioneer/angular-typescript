@@ -14,6 +14,7 @@ export class DemosComponent {
     // @ViewChild('form') private form: NgForm;
 
     public status: number;
+    public uploadFile: string;
     public urlObj: UrlModel = new UrlModel();
     public jsonData: string;
 
