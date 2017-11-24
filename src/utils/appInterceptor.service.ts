@@ -26,7 +26,7 @@ export class AppInterceptor implements HttpInterceptor {
                 'X-Requested-With': 'XMLHttpRequest',
                 'Authorization-User': this.store.getItem('ACCESS_TOKEN') || 'no_token',
             },
-            withCredentials: true,
+            // withCredentials: true, // same origin not use
         });
         return next.handle(request).do((res: HttpResponse<any>) => {
             if (res instanceof HttpResponse) {
