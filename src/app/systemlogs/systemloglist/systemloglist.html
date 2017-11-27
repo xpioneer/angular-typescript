@@ -1,33 +1,30 @@
 
 <h4>系统日志列表</h4>
 <form nz-form class="" #form="ngForm">
-    <div nz-form-item nz-row [nzGutter]="40">
+    <div nz-form-item nz-row [nzGutter]="20">
         <div nz-col class="gutter-row" [nzSpan]="6">
-            <span class="spanW60">请求ip：</span>
             <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请求ip'" [(ngModel)]="value.request_ip.val" name="value.request_ip.val"></nz-input>
         </div>
         <div nz-col class="gutter-row" [nzSpan]="6">
-            <span class="spanW60">请求类型：</span>
             <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请求类型'" [(ngModel)]="value.request_method.val" name="value.request_method.val"></nz-input>
         </div>
         <div nz-col class="gutter-row" [nzSpan]="6">
-            <span class="spanW60">客户端：</span>
             <nz-input [nzSize]="'large'" [nzPlaceHolder]="'客户端'" [(ngModel)]="value.client_type.val" name="value.client_type.val"></nz-input>
         </div>
         <div nz-col class="gutter-row" [nzSpan]="6">
-            <span class="spanW60">状态：</span>
             <nz-input [nzSize]="'large'" [nzPlaceHolder]="'状态(如:400,500)'" [(ngModel)]="value.status.val" name="value.status.val"></nz-input>
         </div>
     </div>
-    <div nz-form-item nz-row [nzGutter]="40">
+    <div nz-form-item nz-row [nzGutter]="20">
         <div nz-col class="gutter-row" [nzSpan]="6">
-            <span class="spanW60">处理时间：</span>
             <nz-input [nzSize]="'large'" [nzPlaceHolder]="'处理时间(如:100,200)'" [(ngModel)]="value.time.val" name="value.time.val"></nz-input>
+        </div>
+        <div nz-col class="gutter-row" [nzSpan]="6">
+            <app-datetime-range name="created_at" xSize="large" xFormat="YYYY-MM-DD HH:mm:ss" [(ngModel)]="value.created_at.val"></app-datetime-range>
         </div>
     </div>
     <div nz-row>
         <div nz-col [nzSpan]="24" class="right-btns">
-            <!-- <button nz-button [routerLink]="['/article/add']"><i class="anticon anticon-plus"></i><span>添加</span></button> -->
             <button nz-button (click)="clear()">清空</button>
             <button nz-button [nzType]="'primary'" (click)="query(1)">查询</button>
         </div>

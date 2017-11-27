@@ -33,8 +33,7 @@ const toolbarOptions = [
       <div #editor></div>
       <input [(ngModel)]="editorVal" style="display:none;"/>
     `,
-    styles: [
-        `
+    styles: [`
         .ql-container{min-height:600px;}
       `,
     ],
@@ -82,6 +81,35 @@ export class EditorComponent implements ControlValueAccessor {
         }
         this.onChange(_html);
     });
+    this.quillEditor.getModule('toolbar').addHandler('image', () => {
+      this.selectLocalImage();
+    });
+  }
+
+  private selectLocalImage () {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.click();
+
+    input.onchange = () => {
+      const file = input.files[0];
+      if (/^image\//.test(file.type)) {
+        const fd = new FormData();
+        fd.append('file', file);
+        this.http.post(this.baseUrl, fd)
+        .finally(() => {})
+        .subscribe((res: any) => {
+          this.insertToEditor(res.data.path);
+        }, (err: any) => {});
+      } else {
+        this.notification.warning('警告', '请选择图片');
+      }
+    };
+  }
+
+  private insertToEditor (url: string) {
+    const range = this.quillEditor.getSelection();
+    this.quillEditor.insertEmbed(range.index, 'image', `${url}?Authorization-User=${localStorage.getItem('ACCESS_TOKEN') || 'no_token'}`);
   }
 
   public ngOnChanges () {

@@ -20,8 +20,9 @@ export class SystemLogListComponent implements OnInit {
 
     public value: any = {};
     public isVisible = false;
-    public isConfirmLoading = false;
     public deleteId: string;
+    public startDate: string;
+    public endDate: string;
 
     public options: object[];
 
@@ -76,6 +77,10 @@ export class SystemLogListComponent implements OnInit {
                 exp: 'in',
             },
             time: {
+                val: '',
+                exp: 'between',
+            },
+            created_at: {
                 val: '',
                 exp: 'between',
             },

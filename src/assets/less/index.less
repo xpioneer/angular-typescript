@@ -16,6 +16,18 @@
   border-radius: 0px;
   background: #eee;
 }
+.clearfix {
+  &:before, &:after{
+    content: '';
+    display: block;
+  }
+  &:after{
+    clear: both;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+  }
+}
 /*滚动条颜色设置*/
 body{
     background-color: #f0f0f0;

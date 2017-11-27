@@ -1,0 +1,6 @@
+<div class="clearfix">
+    <input style="display:none !important;" type="text" [(ngModel)]="dateRange">
+    <nz-datepicker [nzSize]="xSize" style="width:48%;float:left" [ngModel]="startDate" (ngModelChange)="changeSDate($event)" [nzFormat]="xFormat" nzShowTime="true" nzPlaceHolder="开始日期"></nz-datepicker>
+    <span [ngStyle]="spanStyle">-</span>
+    <nz-datepicker [nzSize]="xSize" style="width:48%;float:left" [(ngModel)]="endDate" (ngModelChange)="changeEDate($event)" [nzDisabledDate]="false" [nzFormat]="xFormat" nzShowTime="true" nzPlaceHolder="结束日期"></nz-datepicker>
+</div>
