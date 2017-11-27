@@ -13,7 +13,7 @@ config.devServer = {
         poll: 1000
     },
     contentBase:path.join(__dirname, '../dist'),
-    hot: true,
+    // hot: true,
     proxy: {
       '/api': {
         target: 'http://127.0.0.1:9901',
@@ -29,7 +29,7 @@ config.devServer = {
 }
 
 config.plugins = (config.plugins || []).concat([
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
         title: 'CMS-FE DEV',

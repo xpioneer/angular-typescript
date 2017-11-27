@@ -125,7 +125,7 @@ const config = {
         new webpack.optimize.CommonsChunkPlugin({
             name: ['common', 'vendor1', 'vendor', 'polyfills'],
             // chunks: 
-            minChunks: 2
+            minChunks: 3
         }),
         new webpack.optimize.ModuleConcatenationPlugin(),
         // new webpack.optimize.LimitChunkCountPlugin({

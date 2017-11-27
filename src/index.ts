@@ -6,13 +6,12 @@ import './assets/less/index.less';
 // import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 
-declare var module: any;
-if (module.hot) {
-    module.hot.accept();
-}
+// declare var module: any;
+// if (module.hot) {
+//     module.hot.accept();
+// }
 
 if (process.env.NODE_ENV === 'production') {
     enableProdMode();
 }
-
 platformBrowserDynamic().bootstrapModule(AppModule).catch((e) => console.error(e));

@@ -77,7 +77,7 @@ import { NzNotificationService } from 'ng-zorro-antd';
 })
 export class UploadFileComponent implements ControlValueAccessor {
     public baseUrl: string = '/upload-file';
-    public _value: any;
+    @Input('fileUrl') public _value: any;
     public show: boolean = true;
     public uploading: boolean = false;
     @Input() public imgSrc: any;
