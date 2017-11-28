@@ -135,6 +135,15 @@ export class SystemLogListComponent implements OnInit {
         return nzStatus;
     }
 
+    public sync () {
+        this._loading = true;
+        this.systemLogListService.syncGeoInfo()
+        .finally(() => { this._loading = false; })
+        .subscribe((res: any) => {
+            this.query(this.current_page);
+        }, (e) => { });
+    }
+
     public ngDoDestory () {
         clearTimeout(this.timer);
     }
