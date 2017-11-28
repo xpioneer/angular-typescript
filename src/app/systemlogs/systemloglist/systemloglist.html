@@ -25,8 +25,9 @@
     </div>
     <div nz-row>
         <div nz-col [nzSpan]="24" class="right-btns">
-            <button nz-button (click)="clear()">清空</button>
-            <button nz-button [nzType]="'primary'" (click)="query(1)">查询</button>
+            <button nz-button (click)="sync()" [nzLoading]="_loading">同步地址</button>
+            <button nz-button (click)="clear()" [nzLoading]="_loading">清空</button>
+            <button nz-button [nzType]="'primary'" (click)="query(1)" [nzLoading]="_loading">查询</button>
         </div>
     </div>
 </form>
@@ -52,6 +53,7 @@
             <th nz-th><span>客户端版本</span></th>
             <th nz-th><span>请求状态</span></th>
             <th nz-th><span>处理时间</span></th>
+            <th nz-th><span>地理位置</span></th>
             <th nz-th><span>创建时间</span></th>
             <th nz-th><span>创建者</span></th>
             <th nz-th><span>操作</span></th>
@@ -70,6 +72,7 @@
             <td nz-td>{{data.client_version}}</td>
             <td nz-td><nz-badge [nzStatus]="getStatus(data.status)" [nzText]="data.status"></nz-badge></td>
             <td nz-td>{{data.time}}ms</td>
+            <td nz-td>{{data.continent_name_zh||'-'}}/{{data.country_name_zh||'-'}}/{{data.subdivisions_name_zh||'-'}}/{{data.city_name_zh||'-'}}</td>
             <td nz-td>{{data.created_at}}</td>
             <td nz-td>{{data.creator ? data.creator.nick_name : '未知者'}}</td>
             <td nz-td>

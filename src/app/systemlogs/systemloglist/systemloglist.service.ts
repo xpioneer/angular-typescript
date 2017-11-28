@@ -18,4 +18,8 @@ export class SystemLogListService {
         return this.http.delete('/systemlog/' + id);
   }
 
+  public syncGeoInfo () {
+        return this.http.post('/system/geoinfo', {});
+  }
+
 }
