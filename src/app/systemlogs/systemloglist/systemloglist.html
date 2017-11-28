@@ -9,7 +9,7 @@
             <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请求类型'" [(ngModel)]="value.request_method.val" name="value.request_method.val"></nz-input>
         </div>
         <div nz-col class="gutter-row" [nzSpan]="6">
-            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'客户端'" [(ngModel)]="value.client_type.val" name="value.client_type.val"></nz-input>
+            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'客户端'" [(ngModel)]="value.client_version.val" name="value.client_version.val"></nz-input>
         </div>
         <div nz-col class="gutter-row" [nzSpan]="6">
             <nz-input [nzSize]="'large'" [nzPlaceHolder]="'状态(如:400,500)'" [(ngModel)]="value.status.val" name="value.status.val"></nz-input>
@@ -53,6 +53,7 @@
             <th nz-th><span>请求状态</span></th>
             <th nz-th><span>处理时间</span></th>
             <th nz-th><span>创建时间</span></th>
+            <th nz-th><span>创建者</span></th>
             <th nz-th><span>操作</span></th>
         </tr>
     </thead>
@@ -70,6 +71,7 @@
             <td nz-td><nz-badge [nzStatus]="getStatus(data.status)" [nzText]="data.status"></nz-badge></td>
             <td nz-td>{{data.time}}ms</td>
             <td nz-td>{{data.created_at}}</td>
+            <td nz-td>{{data.creator ? data.creator.nick_name : '未知者'}}</td>
             <td nz-td>
                 <a href="#" [routerLink]="['/systemlog/detail', data.id]">详情</a>
                 <a href="javascript:;" (click)="delSystemLog(data.id)">删除</a>

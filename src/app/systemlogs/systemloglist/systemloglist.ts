@@ -68,7 +68,7 @@ export class SystemLogListComponent implements OnInit {
                 val: '',
                 exp: 'like',
             },
-            client_type: {
+            client_version: {
                 val: '',
                 exp: 'like',
             },
