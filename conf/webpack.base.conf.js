@@ -135,7 +135,13 @@ const config = {
         // new webpack.ContextReplacementPlugin(
         //     /angular(\\|\/)core(\\|\/)@angular/,
         //     path.resolve(__dirname, '../src')
-        // )
+        // ),
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify(_DEV_ ? "development" : "production")
+            },
+            _DEV_: JSON.stringify(_DEV_),
+        })
     ]
 };
 
