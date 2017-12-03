@@ -11,7 +11,7 @@ const _DEV_ = process.env.NODE_ENV === 'development';
 export class HomeComponent implements OnDestroy {
   private counter: number = 0;
   private timer: any = null;
-  private host: string = _DEV_ ? 'localhost:8802' : 'ws.visualtec.cn';
+  private host: string = _DEV_ ? '127.0.0.1:8803' : 'admin.visualtec.cn/ws';
   private wsHost: string;
   private ws: any;
   private wsInfo: WSInfoModel = new WSInfoModel();
@@ -29,12 +29,15 @@ export class HomeComponent implements OnDestroy {
     };
     //
     this.ws.onmessage = (data: any) => {
-      this.wsInfo = JSON.parse(data.data).data || new WSInfoModel();
-      this.notification.html(`<strong>访问信息</strong>
-        <p class="sys_log_p">ip: ${this.wsInfo.ip}</p>
-        <p class="sys_log_p">url: ${this.wsInfo.url}</p>
-        <p class="sys_log_p">客户端: ${this.wsInfo.agent}</p>
-        <p class="sys_log_p">位置: ${this.wsInfo.country_name_zh || '-'}/${this.wsInfo.subdivisions_name_zh || '-'}/${this.wsInfo.city_name_zh || '-'}</p>`, {});
+      const _data: any = JSON.parse(data.data);
+      if (_data && _data.data) {
+        this.wsInfo = _data.data;
+        this.notification.html(`<strong>访问信息</strong>
+          <p class="sys_log_p">ip: ${this.wsInfo.ip}</p>
+          <p class="sys_log_p">url: ${this.wsInfo.url}</p>
+          <p class="sys_log_p">客户端: ${this.wsInfo.agent}</p>
+          <p class="sys_log_p">位置: ${this.wsInfo.country_name_zh || '-'}/${this.wsInfo.subdivisions_name_zh || '-'}/${this.wsInfo.city_name_zh || '-'}</p>`, {});
+      }
     };
     //
     this.ws.onclose = (data: any) => {
