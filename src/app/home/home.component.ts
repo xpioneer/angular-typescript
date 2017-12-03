@@ -68,7 +68,7 @@ export class HomeComponent implements OnDestroy {
   }
 
   constructor (private notification: NzNotificationService) {
-    this.wsHost = 'ws://' + this.host + `/?Authorization-User=${localStorage.getItem('ACCESS_TOKEN')}`;
+    this.wsHost = 'ws://' + this.host;
   }
 
   public ngOnChanges () {
