@@ -1,7 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { NzNotificationService } from 'ng-zorro-antd';
-import * as Moment from 'moment';
 
 const _DEV_ = process.env.NODE_ENV === 'development';
 @Component({
@@ -12,7 +11,7 @@ const _DEV_ = process.env.NODE_ENV === 'development';
 export class HomeComponent implements OnDestroy {
   private counter: number = 0;
   private timer: any = null;
-  private host: string = _DEV_ ? 'localhost:8802' : '45.77.218.105:8100';
+  private host: string = _DEV_ ? 'localhost:8802' : 'ws.visualtec.cn';
   private wsHost: string;
   private ws: any;
   private wsInfo: WSInfoModel = new WSInfoModel();
@@ -30,12 +29,12 @@ export class HomeComponent implements OnDestroy {
     };
     //
     this.ws.onmessage = (data: any) => {
-      this.wsInfo = JSON.parse(data.data).data;
+      this.wsInfo = JSON.parse(data.data).data || new WSInfoModel();
       this.notification.html(`<strong>访问信息</strong>
         <p class="sys_log_p">ip: ${this.wsInfo.ip}</p>
         <p class="sys_log_p">url: ${this.wsInfo.url}</p>
         <p class="sys_log_p">客户端: ${this.wsInfo.agent}</p>
-        <p class="sys_log_p">时间: ${Moment(this.wsInfo.created_at).format('YYYY-MM-DD HH:mm:ss')}</p>`, {});
+        <p class="sys_log_p">位置: ${this.wsInfo.country_name_zh||'-'}/${this.wsInfo.subdivisions_name_zh||'-'}/${this.wsInfo.city_name_zh||'-'}</p>`, {});
     };
     //
     this.ws.onclose = (data: any) => {
@@ -95,23 +94,6 @@ export class HomeComponent implements OnDestroy {
   public ngAfterViewInit () {
     console.log('ngAfterViewInit');
     this.openWS();
-    // this.ws = new WebSocket(this.wsHost);
-    // this.open();
-
-    // this.ws.onmessage = (data: any) => {
-    //   console.log('message', data);
-    //   const json = JSON.parse(data.data);
-    //   this.notification.info('提示', json.data);
-    // };
-
-    // this.ws.onclose = (data: any) => {
-    //   this.reopen();
-    //   console.log('WebSocketClosed!', data);
-    // };
-    // this.ws.onerror = (err: any) => {
-    //     this.reopen();
-    //     console.log('err:', err);
-    // };
   }
 
   public ngAfterViewChecked () {
@@ -129,4 +111,7 @@ class WSInfoModel {
   public created_at: string;
   public url: string;
   public agent: string;
+  public country_name_zh: string;
+  public subdivisions_name_zh: string;
+  public city_name_zh: string;
 }
