@@ -34,7 +34,7 @@ export class HomeComponent implements OnDestroy {
         <p class="sys_log_p">ip: ${this.wsInfo.ip}</p>
         <p class="sys_log_p">url: ${this.wsInfo.url}</p>
         <p class="sys_log_p">客户端: ${this.wsInfo.agent}</p>
-        <p class="sys_log_p">位置: ${this.wsInfo.country_name_zh||'-'}/${this.wsInfo.subdivisions_name_zh||'-'}/${this.wsInfo.city_name_zh||'-'}</p>`, {});
+        <p class="sys_log_p">位置: ${this.wsInfo.country_name_zh || '-'}/${this.wsInfo.subdivisions_name_zh || '-'}/${this.wsInfo.city_name_zh || '-'}</p>`, {});
     };
     //
     this.ws.onclose = (data: any) => {
