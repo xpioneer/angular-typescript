@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { NzNotificationService } from 'ng-zorro-antd';
+import { AuthService } from '@utils/auth/auth.service';
 
 const _DEV_ = process.env.NODE_ENV === 'development';
 @Component({
@@ -70,7 +71,7 @@ export class HomeComponent implements OnDestroy {
 
   }
 
-  constructor (private notification: NzNotificationService) {
+  constructor (private authService: AuthService, private notification: NzNotificationService) {
     this.wsHost = 'ws://' + this.host;
   }
 
@@ -87,7 +88,7 @@ export class HomeComponent implements OnDestroy {
   }
 
   public ngAfterContentInit () {
-    console.log('ngAfterContentInit');
+    // console.log('ngAfterContentInit');
   }
 
   public ngAfterContentChecked () {
@@ -96,7 +97,9 @@ export class HomeComponent implements OnDestroy {
 
   public ngAfterViewInit () {
     console.log('ngAfterViewInit');
-    this.openWS();
+    if (this.authService.isLogged) {
+      this.openWS();
+    }
   }
 
   public ngAfterViewChecked () {
