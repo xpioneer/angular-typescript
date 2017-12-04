@@ -1,8 +1,8 @@
-Angular4 for CMS
+Angular5 for CMS
 
 ### 项目技术架构
 ***
-*  angular4
+*  angular5
 *  ng-zorro-antd
 *  angular/router
 *  angular/http
@@ -16,7 +16,7 @@ Angular4 for CMS
 项目地址: (`git clone`)
 
 ```
-git clone git@github.com:xpioneer/CMS-FE-Angular4.git
+git clone git@github.com:xpioneer/cms-fe-angular5.git
 ```
 通过`yarn`安装本地服务第三方依赖模块
 
