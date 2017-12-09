@@ -7,12 +7,12 @@
   </div>
   <div nz-form-item>
     <div nz-form-control [nzValidateStatus]="username.control">
-      <nz-input required [(ngModel)]="userInfo.username" #username="ngModel" [nzPlaceHolder]="'用户名'" [nzSize]="'large'" name="username">
+      <nz-input required [(ngModel)]="userInfo.username" #username="ngModel" [nzPlaceHolder]="'username'" [nzSize]="'large'" name="username">
         <ng-template #prefix>
           <i class="anticon anticon-user"></i>
         </ng-template>
       </nz-input>
-      <div nz-form-explain *ngIf="username.dirty&&username.invalid">请输入你的用户名!</div>
+      <div nz-form-explain *ngIf="username.dirty&&username.invalid">Please enter your username!</div>
     </div>
   </div>
   <div nz-form-item>
@@ -22,7 +22,7 @@
           <i class="anticon anticon-lock"></i>
         </ng-template>
       </nz-input>
-      <div nz-form-explain *ngIf="password.dirty&&password.invalid">请输入密码!</div>
+      <div nz-form-explain *ngIf="password.dirty&&password.invalid">Please enter the password!</div>
     </div>
   </div>
   <div nz-form-item>
@@ -31,7 +31,7 @@
         <span>Remember me</span>
       </label>
       <!-- <a class="login-form-forgot" class="login-form-forgot">忘记密码</a> -->
-      <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'" (click)="login()">登陆</button>
+      <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'" (click)="login()">login</button>
       <!-- <a href="">立即注册!</a> -->
     </div>
   </div>
