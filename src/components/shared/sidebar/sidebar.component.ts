@@ -7,10 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  public isOpenThree = true;
+  public isOpen = {
+    one: true,
+    two: false,
+    three: false,
+  };
+
+  private store: object;
+
+  constructor () {
+    // this.store = localStorage;
+  }
 
   public openChange (value: string) {
-    //
+    Object.keys(this.isOpen).forEach((v, i) => {
+      if (value == v) {
+        this.isOpen[v] = true;
+      }else {
+        this.isOpen[v] = false;
+      }
+    });
   }
 
   public ngOnInit () {
