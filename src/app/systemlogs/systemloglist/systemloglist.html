@@ -22,6 +22,13 @@
         <div nz-col class="gutter-row" [nzSpan]="6">
             <app-datetime-range name="created_at" xSize="large" xFormat="YYYY-MM-DD HH:mm:ss" [(ngModel)]="value.created_at.val"></app-datetime-range>
         </div>
+        <div nz-col class="gutter-row" [nzSpan]="6">
+            <nz-select name="source" nzPlaceHolder="请求来源" [(ngModel)]="value.source.val" [nzSize]="'large'">
+                <nz-option nzLabel="请选择请求来源" [nzValue]="''"> </nz-option>
+                <nz-option nzLabel="v2" [nzValue]="'v2'"> </nz-option>
+                <nz-option nzLabel="cms" [nzValue]="'cms'"> </nz-option>
+            </nz-select>
+        </div>
     </div>
     <div nz-row>
         <div nz-col [nzSpan]="24" class="right-btns">
@@ -56,6 +63,7 @@
             <th nz-th><span>地理位置</span></th>
             <th nz-th><span>创建时间</span></th>
             <th nz-th><span>创建者</span></th>
+            <th nz-th><span>来源</span></th>
             <th nz-th><span>操作</span></th>
         </tr>
     </thead>
@@ -75,6 +83,7 @@
             <td nz-td>{{data.continent_name_zh||'-'}}/{{data.country_name_zh||'-'}}/{{data.subdivisions_name_zh||'-'}}/{{data.city_name_zh||'-'}}</td>
             <td nz-td>{{data.created_at}}</td>
             <td nz-td>{{data.creator ? data.creator.nick_name : '未知者'}}</td>
+            <td nz-td>{{data.source}}</td>
             <td nz-td>
                 <a href="#" [routerLink]="['/systemlog/detail', data.id]">详情</a>
                 <a href="javascript:;" (click)="delSystemLog(data.id)">删除</a>

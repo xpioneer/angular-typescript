@@ -49,6 +49,7 @@ export class SystemLogListComponent implements OnInit {
             clearTimeout(this.timer);
         }
         this.timer = setTimeout(() => {
+            console.log(this.value);
             this.systemLogListService.getSystemLogList(this.value)
             .finally(() => { this._loading = false; })
             .subscribe((res: any) => {
@@ -83,6 +84,10 @@ export class SystemLogListComponent implements OnInit {
             created_at: {
                 val: '',
                 exp: 'between',
+            },
+            source: {
+                val: '',
+                exp: '=',
             },
         };
     }
