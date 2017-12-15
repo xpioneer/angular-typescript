@@ -1,6 +1,6 @@
 <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
     <li nz-submenu [(nzOpen)]="isOpen.one" (nzOpenChange)="openChange('one')">
-        <span title><i class="anticon anticon-appstore"></i> 个人博客管理</span>
+        <span title><i class="anticon anticon-appstore"></i> 博客管理</span>
         <ul>
             <li nz-menu-item [routerLink]="['/article']" routerLinkActive="active">文章列表</li>
             <li nz-menu-item [routerLink]="['/articletype']" routerLinkActive="active">文章类型</li>
