@@ -71,7 +71,7 @@ export class HomeComponent implements OnDestroy {
   }
 
   constructor (private authService: AuthService, private notification: NzNotificationService) {
-    this.wsHost = 'ws://' + this.host;
+    this.wsHost = (_DEV_ ? 'ws' : 'wss') + '://' + this.host;
   }
 
   public ngOnChanges () {
