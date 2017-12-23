@@ -32,7 +32,7 @@ export class ChartComponent {
     @ViewChild('systemLogDate') public systemLogDate: ElementRef;
     @ViewChild('articleType') public articleType: ElementRef;
     @ViewChild('tag') public tag: ElementRef;
-    @ViewChild('test') public testChart: ElementRef;
+    // @ViewChild('test') public testChart: ElementRef;
 
     public disable: boolean = false;
     public date: any = new Date();
@@ -47,7 +47,7 @@ export class ChartComponent {
 
     public ngOnInit () {
         this.getData();
-        setTimeout(() => this.testData());
+        // setTimeout(() => this.testData());
     }
 
     public ngAfterContentInit () {
@@ -246,27 +246,27 @@ export class ChartComponent {
     }
 
     // 官方例子
-    private testData () {
-        const myChart = echarts.init(this.testChart.nativeElement);
-        window.addEventListener('resize', () => {
-            myChart.resize();
-        });
-        myChart.setOption({
-            title: {
-                text: '示例',
-            },
-            tooltip: {},
-            xAxis: {
-                data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
-            },
-            yAxis: {},
-            series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20],
-            }],
-        });
-    }
+    // private testData () {
+    //     const myChart = echarts.init(this.testChart.nativeElement);
+    //     window.addEventListener('resize', () => {
+    //         myChart.resize();
+    //     });
+    //     myChart.setOption({
+    //         title: {
+    //             text: '示例',
+    //         },
+    //         tooltip: {},
+    //         xAxis: {
+    //             data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
+    //         },
+    //         yAxis: {},
+    //         series: [{
+    //             name: '销量',
+    //             type: 'bar',
+    //             data: [5, 20, 36, 10, 10, 20],
+    //         }],
+    //     });
+    // }
 
     public disabledDate (current: any) {
         return current && current.getTime() > Date.now();
