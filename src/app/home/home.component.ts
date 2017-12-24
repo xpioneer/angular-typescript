@@ -12,7 +12,7 @@ const _DEV_ = process.env.NODE_ENV === 'development';
 export class HomeComponent implements OnDestroy {
   private counter: number = 0;
   private timer: any = null;
-  private host: string = _DEV_ ? '127.0.0.1:8803' : 'admin.visualtec.cn/ws';
+  private host: string = _DEV_ ? '127.0.0.1:8803' : `${location.host}/ws`;
   private wsHost: string;
   private ws: any;
   private wsInfo: WSInfoModel = new WSInfoModel();
