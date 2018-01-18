@@ -53,9 +53,7 @@ export class HomeComponent implements OnDestroy {
   }
 
   private reOpen () {
-    if (this.timer) {
-      clearTimeout(this.timer);
-    }
+    clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       if (this.counter < 10) {
         if (this.ws.CLOSED === this.ws.readyState) {

@@ -43,11 +43,8 @@ export class CommentListComponent implements OnInit {
         }
         this.value.current_page = this.current_page;
         this.value.per_page = this.per_page;
-        this.value.hehe = 'this.per_page';
         this._loading = true;
-        if (this.timer) {
-            clearTimeout(this.timer);
-        }
+        clearTimeout(this.timer);
         this.timer = setTimeout(() => {
             this.commentListService.getCommentList(this.value)
             .finally(() => { this._loading = false; })

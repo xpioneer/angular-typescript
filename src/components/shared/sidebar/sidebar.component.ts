@@ -11,6 +11,7 @@ export class SidebarComponent implements OnInit {
     one: true,
     two: false,
     three: false,
+    four: false,
   };
 
   private store: object;
