@@ -47,7 +47,7 @@
             <th nz-th><span>红色球</span></th>
             <th nz-th><span>蓝色球</span></th>
             <th nz-th><span>生成结果</span></th>
-            <th nz-th><span>开奖结果</span></th>
+            <th nz-th style="width:180px"><span>开奖结果</span></th>
             <th nz-th><span>创建时间</span></th>
             <th nz-th><span>操作</span></th>
         </tr>
@@ -57,7 +57,7 @@
             <td nz-td>{{data.red_balls}}</td>
             <td nz-td>{{data.blue_ball}}</td>
             <td nz-td>{{data.gen_result}}</td>
-            <td nz-td>{{data.award}}</td>
+            <td nz-td [doubleballResult]="data.award"></td>
             <td nz-td>{{data.created_at}}</td>
             <td nz-td>
                 <!-- <a href="#" [routerLink]="['/article/edit', data.id]">详情</a> -->

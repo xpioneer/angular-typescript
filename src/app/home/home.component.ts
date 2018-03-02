@@ -12,9 +12,9 @@ const _DEV_ = process.env.NODE_ENV === 'development';
 export class HomeComponent implements OnDestroy {
   private counter: number = 0;
   private timer: any = null;
-  private host: string = _DEV_ ? '127.0.0.1:8803' : `${location.host}/ws`;
+  private host: string = _DEV_ ? `${location.hostname}:8803` : `${location.host}/ws`;
   private wsHost: string;
-  private ws: any;
+  private ws: WebSocket;
   private wsInfo: WSInfoModel = new WSInfoModel();
 
   private openWS () {
@@ -59,7 +59,8 @@ export class HomeComponent implements OnDestroy {
         if (this.ws.CLOSED === this.ws.readyState) {
           this.counter++;
           console.log('reopen');
-          this.openWS();
+          // this.openWS();
+          this.ws.send('reconnect...');
         }
       }else {
         this.notification.error('错误', '请刷新网页重新连接通知!', {nzDuration: 0});

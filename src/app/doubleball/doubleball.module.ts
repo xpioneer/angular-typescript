@@ -7,6 +7,7 @@ import { DoubleBallComponent }         from './doubleball.component';
 import { DoubleBallListComponent }  from './doubleballlist/doubleballlist';
 import { DoubleBallListService }  from './doubleballlist/doubleballlist.service';
 import { DoubleBallRouting }       from './doubleball.routing';
+import { DoubleBallDirective }       from './doubleballlist/doubleball.directive';
 
 @NgModule({
     imports: [
@@ -18,6 +19,8 @@ import { DoubleBallRouting }       from './doubleball.routing';
     declarations: [
         DoubleBallComponent,
         DoubleBallListComponent,
+
+        DoubleBallDirective,
     ],
     providers: [
         DoubleBallListService,

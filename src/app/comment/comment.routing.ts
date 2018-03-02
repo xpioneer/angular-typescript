@@ -11,8 +11,8 @@ const routes: Routes = [
         canActivateChild: [AuthGuard],
         component: CommentComponent,
         children: [
-            { path: '', redirectTo: 'list.html', pathMatch: 'full' },
-            { path: 'list.html', component: CommentListComponent },
+            { path: '', redirectTo: 'list', pathMatch: 'full' },
+            { path: 'list', component: CommentListComponent },
             { path: 'detail/:id', component: CommentDetailComponent },
         ],
     },

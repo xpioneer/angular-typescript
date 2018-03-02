@@ -18,7 +18,7 @@ export class DoubleBallListService {
     return this.http.post('/doubleball', {});
   }
 
-  public deleteArticle (id: string) {
+  public deleteDoubleBall (id: string) {
         return this.http.delete('/doubleball/' + id);
   }
 

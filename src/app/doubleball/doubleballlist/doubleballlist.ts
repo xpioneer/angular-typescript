@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+// import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
 import { DoubleBallModel } from '../model/doubleball.model';
@@ -78,7 +79,7 @@ export class DoubleBallListComponent implements OnInit {
       showConfirmLoading: true,
       onOk () {
         return new Promise((resolve) => {
-          that.doubleBallListService.deleteArticle(id)
+          that.doubleBallListService.deleteDoubleBall(id)
             .finally(() => { resolve(); })
             .subscribe((res: any) => { that.query(); }, (err) => { });
         });
@@ -86,9 +87,5 @@ export class DoubleBallListComponent implements OnInit {
       onCancel () { },
     });
   }
-
-  // public getPics (url: string) {
-  //   return !!url ? url + '?Authorization-User=' + localStorage.getItem('ACCESS_TOKEN') : '';
-  // }
 
 }

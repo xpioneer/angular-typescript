@@ -145,7 +145,11 @@ export class ChartComponent {
                     type: 'shadow',
                 },
             },
-            yAxis: {},
+            yAxis: {
+                splitLine: {
+                    show: false,
+                },
+            },
             series: [{
                 name: '次数',
                 type: 'bar',
