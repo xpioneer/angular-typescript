@@ -6,7 +6,6 @@ import { NzNotificationService } from 'ng-zorro-antd';
 import * as Moment from 'moment';
 import { ChartService } from './chart.service';
 import { ISystemLog, IArticleType, IArticleTag } from './model/chart.model';
-import { Params } from '@utils/params.service';
 
 const echarts = require('echarts/lib/echarts');
 // 引入柱状图
@@ -39,7 +38,6 @@ export class ChartComponent {
 
     constructor (
         private http: HttpClient,
-        private params: Params,
         private notification: NzNotificationService,
         private chartService: ChartService,
     ) {
