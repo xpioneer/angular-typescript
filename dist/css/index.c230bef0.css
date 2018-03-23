@@ -488,6 +488,38 @@ app-login {
 .sys_log_p:nth-of-type(4) {
   border-left-color: #ffbf00;
 }
+/*double balls*/
+.double-ball {
+  color: #fff;
+  overflow: hidden;
+}
+.double-ball .red,
+.double-ball .blue {
+  border-radius: 100%;
+  float: left;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+}
+.double-ball .red {
+  margin-right: 3px;
+  background-color: #ff4c4c;
+}
+.double-ball .blue {
+  background-color: #108ee9;
+}
+/*dashbord*/
+.chart-dash-wrap {
+  min-height: 500px;
+  border: 1px solid #eeeeee;
+  margin-bottom: 20px;
+}
+.chart-dash-wrap .chart-content {
+  min-height: 500px;
+  height: 100%;
+  width: 100%;
+}
 /*!
  * Quill Editor v1.3.2
  * https://quilljs.com/
