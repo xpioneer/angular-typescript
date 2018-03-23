@@ -1,3 +1,37 @@
 <div>
-	this is dashboard! welcome!
+	<div nz-form>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSpan]="4">
+        <label nz-form-item>访问来源</label>
+      </div>
+      <div nz-form-control nz-col [nzSpan]="6">
+        <nz-select style="width:100%" [(ngModel)]="source" nzSize="large" (ngModelChange)="changedSource()">
+          <nz-option
+            *ngFor="let type of sourceType"
+            [nzLabel]="type.name"
+            [nzValue]="type.value">
+          </nz-option>
+        </nz-select>
+      </div>
+      <!-- <div nz-col [nzSm]="20" class="text-center">
+        全国各省访问量地图
+      </div>
+      <div nz-col [nzSm]="4">
+        <nz-select style="min-width:120px" nzPlaceHolder="选择来源" nzAllowClear [(ngModel)]="source" nzSize="large">
+          <nz-option
+            *ngFor="let type of sourceType"
+            [nzLabel]="type.name"
+            [nzValue]="type.value">
+          </nz-option>
+        </nz-select>
+      </div> -->
+    </div>
+    <div nz-row>
+      <div nz-col [nzSm]="24">
+        <div class="chart-dash-wrap">
+          <div class="chart-content" #systemChina></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

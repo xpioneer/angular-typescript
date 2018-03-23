@@ -5,7 +5,7 @@
     "main": "index.js",
     "author": "xpioneer",
     "keywords": [
-        "angular4",
+        "angular5",
         "HttpInterceptor",
         "lazyload",
         "ng-zorro-antd",
