@@ -16,6 +16,12 @@ export class HomeComponent implements OnDestroy {
   private wsHost: string;
   private ws: WebSocket;
   private wsInfo: WSInfoModel = new WSInfoModel();
+  private vm = this;
+
+  private ab2str (ab: ArrayBuffer): string {
+    const s = String.fromCharCode.apply(null, new Uint8Array(ab));
+    return decodeURIComponent(s);
+  }
 
   private openWS () {
     if (!navigator.onLine) {
@@ -24,15 +30,16 @@ export class HomeComponent implements OnDestroy {
     }
     this.ws = null;
     this.ws = new WebSocket(this.wsHost);
+    this.ws.binaryType = 'arraybuffer';
     this.ws.onopen = () => {
       this.counter = 0;
       this.ws.send('connect...');
     };
     //
-    this.ws.onmessage = (data: any) => {
-      const _data: any = JSON.parse(data.data);
-      if (_data && _data.data) {
-        this.wsInfo = _data.data;
+    this.ws.onmessage = (mEvent: MessageEvent) => {
+      const data: any = JSON.parse(this.ab2str(mEvent.data));
+      if (data && data.data) {
+        this.wsInfo = data.data;
         this.notification.html(`<strong>访问信息</strong>
           <p class="sys_log_p">ip: ${this.wsInfo.ip}</p>
           <p class="sys_log_p">url: ${this.wsInfo.url}</p>
@@ -59,8 +66,7 @@ export class HomeComponent implements OnDestroy {
         if (this.ws.CLOSED === this.ws.readyState) {
           this.counter++;
           console.log('reopen');
-          // this.openWS();
-          this.ws.send('reconnect...');
+          this.openWS();
         }
       }else {
         this.notification.error('错误', '请刷新网页重新连接通知!', {nzDuration: 0});
@@ -78,7 +84,7 @@ export class HomeComponent implements OnDestroy {
   }
 
   public ngOnInit () {
-    console.log('ngOnInit');
+    // console.log('ngOnInit');
   }
 
   public ngDoCheck () {
@@ -94,7 +100,7 @@ export class HomeComponent implements OnDestroy {
   }
 
   public ngAfterViewInit () {
-    console.log('ngAfterViewInit');
+    // console.log('ngAfterViewInit');
     if (this.authService.isLogged) {
       this.openWS();
     }
