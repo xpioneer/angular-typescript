@@ -19,36 +19,36 @@ import { HelperService }     from '../utils/helper.service';
 import { Params }            from '../utils/params.service';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomeComponent,
-        HeaderComponent,
-        SidebarComponent,
-        BreadCrumbComponent,
-        LoginComponent,
-    ],
-    imports: [
-        BrowserModule, BrowserAnimationsModule,
-        FormsModule, ReactiveFormsModule,
-        HttpClientModule,
-        // RouterModule,
-        AppRouting,
-        //
-        NgZorroAntdModule.forRoot(),
-    ],
-    providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AppInterceptor,
-            multi: true,
-        },
-        Params,
-        HelperService,
-        AuthGuard,
-        AuthService,
-    ],
-    bootstrap: [AppComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    HeaderComponent,
+    SidebarComponent,
+    BreadCrumbComponent,
+    LoginComponent,
+  ],
+  imports: [
+    BrowserModule, BrowserAnimationsModule,
+    FormsModule, ReactiveFormsModule,
+    HttpClientModule,
+    // RouterModule,
+    AppRouting,
+    //
+    NgZorroAntdModule.forRoot(),
+  ],
+  providers: [
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AppInterceptor,
+        multi: true,
+    },
+    Params,
+    HelperService,
+    AuthGuard,
+    AuthService,
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {
-    constructor () {}
+  constructor () {}
 }

@@ -68,90 +68,91 @@ import { NzNotificationService } from 'ng-zorro-antd';
       }
     `],
     providers    : [
-        {
-            provide    : NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => UploadFileComponent),
-            multi      : true,
-        },
+      {
+        provide    : NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => UploadFileComponent),
+        multi      : true,
+      },
     ],
 })
 export class UploadFileComponent implements ControlValueAccessor {
-    public baseUrl: string = '/upload-file';
-    @Input('fileUrl') public _value: any;
-    public show: boolean = true;
-    public uploading: boolean = false;
-    @Input() public imgSrc: any;
-    @Input() public maxSize: number;
-    @ViewChild('preView') private preViewDiv: ElementRef;
+  public baseUrl: string = '/upload-file';
+  @Input('fileUrl') public _value: any;
+  public show: boolean = true;
+  public uploading: boolean = false;
+  @Input() public imgSrc: any;
+  @Input() public maxSize: number;
+  @ViewChild('preView') private preViewDiv: ElementRef;
 
-    public onChange: any = Function.prototype;
-    public onTouched: any = Function.prototype;
+  public onChange: any = Function.prototype;
+  public onTouched: any = Function.prototype;
 
-    constructor (private http: HttpClient, private notification: NzNotificationService) {}
+  constructor (private http: HttpClient, private notification: NzNotificationService) {}
 
-    public ngOnInit () {
-        if (!this.imgSrc) {
-            this.imgSrc = '';
-            this.show = false;
+  public ngOnInit () {
+    if (!this.imgSrc) {
+      this.imgSrc = '';
+      this.show = false;
+    }
+  }
+
+  public ngOnChanges () {
+    this.show = !!this.baseUrl;
+  }
+
+  public fileChange (event: any): void {
+      if (event.target && event.target.files.length > 0) {
+        const reader: FileReader = new FileReader(),
+          file = event.target.files[0],
+          formData = new FormData();
+          
+        formData.append('file', file);
+        if (this.maxSize && file.size > this.maxSize * 1024) {
+          event.target.value = '';
+          this.notification.warning('警告', `图片大小超出${this.maxSize}K！`);
+        }else {
+          this.uploading = true;
+          this.http.post(this.baseUrl, formData)
+            .finally(() => this.uploading = false)
+            .subscribe((res: any) => {
+              reader.onload = (e: any) => {
+                this.imgSrc = reader.result;
+                this.show = true;
+              };
+              reader.readAsDataURL(file);
+              this.onChange(res.data.path);
+            }, (err: any) => {
+              event.target.value = '';
+            });
         }
-    }
 
-    public ngOnChanges () {
-        this.show = !!this.baseUrl;
-    }
+      }
+  }
 
-    public fileChange (event: any): void {
-        if (event.target && event.target.files.length > 0) {
-            const reader: FileReader = new FileReader(),
-                file = event.target.files[0],
-                formData = new FormData();
-            formData.append('file', file);
-            if (this.maxSize && file.size > this.maxSize * 1024) {
-                event.target.value = '';
-                this.notification.warning('警告', `图片大小超出${this.maxSize}K！`);
-            }else {
-                this.uploading = true;
-                this.http.post(this.baseUrl, formData)
-                    .finally(() => this.uploading = false)
-                    .subscribe((res: any) => {
-                        reader.onload = (e: any) => {
-                            this.imgSrc = reader.result;
-                            this.show = true;
-                        };
-                        reader.readAsDataURL(file);
-                        this.onChange(res.data.path);
-                    }, (err: any) => {
-                        event.target.value = '';
-                    });
-            }
+  get fileUrl () {
+    return this._value;
+  }
 
-        }
+  set fileUrl (url: any) {
+    if ((this._value === url) || (((this._value === undefined) || (this._value === null)) && ((url === undefined) || (url === null)))) {
+      return;
     }
+    if (url !== this._value) {
+      this._value = url;
+      this.onChange(url);
+    }
+  }
 
-    get fileUrl () {
-        return this._value;
-    }
+  public writeValue (value: any): void {
+    this.fileUrl = value;
+  }
 
-    set fileUrl (url: any) {
-        if ((this._value === url) || (((this._value === undefined) || (this._value === null)) && ((url === undefined) || (url === null)))) {
-            return;
-        }
-        if (url !== this._value) {
-            this._value = url;
-            this.onChange(url);
-        }
-    }
+  public registerOnChange (fn: (_: any) => {}): void {
+    this.onChange = fn;
+  }
 
-    public writeValue (value: any): void {
-        this.fileUrl = value;
-    }
-
-    public registerOnChange (fn: (_: any) => {}): void {
-        this.onChange = fn;
-    }
-
-    public registerOnTouched (fn: () => {}): void {
-        this.onTouched = fn;
-    }
+  public registerOnTouched (fn: () => {}): void {
+    this.onTouched = fn;
+  }
 
 }

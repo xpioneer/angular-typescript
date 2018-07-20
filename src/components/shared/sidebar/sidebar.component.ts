@@ -24,7 +24,7 @@ export class SidebarComponent implements OnInit {
     Object.keys(this.isOpen).forEach((v, i) => {
       if (value == v) {
         this.isOpen[v] = true;
-      }else {
+      } else {
         this.isOpen[v] = false;
       }
     });

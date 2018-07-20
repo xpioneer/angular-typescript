@@ -24,7 +24,7 @@ export class Params {
                 const s = encodeURIComponent(i) + '=' + encodeURIComponent(data[i]);
                 arr.push(s);
             }
-            }else {
+            } else {
             if (data[i].val !== undefined && data[i].val !== '' && data[i].val !== null) {
                 const num = n++;
                 arr.push(encodeURIComponent('colFilter[' + num + '][col]') + '=' + i);

@@ -15,10 +15,10 @@
     ],
     "baseUrl": "./src",
     "paths": {
-        "@app/*": ["app/*"],
-        "@assets/*": ["assets/*"],
-        "@components/*": ["components/*"],
-        "@utils/*": ["utils/*"]
+      "@app/*": ["app/*"],
+      "@assets/*": ["assets/*"],
+      "@components/*": ["components/*"],
+      "@utils/*": ["utils/*"]
     }
   },
   "compileOnSave": true,

@@ -6,44 +6,44 @@ import { NzNotificationService } from 'ng-zorro-antd';
 const Quill = require('quill');
 
 const toolbarOptions = [
-    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-    ['blockquote', 'code-block'],
+  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  ['blockquote', 'code-block'],
 
-    [{ header: 1 }, { header: 2 }],               // custom button values
-    [{ list: 'ordered'}, { list: 'bullet' }],
-    [{ script: 'sub'}, { script: 'super' }],      // superscript/subscript
-    [{ indent: '-1'}, { indent: '+1' }],          // outdent/indent
-    [{ direction: 'rtl' }],                         // text direction
+  [{ header: 1 }, { header: 2 }],               // custom button values
+  [{ list: 'ordered'}, { list: 'bullet' }],
+  [{ script: 'sub'}, { script: 'super' }],      // superscript/subscript
+  [{ indent: '-1'}, { indent: '+1' }],          // outdent/indent
+  [{ direction: 'rtl' }],                         // text direction
 
-    [{ size: ['small', false, 'large', 'huge'] }],  // custom dropdown
-    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+  [{ size: ['small', false, 'large', 'huge'] }],  // custom dropdown
+  [{ header: [1, 2, 3, 4, 5, 6, false] }],
 
-    [{ color: [] as any }, { background: [] as any }],          // dropdown with defaults from theme
-    [{ font: [] as any }],
-    [{ align: [] as any }],
+  [{ color: [] as any }, { background: [] as any }],          // dropdown with defaults from theme
+  [{ font: [] as any }],
+  [{ align: [] as any }],
 
-    ['link', 'image'],
+  ['link', 'image'],
 
-    ['clean'],                                         // remove formatting button
+  ['clean'],                                         // remove formatting button
 ];
 
 @Component({
-    selector: 'app-editor',
-    template: `
-      <div #editor></div>
-      <input [(ngModel)]="editorVal" style="display:none;"/>
+  selector: 'app-editor',
+  template: `
+    <div #editor></div>
+    <input [(ngModel)]="editorVal" style="display:none;"/>
+  `,
+  styles: [`
+      .ql-container{min-height:600px;}
     `,
-    styles: [`
-        .ql-container{min-height:600px;}
-      `,
-    ],
-    providers    : [
-        {
-        provide    : NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => EditorComponent),
-        multi      : true,
-        },
-    ],
+  ],
+  providers    : [
+      {
+      provide    : NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => EditorComponent),
+      multi      : true,
+      },
+  ],
 })
 export class EditorComponent implements ControlValueAccessor {
   public baseUrl: string = '/upload-file';
@@ -65,21 +65,21 @@ export class EditorComponent implements ControlValueAccessor {
 
   public ngOnInit () {
     this.quillEditor = new Quill(this.editor.nativeElement, {
-        debug: false,
-        modules: {
-            toolbar: toolbarOptions,
-        },
-        placeholder: '请在这里写下你的内容...',
-        readOnly: false,
-        theme: 'snow',
+      debug: false,
+      modules: {
+          toolbar: toolbarOptions,
+      },
+      placeholder: '请在这里写下你的内容...',
+      readOnly: false,
+      theme: 'snow',
     });
     this.quillEditor.on('editor-change', (delta: any, oldDelta: any, source: any) => {
-        console.log('editor-change');
-        let _html = this.quillEditor.root.innerHTML;
-        if (_html === '<p><br></p>') {
-        _html = null; return;
-        }
-        this.onChange(_html);
+      console.log('editor-change');
+      let _html = this.quillEditor.root.innerHTML;
+      if (_html === '<p><br></p>') {
+      _html = null; return;
+      }
+      this.onChange(_html);
     });
     this.quillEditor.getModule('toolbar').addHandler('image', () => {
       this.selectLocalImage();

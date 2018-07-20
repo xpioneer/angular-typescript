@@ -18,9 +18,9 @@ export class HelperService {
             const arr = res.url.split('/api');
             if (arr[arr.length - 1] === '/login') {
                 this.notification.success('成功', '登陆成功');
-            }else if (arr[arr.length - 1] === '/upload-file') {
+            } else if (arr[arr.length - 1] === '/upload-file') {
                 this.notification.success('成功', '文件上传成功');
-            }else {
+            } else {
                 this.notification.success('成功', '操作成功');
             }
             break;
@@ -36,9 +36,9 @@ export class HelperService {
             const arr = err.url.split('/api');
             if (arr[arr.length - 1] === '/login') {
                 this.notification.error('错误', '用户名或密码错误');
-            }else if (arr[arr.length - 1] === '/upload-file') {
+            } else if (arr[arr.length - 1] === '/upload-file') {
                 this.notification.error('失败', '文件上传失败');
-            }else {
+            } else {
                 this.notification.error('请求错误', err.error.msg || err.error.data);
             }
             break;

@@ -5,7 +5,9 @@ const path = require('path'),
     HtmlWebpackPlugin = require("html-webpack-plugin"),
     CleanWebpackPlugin = require('clean-webpack-plugin');
 
+const _PROD_ = process.env.NODE_ENV === 'production'
 
+config.mode = _PROD_ ? 'production' : 'none'
 config.plugins = (config.plugins || []).concat([
     new UglifyJSPlugin({
         output: {

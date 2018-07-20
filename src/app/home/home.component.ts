@@ -40,7 +40,7 @@ export class HomeComponent implements OnDestroy {
       const data: any = JSON.parse(this.ab2str(mEvent.data));
       if (data && data.data) {
         this.wsInfo = data.data;
-        this.notification.html(`<strong>访问信息</strong>
+        this.notification.blank(`<strong>访问信息</strong>
           <p class="sys_log_p">ip: ${this.wsInfo.ip}</p>
           <p class="sys_log_p">url: ${this.wsInfo.url}</p>
           <p class="sys_log_p">客户端: ${this.wsInfo.agent}</p>
@@ -68,7 +68,7 @@ export class HomeComponent implements OnDestroy {
           console.log('reopen');
           this.openWS();
         }
-      }else {
+      } else {
         this.notification.error('错误', '请刷新网页重新连接通知!', {nzDuration: 0});
       }
     }, 6000);
