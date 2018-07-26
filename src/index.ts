@@ -12,6 +12,6 @@ import 'quill/dist/quill.snow.css';
 // }
 
 if (process.env.NODE_ENV === 'production') {
-    enableProdMode();
+  enableProdMode();
 }
 platformBrowserDynamic().bootstrapModule(AppModule).catch((e) => console.error(e));

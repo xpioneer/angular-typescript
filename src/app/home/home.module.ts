@@ -3,7 +3,7 @@ import { NgModule }      from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule }     from '@angular/platform-browser';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { LoginComponent }    from './login.component';
+import { HomeComponent }    from './home.component';
 import { AuthService }       from '@utils/auth/auth.service';
 
 @NgModule({
@@ -13,10 +13,10 @@ import { AuthService }       from '@utils/auth/auth.service';
     NgZorroAntdModule.forRoot(),
   ],
   declarations: [
-    LoginComponent,
+    HomeComponent,
   ],
   providers: [
     AuthService
   ],
 })
-export class LoginModule {}
+export class HomeModule {}

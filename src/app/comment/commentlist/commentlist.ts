@@ -80,17 +80,17 @@ export class CommentListComponent implements OnInit {
   public delComment (id: string) {
     const that = this;
     this.modalService.confirm({
-      title  : '确认是否删除',
-      content: '<b>删除后将无法找回这条评论</b>',
-      showConfirmLoading: true,
-      onOk () {
+      nzTitle  : '确认是否删除',
+      nzContent: '<b>删除后将无法找回这条评论</b>',
+      nzOkLoading: true,
+      nzOnOk () {
         return new Promise((resolve) => {
           that.commentListService.deleteComment(id)
             .finally(() => { resolve(); })
             .subscribe((res: any) => { that.query(undefined); }, (err: any) => { });
         });
       },
-      onCancel () { },
+      nzOnCancel () { },
     });
   }
 

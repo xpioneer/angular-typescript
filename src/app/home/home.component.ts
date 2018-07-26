@@ -3,16 +3,18 @@ import { Http, Response } from '@angular/http';
 import { NzNotificationService } from 'ng-zorro-antd';
 import { AuthService } from '@utils/auth/auth.service';
 
-const _DEV_ = process.env.NODE_ENV === 'development';
+const _PROD_ = process.env.NODE_ENV === 'production';
+
 @Component({
   selector: 'home',
+  providers: [AuthService],
   templateUrl: './home.component.html',
   styles: [``],
 })
 export class HomeComponent implements OnDestroy {
   private counter: number = 0;
   private timer: any = null;
-  private host: string = _DEV_ ? `${location.hostname}:8803` : `${location.host}/ws`;
+  private host: string = _PROD_ ? `${location.host}/ws` : `${location.hostname}:8803`;
   private wsHost: string;
   private ws: WebSocket;
   private wsInfo: WSInfoModel = new WSInfoModel();
@@ -40,8 +42,8 @@ export class HomeComponent implements OnDestroy {
       const data: any = JSON.parse(this.ab2str(mEvent.data));
       if (data && data.data) {
         this.wsInfo = data.data;
-        this.notification.blank(`<strong>访问信息</strong>
-          <p class="sys_log_p">ip: ${this.wsInfo.ip}</p>
+        this.notification.blank('<strong>访问信息</strong>',
+          `<p class="sys_log_p">ip: ${this.wsInfo.ip}</p>
           <p class="sys_log_p">url: ${this.wsInfo.url}</p>
           <p class="sys_log_p">客户端: ${this.wsInfo.agent}</p>
           <p class="sys_log_p">位置: ${this.wsInfo.country_name_zh || '-'}/${this.wsInfo.subdivisions_name_zh || '-'}/${this.wsInfo.city_name_zh || '-'}</p>`, {});
@@ -76,7 +78,7 @@ export class HomeComponent implements OnDestroy {
   }
 
   constructor (private authService: AuthService, private notification: NzNotificationService) {
-    this.wsHost = (_DEV_ ? 'ws' : 'wss') + '://' + this.host;
+    this.wsHost = (_PROD_ ? 'wss' : 'ws') + '://' + this.host;
   }
 
   public ngOnChanges () {

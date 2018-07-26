@@ -15,7 +15,7 @@ export class CommentListService {
   }
 
   public deleteComment (id: string) {
-        return this.http.delete('/comment/' + id);
+    return this.http.delete('/comment/' + id);
   }
 
 }

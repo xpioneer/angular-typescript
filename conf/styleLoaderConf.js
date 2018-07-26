@@ -28,6 +28,7 @@ const styleRules = [
     test: /\.less$/,
     use: [
       'style-loader',
+      // MiniCssExtractPlugin.loader,
       'css-loader',
       postcssLoader,
       'less-loader'
@@ -37,6 +38,7 @@ const styleRules = [
     test: /\.css$/,
     use: [
       'style-loader',
+      // MiniCssExtractPlugin.loader,
       'css-loader',
       postcssLoader
     ]

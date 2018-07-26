@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NzNotificationService } from 'ng-zorro-antd';
 
-@Injectable()
+// @Injectable()
 export class HelperService {
     public store: any;
     public seStore: any;

@@ -9,23 +9,23 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { BreadCrumbComponent, HeaderComponent, SidebarComponent } from '../components/shared';
 import { AppComponent }   from './app.component';
 import { AppRouting }     from './app.routing';
-import { HomeComponent }  from './home';
+// import { HomeComponent }  from './home';
 import { LoginComponent } from './login/login.component';
 
-import { AppInterceptor }    from '../utils/appInterceptor.service';
-import { AuthGuard }         from '../utils/auth/auth-guard.service';
-import { AuthService }       from '../utils/auth/auth.service';
-import { HelperService }     from '../utils/helper.service';
-import { Params }            from '../utils/params.service';
+import { HttpClientInterceptor }    from '@utils/httpInterceptor';
+// import { AuthGuard }         from '@utils/auth/auth-guard.service';
+// import { AuthService }       from '../utils/auth/auth.service';
+// import { HelperService }     from '../utils/helper.service';
+// import { Params }            from '../utils/params.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    // HomeComponent,
+    LoginComponent,
     HeaderComponent,
     SidebarComponent,
     BreadCrumbComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule,
@@ -38,14 +38,14 @@ import { Params }            from '../utils/params.service';
   ],
   providers: [
     {
-        provide: HTTP_INTERCEPTORS,
-        useClass: AppInterceptor,
-        multi: true,
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpClientInterceptor,
+      multi: true,
     },
-    Params,
-    HelperService,
-    AuthGuard,
-    AuthService,
+    // Params,
+    // HelperService,
+    // AuthGuard,
+    // AuthService,
   ],
   bootstrap: [AppComponent],
 })

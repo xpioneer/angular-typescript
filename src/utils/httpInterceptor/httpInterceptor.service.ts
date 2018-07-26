@@ -10,8 +10,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HelperService } from './helper.service';
 
-@Injectable()
-export class AppInterceptor implements HttpInterceptor {
+// @Injectable()
+export class HttpClientInterceptor implements HttpInterceptor {
     public baseUrl: string = '/api';
     public store: any;
 

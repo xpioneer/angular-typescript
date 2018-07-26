@@ -74,17 +74,17 @@ export class DoubleBallListComponent implements OnInit {
   public delArticle (id: string) {
     const that = this;
     this.modalService.confirm({
-      title  : '确认是否删除',
-      content: '<b>删除后将无法找回这条信息</b>',
-      showConfirmLoading: true,
-      onOk () {
+      nzTitle  : '确认是否删除',
+      nzContent: '<b>删除后将无法找回这条信息</b>',
+      nzOkLoading: true,
+      nzOnOk () {
         return new Promise((resolve) => {
           that.doubleBallListService.deleteDoubleBall(id)
             .finally(() => { resolve(); })
             .subscribe((res: any) => { that.query(); }, (err) => { });
         });
       },
-      onCancel () { },
+      nzOnCancel () { },
     });
   }
 

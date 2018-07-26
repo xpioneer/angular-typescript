@@ -49,29 +49,25 @@ const config = {
 
   module: {
     rules: [
+      // {
+      //   test: /\.ts$/,
+      //   enforce: 'pre',
+      //   loader: 'tslint-loader',
+      //   include: [path.resolve(__dirname, '../src')],
+      //   options: {
+      //     // configFile: 'tslint.json',
+      //     emitErrors: true,
+      //     fix: true
+      //   }
+      // },
       {
         test: /\.ts$/,
-        enforce: 'pre',
-        loader: 'tslint-loader',
-        include: [path.resolve(__dirname, '../src')],
-        options: {
-          // configFile: 'tslint.json',
-          emitErrors: true,
-          fix: true
-        }
-      },
-      {
-        test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-        loader: '@ngtools/webpack'
-        // loader: "awesome-typescript-loader",
-        // options: {
-        //   useBabel: true,
-        // }
-        // use: [
-        //   'awesome-typescript-loader',
-        //   // 'angular2-template-loader',
-        //   // 'angular2-router-loader'
-        // ]
+        // loader: '@ngtools/webpack'
+        use: [
+          'awesome-typescript-loader',
+          // 'angular2-template-loader',
+          // 'angular2-router-loader'
+        ]
       },
       {
         test: /\.html$/,
@@ -117,36 +113,16 @@ const config = {
 
   // plugins
   plugins: [
-    new AngularCompilerPlugin({
-      tsConfigPath: path.resolve(__dirname, '../tsconfig.json'),
-      entryModule: path.resolve(__dirname, '../src/app/app.module#AppModule'),
-      sourceMap: true
-    }),
-    // new webpack.DllReferencePlugin({
-    //     context: path.resolve(__dirname, '../dist'),
-    //     manifest: require("../dist/vendor/polyfills.manifest.json")
-    // }),
-    // new webpack.DllReferencePlugin({
-    //     context: path.resolve(__dirname, '../dist'),
-    //     manifest: require("../dist/vendor/vendor.manifest.json")
-    // }),
-    // new webpack.DllReferencePlugin({
-    //     context: path.resolve(__dirname, '../dist'),
-    //     manifest: require("../dist/vendor/vendor1.manifest.json")
+    // new AngularCompilerPlugin({
+    //   tsConfigPath: path.resolve(__dirname, '../tsconfig.json'),
+    //   entryModule: path.resolve(__dirname, '../src/app/app.module#AppModule'),
+    //   skipCodeGeneration: false,
+    //   sourceMap: _DEV_ ? true : false
     // }),
     new MiniCssExtractPlugin({
       filename: "static/css/[name].[contenthash].css",
     }),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //     name: ['common', 'vendor1', 'vendor', 'polyfills'],
-    //     // chunks: 
-    //     minChunks: 3
-    // }),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    // new webpack.optimize.LimitChunkCountPlugin({
-    //     maxChunks: 5,
-    //     minChunkSize: 1000
-    // }),
     // new webpack.ContextReplacementPlugin(
     //     /angular(\\|\/)core(\\|\/)@angular/,
     //     path.resolve(__dirname, '../src')
