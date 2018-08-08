@@ -2,9 +2,9 @@ const path = require('path')
 const webpack = require('webpack')
 const styleLoaderConf = require('./styleLoaderConf')
 const { AngularCompilerPlugin } = require('@ngtools/webpack')
-// const HtmlWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
+const _PROD_ = process.env.NODE_ENV === 'production';
 const _DEV_ = process.env.NODE_ENV === 'development';
 
 const postCSSLoader = {
@@ -20,18 +20,20 @@ const postCSSLoader = {
 
 const config = {
   entry: {
-    'index': path.resolve(__dirname, '../src/index.ts'),
-    'polyfills': path.resolve(__dirname, '../src/polyfills.ts'),
-    'vendor': path.resolve(__dirname, '../src/vendor.ts'),
-    'vendor1': 'ng-zorro-antd',
+    // 'polyfills': path.resolve(__dirname, '../src/polyfills.ts'),
+    // 'vendor': path.resolve(__dirname, '../src/vendor.ts'),
+    // // 'vendor1': 'ng-zorro-antd',
+    // 'app': path.resolve(__dirname, '../src/app.ts'),
+
+    'index': path.resolve(__dirname, '../src/index.ts')
   },
 
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
     sourceMapFilename: '[name].map',
-    chunkFilename: '[id].chunk.[chunkhash:8].js',
-    filename: './[name].bundle.[chunkhash:8].js'
+    filename: './[name].bundle.[hash].js',
+    chunkFilename: '[id].chunk.[chunkhash:8].js'
   },
 
   devtool: _DEV_?'#cheap-module-source-map':false,
@@ -65,8 +67,8 @@ const config = {
         // loader: '@ngtools/webpack'
         use: [
           'awesome-typescript-loader',
-          // 'angular2-template-loader',
-          // 'angular2-router-loader'
+          'angular2-template-loader',
+          'angular-router-loader'
         ]
       },
       {
@@ -111,6 +113,42 @@ const config = {
     ]
   },
 
+  optimization: {
+    minimize: !_PROD_ ? false : true,
+    runtimeChunk: {
+      name: "manifest"
+    },
+    splitChunks: {
+      chunks: "async",
+      minSize: 30000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      name: true,
+      cacheGroups: {
+        // styles: {
+        //   name: 'styles',
+        //   test: /\.css$/,
+        //   minChunks: 1,
+        //   reuseExistingChunk: true,
+        //   enforce: true,
+        // },
+        vendors: {
+          name: 'vendor',
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          chunks: "initial"
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
+    }
+  },
+
   // plugins
   plugins: [
     // new AngularCompilerPlugin({
@@ -128,10 +166,10 @@ const config = {
     //     path.resolve(__dirname, '../src')
     // ),
     new webpack.DefinePlugin({
-        "process.env": {
-            NODE_ENV: JSON.stringify(_DEV_ ? "development" : "production")
-        },
-        _DEV_: JSON.stringify(_DEV_),
+      "process.env": {
+        NODE_ENV: JSON.stringify(_DEV_ ? "development" : "production")
+      },
+      _DEV_: JSON.stringify(_DEV_),
     })
   ]
 };

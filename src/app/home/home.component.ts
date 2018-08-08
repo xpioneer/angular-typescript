@@ -7,14 +7,13 @@ const _PROD_ = process.env.NODE_ENV === 'production';
 
 @Component({
   selector: 'home',
-  providers: [AuthService],
   templateUrl: './home.component.html',
-  styles: [``],
+  // styles: [``],
 })
 export class HomeComponent implements OnDestroy {
   private counter: number = 0;
   private timer: any = null;
-  private host: string = _PROD_ ? `${location.host}/ws` : `${location.hostname}:8803`;
+  private host: string = _PROD_ ? `${location.host}/ws` : `${location.hostname}:8802`;
   private wsHost: string;
   private ws: WebSocket;
   private wsInfo: WSInfoModel = new WSInfoModel();

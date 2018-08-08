@@ -1,9 +1,33 @@
 <h4>添加文章类型</h4>
-<form nz-form [nzType]="'horizontal'" #form="ngForm">
+<form nz-form #form="ngForm">
   <div nz-row class="markdown">
     <blockquote><p>基本信息</p></blockquote>
   </div>
-  <div nz-form-item nz-row>
+  <nz-form-item nz-row>
+    
+    <nz-form-label nzSpan="6" nzFor="email">类型名称</nz-form-label>
+    <nz-form-control nzSpan="14">
+      <input nz-input required [(ngModel)]="addArticleType.type_name" #type_name="ngModel" name="type_name">
+      <div nz-form-explain *ngIf="type_name.dirty&&type_name.invalid">必须填写!</div>
+    </nz-form-control>
+
+    <!-- <nz-form-control [nzValidateStatus]="Name.control">
+      <nz-input-group nzPrefixIcon="anticon anticon-user">
+        <input type="text" nz-input required [(ngModel)]="userInfo.username" #Name="ngModel" placeholder="Username" name="username"/>
+      </nz-input-group>
+      <nz-form-explain *ngIf="Name.dirty&&Name.invalid">Please enter your username!</nz-form-explain>
+    </nz-form-control> -->
+
+  </nz-form-item>
+  <nz-form-item nz-row>
+    
+    <nz-form-label nzSpan="6" nzFor="email">类型名称</nz-form-label>
+    <nz-form-control nzSpan="14">
+      <textarea nz-input required name="remark" placeholder="备注" [(ngModel)]="addArticleType.remark" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
+    </nz-form-control>
+
+  </nz-form-item>
+<!--   <div nz-form-item>
     <div nz-form-label nz-col [nzSpan]="4">
       <label nz-form-item-required>类型名称</label>
     </div>
@@ -11,22 +35,23 @@
       <nz-input required [(ngModel)]="addArticleType.type_name" #type_name="ngModel" [nzSize]="'large'" name="type_name"></nz-input>
       <div nz-form-explain *ngIf="type_name.dirty&&type_name.invalid">必须填写!</div>
     </div>
-  </div>
+  </div> -->
 
-  <div nz-form-item nz-row>
+ <!--  <div nz-form-item nz-row>
     <div nz-form-label nz-col [nzSm]="4" [nzXl]="2">
       <label>备注</label>
     </div>
     <div nz-col [nzSpan]="12" nz-form-control nzHasFeedback>
       <nz-input name="remark" [(ngModel)]="addArticleType.remark" [nzRows]="4" [nzType]="'textarea'" [nzPlaceHolder]="'备注'" [nzSize]="'large'"></nz-input>
     </div>
-  </div>
+  </div> -->
 
-  <div nz-form-item nz-row>
-    <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="4">
-      <button nz-button nzType="primary" [nzSize]="'large'" (click)="save()" [nzLoading]="isConfirmLoading">保存</button>
-      <button nz-button nzType="default" [nzSize]="'large'" (click)="back()">取消</button>
-    </div>
-  </div>
+  <nz-form-item nz-row>
+    <nz-form-control nzSpan="20" nzOffset="4">
+      <button nz-button nzType="primary" (click)="save()" [nzLoading]="isConfirmLoading">保存</button>
+      <button nz-button nzType="default" (click)="back()">取消</button>
+    </nz-form-control>
+
+  </nz-form-item>
 
 </form>

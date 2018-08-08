@@ -8,7 +8,7 @@ import { AddArticleTypeService } from './addarticletype.service';
 @Component({
     selector: 'app-add-articletype',
     templateUrl: './addarticletype.html',
-    styles: [],
+    // styles: [],
 })
 export class AddArticleTypeComponent implements OnInit {
     public isConfirmLoading = false;

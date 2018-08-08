@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
     selector: 'app-breadcrumb',
     templateUrl: './breadcrumb.component.html',
-    styleUrls  : ['./breadcrumb.component.less'],
+    // styleUrls  : ['./breadcrumb.component.less'],
 })
 export class BreadCrumbComponent implements OnInit {
     public currentTitle: string = '';

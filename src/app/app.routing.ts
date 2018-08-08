@@ -8,12 +8,10 @@ const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    // loadChildren: './login/login.module#LoginModule'
   },
   {
     path: '',
     component: HomeComponent,
-    // loadChildren: './home/home.module#HomeModule',
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },

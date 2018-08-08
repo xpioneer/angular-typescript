@@ -1,4 +1,5 @@
 // Polyfills
+// import 'reflect-metadata';
 import 'core-js/es6/array';
 import 'core-js/es6/date';
 import 'core-js/es6/function';

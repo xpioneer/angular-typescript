@@ -30,7 +30,7 @@ const styleRules = [
       'style-loader',
       // MiniCssExtractPlugin.loader,
       'css-loader',
-      postcssLoader,
+      // postcssLoader,
       'less-loader'
     ]
   },
@@ -40,7 +40,7 @@ const styleRules = [
       'style-loader',
       // MiniCssExtractPlugin.loader,
       'css-loader',
-      postcssLoader
+      // postcssLoader
     ]
   },
 ]

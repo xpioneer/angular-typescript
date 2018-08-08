@@ -8,7 +8,7 @@ import { EditArticleService } from './editarticle.service';
 @Component({
     selector: 'app-edit-aritcle',
     templateUrl: './editarticle.html',
-    styles: [``],
+    // styles: [``],
 })
 export class EditArticleComponent implements OnInit {
     public isConfirmLoading = false;

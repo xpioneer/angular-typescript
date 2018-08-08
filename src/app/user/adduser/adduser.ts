@@ -9,7 +9,7 @@ import { AddUserService } from './adduser.service';
 @Component({
   selector: 'app-add-user',
   templateUrl: './adduser.html',
-  styles: [],
+  // styles: [],
 })
 export class AddUserComponent implements OnInit {
   public isConfirmLoading = false;

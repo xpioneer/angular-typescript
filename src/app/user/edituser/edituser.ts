@@ -9,7 +9,7 @@ import { EditUserService } from './edituser.service';
 @Component({
     selector: 'app-edit-user',
     templateUrl: './edituser.html',
-    styles: [],
+    // styles: [],
 })
 export class EditUserComponent implements OnInit {
     public isConfirmLoading = false;

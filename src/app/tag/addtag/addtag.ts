@@ -9,7 +9,7 @@ import { AddTagService } from './addtag.service';
 @Component({
   selector: 'app-add-tag',
   templateUrl: './addtag.html',
-  styles: [],
+  // styles: [],
 })
 export class AddTagComponent implements OnInit {
   public isConfirmLoading = false;

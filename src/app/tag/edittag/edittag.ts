@@ -9,7 +9,7 @@ import { EditTagService } from './edittag.service';
 @Component({
     selector: 'app-edit-tag',
     templateUrl: './edittag.html',
-    styles: [],
+    // styles: [],
 })
 export class EditTagComponent implements OnInit {
     public isConfirmLoading = false;

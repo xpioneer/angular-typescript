@@ -4,7 +4,6 @@ import { AuthService }      from '@utils/auth/auth.service';
 
 @Component({
   selector: 'app-login',
-  providers: [AuthService],
   templateUrl: './login.html',
   styles: [`
     .login-form {
@@ -41,9 +40,11 @@ export class LoginComponent implements OnInit {
   public login () {
     for (const i in this.form.controls) {
       this.form.controls[ i ].markAsDirty();
+      this.form.controls[ i ].updateValueAndValidity()
     }
     if (this.form.valid) {
       this.authService.login(this.userInfo);
+      this.userInfo = new UserModel();
     }
   }
 

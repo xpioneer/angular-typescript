@@ -1,38 +1,30 @@
 <!-- <canvas #canvas></canvas> -->
 <form nz-form class="login-form" #form="ngForm">
-  <div nz-form-item>
-    <h1>
-      CMS-BE
-    </h1>
-  </div>
-  <div nz-form-item>
-    <div nz-form-control [nzValidateStatus]="username.control">
-      <nz-input required [(ngModel)]="userInfo.username" #username="ngModel" [nzPlaceHolder]="'username'" [nzSize]="'large'" name="username">
-        <ng-template #prefix>
-          <i class="anticon anticon-user"></i>
-        </ng-template>
-      </nz-input>
-      <div nz-form-explain *ngIf="username.dirty&&username.invalid">Please enter your username!</div>
-    </div>
-  </div>
-  <div nz-form-item>
-    <div nz-form-control [nzValidateStatus]="password.control">
-      <nz-input required [(ngModel)]="userInfo.password" #password="ngModel" [nzType]="'password'" [nzPlaceHolder]="'Password'" [nzSize]="'large'" name="password">
-        <ng-template #prefix>
-          <i class="anticon anticon-lock"></i>
-        </ng-template>
-      </nz-input>
-      <div nz-form-explain *ngIf="password.dirty&&password.invalid">Please enter the password!</div>
-    </div>
-  </div>
-  <div nz-form-item>
-    <div nz-form-control>
+  <h1>CMS</h1>
+  <nz-form-item>
+    <nz-form-control [nzValidateStatus]="Name.control">
+      <nz-input-group nzPrefixIcon="anticon anticon-user">
+        <input type="text" nz-input required [(ngModel)]="userInfo.username" #Name="ngModel" placeholder="Username" name="username"/>
+      </nz-input-group>
+      <nz-form-explain *ngIf="Name.dirty&&Name.invalid">Please enter your username!</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzValidateStatus]="Pwd.control">
+      <nz-input-group nzPrefixIcon="anticon anticon-lock">
+        <input type="password" nz-input required [(ngModel)]="userInfo.password" #Pwd="ngModel" placeholder="Password" name="password"/>
+      </nz-input-group>
+      <nz-form-explain *ngIf="Pwd.dirty&&Pwd.invalid">Please enter the password!</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
       <label nz-checkbox>
         <span>Remember me</span>
       </label>
       <!-- <a class="login-form-forgot" class="login-form-forgot">忘记密码</a> -->
-      <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'" (click)="login()">login</button>
+      <button nz-button class="login-form-button" nzType="primary" nzSize="large" (click)="login()" [disabled]="form.invalid">Login</button>
       <!-- <a href="">立即注册!</a> -->
-    </div>
-  </div>
+    </nz-form-control>
+  </nz-form-item>
 </form>

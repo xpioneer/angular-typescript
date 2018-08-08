@@ -8,7 +8,7 @@ import { CommentDetailService } from './commentdetail.service';
 @Component({
     selector: 'app-comment-detail',
     templateUrl: './commentdetail.html',
-    styles: [``],
+    // styles: [``],
 })
 export class CommentDetailComponent implements OnInit {
 

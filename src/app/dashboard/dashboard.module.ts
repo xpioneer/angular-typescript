@@ -7,17 +7,17 @@ import { DashboardRouting } from './dashboard.routing';
 import { DashBoardService } from './dashboard.service';
 
 @NgModule({
-    imports: [
-        FormsModule,
-        CommonModule,
-        DashboardRouting,
-        NgZorroAntdModule.forRoot(),
-    ],
-    declarations: [
-        Dashboard,
-    ],
-    providers: [
-        DashBoardService,
-    ],
+  imports: [
+    FormsModule,
+    CommonModule,
+    DashboardRouting,
+    NgZorroAntdModule.forRoot(),
+  ],
+  declarations: [
+    Dashboard,
+  ],
+  providers: [
+    DashBoardService,
+  ],
 })
 export class DashboardModule {}

@@ -33,16 +33,15 @@ const toolbarOptions = [
     <div #editor></div>
     <input [(ngModel)]="editorVal" style="display:none;"/>
   `,
-  styles: [`
-      .ql-container{min-height:600px;}
-    `,
-  ],
+  // styles: [`
+  //   .ql-container{min-height:600px;}
+  // `],
   providers    : [
-      {
+    {
       provide    : NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => EditorComponent),
       multi      : true,
-      },
+    },
   ],
 })
 export class EditorComponent implements ControlValueAccessor {
