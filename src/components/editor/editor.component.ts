@@ -33,9 +33,9 @@ const toolbarOptions = [
     <div #editor></div>
     <input [(ngModel)]="editorVal" style="display:none;"/>
   `,
-  // styles: [`
-  //   .ql-container{min-height:600px;}
-  // `],
+  styles: [`
+    .ql-container{min-height:600px;}
+  `],
   providers    : [
     {
       provide    : NG_VALUE_ACCESSOR,

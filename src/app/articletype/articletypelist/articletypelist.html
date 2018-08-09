@@ -1,19 +1,25 @@
 
 <h4>文章类型列表</h4>
-<form nz-form class="">
+<form nz-form>
   <div nz-row nzGutter="40" class="mgt20">
-    <nz-form-item nzFlex>
-      <nz-form-label>类型名称</nz-form-label>
-      <nz-form-control>
-        <input nz-input placeholder="类型名称" [(ngModel)]="value.type_name.val" name="value.type_name.val"/>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item nzFlex>
-      <nz-form-label>备注</nz-form-label>
-      <nz-form-control>
-        <input nz-input placeholder="备注" [(ngModel)]="value.remark.val" name="value.remark.val"/>
-      </nz-form-control>
-    </nz-form-item>
+    <div nz-col [nzSpan]="6">
+      <nz-form-item nzFlex>
+        <nz-form-label>类型名称</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="类型名称" [(ngModel)]="value.type_name.val" name="value.type_name.val"/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <nz-form-item nzFlex>
+        <nz-form-label>备注</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="备注" [(ngModel)]="value.remark.val" name="value.remark.val"/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+      
+      
     <!-- <div nz-col class="gutter-row" [nzSpan]="6">
       <span class="spanW60">类型名称：</span>
       <input nz-input nzPlaceHolder="类型名称" [(ngModel)]="value.type_name.val" name="value.type_name.val"/>
@@ -41,6 +47,7 @@
 
 <nz-table #nzTable
   [nzData]="dataSet"
+  [nzFrontPagination]="false"
   [nzShowSizeChanger]="false"
   [nzLoading]="_loading"
   [nzTotal]="total"

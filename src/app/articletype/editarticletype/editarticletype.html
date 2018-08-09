@@ -40,16 +40,16 @@
     
     <nz-form-label nzSpan="6" nzFor="email">类型名称</nz-form-label>
     <nz-form-control nzSpan="14">
-      <input nz-input required [(ngModel)]="editArticleType.type_name" #type_name="ngModel" name="type_name">
+      <input nz-input required name="type_name" placeholder="类型名称" [(ngModel)]="editArticleType.type_name" #type_name="ngModel">
       <div nz-form-explain *ngIf="type_name.dirty&&type_name.invalid">必须填写!</div>
     </nz-form-control>
 
   </nz-form-item>
   <nz-form-item nz-row>
     
-    <nz-form-label nzSpan="6" nzFor="email">类型名称</nz-form-label>
+    <nz-form-label nzSpan="6" nzFor="email">备注</nz-form-label>
     <nz-form-control nzSpan="14">
-      <textarea nz-input required name="remark" placeholder="备注" [(ngModel)]="editArticleType.remark" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
+      <textarea nz-input name="remark" placeholder="备注" [(ngModel)]="editArticleType.remark" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
     </nz-form-control>
 
   </nz-form-item>

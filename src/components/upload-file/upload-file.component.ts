@@ -6,67 +6,67 @@ import { NzNotificationService } from 'ng-zorro-antd';
 @Component({
   selector: 'app-upload-file',
   templateUrl: './upload-file.html',
-  // styles: [`
-  //   .upload-file-wrap:after{
-  //     display: block;
-  //     content: '';
-  //     clear: both;
-  //   }
-  //   .upload-file-input {
-  //       position: absolute;
-  //       clip: rect(0 0 0 0);
-  //   }
-  //   label.bank-logo-label {
-  //       margin-right: 10px;
-  //       float: left;
-  //       position: relative;
-  //       border: 4px solid #ccc;
-  //       width: 80px;
-  //       height: 80px;
-  //       cursor: pointer;
-  //   }
-  //   label.bank-logo-label::before {
-  //       position: absolute;
-  //       content: '';
-  //       display: block;
-  //       width: 4px;
-  //       height: 60px;
-  //       background-color: #ccc;
-  //       top: 6px;
-  //       left: 34px;
-  //   }
-  //   label.bank-logo-label::after {
-  //       position: absolute;
-  //       content: '';
-  //       display: block;
-  //       width: 60px;
-  //       height: 4px;
-  //       background-color: #ccc;
-  //       top: 34px;
-  //       left: 6px;
-  //   }
-  //   .file-uploading{
-  //     z-index: 2;
-  //     position: absolute;
-  //     top: 0;
-  //     left: 0;
-  //     width: 80px;
-  //     height: 80px;
-  //     background-color: rgba(255,255,255, 0.8);
-  //     font-style: normal;
-  //     text-align: center;
-  //     padding-top: 20px;
-  //   }
+  styles: [`
+    .upload-file-wrap:after{
+      display: block;
+      content: '';
+      clear: both;
+    }
+    .upload-file-input {
+        position: absolute;
+        clip: rect(0 0 0 0);
+    }
+    label.bank-logo-label {
+        margin-right: 10px;
+        float: left;
+        position: relative;
+        border: 4px solid #ccc;
+        width: 80px;
+        height: 80px;
+        cursor: pointer;
+    }
+    label.bank-logo-label::before {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 4px;
+        height: 60px;
+        background-color: #ccc;
+        top: 6px;
+        left: 34px;
+    }
+    label.bank-logo-label::after {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background-color: #ccc;
+        top: 34px;
+        left: 6px;
+    }
+    .file-uploading{
+      z-index: 2;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 80px;
+      height: 80px;
+      background-color: rgba(255,255,255, 0.8);
+      font-style: normal;
+      text-align: center;
+      padding-top: 20px;
+    }
 
-  //   .file-list img{
-  //       cursor: pointer;
-  //     display: block;
-  //     float: left;
-  //     width: 80px;
-  //     height: 80px;
-  //     border:1px solid #ccc;
-  //   }
-  // `],
+    .file-list img{
+        cursor: pointer;
+      display: block;
+      float: left;
+      width: 80px;
+      height: 80px;
+      border:1px solid #ccc;
+    }
+  `],
   providers    : [
     {
       provide    : NG_VALUE_ACCESSOR,

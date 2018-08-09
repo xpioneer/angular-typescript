@@ -3,29 +3,21 @@
   <div nz-row class="markdown">
     <blockquote><p>基本信息</p></blockquote>
   </div>
+
   <nz-form-item nz-row>
-    
-    <nz-form-label nzSpan="6" nzFor="email">类型名称</nz-form-label>
-    <nz-form-control nzSpan="14">
-      <input nz-input required [(ngModel)]="addArticleType.type_name" #type_name="ngModel" name="type_name">
+    <nz-form-label nzSpan="6">类型名称</nz-form-label>
+    <nz-form-control nzSpan="14" [nzValidateStatus]="type_name.control">
+      <input nz-input required name="type_name" placeholder="类型名称" [(ngModel)]="addArticleType.type_name" #type_name="ngModel">
       <div nz-form-explain *ngIf="type_name.dirty&&type_name.invalid">必须填写!</div>
     </nz-form-control>
 
-    <!-- <nz-form-control [nzValidateStatus]="Name.control">
-      <nz-input-group nzPrefixIcon="anticon anticon-user">
-        <input type="text" nz-input required [(ngModel)]="userInfo.username" #Name="ngModel" placeholder="Username" name="username"/>
-      </nz-input-group>
-      <nz-form-explain *ngIf="Name.dirty&&Name.invalid">Please enter your username!</nz-form-explain>
-    </nz-form-control> -->
-
   </nz-form-item>
-  <nz-form-item nz-row>
-    
-    <nz-form-label nzSpan="6" nzFor="email">类型名称</nz-form-label>
-    <nz-form-control nzSpan="14">
-      <textarea nz-input required name="remark" placeholder="备注" [(ngModel)]="addArticleType.remark" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
-    </nz-form-control>
 
+  <nz-form-item nz-row>
+    <nz-form-label nzSpan="6">备注</nz-form-label>
+    <nz-form-control nzSpan="14">
+      <textarea nz-input name="remark" placeholder="备注" [(ngModel)]="addArticleType.remark" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
+    </nz-form-control>
   </nz-form-item>
 <!--   <div nz-form-item>
     <div nz-form-label nz-col [nzSpan]="4">
