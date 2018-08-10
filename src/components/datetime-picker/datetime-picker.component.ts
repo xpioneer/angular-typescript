@@ -7,11 +7,11 @@ import * as Moment from 'moment';
 @Component({
   selector: 'app-datetime-range',
   templateUrl: './datetime-range.html',
-  // styles: [`
-  //   app-datetime-range{
-  //     display: block;
-  //   }
-  // `],
+  styles: [`
+    app-datetime-range{
+      display: block;
+    }
+  `],
   providers    : [{
     provide    : NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => DateTimeRangeComponent),

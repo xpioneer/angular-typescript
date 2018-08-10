@@ -1,3 +1,5 @@
+import { registerLocaleData } from '@angular/common';
+import zh from '@angular/common/locales/zh';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -5,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { RouterModule } from '@angular/router';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+// import { NZ_I18N, zh_CN } from 'ng-zorro-antd';
 
 import { BreadCrumbComponent, HeaderComponent, SidebarComponent } from '../components/shared';
 import { AppComponent }   from './app.component';
@@ -17,6 +20,8 @@ import { HttpClientInterceptor }    from '@utils/httpInterceptor';
 import { AuthService }       from '../utils/auth/auth.service';
 import { HelperService }     from '../utils/httpInterceptor/helper.service';
 import { Params }            from '../utils/params.service';
+
+registerLocaleData(zh)
 
 @NgModule({
   declarations: [
@@ -37,6 +42,7 @@ import { Params }            from '../utils/params.service';
     NgZorroAntdModule.forRoot(),
   ],
   providers: [
+    // { provide: NZ_I18N, useValue: zh_CN },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpClientInterceptor,

@@ -12,21 +12,21 @@ import { SystemLogDetailService }  from './systemlogdetail/systemlogdetail.servi
 import { SystemLogRouting }       from './systemlog.routing';
 
 @NgModule({
-    imports: [
-        FormsModule, ReactiveFormsModule,
-        CommonModule,
-        SystemLogRouting,
-        DateTimeRangeModule,
-        NgZorroAntdModule.forRoot(),
-    ],
-    declarations: [
-        SystemLogComponent,
-        SystemLogListComponent,
-        SystemLogDetailComponent,
-    ],
-    providers: [
-        SystemLogListService,
-        SystemLogDetailService,
-    ],
+  imports: [
+    FormsModule, ReactiveFormsModule,
+    CommonModule,
+    SystemLogRouting,
+    DateTimeRangeModule,
+    NgZorroAntdModule.forRoot(),
+  ],
+  declarations: [
+    SystemLogComponent,
+    SystemLogListComponent,
+    SystemLogDetailComponent,
+  ],
+  providers: [
+    SystemLogListService,
+    SystemLogDetailService,
+  ],
 })
 export class SystemLogModule {}
