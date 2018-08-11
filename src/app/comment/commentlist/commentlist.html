@@ -1,6 +1,6 @@
 
 <h4>评论列表</h4>
-<form nz-form #form="ngForm" class="mgt20">
+<form nz-form class="mgt20">
   <div nz-row [nzGutter]="40">
     <div nz-col [nzSpan]="6">
       <nz-form-item nzFlex>
@@ -83,13 +83,12 @@
   [nzData]="dataSet"
   [nzFrontPagination]="false"
   [nzShowSizeChanger]="false"
-  [nzShowTotal]="true"
   [nzLoading]="_loading"
   [nzTotal]="total"
   [(nzPageIndex)]="current_page"
   (nzPageIndexChange)="query()"
   [(nzPageSize)]="per_page"
-  (nzPageSizeChange)="query(1)">
+  (nzPageSizeChange)="query()">
   <thead nz-thead>
     <tr>
       <th nz-th><span>ID</span></th>

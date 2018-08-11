@@ -15,24 +15,24 @@ import { EditArticleComponent }  from './editarticle/editarticle';
 import { EditArticleService }  from './editarticle/editarticle.service';
 
 @NgModule({
-    imports: [
-        FormsModule, ReactiveFormsModule,
-        CommonModule,
-        ArticleRouting,
-        NgZorroAntdModule.forRoot(),
-        UploadFileModule,
-        EditorModule,
-    ],
-    declarations: [
-        ArticleComponent,
-        ArticleListComponent,
-        AddArticleComponent,
-        EditArticleComponent,
-    ],
-    providers: [
-        ArticleListService,
-        AddArticleService,
-        EditArticleService,
-    ],
+  imports: [
+    FormsModule, ReactiveFormsModule,
+    CommonModule,
+    ArticleRouting,
+    NgZorroAntdModule.forRoot(),
+    UploadFileModule,
+    EditorModule,
+  ],
+  declarations: [
+    ArticleComponent,
+    ArticleListComponent,
+    AddArticleComponent,
+    EditArticleComponent,
+  ],
+  providers: [
+    ArticleListService,
+    AddArticleService,
+    EditArticleService,
+  ],
 })
 export class ArticleModule {}

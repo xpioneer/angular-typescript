@@ -35,46 +35,46 @@ export class UserListComponent implements OnInit {
     this.userListService.getUserList(this.value)
     .finally(() => { this._loading = false; })
     .subscribe((res: any) => {
-        this.dataSet = res.data;
-        this.current_page = res.meta.current_page;
-        this.total = res.meta.total;
+      this.dataSet = res.data;
+      this.current_page = res.meta.current_page;
+      this.total = res.meta.total;
     }, (err: any) => { });
   }
 
   public clear () {
     this.value = {
-        username: {
-            val: '',
-            exp: 'like',
-        },
-        nick_name: {
-            val: '',
-            exp: 'like',
-        },
-        remark: {
-            val: '',
-            exp: 'like',
-        },
-        created_at: {
-            val: '',
-            exp: 'between',
-        },
+      username: {
+        val: '',
+        exp: 'like',
+      },
+      nick_name: {
+        val: '',
+        exp: 'like',
+      },
+      remark: {
+        val: '',
+        exp: 'like',
+      },
+      created_at: {
+        val: '',
+        exp: 'between',
+      },
     };
   }
 
   public delUser (id: string) {
     if (id) {
-        this.deleteId = id;
-        this.isVisible = true;
+      this.deleteId = id;
+      this.isVisible = true;
     }else {
-        this.isConfirmLoading = true;
-        this.userListService.deleteUser(this.deleteId).subscribe((res: any) => {
+      this.isConfirmLoading = true;
+      this.userListService.deleteUser(this.deleteId).subscribe((res: any) => {
         this.isVisible = false;
         this.query();
         this.isConfirmLoading = false;
-        }, (err: any) => {
+      }, (err: any) => {
         this.isConfirmLoading = false;
-        });
+      });
     }
   }
 }

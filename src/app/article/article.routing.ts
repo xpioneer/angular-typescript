@@ -7,21 +7,21 @@ import { ArticleListComponent } from './articlelist/articlelist';
 import { EditArticleComponent } from './editarticle/editarticle';
 
 const routes: Routes = [
-    {
-        path: '',
-        // canActivateChild: [AuthGuard],
-        component: ArticleComponent,
-        children: [
-            { path: '', redirectTo: 'list', pathMatch: 'full' },
-            { path: 'list', component: ArticleListComponent },
-            { path: 'add', component: AddArticleComponent },
-            { path: 'edit/:id', component: EditArticleComponent },
-        ],
-    },
+  {
+    path: '',
+    // canActivateChild: [AuthGuard],
+    component: ArticleComponent,
+    children: [
+      { path: '', redirectTo: 'list', pathMatch: 'full' },
+      { path: 'list', component: ArticleListComponent },
+      { path: 'add', component: AddArticleComponent },
+      { path: 'edit/:id', component: EditArticleComponent },
+    ],
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class ArticleRouting {}

@@ -11,20 +11,20 @@ import { CommentDetailService }  from './commentdetail/commentdetail.service';
 import { CommentRouting }       from './comment.routing';
 
 @NgModule({
-    imports: [
-        FormsModule, ReactiveFormsModule,
-        CommonModule,
-        CommentRouting,
-        NgZorroAntdModule.forRoot(),
-    ],
-    declarations: [
-        CommentComponent,
-        CommentListComponent,
-        CommentDetailComponent,
-    ],
-    providers: [
-        CommentListService,
-        CommentDetailService,
-    ],
+  imports: [
+    FormsModule, ReactiveFormsModule,
+    CommonModule,
+    CommentRouting,
+    NgZorroAntdModule.forRoot(),
+  ],
+  declarations: [
+    CommentComponent,
+    CommentListComponent,
+    CommentDetailComponent,
+  ],
+  providers: [
+    CommentListService,
+    CommentDetailService,
+  ],
 })
 export class CommentModule {}

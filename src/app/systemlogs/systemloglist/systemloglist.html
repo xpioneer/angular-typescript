@@ -1,6 +1,6 @@
 
 <h4>系统日志列表</h4>
-<form nz-form class="" #form="ngForm">
+<form nz-form class="">
   <div nz-row [nzGutter]="40" class="mgb20">
     <div nz-col [nzSpan]="6">
       <input nz-input placeholder="请求ip" [(ngModel)]="value.request_ip.val" name="value.request_ip.val"/>
@@ -78,7 +78,6 @@
   [nzData]="dataSet"
   [nzFrontPagination]="false"
   [nzShowSizeChanger]="false"
-  [nzShowTotal]="true"
   [nzLoading]="_loading"
   [nzTotal]="total"
   [(nzPageIndex)]="current_page"

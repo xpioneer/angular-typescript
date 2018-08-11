@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+// import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
 import { CommentModel } from '../model/comment.model';
@@ -10,7 +10,7 @@ import { CommentListService } from './commentlist.service';
   templateUrl: './commentlist.html',
 })
 export class CommentListComponent implements OnInit {
-  @ViewChild('form') private form: NgForm;
+  // @ViewChild('form') private form: NgForm;
   private timer: number = 0;
   public current_page = 1;
   public per_page = 10;
@@ -34,25 +34,25 @@ export class CommentListComponent implements OnInit {
 
   public ngOnInit () {
     this.clear();
-    this.query(undefined);
+    this.query();
   }
 
-  public query (cur_page: number) {
-    if (cur_page) {
-      this.current_page = 1;
-    }
+  public query () {
+    // if (cur_page) {
+    //   this.current_page = 1;
+    // }
     this.value.current_page = this.current_page;
     this.value.per_page = this.per_page;
     this._loading = true;
-    clearTimeout(this.timer);
-    this.timer = setTimeout(() => {
-      this.commentListService.getCommentList(this.value)
-        .finally(() => { this._loading = false; })
-        .subscribe((res: any) => {
-            this.dataSet = res.data;
-            this.total = res.meta.total;
-        }, (e) => { });
-    });
+    // clearTimeout(this.timer);
+    // this.timer = setTimeout(() => {
+    this.commentListService.getCommentList(this.value)
+      .finally(() => { this._loading = false; })
+      .subscribe((res: any) => {
+        this.dataSet = res.data;
+        this.total = res.meta.total;
+      }, (e) => { });
+    // });
   }
 
   public clear () {
@@ -87,7 +87,7 @@ export class CommentListComponent implements OnInit {
         return new Promise((resolve) => {
           that.commentListService.deleteComment(id)
             .finally(() => { resolve(); })
-            .subscribe((res: any) => { that.query(undefined); }, (err: any) => { });
+            .subscribe((res: any) => { that.query(); }, (err: any) => { });
         });
       },
       nzOnCancel () { },
