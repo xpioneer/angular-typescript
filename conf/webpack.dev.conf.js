@@ -21,7 +21,7 @@ config.devServer = {
     colors: true
   },
   progress: true,
-  // hot: true,
+  hot: true,
   // hotOnly: true,
   proxy: {
     '/api': {
@@ -38,7 +38,7 @@ config.devServer = {
 }
 
 config.plugins = (config.plugins || []).concat([
-  // new webpack.HotModuleReplacementPlugin(),
+  new webpack.HotModuleReplacementPlugin(),
   // new webpack.NamedModulesPlugin(),
   new HtmlWebpackPlugin({
     title: 'CMS-FE DEV',

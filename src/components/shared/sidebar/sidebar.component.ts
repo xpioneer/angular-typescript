@@ -12,6 +12,7 @@ export class SidebarComponent implements OnInit {
     two: false,
     three: false,
     four: false,
+    five: false
   };
 
   private store: object;

@@ -36,7 +36,7 @@ const config = {
     chunkFilename: '[id].chunk.[chunkhash:8].js'
   },
 
-  devtool: _DEV_?'#cheap-module-source-map':false,
+  devtool: _DEV_ ? '#cheap-module-source-map' : false,
 
   resolve: {
     extensions: ['.ts', '.js'],
