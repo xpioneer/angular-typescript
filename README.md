@@ -1,8 +1,8 @@
-Angular5 for CMS
+Angular6 for CMS
 
 ### Project Technical Structure
 ***
-*  angular5
+*  angular6
 *  ng-zorro-antd
 *  angular/router
 *  angular/http
@@ -16,7 +16,7 @@ Angular5 for CMS
 project address: (`git clone`)
 
 ```
-git clone git@github.com:xpioneer/cms-fe-angular5.git
+git clone git@github.com:xpioneer/cms-fe-angular6.git
 ```
 install node_modules with `yarn`
 
