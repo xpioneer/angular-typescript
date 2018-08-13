@@ -10,7 +10,7 @@ import {
 }                           from '@angular/router';
 import { AuthService }      from './auth.service';
 
-// @Injectable()
+@Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   constructor (private authService: AuthService) {}
 

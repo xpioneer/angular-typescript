@@ -23,7 +23,7 @@
         <span>Remember me</span>
       </label>
       <!-- <a class="login-form-forgot" class="login-form-forgot">忘记密码</a> -->
-      <button nz-button class="login-form-button" nzType="primary" nzSize="large" (click)="login()" [disabled]="form.invalid">Login</button>
+      <button nz-button class="login-form-button" nzType="primary" nzSize="large" (click)="login()" [disabled]="form.invalid" [nzLoading]="loading">Login</button>
       <!-- <a href="">立即注册!</a> -->
     </nz-form-control>
   </nz-form-item>

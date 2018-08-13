@@ -41,8 +41,3 @@ export class AuthService {
     }, (err: any) => { });
   }
 }
-
-
-// export function setupAuthService(http: HttpClient) {
-//   return new AuthService(http);
-// }
