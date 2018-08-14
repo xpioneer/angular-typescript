@@ -50,6 +50,7 @@
     "autoprefixer": "^7.1.4",
     "awesome-typescript-loader": "^5.2.0",
     "clean-webpack-plugin": "^0.1.16",
+    "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",

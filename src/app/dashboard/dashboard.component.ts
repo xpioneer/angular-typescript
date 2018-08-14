@@ -98,7 +98,7 @@ export class Dashboard {
   }
 
   //
-  private changedSource (): void {
+  public changedSource (): void {
     this.dashBoardService.getSystemLogChina(this.source).subscribe((res: any) => {
       const nameMap = {};
       const sysChinaData = res.data.map((m: any) => {

@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const styleLoaderConf = require('./styleLoaderConf')
 const { AngularCompilerPlugin } = require('@ngtools/webpack')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
@@ -64,12 +65,12 @@ const config = {
       // },
       {
         test: /\.ts$/,
-        // loader: '@ngtools/webpack'
-        use: [
-          'awesome-typescript-loader',
-          'angular2-template-loader',
-          'angular-router-loader'
-        ]
+        loader: '@ngtools/webpack'
+        // use: [
+        //   'awesome-typescript-loader',
+        //   'angular2-template-loader',
+        //   'angular-router-loader'
+        // ]
       },
       {
         test: /\.html$/,
@@ -127,13 +128,6 @@ const config = {
       automaticNameDelimiter: '~',
       name: true,
       cacheGroups: {
-        // styles: {
-        //   name: 'styles',
-        //   test: /\.css$/,
-        //   minChunks: 1,
-        //   reuseExistingChunk: true,
-        //   enforce: true,
-        // },
         vendors: {
           name: 'vendor',
           test: /[\\/]node_modules[\\/]/,
@@ -151,12 +145,12 @@ const config = {
 
   // plugins
   plugins: [
-    // new AngularCompilerPlugin({
-    //   tsConfigPath: path.resolve(__dirname, '../tsconfig.json'),
-    //   entryModule: path.resolve(__dirname, '../src/app/app.module#AppModule'),
-    //   skipCodeGeneration: false,
-    //   sourceMap: _DEV_ ? true : false
-    // }),
+    new AngularCompilerPlugin({
+      tsConfigPath: path.resolve(__dirname, '../tsconfig.json'),
+      entryModule: path.resolve(__dirname, '../src/app/app.module#AppModule'),
+      skipCodeGeneration: false,
+      sourceMap: _DEV_ ? true : false
+    }),
     new MiniCssExtractPlugin({
       filename: "static/css/[name].[contenthash].css",
     }),
@@ -170,7 +164,13 @@ const config = {
         NODE_ENV: JSON.stringify(_DEV_ ? "development" : "production")
       },
       _DEV_: JSON.stringify(_DEV_),
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../static'),
+        ignore: ['.*']
+      }
+    ])
   ]
 };
 

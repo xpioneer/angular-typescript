@@ -23,18 +23,10 @@ config.devServer = {
   progress: true,
   hot: true,
   // hotOnly: true,
-  proxy: {
-    '/api': {
-      target: 'http://127.0.0.1:9901',
-      secure: false,
-      changeOrigin: true,
-    },
-    '/uploads': {
-      target: 'http://127.0.0.1:9901',
-      secure: false,
-      changeOrigin: true,
-    }
-  }
+  proxy: [{
+    context: ['/api', '/uploads'],
+    target: 'http://127.0.0.1:9901'
+  }]
 }
 
 config.plugins = (config.plugins || []).concat([

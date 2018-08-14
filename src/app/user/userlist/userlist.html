@@ -63,7 +63,7 @@
 </nz-table>
 
 
-<nz-modal [nzVisible]="isVisible" [nzTitle]="'警告'" [nzContent]="modalContent" (nzOnCancel)="isVisible=false" (nzOnOk)="delUser()" [nzOkLoading]="isConfirmLoading">
+<nz-modal [nzVisible]="isVisible" [nzTitle]="'警告'" [nzContent]="modalContent" (nzOnCancel)="isVisible=false" (nzOnOk)="delUser('')" [nzOkLoading]="isConfirmLoading">
   <ng-template #modalContent>
     <p>确认删除该条信息？</p>
   </ng-template>

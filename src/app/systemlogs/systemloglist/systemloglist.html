@@ -81,7 +81,7 @@
   [nzLoading]="_loading"
   [nzTotal]="total"
   [(nzPageIndex)]="current_page"
-  (nzPageIndexChange)="query()"
+  (nzPageIndexChange)="query(undefined)"
   [(nzPageSize)]="per_page"
   (nzPageSizeChange)="query(1)">
   <thead nz-thead>
