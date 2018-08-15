@@ -50,9 +50,9 @@ export class DateTimeRangeComponent implements ControlValueAccessor, OnInit {
   private getLineHeight () {
     if (this.xSize === 'default') {
       return '28px';
-    }else if (this.xSize === 'large') {
+    } else if (this.xSize === 'large') {
       return '32px';
-    }else {
+    } else {
       return '24px';
     }
   }

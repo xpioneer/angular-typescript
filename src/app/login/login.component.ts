@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
   public login () {
     for (const i in this.form.controls) {
       this.form.controls[ i ].markAsDirty();
-      this.form.controls[ i ].updateValueAndValidity()
+      this.form.controls[ i ].updateValueAndValidity();
     }
     if (this.form.valid) {
       // this.authService.login(this.userInfo);

@@ -61,7 +61,7 @@ import { AuthService }   from '@utils/auth/auth.service';
       font-size: 24px;
       cursor: pointer;
     }
-  `]
+  `],
 })
 export class HeaderComponent implements OnInit {
   public store: any;
@@ -70,7 +70,7 @@ export class HeaderComponent implements OnInit {
 
   constructor (private authService: AuthService, private nzI18nService: NzI18nService) {
     this.store = localStorage;
-    this.noticeOpened = JSON.parse(this.store.getItem('NOTICE_OPEN') ? this.store.getItem('NOTICE_OPEN') : 'false')
+    this.noticeOpened = JSON.parse(this.store.getItem('NOTICE_OPEN') ? this.store.getItem('NOTICE_OPEN') : 'false');
   }
 
   public ngOnInit () {
@@ -78,18 +78,18 @@ export class HeaderComponent implements OnInit {
   }
 
   public toggleLang () {
-    const lang: string = this.nzI18nService.getLocale().locale
-    console.log(lang, this.nzI18nService.getLocale())
-    if(/zh/ig.test(lang)) {
-      this.nzI18nService.setLocale(en_US)
+    const lang: string = this.nzI18nService.getLocale().locale;
+    console.log(lang, this.nzI18nService.getLocale());
+    if (/zh/ig.test(lang)) {
+      this.nzI18nService.setLocale(en_US);
     } else {
-      this.nzI18nService.setLocale(zh_CN)
+      this.nzI18nService.setLocale(zh_CN);
     }
   }
 
   public toggleNotice () {
     this.noticeOpened = !this.noticeOpened;
-    this.store.setItem('NOTICE_OPEN', this.noticeOpened)
+    this.store.setItem('NOTICE_OPEN', this.noticeOpened);
   }
 
   public logout () {

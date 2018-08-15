@@ -14,7 +14,7 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server --config conf/webpack.dev.conf.js",
-    "dll": "webpack --config conf/webpack.dll.conf.js",
+    "dev": "yarn start",
     "clean": "rm -rf dist",
     "build": "NODE_ENV=production yarn run clean && webpack --config conf/webpack.prod.conf.js",
     "test": "NODE_ENV=development yarn run dll && webpack --config conf/webpack.dev.conf.js",

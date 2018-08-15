@@ -20,7 +20,7 @@ import { AuthService }       from '../utils/auth/auth.service';
 import { HelperService }     from '../utils/httpInterceptor/helper.service';
 import { Params }            from '../utils/params.service';
 
-registerLocaleData(zh)
+registerLocaleData(zh);
 
 @NgModule({
   declarations: [

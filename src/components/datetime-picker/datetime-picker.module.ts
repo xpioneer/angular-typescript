@@ -17,7 +17,7 @@ import { DateTimeRangeComponent } from './datetime-picker.component';
     //
   ],
   schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
+    CUSTOM_ELEMENTS_SCHEMA,
   ],
   exports: [
     DateTimeRangeComponent,

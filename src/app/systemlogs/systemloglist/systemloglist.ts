@@ -49,7 +49,7 @@ export class SystemLogListComponent implements OnInit {
     // }
     // this.timer = setTimeout(() => {
     //   console.log(this.value);
-      this.systemLogListService.getSystemLogList(this.value)
+    this.systemLogListService.getSystemLogList(this.value)
       .finally(() => { this._loading = false; })
       .subscribe((res: any) => {
         this.dataSet = res.data;
