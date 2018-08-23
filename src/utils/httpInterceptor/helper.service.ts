@@ -12,7 +12,7 @@ export class HelperService {
         this.seStore = sessionStorage;
     }
 
-    public successHelper (res: HttpResponse<any>) {
+    public successHelper (res: HttpResponse<any>):void {
         switch (res.status) {
         case 201:
             const arr = res.url.split('/api');
@@ -30,7 +30,7 @@ export class HelperService {
         }
     }
 
-    public errorHelper (err: HttpErrorResponse) {
+    public errorHelper (err: HttpErrorResponse):void {
         switch (err.status) {
         case 400:
             const arr = err.url.split('/api');
