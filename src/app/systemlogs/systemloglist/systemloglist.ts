@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd';
 import { SystemLogModel } from '../model/systemlog.model';
 import { SystemLogListService } from './systemloglist.service';
@@ -27,7 +27,7 @@ export class SystemLogListComponent implements OnInit {
   public options: object[];
 
   constructor (
-    private router: Router,
+    // private router: Router,
     private modalService: NzModalService,
     private systemLogListService: SystemLogListService,
   ) { }
@@ -44,18 +44,18 @@ export class SystemLogListComponent implements OnInit {
     this.value.current_page = this.current_page;
     this.value.per_page = this.per_page;
     this._loading = true;
-    if (this.timer) {
-      clearTimeout(this.timer);
-    }
-    this.timer = setTimeout(() => {
-      console.log(this.value);
-      this.systemLogListService.getSystemLogList(this.value)
+    // if (this.timer) {
+    //   clearTimeout(this.timer);
+    // }
+    // this.timer = setTimeout(() => {
+    //   console.log(this.value);
+    this.systemLogListService.getSystemLogList(this.value)
       .finally(() => { this._loading = false; })
       .subscribe((res: any) => {
         this.dataSet = res.data;
         this.total = res.meta.total;
       }, (e) => { });
-    });
+    // });
   }
 
   public clear () {

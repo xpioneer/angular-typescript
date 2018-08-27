@@ -1,7 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const styleLoaderConf = require('./styleLoaderConf')
-const { AngularCompilerPlugin } = require('@ngtools/webpack')
+// const { AngularCompilerPlugin } = require('@ngtools/webpack')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 const _PROD_ = process.env.NODE_ENV === 'production';
@@ -22,21 +23,21 @@ const config = {
   entry: {
     // 'polyfills': path.resolve(__dirname, '../src/polyfills.ts'),
     // 'vendor': path.resolve(__dirname, '../src/vendor.ts'),
-    // // 'vendor1': 'ng-zorro-antd',
+    // 'vendor1': 'ng-zorro-antd',
     // 'app': path.resolve(__dirname, '../src/app.ts'),
 
-    'index': path.resolve(__dirname, '../src/index.ts')
+    'app': path.resolve(__dirname, '../src/index.ts')
   },
 
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
     sourceMapFilename: '[name].map',
-    filename: './[name].bundle.[hash].js',
-    chunkFilename: '[id].chunk.[chunkhash:8].js'
+    filename: 'static/js/[name].bundle.[hash].js',
+    chunkFilename: 'static/js/[name].chunk.[chunkhash:8].js'
   },
 
-  devtool: _DEV_ ? '#cheap-module-source-map' : false,
+  devtool: false, //_PROD_ ? false : '#cheap-module-source-map',
 
   resolve: {
     extensions: ['.ts', '.js'],
@@ -63,8 +64,9 @@ const config = {
       //   }
       // },
       {
-        test: /\.ts$/,
+        // test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
         // loader: '@ngtools/webpack'
+        test: /\.ts$/,
         use: [
           'awesome-typescript-loader',
           'angular2-template-loader',
@@ -81,27 +83,6 @@ const config = {
         // }
       },
       ...styleLoaderConf,
-      // {
-      //   test: /\.less$/,
-      //   // loaders: ['raw-loader', 'less-loader']
-      //   use: [MiniCssExtractPlugin.loader, 'raw-loader', 'less-loader']
-      // },
-      // {
-      //   test: /\.less$/,
-      //   // use: ExtractTextPlugin.extract({
-      //   //   fallback: "style-loader",
-      //   //   use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader", postCSSLoader ]
-      //   // })
-      //   use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader", postCSSLoader]
-      // },
-      // {
-      //   test: /\.css$/,
-      //   // use: ExtractTextPlugin.extract({
-      //   //   fallback: "style-loader",
-      //   //   use: [MiniCssExtractPlugin.loader, "css-loader", postCSSLoader]
-      //   // })
-      //   use: [MiniCssExtractPlugin.loader, "css-loader", postCSSLoader]
-      // },
       {
         test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif|mp4|webm)(\?\S*)?$/,
         loader: "url-loader",
@@ -114,12 +95,12 @@ const config = {
   },
 
   optimization: {
-    minimize: !_PROD_ ? false : true,
+    minimize: _PROD_ ? true : false,
     runtimeChunk: {
       name: "manifest"
     },
     splitChunks: {
-      chunks: "async",
+      chunks: "all",
       minSize: 30000,
       minChunks: 1,
       maxAsyncRequests: 5,
@@ -127,24 +108,47 @@ const config = {
       automaticNameDelimiter: '~',
       name: true,
       cacheGroups: {
-        // styles: {
-        //   name: 'styles',
-        //   test: /\.css$/,
-        //   minChunks: 1,
-        //   reuseExistingChunk: true,
-        //   enforce: true,
-        // },
-        vendors: {
-          name: 'vendor',
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-          chunks: "initial"
+        'polyfill': {
+          name: 'polyfills',
+          test: /[\\/]node_modules[\\/](core-js|zone\.js|rxjs)/,
+          priority: 20,
+          chunks: 'all'
         },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true
-        }
+        'angular': {
+          name: 'vendor',
+          test: /[\\/]node_modules[\\/]@angular/,
+          priority: 20,
+          chunks: 'all'
+        },
+        // 'ng-zorro-antd': {
+        //   name: 'vendor1',
+        //   test: /[\\/]node_modules[\\/]ng-zorro-antd/,
+        //   priority: 20,
+        //   chunks: 'all'
+        // },
+        'quill': {
+          name: 'quill',
+          test: /[\\/]node_modules[\\/]quill[\\/]/,
+          priority: 15,
+          chunks: 'all'
+        },
+        'echart': {
+          name: 'echarts',
+          test: /[\\/]node_modules[\\/]echarts[\\/]/,
+          priority: 15,
+          chunks: 'all'
+        },
+        'common': {
+          name: 'commons',
+          priority: 10,
+          chunks: 'all',
+          minChunks: 2
+        },
+        // default: {
+        //   minChunks: 2,
+        //   priority: -20,
+        //   reuseExistingChunk: true
+        // }
       }
     }
   },
@@ -170,7 +174,13 @@ const config = {
         NODE_ENV: JSON.stringify(_DEV_ ? "development" : "production")
       },
       _DEV_: JSON.stringify(_DEV_),
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../static'),
+        ignore: ['.*']
+      }
+    ])
   ]
 };
 

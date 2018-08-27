@@ -8,7 +8,7 @@ node_modules
 .npm
 
 .tmp
-#dist
+dist
 tests
 deploy.js
 

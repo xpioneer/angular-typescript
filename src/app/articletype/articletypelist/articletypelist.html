@@ -1,39 +1,15 @@
 
 <h4>文章类型列表</h4>
 <form nz-form>
-  <div nz-row nzGutter="40" class="mgt20">
+  <div nz-row [nzGutter]="40" class="mgb20">
     <div nz-col [nzSpan]="6">
-      <nz-form-item nzFlex>
-        <nz-form-label>类型名称</nz-form-label>
-        <nz-form-control>
-          <input nz-input placeholder="类型名称" [(ngModel)]="value.type_name.val" name="value.type_name.val"/>
-        </nz-form-control>
-      </nz-form-item>
+      <input nz-input placeholder="类型名称" [(ngModel)]="value.type_name.val" name="value.type_name.val"/>
     </div>
     <div nz-col [nzSpan]="6">
-      <nz-form-item nzFlex>
-        <nz-form-label>备注</nz-form-label>
-        <nz-form-control>
-          <input nz-input placeholder="备注" [(ngModel)]="value.remark.val" name="value.remark.val"/>
-        </nz-form-control>
-      </nz-form-item>
+      <input nz-input placeholder="备注" [(ngModel)]="value.remark.val" name="value.remark.val"/>
     </div>
-      
-      
-    <!-- <div nz-col class="gutter-row" [nzSpan]="6">
-      <span class="spanW60">类型名称：</span>
-      <input nz-input nzPlaceHolder="类型名称" [(ngModel)]="value.type_name.val" name="value.type_name.val"/>
-    </div> -->
-    <!-- <div nz-col class="gutter-row" [nzSpan]="6">
-      <span class="spanW60">备注：</span>
-      <input nz-input nzPlaceHolder="备注" [(ngModel)]="value.remark.val" name="value.remark.val"/>
-    </div> -->
-      <!-- <div nz-col class="gutter-row" [nzSpan]="6">
-          <span class="spanW60">日期：</span>
-          <nz-datepicker style="width: 50%;" (ngModelChange)="_startDate=$event;_startValueChange()" [ngModel]="_startDate" [nzShowTime]="true" [nzFormat]="'YYYY-MM-DD'" [nzPlaceHolder]="'Start date'" name="_startDate"></nz-datepicker>
-          <nz-datepicker style="width: 50%;" (ngModelChange)="_endDate=$event;_startValueChange()" [ngModel]="_endDate" [nzShowTime]="true" [nzFormat]="'YYYY-MM-DD'" [nzPlaceHolder]="'End date'" name="_endDate"></nz-datepicker>
-      </div> -->
   </div>
+
   <div nz-row>
     <div nz-col [nzSpan]="24" class="right-btns">
       <button nz-button [routerLink]="['/articletype/add']"><i class="anticon anticon-plus"></i><span>添加</span></button>
@@ -42,8 +18,6 @@
     </div>
   </div>
 </form>
-
-
 
 <nz-table #nzTable
   [nzData]="dataSet"

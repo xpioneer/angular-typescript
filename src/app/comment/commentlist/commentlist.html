@@ -1,83 +1,32 @@
-
 <h4>评论列表</h4>
 <form nz-form class="mgt20">
-  <div nz-row [nzGutter]="40">
+  <div nz-row [nzGutter]="40" class="mgb20">
     <div nz-col [nzSpan]="6">
-      <nz-form-item nzFlex>
-        <nz-form-label>请求ip</nz-form-label>
-        <nz-form-control>
-          <input nz-input placeholder="请求ip" [(ngModel)]="value.ip.val" name="value.ip.val"/>
-        </nz-form-control>
-      </nz-form-item>
+      <input nz-input placeholder="请求ip" [(ngModel)]="value.ip.val" name="value.ip.val"/>
     </div>
     <div nz-col [nzSpan]="6">
-      <nz-form-item nzFlex>
-        <nz-form-label>内容</nz-form-label>
-        <nz-form-control>
-          <input nz-input placeholder="内容" [(ngModel)]="value.content.val" name="value.content.val"/>
-        </nz-form-control>
-      </nz-form-item>
+      <input nz-input placeholder="内容" [(ngModel)]="value.content.val" name="value.content.val"/>
     </div>
     <div nz-col [nzSpan]="6">
-      <nz-form-item nzFlex>
-        <nz-form-label>客户端</nz-form-label>
-        <nz-form-control>
-          <input nz-input placeholder="客户端" [(ngModel)]="value.client.val" name="value.client.val"/>
-        </nz-form-control>
-      </nz-form-item>
+      <input nz-input placeholder="客户端" [(ngModel)]="value.client.val" name="value.client.val"/>
     </div>
     <div nz-col [nzSpan]="6">
-      <nz-form-item nzFlex>
-        <nz-form-label>创建时间</nz-form-label>
-        <nz-form-control>
-          <input nz-input placeholder="创建时间" [(ngModel)]="value.created_at.val" name="value.created_at.val"/>
-        </nz-form-control>
-      </nz-form-item>
+      <input nz-input placeholder="创建时间" [(ngModel)]="value.created_at.val" name="value.created_at.val"/>
     </div>
-
-      <!-- <div nz-col class="gutter-row" [nzSpan]="6">
-          <span class="spanW60">请求ip：</span>
-          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请求ip'" [(ngModel)]="value.ip.val" name="value.ip.val"></nz-input>
-      </div>
-      <div nz-col class="gutter-row" [nzSpan]="6">
-          <span class="spanW60">内容：</span>
-          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'内容'" [(ngModel)]="value.content.val" name="value.content.val"></nz-input>
-      </div>
-      <div nz-col class="gutter-row" [nzSpan]="6">
-          <span class="spanW60">客户端：</span>
-          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'客户端'" [(ngModel)]="value.client.val" name="value.client.val"></nz-input>
-      </div>
-      <div nz-col class="gutter-row" [nzSpan]="6">
-          <span class="spanW60">创建时间：</span>
-          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'创建时间'" [(ngModel)]="value.created_at.val" name="value.created_at.val"></nz-input>
-      </div> -->
+  </div>
+  <div nz-row [nzGutter]="40" class="mgb20">
+    <div nz-col [nzSpan]="6">
+      <input nz-input placeholder="文章标题" [(ngModel)]="value.article_title" name="value.article_title"/>
+    </div>
   </div>
 
-  <div nz-row [nzGutter]="40">
-    <div nz-col [nzSpan]="6">
-      <nz-form-item nzFlex>
-        <nz-form-label>文章标题</nz-form-label>
-        <nz-form-control>
-          <input nz-input placeholder="文章标题" [(ngModel)]="value.article_title" name="value.article_title"/>
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-
-      <!-- <div nz-col class="gutter-row" [nzSpan]="6">
-          <span class="spanW60">文章标题：</span>
-          <input nz-input nzPlaceHolder="文章标题" [(ngModel)]="value.article_title" name="value.article_title"/>
-      </div> -->
-  </div>
   <div nz-row>
-      <div nz-col [nzSpan]="24" class="right-btns">
-          <!-- <button nz-button [routerLink]="['/comment/add']"><i class="anticon anticon-plus"></i><span>添加</span></button> -->
-          <button nz-button (click)="clear()">清空</button>
-          <button nz-button nzType="primary" (click)="query(1)">查询</button>
-      </div>
+    <div nz-col [nzSpan]="24" class="right-btns">
+      <button nz-button (click)="clear()">清空</button>
+      <button nz-button nzType="primary" (click)="query()">查询</button>
+    </div>
   </div>
 </form>
-
-
 
 <nz-table #nzTable
   [nzData]="dataSet"

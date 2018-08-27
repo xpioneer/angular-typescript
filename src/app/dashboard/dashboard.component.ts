@@ -1,7 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DashBoardService } from './dashboard.service';
+import { Echarts } from '@utils/echarts';
 
-const echarts = require('echarts/lib/echarts');
+// const echarts = require('echarts/lib/echarts');
 // 引入中国地图
 require('echarts/map/js/china');
 require('echarts/lib/component/visualMap');
@@ -32,12 +33,12 @@ export class Dashboard {
 
   public ngOnInit () {
     this.initSystemChinaChart([]);
-    this.changedSource();
+    // this.changedSource();
   }
 
   // 系统日志统计
   private initSystemChinaChart (list: object[]) {
-    this.systemChinaChart = echarts.init(this.systemChina.nativeElement);
+    this.systemChinaChart = Echarts.init(this.systemChina.nativeElement);
     window.addEventListener('resize', () => {
       this.systemChinaChart.resize();
     });
@@ -98,7 +99,7 @@ export class Dashboard {
   }
 
   //
-  private changedSource (): void {
+  public changedSource (): void {
     this.dashBoardService.getSystemLogChina(this.source).subscribe((res: any) => {
       const nameMap = {};
       const sysChinaData = res.data.map((m: any) => {

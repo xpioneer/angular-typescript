@@ -66,7 +66,7 @@ export class UserListComponent implements OnInit {
     if (id) {
       this.deleteId = id;
       this.isVisible = true;
-    }else {
+    } else {
       this.isConfirmLoading = true;
       this.userListService.deleteUser(this.deleteId).subscribe((res: any) => {
         this.isVisible = false;

@@ -55,14 +55,14 @@ export class DemosComponent {
         if (this.ip.match(/^(25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.((25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.){2}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)$/)) {
             if (this.localIps.some((reg: RegExp) => reg.test(this.ip))) {
                 this.notification.info('提示', '本地局域网ip');
-            }else {
+            } else {
                 this.http.post('/test/ip/' + this.ip, {}).subscribe((res: any) => {
                     this.ipGeo = JSON.stringify(res.data, null, '    ');
                 }, (err) => {
                     console.log(err);
                 });
             }
-        }else {
+        } else {
             this.notification.warning('警告', '请输入正确格式的ip');
         }
     }
@@ -80,7 +80,7 @@ export class DemosComponent {
                     throw new Error('not json');
                 }
             }
-        }catch (e) {
+        } catch (e) {
             error = true;
             this.notification.warning('警告', '请输入正确的json格式');
         }

@@ -26,25 +26,6 @@
     </div>
   </div>
 
-  <!-- <div nz-form-item nz-row>
-    <div nz-form-label nz-col [nzSpan]="4">
-      <label nz-form-item-required>名称</label>
-    </div>
-    <div nz-form-control nz-col [nzSpan]="6" [nzValidateStatus]="name.control">
-      <nz-input required [(ngModel)]="addTag.name" #name="ngModel" [nzSize]="'large'" name="name"></nz-input>
-      <div nz-form-explain *ngIf="name.dirty&&name.invalid">必须填写!</div>
-    </div>
-  </div>
-
-  <div nz-form-item nz-row>
-    <div nz-form-label nz-col [nzSm]="4" [nzXl]="2">
-      <label>备注</label>
-    </div>
-    <div nz-col [nzSpan]="12" nz-form-control nzHasFeedback>
-      <nz-input name="remark" [(ngModel)]="addTag.remark" [nzRows]="4" [nzType]="'textarea'" [nzPlaceHolder]="'备注'" [nzSize]="'large'"></nz-input>
-    </div>
-  </div> -->
-
   <div nz-form-item nz-row>
     <div nz-form-control nz-col nzSpan="20" nzOffset="4">
       <button nz-button nzType="primary" (click)="save()" [nzLoading]="isConfirmLoading">保存</button>

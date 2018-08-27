@@ -1,27 +1,5 @@
-
 <h4>双色球列表</h4>
 <form nz-form class="">
-  <div nz-form-item nz-row [nzGutter]="40">
-      <!-- <div nz-col class="gutter-row" [nzSpan]="6">
-          <span class="spanW60">文章名称：</span>
-          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'文章名称'" [(ngModel)]="value.title.val" name="value.title.val"></nz-input>
-      </div>
-      <div nz-col class="gutter-row" [nzSpan]="6">
-          <span class="spanW60">文章摘要：</span>
-          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'文章摘要'" [(ngModel)]="value.abstract.val" name="value.abstract.val"></nz-input>
-      </div> -->
-      <!-- <div nz-col class="gutter-row" [nzSpan]="6">
-          <span class="spanW60">状态选择：</span>
-          <nz-select [nzSize]="'large'" [(ngModel)]="value.status.val" name="value.status.val">
-              <nz-option
-                  *ngFor="let option of options"
-                  [nzLabel]="option.name"
-                  [nzValue]="option.id"
-                  [nzDisabled]="option.disabled">
-              </nz-option>
-          </nz-select>
-      </div> -->
-  </div>
   <div nz-row>
     <div nz-col [nzSpan]="24" class="right-btns">
       <button nz-button (click)="add()"><i class="anticon anticon-plus"></i><span>添加</span></button>
@@ -30,8 +8,6 @@
     </div>
   </div>
 </form>
-
-
 
 <nz-table #nzTable
   [nzData]="dataSet"

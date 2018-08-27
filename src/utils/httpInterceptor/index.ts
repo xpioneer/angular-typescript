@@ -1,1 +1,1 @@
-export * from './httpInterceptor.service'
+export * from './httpInterceptor.service';

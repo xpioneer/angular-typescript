@@ -7,7 +7,7 @@
   background-size: cover;
   animation: rotate 6s linear 0s infinite normal running;
   transform-origin: center center;
-  // transition: all 0.3s;
+  /*transition: all 0.3s;*/
 
   &:hover{
     animation-play-state: paused;
@@ -32,4 +32,22 @@
   to{
     transform: rotateZ(360deg)
   }
+}
+
+.bar-right{
+  display: flex;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  align-items: center;
+  padding-right: 10px;
+}
+.bar-right .lang{
+  margin-right: 10px;
+}
+.bar-right .anticon{
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
 }

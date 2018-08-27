@@ -105,12 +105,12 @@ export class UploadFileComponent implements ControlValueAccessor {
         const reader: FileReader = new FileReader(),
           file = event.target.files[0],
           formData = new FormData();
-          
+
         formData.append('file', file);
         if (this.maxSize && file.size > this.maxSize * 1024) {
           event.target.value = '';
           this.notification.warning('警告', `图片大小超出${this.maxSize}K！`);
-        }else {
+        } else {
           this.uploading = true;
           this.http.post(this.baseUrl, formData)
             .finally(() => this.uploading = false)

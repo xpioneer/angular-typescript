@@ -51,7 +51,7 @@
 
         <nz-form-label nzSpan="3">客户端版本</nz-form-label>
         <nz-form-control nzSpan="8">
-          <input nz-input name="request_version" [ngModel]="mainModel.request_version" nzPlaceHolder="客户端版本"/>
+          <input nz-input name="client_version" [ngModel]="mainModel.client_version" nzPlaceHolder="客户端版本"/>
         </nz-form-control>
       </nz-form-item>
     </div>
@@ -115,110 +115,6 @@
       </nz-form-item>
     </div>
   </div>
-
-  <!-- <div nz-form-item nz-row >
-    <div nz-form-label nz-col [nzSpan]="3">
-      <label nz-form-item-required>请求URL</label>
-    </div>
-    <div nz-form-control nz-col [nzSpan]="19">
-      <nz-input name="request_url" [ngModel]="mainModel.request_url" [nzSize]="'large'"></nz-input>
-    </div>
-  </div>
-
-  <div nz-form-item nz-row >
-    <div nz-form-label nz-col [nzSpan]="3">
-      <label nz-form-item-required>请求ip</label>
-    </div>
-    <div nz-form-control nz-col [nzSpan]="8">
-      <nz-input name="request_ip" [ngModel]="mainModel.request_ip" [nzSize]="'large'"></nz-input>
-    </div>
-    <div nz-form-label nz-col [nzSpan]="3">
-      <label nz-form-item-required>请求方法</label>
-    </div>
-    <div nz-form-control nz-col [nzSpan]="8">
-      <nz-input [ngModel]="mainModel.request_method" maxSize="100" name="request_method"></nz-input>
-    </div>
-  </div>
-
-  <div nz-form-item nz-row >
-    <div nz-form-label nz-col [nzSpan]="3">
-      <label nz-form-item-required>请求参数</label>
-    </div>
-    <div nz-form-control nz-col [nzSpan]="19">
-      <nz-input name="request_params" [ngModel]="mainModel.request_params" [nzRows]="4" [nzType]="'textarea'"></nz-input>
-    </div>
-  </div>
-
-  <div nz-form-item nz-row >
-    <div nz-form-label nz-col [nzSpan]="3">
-      <label nz-form-item-required>客户端类型</label>
-    </div>
-    <div nz-form-control nz-col [nzSpan]="8">
-      <nz-input name="client_type" [ngModel]="mainModel.client_type" [nzSize]="'large'"></nz-input>
-    </div>
-    <div nz-form-label nz-col [nzSpan]="3">
-      <label nz-form-item-required>客户端版本</label>
-    </div>
-    <div nz-form-control nz-col [nzSpan]="8">
-      <nz-input [ngModel]="mainModel.client_version" maxSize="100" name="client_version"></nz-input>
-    </div>
-  </div>
-
-  <div nz-form-item nz-row >
-    <div nz-form-label nz-col [nzSpan]="3">
-      <label nz-form-item-required>HOST</label>
-    </div>
-    <div nz-form-control nz-col [nzSpan]="8">
-      <nz-input name="host" [ngModel]="mainModel.host" [nzSize]="'large'"></nz-input>
-    </div>
-    <div nz-form-label nz-col [nzSpan]="3">
-      <label nz-form-item-required>Hostname</label>
-    </div>
-    <div nz-form-control nz-col [nzSpan]="8">
-      <nz-input [ngModel]="mainModel.hostname" maxSize="100" name="hostname"></nz-input>
-    </div>
-  </div>
-
-  <div nz-form-item nz-row >
-    <div nz-form-label nz-col [nzSpan]="3">
-      <label nz-form-item-required>处理时间</label>
-    </div>
-    <div nz-form-control nz-col [nzSpan]="8">
-      <nz-input name="time" [ngModel]="mainModel.time" [nzSize]="'large'">
-        <ng-template #addOnAfter><i class="anticon">ms</i></ng-template>
-      </nz-input>
-    </div>
-    <div nz-form-label nz-col [nzSpan]="3">
-      <label nz-form-item-required>消息Message</label>
-    </div>
-    <div nz-form-control nz-col [nzSpan]="8">
-      <nz-input [ngModel]="mainModel.msg" maxSize="100" name="msg" [nzRows]="4" [nzType]="'textarea'"></nz-input>
-    </div>
-  </div>
-
-  <div nz-form-item nz-row >
-    <div nz-form-label nz-col [nzSpan]="3">
-      <label nz-form-item-required>请求头</label>
-    </div>
-    <div nz-form-control nz-col [nzSpan]="19">
-      <nz-input name="request_header" [ngModel]="mainModel.request_header" [nzRows]="8" [nzType]="'textarea'"></nz-input>
-    </div>
-  </div>
-
-  <div nz-form-item nz-row >
-    <div nz-form-label nz-col [nzSpan]="3">
-      <label nz-form-item-required>创建时间</label>
-    </div>
-    <div nz-form-control nz-col [nzSpan]="8">
-      <nz-input name="created_at" [ngModel]="mainModel.created_at" [nzSize]="'large'"></nz-input>
-    </div>
-    <div nz-form-label nz-col [nzSpan]="3">
-      <label nz-form-item-required>创建者</label>
-    </div>
-    <div nz-form-control nz-col [nzSpan]="8">
-      <nz-input [ngModel]="mainModel.creator?mainModel.creator.nick_name:'未知者'" maxSize="100" name="nick_name" nzSize="large"></nz-input>
-    </div>
-  </div> -->
 
   <div nz-form-item nz-row>
     <div nz-form-control nz-col [nzSpan]="20" [nzOffset]="3">
