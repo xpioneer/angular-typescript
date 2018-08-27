@@ -1,44 +1,15 @@
 
 <h4>文章列表</h4>
 <form nz-form class="">
-  <div nz-row [nzGutter]="40">
+  <div nz-row [nzGutter]="40" class="mgb20">
     <div nz-col [nzSpan]="6">
-      <nz-form-item nzFlex>
-        <nz-form-label>文章名称</nz-form-label>
-        <nz-form-control>
-          <input nz-input placeholder="文章名称" [(ngModel)]="value.title.val" name="value.title.val"/>
-        </nz-form-control>
-      </nz-form-item>
+      <input nz-input placeholder="文章名称" [(ngModel)]="value.title.val" name="value.title.val"/>
     </div>
     <div nz-col [nzSpan]="6">
-      <nz-form-item nzFlex>
-        <nz-form-label>文章摘要</nz-form-label>
-        <nz-form-control>
-          <input nz-input placeholder="文章摘要" [(ngModel)]="value.abstract.val" name="value.abstract.val"/>
-        </nz-form-control>
-      </nz-form-item>
+      <input nz-input placeholder="文章摘要" [(ngModel)]="value.abstract.val" name="value.abstract.val"/>
     </div>
-
-      <!-- <div nz-col class="gutter-row" [nzSpan]="6">
-          <span class="spanW60">文章名称：</span>
-          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'文章名称'" [(ngModel)]="value.title.val" name="value.title.val"></nz-input>
-      </div>
-      <div nz-col class="gutter-row" [nzSpan]="6">
-          <span class="spanW60">文章摘要：</span>
-          <nz-input [nzSize]="'large'" [nzPlaceHolder]="'文章摘要'" [(ngModel)]="value.abstract.val" name="value.abstract.val"></nz-input>
-      </div> -->
-      <!-- <div nz-col class="gutter-row" [nzSpan]="6">
-          <span class="spanW60">状态选择：</span>
-          <nz-select [nzSize]="'large'" [(ngModel)]="value.status.val" name="value.status.val">
-              <nz-option
-                  *ngFor="let option of options"
-                  [nzLabel]="option.name"
-                  [nzValue]="option.id"
-                  [nzDisabled]="option.disabled">
-              </nz-option>
-          </nz-select>
-      </div> -->
   </div>
+
   <div nz-row>
       <div nz-col [nzSpan]="24" class="right-btns">
           <button nz-button [routerLink]="['/article/add']"><i class="anticon anticon-plus"></i><span>添加</span></button>

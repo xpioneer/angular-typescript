@@ -16,13 +16,14 @@ config.devServer = {
     poll: 1000
   },
   contentBase: path.join(__dirname, '../dist'),
+  publicPath: '/',
   inline: true,
   stats: {
     colors: true
   },
   progress: true,
   hot: true,
-  // hotOnly: true,
+  hotOnly: true,
   proxy: [{
     context: ['/api', '/uploads'],
     target: 'http://127.0.0.1:9901'

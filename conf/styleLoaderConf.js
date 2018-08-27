@@ -2,7 +2,6 @@ const path = require('path')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 const _PROD_ = process.env.NODE_ENV === 'production'
-const _DEV_ = process.env.NODE_ENV === 'development'
 
 const postcssLoader = {
   loader: 'postcss-loader',
@@ -28,9 +27,8 @@ const styleRules = [
     test: /\.less$/,
     use: [
       'style-loader',
-      // MiniCssExtractPlugin.loader,
       'css-loader',
-      // postcssLoader,
+      postcssLoader,
       'less-loader'
     ]
   },
@@ -38,9 +36,8 @@ const styleRules = [
     test: /\.css$/,
     use: [
       'style-loader',
-      // MiniCssExtractPlugin.loader,
       'css-loader',
-      // postcssLoader
+      postcssLoader
     ]
   },
 ]

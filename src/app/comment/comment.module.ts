@@ -1,7 +1,6 @@
 import { CommonModule }  from '@angular/common';
 import { NgModule }      from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { CommentComponent }  from './comment.component';
 import { CommentListComponent }  from './commentlist/commentlist';
@@ -12,7 +11,8 @@ import { CommentRouting }       from './comment.routing';
 
 @NgModule({
   imports: [
-    FormsModule, ReactiveFormsModule,
+    FormsModule,
+    // ReactiveFormsModule,
     CommonModule,
     CommentRouting,
     NgZorroAntdModule.forRoot(),

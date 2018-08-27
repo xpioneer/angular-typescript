@@ -12,22 +12,22 @@ import { TagListComponent } from './taglist/taglist';
 import { TagListService } from './taglist/taglist.service';
 
 @NgModule({
-    imports: [
-        FormsModule, ReactiveFormsModule,
-        CommonModule,
-        TagRouting,
-        NgZorroAntdModule.forRoot(),
-    ],
-    declarations: [
-        TagComponent,
-        TagListComponent,
-        AddTagComponent,
-        EditTagComponent,
-    ],
-    providers: [
-        TagListService,
-        AddTagService,
-        EditTagService,
-    ],
+  imports: [
+    FormsModule,
+    CommonModule,
+    TagRouting,
+    NgZorroAntdModule.forRoot(),
+  ],
+  declarations: [
+    TagComponent,
+    TagListComponent,
+    AddTagComponent,
+    EditTagComponent,
+  ],
+  providers: [
+    TagListService,
+    AddTagService,
+    EditTagService,
+  ],
 })
 export class TagModule {}

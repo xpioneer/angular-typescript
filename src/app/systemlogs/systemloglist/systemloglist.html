@@ -33,36 +33,7 @@
       </nz-select>
     </div>
   </div>
-
-    <!-- <div nz-form-item nz-row [nzGutter]="20">
-        <div nz-col class="gutter-row" [nzSpan]="6">
-            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请求ip'" [(ngModel)]="value.request_ip.val" name="value.request_ip.val"></nz-input>
-        </div>
-        <div nz-col class="gutter-row" [nzSpan]="6">
-            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'请求类型'" [(ngModel)]="value.request_method.val" name="value.request_method.val"></nz-input>
-        </div>
-        <div nz-col class="gutter-row" [nzSpan]="6">
-            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'客户端'" [(ngModel)]="value.client_version.val" name="value.client_version.val"></nz-input>
-        </div>
-        <div nz-col class="gutter-row" [nzSpan]="6">
-            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'状态(如:400,500)'" [(ngModel)]="value.status.val" name="value.status.val"></nz-input>
-        </div>
-    </div>
-    <div nz-form-item nz-row [nzGutter]="20">
-        <div nz-col class="gutter-row" [nzSpan]="6">
-            <nz-input [nzSize]="'large'" [nzPlaceHolder]="'处理时间(如:100,200)'" [(ngModel)]="value.time.val" name="value.time.val"></nz-input>
-        </div>
-        <div nz-col class="gutter-row" [nzSpan]="6">
-            <app-datetime-range name="created_at" xSize="large" xFormat="YYYY-MM-DD HH:mm:ss" [(ngModel)]="value.created_at.val"></app-datetime-range>
-        </div>
-        <div nz-col class="gutter-row" [nzSpan]="6">
-            <nz-select name="source" nzPlaceHolder="请求来源" [(ngModel)]="value.source.val" [nzSize]="'large'">
-                <nz-option nzLabel="请选择请求来源" [nzValue]="''"> </nz-option>
-                <nz-option nzLabel="v2" [nzValue]="'v2'"> </nz-option>
-                <nz-option nzLabel="cms" [nzValue]="'cms'"> </nz-option>
-            </nz-select>
-        </div>
-    </div> -->
+  
   <div nz-row>
     <div nz-col [nzSpan]="24" class="right-btns">
       <button nz-button (click)="sync()" [nzLoading]="_loading">同步地址</button>

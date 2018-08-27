@@ -32,8 +32,10 @@ registerLocaleData(zh);
     BreadCrumbComponent,
   ],
   imports: [
-    BrowserModule, BrowserAnimationsModule,
-    FormsModule, ReactiveFormsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     // RouterModule,
     AppRouting,

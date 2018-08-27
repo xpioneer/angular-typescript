@@ -12,22 +12,22 @@ import { UserListComponent } from './userlist/userlist';
 import { UserListService } from './userlist/userlist.service';
 
 @NgModule({
-    imports: [
-        FormsModule, ReactiveFormsModule,
-        CommonModule,
-        UserRouting,
-        NgZorroAntdModule.forRoot(),
-    ],
-    declarations: [
-        UserComponent,
-        UserListComponent,
-        AddUserComponent,
-        EditUserComponent,
-    ],
-    providers: [
-        UserListService,
-        AddUserService,
-        EditUserService,
-    ],
+  imports: [
+    FormsModule,
+    CommonModule,
+    UserRouting,
+    NgZorroAntdModule.forRoot(),
+  ],
+  declarations: [
+    UserComponent,
+    UserListComponent,
+    AddUserComponent,
+    EditUserComponent,
+  ],
+  providers: [
+    UserListService,
+    AddUserService,
+    EditUserService,
+  ],
 })
 export class UserModule {}

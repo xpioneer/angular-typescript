@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+// import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { NzNotificationService } from 'ng-zorro-antd';
 import * as Moment from 'moment';
 import { ChartService } from './chart.service';
 import { ISystemLog, IArticleType, IArticleTag } from './model/chart.model';
+import { Echarts } from '@utils/echarts';
 
-const echarts = require('echarts/lib/echarts');
 // 引入柱状图
 require('echarts/lib/chart/bar');
 require('echarts/lib/chart/line');
@@ -83,7 +83,7 @@ export class ChartComponent {
 
   // 系统日志统计
   private initSystemLogChart (list: object[]) {
-      const sysLogChart = echarts.init(this.systemLog.nativeElement);
+      const sysLogChart = Echarts.init(this.systemLog.nativeElement);
       const xAxis = list.map((m: ISystemLog) => m.date);
       const data = list.map((m: ISystemLog) => m.total);
       window.addEventListener('resize', () => {
@@ -109,7 +109,7 @@ export class ChartComponent {
 
   // 系统日志分时统计
   private initSystemLogDateChart (dataS: object) {
-    const sysLogDateChart = echarts.init(this.systemLogDate.nativeElement);
+    const sysLogDateChart = Echarts.init(this.systemLogDate.nativeElement);
     const keys = Object.keys(dataS);
     const xAxis = keys.filter((k: string) => k.match(/^\d{1,2}时$/));
     const data = xAxis.map((k: string) => dataS[k]);
@@ -171,7 +171,7 @@ export class ChartComponent {
 
   // 文章类型统计
   private initArticleTypeChart (list: object[]) {
-    const articleTypeChart = echarts.init(this.articleType.nativeElement);
+    const articleTypeChart = Echarts.init(this.articleType.nativeElement);
     const xAxis = list.map((m: IArticleType) => m.type_name);
     const data = list.map((m: IArticleType) => ({value: m.total, name: m.type_name}));
     window.addEventListener('resize', () => {
@@ -204,7 +204,7 @@ export class ChartComponent {
 
   // 文章标签统计
   private initArticleTagChart (list: object[]) {
-    const articleTagChart = echarts.init(this.tag.nativeElement);
+    const articleTagChart = Echarts.init(this.tag.nativeElement);
     const xAxis = list.map((m: IArticleTag) => m.name);
     const data = list.map((m: IArticleTag) => ({value: m.total, name: m.name}));
     window.addEventListener('resize', () => {
@@ -245,29 +245,6 @@ export class ChartComponent {
       ],
     });
   }
-
-  // 官方例子
-  // private testData () {
-  //     const myChart = echarts.init(this.testChart.nativeElement);
-  //     window.addEventListener('resize', () => {
-  //         myChart.resize();
-  //     });
-  //     myChart.setOption({
-  //         title: {
-  //             text: '示例',
-  //         },
-  //         tooltip: {},
-  //         xAxis: {
-  //             data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
-  //         },
-  //         yAxis: {},
-  //         series: [{
-  //             name: '销量',
-  //             type: 'bar',
-  //             data: [5, 20, 36, 10, 10, 20],
-  //         }],
-  //     });
-  // }
 
   public disabledDate (current: any) {
     return current && current.getTime() > Date.now();

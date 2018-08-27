@@ -62,6 +62,8 @@ export class HomeComponent implements OnDestroy {
   }
 
   private reOpen () {
+    const opened = JSON.parse(localStorage.getItem('NOTICE_OPEN') ? localStorage.getItem('NOTICE_OPEN') : 'false');
+    if (!opened) return;
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       if (this.counter < 10) {

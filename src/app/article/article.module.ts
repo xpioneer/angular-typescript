@@ -1,7 +1,6 @@
 import { CommonModule }  from '@angular/common';
 import { NgModule }      from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { EditorModule } from '@components/editor/editor.module';
 import { UploadFileModule } from '@components/upload-file/upload-file.module';
@@ -16,7 +15,8 @@ import { EditArticleService }  from './editarticle/editarticle.service';
 
 @NgModule({
   imports: [
-    FormsModule, ReactiveFormsModule,
+    FormsModule,
+    // ReactiveFormsModule,
     CommonModule,
     ArticleRouting,
     NgZorroAntdModule.forRoot(),
