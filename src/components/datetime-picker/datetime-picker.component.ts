@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { forwardRef, Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NzDatePickerComponent } from 'ng-zorro-antd';
 import * as Moment from 'moment';
 
 @Component({
@@ -31,7 +29,7 @@ export class DateTimeRangeComponent implements ControlValueAccessor, OnInit {
   public onChange: any = Function.prototype;
   public onTouched: any = Function.prototype;
 
-  constructor (private http: HttpClient) {}
+  constructor () {}
 
   public ngOnInit () {
     console.log(this.xFormat, this.xSize);
