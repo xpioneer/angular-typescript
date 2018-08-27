@@ -33,7 +33,7 @@ export class Dashboard {
 
   public ngOnInit () {
     this.initSystemChinaChart([]);
-    // this.changedSource();
+    this.changedSource();
   }
 
   // 系统日志统计
