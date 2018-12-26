@@ -39,7 +39,6 @@ export class HomeComponent implements OnDestroy {
     this.ws.onmessage = (mEvent: MessageEvent) => {
       const data: any = JSON.parse(this.ab2str(mEvent.data));
       const opened = JSON.parse(localStorage.getItem('NOTICE_OPEN') ? localStorage.getItem('NOTICE_OPEN') : 'false');
-      console.log(data);
       if (data && data.data && opened) {
         this.wsInfo = data.data;
         this.notification.blank('<strong>访问信息</strong>',
@@ -62,18 +61,18 @@ export class HomeComponent implements OnDestroy {
   }
 
   private reOpen () {
-    const opened = JSON.parse(localStorage.getItem('NOTICE_OPEN') ? localStorage.getItem('NOTICE_OPEN') : 'false');
+    const NOTICE_OPEN = localStorage.getItem('NOTICE_OPEN');
+    const opened = JSON.parse(NOTICE_OPEN ? NOTICE_OPEN : 'false');
     if (!opened) return;
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       if (this.counter < 10) {
         if (this.ws.CLOSED === this.ws.readyState) {
           this.counter++;
-          console.log('reopen');
           this.openWS();
         }
       } else {
-        this.notification.error('错误', '请刷新网页重新连接通知!', {nzDuration: 0});
+        this.notification.error('WebScoket连接失败', '请刷新网页重新连接通知!', {nzDuration: 0});
       }
     }, 6000);
 

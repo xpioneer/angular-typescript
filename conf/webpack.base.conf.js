@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const styleLoaderConf = require('./styleLoaderConf')
-// const { AngularCompilerPlugin } = require('@ngtools/webpack')
+const { AngularCompilerPlugin } = require('@ngtools/webpack')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 const _PROD_ = process.env.NODE_ENV === 'production';
@@ -64,15 +64,18 @@ const config = {
       //   }
       // },
       {
-        // test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-        // loader: '@ngtools/webpack'
-        test: /\.ts$/,
-        use: [
-          'awesome-typescript-loader',
-          'angular2-template-loader',
-          'angular-router-loader'
-        ]
+        test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
+        loader: '@ngtools/webpack'
+        // test: /\.ts$/,
+        // use: [
+        //   'awesome-typescript-loader',
+        //   'angular2-template-loader'
+        // ]
       },
+      // {
+      //   test: /\.(t|j)s$/,
+      //   loader: 'angular-router-loader'
+      // },
       {
         test: /\.html$/,
         loader: 'raw-loader',
@@ -155,20 +158,16 @@ const config = {
 
   // plugins
   plugins: [
-    // new AngularCompilerPlugin({
-    //   tsConfigPath: path.resolve(__dirname, '../tsconfig.json'),
-    //   entryModule: path.resolve(__dirname, '../src/app/app.module#AppModule'),
-    //   skipCodeGeneration: false,
-    //   sourceMap: _DEV_ ? true : false
-    // }),
+    new AngularCompilerPlugin({
+      tsConfigPath: path.resolve(__dirname, '../tsconfig.json'),
+      entryModule: path.resolve(__dirname, '../src/app/app.module#AppModule'),
+      skipCodeGeneration: true,
+      sourceMap: _DEV_ ? true : false
+    }),
     new MiniCssExtractPlugin({
       filename: "static/css/[name].[contenthash].css",
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    // new webpack.ContextReplacementPlugin(
-    //     /angular(\\|\/)core(\\|\/)@angular/,
-    //     path.resolve(__dirname, '../src')
-    // ),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify(_DEV_ ? "development" : "production")
