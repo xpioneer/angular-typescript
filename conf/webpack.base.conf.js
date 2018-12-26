@@ -8,24 +8,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const _PROD_ = process.env.NODE_ENV === 'production';
 const _DEV_ = process.env.NODE_ENV === 'development';
 
-const postCSSLoader = {
-  loader: "postcss-loader",
-  options: {
-    plugins: () => [
-      require("autoprefixer")({
-        browsers: ["Android 4.1", "iOS 7.1", "Chrome > 31", "ff > 31", "ie >= 8"]
-      })
-    ]
-  }
-};
 
 const config = {
   entry: {
-    // 'polyfills': path.resolve(__dirname, '../src/polyfills.ts'),
-    // 'vendor': path.resolve(__dirname, '../src/vendor.ts'),
-    // 'vendor1': 'ng-zorro-antd',
-    // 'app': path.resolve(__dirname, '../src/app.ts'),
-
     'app': path.resolve(__dirname, '../src/index.ts')
   },
 
