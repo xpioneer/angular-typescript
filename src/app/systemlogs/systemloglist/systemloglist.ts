@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd';
 import { SystemLogModel } from '../model/systemlog.model';
 import { SystemLogListService } from './systemloglist.service';
+import * as Moment from 'moment'
 
 @Component({
   selector: 'app-systemlog-list',
@@ -41,21 +42,22 @@ export class SystemLogListComponent implements OnInit {
     if (cur_page) {
       this.current_page = 1;
     }
+    if(this.value.created_at.val.length) {
+      this.value.created_at.val = this.value.created_at.val.map((d: Date, i: number) => {
+        return i > 0 ? d['format']('YYYY/MM/DD 23:59:59:999') : d['format']('YYYY/MM/DD 00:00:00:000')
+      })
+
+      console.log(this.value.created_at, 'this.value')
+    }
     this.value.current_page = this.current_page;
     this.value.per_page = this.per_page;
     this._loading = true;
-    // if (this.timer) {
-    //   clearTimeout(this.timer);
-    // }
-    // this.timer = setTimeout(() => {
-    //   console.log(this.value);
     this.systemLogListService.getSystemLogList(this.value)
       .finally(() => { this._loading = false; })
       .subscribe((res: any) => {
         this.dataSet = res.data;
         this.total = res.meta.total;
       }, (e) => { });
-    // });
   }
 
   public clear () {

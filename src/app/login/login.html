@@ -3,16 +3,18 @@
   <h1>CMS</h1>
   <nz-form-item>
     <nz-form-control [nzValidateStatus]="Name.control">
-      <nz-input-group nzPrefixIcon="anticon anticon-user">
+      <nz-input-group [nzPrefix]="prefixUser">
         <input type="text" nz-input required [(ngModel)]="userInfo.username" #Name="ngModel" placeholder="Username" name="username"/>
+        <ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
       </nz-input-group>
       <nz-form-explain *ngIf="Name.dirty&&Name.invalid">Please enter your username!</nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
     <nz-form-control [nzValidateStatus]="Pwd.control">
-      <nz-input-group nzPrefixIcon="anticon anticon-lock">
+      <nz-input-group [nzPrefix]="prefixLock">
         <input type="password" nz-input required [(ngModel)]="userInfo.password" #Pwd="ngModel" placeholder="Password" name="password"/>
+        <ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
       </nz-input-group>
       <nz-form-explain *ngIf="Pwd.dirty&&Pwd.invalid">Please enter the password!</nz-form-explain>
     </nz-form-control>

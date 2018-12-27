@@ -20,7 +20,8 @@
       <input nz-input placeholder="处理时间(如:100,200)" [(ngModel)]="value.time.val" name="value.time.val"/>
     </div>
     <div nz-col [nzSpan]="6">
-      <app-datetime-range name="created_at" xSize="large" xFormat="YYYY-MM-DD HH:mm:ss" [(ngModel)]="value.created_at.val"></app-datetime-range>
+      <!-- <app-datetime-range name="created_at" xSize="large" xFormat="YYYY-MM-DD HH:mm:ss" [(ngModel)]="value.created_at.val"></app-datetime-range> -->
+      <nz-range-picker name="created_at" nzFormat="YYYY-MM-DD" [(ngModel)]="value.created_at.val"></nz-range-picker>
     </div>
     <div nz-col [nzSpan]="6">
       <input nz-input placeholder="客户端" [(ngModel)]="value.client_version.val" name="value.client_version.val"/>
