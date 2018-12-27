@@ -1,13 +1,13 @@
-# Angular6 for CMS
+# Angular7 for CMS
 
 ### Project Technical Structure
 ***
-*  angular6
+*  angular7
 *  ng-zorro-antd
 *  angular/router
 *  angular/http
 *  rxjs
-*  webpack
+*  webpack4
 *  less
 
 ### Install
@@ -16,7 +16,7 @@
 project address: (`git clone`)
 
 ```
-git clone git@github.com:xpioneer/cms-fe-angular6.git
+git clone git@github.com:xpioneer/cms-fe-angular7.git
 ```
 install node_modules with `yarn`
 
