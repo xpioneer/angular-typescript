@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { en_US, zh_CN, NzI18nService } from 'ng-zorro-antd';
 import { AuthService }   from '@utils/auth/auth.service';
 
@@ -11,14 +10,11 @@ import { AuthService }   from '@utils/auth/auth.service';
     header{position: relative}
     .logo{
       display: inline-block;
-      margin: 15px;
-      width:34px;
-      height:34px;
-      // background: url('/assets/images/logo.svg') no-repeat center center;
-      // background-size: cover;
+      margin: 10px;
+      width:44px;
+      height:44px;
       animation: rotate 6s linear 0s infinite normal running;
       transform-origin: center center;
-      // transition: all 0.3s;
     }
     .logo:hover{
       animation-play-state: paused;
