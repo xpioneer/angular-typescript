@@ -6,43 +6,43 @@ import { ArticleTypeModel } from '../model/articletype.model';
 import { AddArticleTypeService } from './addarticletype.service';
 
 @Component({
-    selector: 'app-add-articletype',
-    templateUrl: './addarticletype.html',
-    styles: [],
+  selector: 'app-add-articletype',
+  templateUrl: './addarticletype.html',
+  // styles: [],
 })
 export class AddArticleTypeComponent implements OnInit {
-    public isConfirmLoading = false;
-    public addArticleType: ArticleTypeModel = new ArticleTypeModel();
-    @ViewChild('form') private form: NgForm;
+  public isConfirmLoading = false;
+  public addArticleType: ArticleTypeModel = new ArticleTypeModel();
+  @ViewChild('form') private form: NgForm;
 
-    constructor (
-        private router: Router,
-        private addArticleTypeService: AddArticleTypeService,
-        private notification: NzNotificationService,
-    ) { }
+  constructor (
+    private router: Router,
+    private addArticleTypeService: AddArticleTypeService,
+    private notification: NzNotificationService,
+  ) { }
 
-    public ngOnInit () {
-        //
+  public ngOnInit () {
+    //
+  }
+
+  public save () {
+    for (const i in this.form.controls) {
+      this.form.controls[ i ].markAsDirty();
     }
-
-    public save () {
-        for (const i in this.form.controls) {
-            this.form.controls[ i ].markAsDirty();
-        }
-        if (this.form.valid) {
-            this.isConfirmLoading = true;
-            this.addArticleTypeService.addArticleType(this.addArticleType).subscribe((res: any) => {
-                this.isConfirmLoading = false;
-                this.notification.success('成功', res.msg);
-                this.router.navigate(['/articletype']);
-            }, (err: any) => {
-                this.isConfirmLoading = false;
-            });
-        }
+    if (this.form.valid) {
+      this.isConfirmLoading = true;
+      this.addArticleTypeService.addArticleType(this.addArticleType).subscribe((res: any) => {
+        this.isConfirmLoading = false;
+        this.notification.success('成功', res.msg);
+        this.router.navigate(['/articletype']);
+      }, (err: any) => {
+        this.isConfirmLoading = false;
+      });
     }
+  }
 
-    public back () {
-        this.router.navigate(['./article']);
-    }
+  public back () {
+    this.router.navigate(['./articletype']);
+  }
 
 }

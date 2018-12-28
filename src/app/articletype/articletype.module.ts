@@ -1,7 +1,6 @@
 import { CommonModule }  from '@angular/common';
 import { NgModule }      from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { AddArticleTypeComponent }  from './addarticletype/addarticletype';
 import { AddArticleTypeService }  from './addarticletype/addarticletype.service';
@@ -13,22 +12,23 @@ import { EditArticleTypeComponent }  from './editarticletype/editarticletype';
 import { EditArticleTypeService }  from './editarticletype/editarticletype.service';
 
 @NgModule({
-    imports: [
-        FormsModule, ReactiveFormsModule,
-        CommonModule,
-        ArticleTypeRouting,
-        NgZorroAntdModule.forRoot(),
-    ],
-    declarations: [
-        ArticleTypeComponent,
-        ArticleTypeListComponent,
-        AddArticleTypeComponent,
-        EditArticleTypeComponent,
-    ],
-    providers: [
-        ArticleTypeListService,
-        AddArticleTypeService,
-        EditArticleTypeService,
-    ],
+  imports: [
+    FormsModule,
+    // ReactiveFormsModule,
+    CommonModule,
+    ArticleTypeRouting,
+    NgZorroAntdModule.forRoot(),
+  ],
+  declarations: [
+    ArticleTypeComponent,
+    ArticleTypeListComponent,
+    AddArticleTypeComponent,
+    EditArticleTypeComponent,
+  ],
+  providers: [
+    ArticleTypeListService,
+    AddArticleTypeService,
+    EditArticleTypeService,
+  ],
 })
 export class ArticleTypeModule {}

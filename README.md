@@ -1,38 +1,38 @@
-Angular4 for CMS
+# Angular7 for CMS
 
-### 项目技术架构
+### Project Technical Structure
 ***
-*  angular4
+*  angular7
 *  ng-zorro-antd
 *  angular/router
 *  angular/http
 *  rxjs
-*  webpack
+*  webpack4
 *  less
 
-### 安装
+### Install
 
 ***
-项目地址: (`git clone`)
+project address: (`git clone`)
 
 ```
-git clone git@github.com:xpioneer/CMS-FE-Angular4.git
+git clone git@github.com:xpioneer/cms-fe-angular7.git
 ```
-通过`yarn`安装本地服务第三方依赖模块
+install node_modules with `yarn`
 
 ```
-yarn
+yarn #in your command terminal
 ```
 ***
-### 运行
+### Run
 
-启动服务: (http://localhost:9100)
+start server: (http://localhost:9100)
 
 ```
 yarn run start
 ```
 
-发布代码
+publish production
 
 ```
 yarn run build

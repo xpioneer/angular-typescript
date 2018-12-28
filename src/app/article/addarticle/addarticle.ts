@@ -8,7 +8,7 @@ import { AddArticleService } from './addarticle.service';
 @Component({
     selector: 'app-add-article',
     templateUrl: './addarticle.html',
-    styles: [``],
+    // styles: [``],
 })
 export class AddArticleComponent implements OnInit {
     public isConfirmLoading = false;

@@ -33,7 +33,7 @@ export class PreViewDirective {
         if (!this.divEle) {
             this.divEle = document.createElement('div');
             this.divEle.className = 'pre-view-content';
-        }else {
+        } else {
             this.divEle.className = 'pre-view-content';
         }
         if (!this.btnEle) {

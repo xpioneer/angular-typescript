@@ -13,7 +13,7 @@
     "no-console": false,
     "member-ordering": false,
     "max-classes-per-file": [false, 1],
-    "indent": [true, "spaces", 4],
+    "indent": [true, "spaces", 2],
     "curly": false,
     "space-before-function-paren": [true, "always"],
     "one-variable-per-declaration": false,

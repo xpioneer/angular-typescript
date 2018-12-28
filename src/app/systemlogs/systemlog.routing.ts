@@ -6,20 +6,20 @@ import { SystemLogListComponent } from './systemloglist/systemloglist';
 import { SystemLogDetailComponent } from './systemlogdetail/systemlogdetail';
 
 const routes: Routes = [
-    {
-        path: '',
-        canActivateChild: [AuthGuard],
-        component: SystemLogComponent,
-        children: [
-            { path: '', redirectTo: 'list', pathMatch: 'full' },
-            { path: 'list', component: SystemLogListComponent },
-            { path: 'detail/:id', component: SystemLogDetailComponent },
-        ],
-    },
+  {
+    path: '',
+    canActivateChild: [AuthGuard],
+    component: SystemLogComponent,
+    children: [
+      { path: '', redirectTo: 'list', pathMatch: 'full' },
+      { path: 'list', component: SystemLogListComponent },
+      { path: 'detail/:id', component: SystemLogDetailComponent },
+    ],
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class SystemLogRouting {}

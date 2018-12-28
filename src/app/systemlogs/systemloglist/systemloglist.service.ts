@@ -15,7 +15,11 @@ export class SystemLogListService {
   }
 
   public deleteSystemLog (id: string) {
-        return this.http.delete('/systemlog/' + id);
+    return this.http.delete('/systemlog/' + id);
+  }
+
+  public syncGeoInfo () {
+    return this.http.post('/system/geoinfo', {});
   }
 
 }

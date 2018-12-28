@@ -8,7 +8,7 @@ import { SystemLogDetailService } from './systemlogdetail.service';
 @Component({
     selector: 'app-systemlog-detail',
     templateUrl: './systemlogdetail.html',
-    styles: [``],
+    // styles: [``],
 })
 export class SystemLogDetailComponent implements OnInit {
 

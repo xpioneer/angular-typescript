@@ -7,21 +7,21 @@ import { TagComponent } from './tag.component';
 import { TagListComponent } from './taglist/taglist';
 
 const routes: Routes = [
-    {
-        path: '',
-        canActivateChild: [AuthGuard],
-        component: TagComponent,
-        children: [
-            { path: '', redirectTo: 'list', pathMatch: 'full' },
-            { path: 'list', component: TagListComponent },
-            { path: 'add', component: AddTagComponent },
-            { path: 'edit/:id', component: EditTagComponent },
-        ],
-    },
+  {
+    path: '',
+    canActivateChild: [AuthGuard],
+    component: TagComponent,
+    children: [
+      { path: '', redirectTo: 'list', pathMatch: 'full' },
+      { path: 'list', component: TagListComponent },
+      { path: 'add', component: AddTagComponent },
+      { path: 'edit/:id', component: EditTagComponent },
+    ],
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class TagRouting {}
