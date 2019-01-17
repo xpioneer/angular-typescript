@@ -4,8 +4,7 @@ const path = require('path'),
   UglifyJsPlugin = require("uglifyjs-webpack-plugin"),
   HtmlWebpackPlugin = require("html-webpack-plugin"),
   CleanWebpackPlugin = require('clean-webpack-plugin'),
-  OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
-  ManifestPlugin = require('webpack-manifest-plugin'),
+  OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin"),
   SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 const _PROD_ = process.env.NODE_ENV === 'production'
@@ -40,24 +39,24 @@ config.plugins = (config.plugins || []).concat([
       filename: 'index.html',
       template: 'src/template/index_base.html',
   }),
-    new SWPrecacheWebpackPlugin({
-      cacheId: 'ngadmin-sw',
-      dontCacheBustUrlsMatching: /\.\w{8}\./,
-      filename: 'serviceWorker.js',
-      logger(message) {
-        console.log(message);
-        if (message.indexOf('Total precache size is') === 0) {
-          return;
-        }
-        if (message.indexOf('Skipping static resource') === 0) {
-          return;
-        }
-      },
-      minify: true,
-      navigateFallback: '/index.html',
-      navigateFallbackWhitelist: [/^(?!\/__).*/],
-      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
-    }),
+  new SWPrecacheWebpackPlugin({
+    cacheId: 'ngadmin-sw',
+    dontCacheBustUrlsMatching: /\.\w{8}\./,
+    filename: 'serviceWorker.js',
+    logger(message) {
+      console.log(message);
+      if (message.indexOf('Total precache size is') === 0) {
+        return;
+      }
+      if (message.indexOf('Skipping static resource') === 0) {
+        return;
+      }
+    },
+    minify: true,
+    navigateFallback: '/index.html',
+    navigateFallbackWhitelist: [/^(?!\/__).*/],
+    staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+  })
 ]);
 
 module.exports = config;
