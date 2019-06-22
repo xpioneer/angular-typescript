@@ -13,7 +13,7 @@ import { AddArticleTypeService } from './addarticletype.service';
 export class AddArticleTypeComponent implements OnInit {
   public isConfirmLoading = false;
   public addArticleType: ArticleTypeModel = new ArticleTypeModel();
-  @ViewChild('form') private form: NgForm;
+  @ViewChild('form', {static: false}) private form: NgForm;
 
   constructor (
     private router: Router,

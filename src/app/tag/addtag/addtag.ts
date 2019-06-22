@@ -14,7 +14,7 @@ import { AddTagService } from './addtag.service';
 export class AddTagComponent implements OnInit {
   public isConfirmLoading = false;
   public addTag: TagModel = new TagModel();
-  @ViewChild('form') private form: NgForm;
+  @ViewChild('form', {static: false}) private form: NgForm;
 
   constructor (
     private router: Router,

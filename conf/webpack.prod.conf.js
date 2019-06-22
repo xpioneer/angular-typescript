@@ -9,7 +9,7 @@ const path = require('path'),
 
 const _PROD_ = process.env.NODE_ENV === 'production'
 
-config.mode = _PROD_ ? 'production' : 'none'
+config.mode = 'production'
 config.plugins = (config.plugins || []).concat([
   new CleanWebpackPlugin(['dist/*'],
   {

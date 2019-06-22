@@ -4,13 +4,14 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthService {
   public store: Storage;
-  public isLogged: boolean = false;
+  public isLogged: boolean = true;
 
   constructor (private http: HttpClient) {
     this.store = localStorage;
-    this.isLogged = this.store.getItem('ACCESS_TOKEN')
-                    && this.store.getItem('ACCESS_TOKEN').length == 64
-                    && this.store.getItem('USER_INFO') ? true : false;
+    this.isLogged = true;
+    // this.store.getItem('ACCESS_TOKEN')
+    //                 && this.store.getItem('ACCESS_TOKEN').length == 64
+    //                 && this.store.getItem('USER_INFO') ? true : false;
   }
 
   get redirectUrl () {

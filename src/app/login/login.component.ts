@@ -24,8 +24,8 @@ import { AuthService }      from '@utils/auth/auth.service';
 export class LoginComponent implements OnInit {
   public loading: boolean = false;
   public _window: any;
-  @ViewChild('canvas') private canvas: ElementRef;
-  @ViewChild('form') private form: NgForm;
+  @ViewChild('canvas', {static: false}) private canvas: ElementRef;
+  @ViewChild('form', {static: false}) private form: NgForm;
   public userInfo: UserModel = new UserModel();
 
   constructor (private http: HttpClient, private authService: AuthService) {

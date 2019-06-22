@@ -13,7 +13,7 @@ import { AddArticleService } from './addarticle.service';
 export class AddArticleComponent implements OnInit {
     public isConfirmLoading = false;
     public addArticle: ArticleModel = new ArticleModel();
-    @ViewChild('form') private form: NgForm;
+    @ViewChild('form', {static: false}) private form: NgForm;
 
     public tagList: ITag[] = [];
     public checkedTag: object = {};

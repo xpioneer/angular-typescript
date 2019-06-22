@@ -6,7 +6,7 @@ const path = require('path'),
 
 const _PROD_ = process.env.NODE_ENV === 'production'
 
-config.mode = _PROD_ ? 'development' : 'none'
+config.mode = 'development'
 config.devServer = {
   port: '9100',
   host: 'localhost',

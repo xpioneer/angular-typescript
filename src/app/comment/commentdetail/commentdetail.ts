@@ -13,7 +13,7 @@ import { CommentDetailService } from './commentdetail.service';
 export class CommentDetailComponent implements OnInit {
 
     public mainModel: CommentModel = new CommentModel();
-    @ViewChild('form') private form: NgForm;
+    @ViewChild('form', {static: false}) private form: NgForm;
 
     public checkedTag = {};
     public typeAjaxList: any[] = [];

@@ -27,10 +27,10 @@ require('echarts/lib/component/legend/ScrollableLegendView');
 })
 export class ChartComponent {
   // @ViewChild('form') private form: NgForm;
-  @ViewChild('systemLog') public systemLog: ElementRef;
-  @ViewChild('systemLogDate') public systemLogDate: ElementRef;
-  @ViewChild('articleType') public articleType: ElementRef;
-  @ViewChild('tag') public tag: ElementRef;
+  @ViewChild('systemLog', {static: false}) public systemLog: ElementRef;
+  @ViewChild('systemLogDate', {static: false}) public systemLogDate: ElementRef;
+  @ViewChild('articleType', {static: false}) public articleType: ElementRef;
+  @ViewChild('tag', {static: false}) public tag: ElementRef;
   // @ViewChild('test') public testChart: ElementRef;
 
   public disable: boolean = false;

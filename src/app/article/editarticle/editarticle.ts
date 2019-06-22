@@ -13,7 +13,7 @@ import { EditArticleService } from './editarticle.service';
 export class EditArticleComponent implements OnInit {
     public isConfirmLoading = false;
     public mainModel: ArticleModel = new ArticleModel();
-    @ViewChild('form') private form: NgForm;
+    @ViewChild('form', {static: false}) private form: NgForm;
 
     public tagList: ITag[] = [];
     public _tagList: object[] = [];

@@ -13,7 +13,7 @@ import { SystemLogDetailService } from './systemlogdetail.service';
 export class SystemLogDetailComponent implements OnInit {
 
     public mainModel: SystemLogModel = new SystemLogModel();
-    @ViewChild('form') private form: NgForm;
+    @ViewChild('form', {static: false}) private form: NgForm;
 
     public checkedTag = {};
     public typeAjaxList: any[] = [];

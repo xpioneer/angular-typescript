@@ -14,7 +14,7 @@ import { AddUserService } from './adduser.service';
 export class AddUserComponent implements OnInit {
   public isConfirmLoading = false;
   public addUser: UserModel = new UserModel();
-  @ViewChild('form') private form: NgForm;
+  @ViewChild('form', {static: false}) private form: NgForm;
 
   constructor (
     private router: Router,

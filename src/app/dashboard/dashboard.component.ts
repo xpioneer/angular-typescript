@@ -21,7 +21,7 @@ require('echarts/lib/component/legend/ScrollableLegendView');
 })
 export class Dashboard {
 
-  @ViewChild('systemChina') public systemChina: ElementRef;
+  @ViewChild('systemChina', {static: false}) public systemChina: ElementRef;
 
   public source: string = '';
   public sourceType = [{name: '不限', value: ''}, {name: 'v2', value: 'v2'}, {name: 'cms', value: 'cms'}];

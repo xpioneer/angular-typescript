@@ -82,7 +82,7 @@ export class UploadFileComponent implements ControlValueAccessor {
   public uploading: boolean = false;
   @Input() public imgSrc: any;
   @Input() public maxSize: number;
-  @ViewChild('preView') private preViewDiv: ElementRef;
+  @ViewChild('preView', {static: false}) private preViewDiv: ElementRef;
 
   public onChange: any = Function.prototype;
   public onTouched: any = Function.prototype;

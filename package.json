@@ -1,13 +1,14 @@
 {
   "name": "CMS-FE",
   "version": "1.2.0",
-  "description": "angular6 for CMS",
+  "description": "angular8 for CMS",
   "main": "index.js",
   "author": "xpioneer",
   "keywords": [
-    "angular6",
+    "angular8",
     "HttpInterceptor",
     "lazyload",
+    "WebSocket",
     "ng-zorro-antd",
     "loadChildren"
   ],
@@ -22,28 +23,28 @@
     "lintfix": "NODE_ENV=development node_modules/.bin/tslint -c tslint.json -p tsconfig.json --fix --force"
   },
   "dependencies": {
-    "@angular/animations": "^7.1.4",
-    "@angular/common": "^7.1.4",
-    "@angular/compiler": "^7.1.4",
-    "@angular/core": "^7.1.4",
-    "@angular/forms": "^7.1.4",
-    "@angular/http": "^7.1.4",
-    "@angular/platform-browser": "^7.1.4",
-    "@angular/platform-browser-dynamic": "^7.1.4",
-    "@angular/router": "^7.1.4",
-    "core-js": "^2.6.1",
+    "@angular/animations": "^8.0.2",
+    "@angular/common": "^8.0.2",
+    "@angular/compiler": "^8.0.2",
+    "@angular/core": "^8.0.2",
+    "@angular/forms": "^8.0.2",
+    "@angular/http": "^7.2.15",
+    "@angular/platform-browser": "^8.0.2",
+    "@angular/platform-browser-dynamic": "^8.0.2",
+    "@angular/router": "^8.0.2",
+    "core-js": "^3.1.4",
     "echarts": "^3.8.5",
     "moment": "^2.22.2",
-    "ng-zorro-antd": "^7.0.0-rc.3",
+    "ng-zorro-antd": "^7.5.1",
     "quill": "^1.3.2",
     "reflect-metadata": "^0.1.12",
-    "rxjs": "^6.2.2",
-    "rxjs-compat": "^6.2.2",
-    "zone.js": "^0.8.26"
+    "rxjs": "^6.5.2",
+    "rxjs-compat": "^6.5.2",
+    "zone.js": "^0.9.1"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "^7.1.4",
-    "@ngtools/webpack": "^7.1.4",
+    "@angular/compiler-cli": "^8.0.2",
+    "@ngtools/webpack": "^8.0.3",
     "@types/node": "^8.0.24",
     "autoprefixer": "^7.1.4",
     "clean-webpack-plugin": "^0.1.16",
@@ -62,11 +63,11 @@
     "sw-precache-webpack-plugin": "^0.11.5",
     "tslint": "^5.11.0",
     "tslint-loader": "^3.6.0",
-    "typescript": "3.1.3",
+    "typescript": "3.4.5",
     "uglifyjs-webpack-plugin": "^1.2.7",
     "url-loader": "^1.0.1",
-    "webpack": "^4.16.1",
-    "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.4"
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.2"
   }
 }

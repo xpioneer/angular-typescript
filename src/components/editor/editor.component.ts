@@ -47,7 +47,7 @@ const toolbarOptions = [
 export class EditorComponent implements ControlValueAccessor {
   public baseUrl: string = '/upload-file';
   public _value: any;
-  @ViewChild('editor') private editor: ElementRef;
+  @ViewChild('editor', {static: false}) private editor: ElementRef;
 
   @Input() public imgSrc: any;
   @Output() public fileUploaded: EventEmitter<object> = new EventEmitter();

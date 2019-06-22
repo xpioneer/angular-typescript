@@ -1,14 +1,15 @@
-# Angular7 for CMS
+# Angular8 for CMS
 
 ### Project Technical Structure
 ***
-*  angular7
+*  Angular8
 *  ng-zorro-antd
-*  angular/router
-*  angular/http
-*  rxjs
-*  webpack4
-*  less
+*  Angular/router
+*  Angular/http
+*  Rxjs
+*  WebSocket
+*  Webpack4
+*  Less
 
 ### Install
 
@@ -16,7 +17,7 @@
 project address: (`git clone`)
 
 ```
-git clone git@github.com:xpioneer/cms-fe-angular7.git
+git clone git@github.com:xpioneer/cms-fe-angular8.git
 ```
 install node_modules with `yarn`
 

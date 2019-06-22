@@ -13,7 +13,7 @@ import { EditArticleTypeService } from './editarticletype.service';
 export class EditArticleTypeComponent implements OnInit {
   public isConfirmLoading = false;
   public editArticleType: ArticleTypeModel = new ArticleTypeModel();
-  @ViewChild('form') private form: NgForm;
+  @ViewChild('form', {static: false}) private form: NgForm;
 
   constructor (
     private router: Router,
