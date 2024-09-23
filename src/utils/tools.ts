@@ -18,7 +18,8 @@ const prototypeFun = () => {
     for(let k in o) {
       let matched = fmt.match(k)
       let _k = matched ? matched[0] : null
-      fmt = fmt.replace(_k, (o[k] > 9 ? o[k] : '0' + o[k]))
+      const v = o[k as keyof typeof o]
+      fmt = fmt.replace(_k, (`${v > 9 ? v : '0'}${v}`))
     }
     return fmt
   }

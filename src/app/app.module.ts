@@ -6,7 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { RouterModule } from '@angular/router';
-import { NgZorroAntdModule, NZ_I18N, zh_CN, NZ_ICONS } from 'ng-zorro-antd';
+import { NZ_ICONS } from 'ng-zorro-antd/icon';
+import { NZ_I18N, zh_CN } from 'ng-zorro-antd/i18n';
 import { IconDefinition } from '@ant-design/icons-angular'
 import { UserOutline, LockOutline, SettingOutline, AppstoreOutline, CalculatorOutline, LineChartOutline, SmileOutline, BulbOutline, PlusOutline } from '@ant-design/icons-angular/icons'
 
@@ -21,11 +22,13 @@ import { AuthGuard }         from '@utils/auth/auth-guard.service';
 import { AuthService }       from '../utils/auth/auth.service';
 import { HelperService }     from '../utils/httpInterceptor/helper.service';
 import { Params }            from '../utils/params.service';
+import { NzMenuModule } from '@/antd/module'
 
 registerLocaleData(zh);
 const icons: IconDefinition[] = [UserOutline, LockOutline, SettingOutline, AppstoreOutline, CalculatorOutline, LineChartOutline, SmileOutline, BulbOutline, PlusOutline]
 
 @NgModule({
+  // schemas: [],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -33,17 +36,23 @@ const icons: IconDefinition[] = [UserOutline, LockOutline, SettingOutline, Appst
     HeaderComponent,
     SidebarComponent,
     BreadCrumbComponent,
+    // NzPageHeaderBreadcrumbDirective,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    // HttpClientModule,
     // RouterModule,
     AppRouting,
     //
-    NgZorroAntdModule.forRoot(),
+    // NgZorroAntdModule.forRoot(),
+    NzMenuModule,
+  ],
+  exports: [
+
+    NzMenuModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },

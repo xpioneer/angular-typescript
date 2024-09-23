@@ -42,7 +42,7 @@ export class Dashboard {
     window.addEventListener('resize', () => {
       this.systemChinaChart.resize();
     });
-    const nameMap = {};
+    const nameMap: AnyObject = {};
     const sysChinaData = list.map((m: any) => {
       nameMap[m.subdivisions_name_en] = m.subdivisions_name_zh;
       return {
@@ -101,7 +101,7 @@ export class Dashboard {
   //
   public changedSource (): void {
     this.dashBoardService.getSystemLogChina(this.source).subscribe((res: any) => {
-      const nameMap = {};
+      const nameMap: AnyObject = {};
       const sysChinaData = res.data.map((m: any) => {
         nameMap[m.subdivisions_name_en] = m.subdivisions_name_zh;
         return {

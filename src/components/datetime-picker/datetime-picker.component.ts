@@ -1,6 +1,6 @@
 import { forwardRef, Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import * as Moment from 'moment';
+import { format } from 'date-fns'
 
 @Component({
   selector: 'app-datetime-range',
@@ -94,7 +94,7 @@ export class DateTimeRangeComponent implements ControlValueAccessor, OnInit {
   }
 
   private setDateRange () {
-    this.onChange([Moment(this.startDate).format('YYYY-MM-DD HH:mm:ss'), Moment(this.endDate).format('YYYY-MM-DD HH:mm:ss')]);
+    this.onChange([format(this.startDate, 'YYYY-MM-DD HH:mm:ss'), format(this.endDate, 'YYYY-MM-DD HH:mm:ss')]);
   }
 
   public writeValue (value: any): void {

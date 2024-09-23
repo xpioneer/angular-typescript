@@ -14,7 +14,7 @@ const appRoutes: Routes = [
     component: HomeComponent,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
+      { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module') },
       { path: 'article', loadChildren: './article/article.module#ArticleModule' },
       { path: 'articletype', loadChildren: './articletype/articletype.module#ArticleTypeModule' },
       { path: 'tag', loadChildren: './tag/tag.module#TagModule' },
