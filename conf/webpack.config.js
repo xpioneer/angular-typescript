@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const styleLoaderConf = require('./styleLoaderConf')
-const { AngularCompilerPlugin } = require('@ngtools/webpack')
+const { AngularWebpackPlugin } = require('@ngtools/webpack')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 const _PROD_ = process.env.NODE_ENV === 'production';
@@ -50,7 +50,8 @@ const config = {
       // },
       {
         test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-        loader: '@ngtools/webpack'
+        use: '@ngtools/webpack',
+        exclude: /node_modules/,
         // test: /\.ts$/,
         // use: [
         //   'awesome-typescript-loader',
@@ -63,7 +64,7 @@ const config = {
       // },
       {
         test: /\.html$/,
-        loader: 'raw-loader',
+        type: 'asset/source'
         // options: {
         //   // minimize: false,
         //   // removeComments: false,
@@ -73,7 +74,7 @@ const config = {
       ...styleLoaderConf,
       {
         test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif|mp4|webm)(\?\S*)?$/,
-        loader: "url-loader",
+        loader: "asset",
         options: {
           name: "assets/[name]-[hash:8].[ext]",
           limit: 2048
@@ -94,7 +95,7 @@ const config = {
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
       automaticNameDelimiter: '~',
-      name: true,
+      // name: true,
       cacheGroups: {
         'polyfill': {
           name: 'polyfills',
@@ -143,11 +144,11 @@ const config = {
 
   // plugins
   plugins: [
-    new AngularCompilerPlugin({
-      tsConfigPath: path.resolve(__dirname, '../tsconfig.json'),
-      entryModule: path.resolve(__dirname, '../src/app/app.module#AppModule'),
-      skipCodeGeneration: true,
-      sourceMap: _DEV_ ? true : false
+    new AngularWebpackPlugin({
+      // tsConfigPath: path.resolve(__dirname, '../tsconfig.json'),
+      // entryModule: path.resolve(__dirname, '../src/app/app.module#AppModule'),
+      // skipCodeGeneration: true,
+      // sourceMap: _DEV_ ? true : false
     }),
     new MiniCssExtractPlugin({
       filename: "static/css/[name].[contenthash].css",

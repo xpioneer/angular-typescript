@@ -1,0 +1,19 @@
+{
+	"Menus": {
+		"Blog_Management": "Blog Management",
+		"Article_List": "Article List",
+		"ArticleType_List": "ArticleType List",
+		"Tag_List": "Tag List",
+		"User_List": "User List",
+		"Comment_List": "Comment List",
+
+		"Log_Management": "Log Management",
+		"System_Log": "System Logs",
+
+		"Chart_Management": "Chart Management",
+		"Chart_Statistics": "Chart Statistics",
+
+		"Tests": "Tests",
+		"Test_Demo": "Test Demo"
+	}
+}

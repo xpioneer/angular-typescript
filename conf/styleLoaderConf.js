@@ -27,6 +27,7 @@ const styleRules = [
     test: /\.less$/,
     use: [
       'style-loader',
+      // 'to-string-loader',
       'css-loader',
       postcssLoader,
       'less-loader'
@@ -36,6 +37,7 @@ const styleRules = [
     test: /\.css$/,
     use: [
       'style-loader',
+      // 'to-string-loader',
       'css-loader',
       postcssLoader
     ]
