@@ -13,8 +13,8 @@ import { AuthService }   from '@utils/auth/auth.service';
       margin: 10px;
       width:44px;
       height:44px;
-      animation: rotate 6s linear 0s infinite normal running;
-      transform-origin: center center;
+      // animation: rotate 6s linear 0s infinite normal running;
+      // transform-origin: center center;
     }
     .logo:hover{
       animation-play-state: paused;

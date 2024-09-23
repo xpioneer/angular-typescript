@@ -1,6 +1,6 @@
 const path = require('path'),
   webpack = require('webpack'),
-  config = require('./webpack.base.conf.js'),
+  config = require('./webpack.config.js'),
   UglifyJsPlugin = require("uglifyjs-webpack-plugin"),
   HtmlWebpackPlugin = require("html-webpack-plugin"),
   CleanWebpackPlugin = require('clean-webpack-plugin'),

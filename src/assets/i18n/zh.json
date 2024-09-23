@@ -1,0 +1,19 @@
+{
+	"Menus": {
+		"Blog_Management": "博客管理",
+		"Article_List": "文章列表",
+		"ArticleType_List": "文章类型",
+		"Tag_List": "标签管理",
+		"User_List": "用户管理",
+		"Comment_List": "评论管理",
+
+		"Log_Management": "日志管理",
+		"System_Log": "系统日志",
+
+		"Chart_Management": "图表管理",
+		"Chart_Statistics": "图表统计",
+
+		"Tests": "测试",
+		"Test_Demo": "测试用例"
+	}
+}

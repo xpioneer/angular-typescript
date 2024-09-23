@@ -39,6 +39,8 @@ export class HomeComponent implements OnDestroy {
     this.ws.onmessage = (mEvent: MessageEvent) => {
       const data: any = JSON.parse(this.ab2str(mEvent.data));
       const opened = JSON.parse(localStorage.getItem('NOTICE_OPEN') ? localStorage.getItem('NOTICE_OPEN') : 'false');
+
+      console.log('mEvent:', data, opened)
       if (data && data.data && opened) {
         this.wsInfo = data.data;
         this.notification.blank('<strong>访问信息</strong>',
