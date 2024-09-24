@@ -42,7 +42,7 @@ config.plugins = (config.plugins || []).concat([
   new HtmlWebpackPlugin({
     title: 'CMS-FE DEV',
     filename: 'index.html',
-    template: 'src/template/index_base.html',
+    template: '../src/template/index_base.html',
     // template: 'dist/index.html',
   })
 ]);

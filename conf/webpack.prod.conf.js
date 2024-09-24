@@ -3,7 +3,7 @@ const path = require('path'),
   config = require('./webpack.config.js'),
   UglifyJsPlugin = require("uglifyjs-webpack-plugin"),
   HtmlWebpackPlugin = require("html-webpack-plugin"),
-  CleanWebpackPlugin = require('clean-webpack-plugin'),
+  // CleanWebpackPlugin = require('clean-webpack-plugin'),
   OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin"),
   SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
@@ -11,12 +11,12 @@ const _PROD_ = process.env.NODE_ENV === 'production'
 
 config.mode = _PROD_ ? 'production' : 'none'
 config.plugins = (config.plugins || []).concat([
-  new CleanWebpackPlugin(['dist/*'],
-  {
-    root: path.join(__dirname, '../'),
-    verbose:  true,
-    dry:      false
-  }),
+  // new CleanWebpackPlugin(['dist/*'],
+  // {
+  //   root: path.join(__dirname, '../'),
+  //   verbose:  true,
+  //   dry:      false
+  // }),
   new OptimizeCSSAssetsPlugin({
     // cssProcessor: require('cssnano')({ autoprefixer: false })
   }),

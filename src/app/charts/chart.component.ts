@@ -3,10 +3,11 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 // import { NgForm } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import * as Moment from 'moment';
+// import * as Moment from 'moment';
 import { ChartService } from './chart.service';
 import { ISystemLog, IArticleType, IArticleTag } from './model/chart.model';
 import { Echarts } from '@utils/echarts';
+import { format } from 'date-fns'
 
 // 引入柱状图
 require('echarts/lib/chart/bar');
@@ -74,7 +75,7 @@ export class ChartComponent {
   // 日期选择
   public changedDate () {
     this.disable = true;
-    this.chartService.getSystemLogDate(Moment(this.date).format('YYYY-MM-DD'))
+    this.chartService.getSystemLogDate(format(this.date, 'YYYY-MM-DD'))
       .pipe(finalize(() => this.disable = false))
       .subscribe((res: any) => {
         this.initSystemLogDateChart(res.data);

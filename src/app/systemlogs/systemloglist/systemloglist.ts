@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { SystemLogModel } from '../model/systemlog.model';
 import { SystemLogListService } from './systemloglist.service';
-import * as Moment from 'moment'
+// import * as Moment from 'moment'
 import { finalize } from 'rxjs';
 
 @Component({

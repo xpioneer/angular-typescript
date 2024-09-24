@@ -8,34 +8,44 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const _PROD_ = process.env.NODE_ENV === 'production';
 const _DEV_ = process.env.NODE_ENV === 'development';
 
+function resolveCwd(dir = 'src') {
+  return path.resolve(process.cwd(), dir)
+}
 
 const config = {
   entry: {
-    'app': path.resolve(__dirname, '../src/index.ts')
+    'app': resolveCwd('src/index.ts')
   },
 
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    clean: true,
+    path: resolveCwd('dist'),
     publicPath: '/',
     sourceMapFilename: '[name].map',
-    filename: 'static/js/[name].bundle.[hash].js',
-    chunkFilename: 'static/js/[name].chunk.[chunkhash:8].js'
+    filename: 'static/js/[name].bundle.[contenthash].js',
+    chunkFilename: 'static/js/[name].chunk.[chunkhash:8].js',
+    assetModuleFilename: 'static/assets/[hash][ext][query]',
   },
 
   devtool: false, //_PROD_ ? false : '#cheap-module-source-map',
 
   resolve: {
     extensions: ['.ts', '.js'],
-    modules: [path.resolve(process.cwd(), "src"), "node_modules"],
+    modules: [resolveCwd(), "node_modules"],
     alias: {
-      '@': path.join(process.cwd(), 'src'),
-      '@app': path.join(process.cwd(), 'src/app'),
-      '@assets': path.join(process.cwd(), 'src/assets'),
-      '@components': path.join(process.cwd(), 'src/components'),
-      '@utils': path.join(process.cwd(), 'src/utils'),
+      '@': resolveCwd(),
+      '@app': resolveCwd('src/app'),
+      '@assets': resolveCwd('src/assets'),
+      '@components': resolveCwd('src/components'),
+      '@utils': resolveCwd('src/utils'),
     }
   },
+  context: __dirname, // string（绝对路径！）
+  // webpack 的主目录
+  // entry 和 module.rules.loader 选项
+  // 相对于此目录解析
 
+  target: "web", // default
   module: {
     rules: [
       // {
@@ -161,12 +171,14 @@ const config = {
       },
       _DEV_: JSON.stringify(_DEV_),
     }),
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../static'),
-        ignore: ['.*']
-      }
-    ])
+    new CopyWebpackPlugin({
+      patterns: [{
+        from: resolveCwd('static'),
+        globOptions: {
+          ignore: ['.*']
+        }
+      }]
+    }),
   ]
 };
 
