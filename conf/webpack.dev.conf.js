@@ -43,7 +43,8 @@ config.plugins = (config.plugins || []).concat([
     title: 'CMS-FE DEV',
     filename: 'index.html',
     template: '../src/template/index_base.html',
-    // template: 'dist/index.html',
+    inject: 'body',
+    templateParameters: false,
   })
 ]);
 

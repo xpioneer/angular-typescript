@@ -7,11 +7,18 @@ const postcssLoader = {
   loader: 'postcss-loader',
   options: {
     sourceMap: _PROD_ ? false : true,
-    plugins: [
-      require('autoprefixer')({
-        browsers: ["Android 4.1", "iOS 7.1", "Chrome > 31", "ff > 31", "ie >= 8"]
-      })
-    ]
+    postcssOptions: {
+      plugins: [
+        ['postcss-preset-env', {
+          browsers: '> 0.5%, not dead, iOS >= 12, Android >= 4.5'
+        }]
+      ]
+    },
+    // plugins: [
+    //   require('autoprefixer')({
+    //     browsers: ["Android 4.1", "iOS 7.1", "Chrome > 31", "ff > 31", "ie >= 8"]
+    //   })
+    // ]
   }
 }
 
@@ -27,7 +34,6 @@ const styleRules = [
     test: /\.less$/,
     use: [
       'style-loader',
-      // 'to-string-loader',
       'css-loader',
       postcssLoader,
       'less-loader'
@@ -37,7 +43,6 @@ const styleRules = [
     test: /\.css$/,
     use: [
       'style-loader',
-      // 'to-string-loader',
       'css-loader',
       postcssLoader
     ]

@@ -22,7 +22,7 @@ const config = {
     path: resolveCwd('dist'),
     publicPath: '/',
     sourceMapFilename: '[name].map',
-    filename: 'static/js/[name].bundle.[contenthash].js',
+    filename: 'static/js/[name].bundle.[contenthash:8].js',
     chunkFilename: 'static/js/[name].chunk.[chunkhash:8].js',
     assetModuleFilename: 'static/assets/[hash][ext][query]',
   },
@@ -83,14 +83,31 @@ const config = {
         // }
       },
       ...styleLoaderConf,
+      // {
+      //   test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif|mp4|webm)(\?\S*)?$/,
+      //   loader: "asset",
+      //   options: {
+      //     name: "assets/[name]-[hash:8].[ext]",
+      //     limit: 2048
+      //   }
+      // }
       {
-        test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif|mp4|webm)(\?\S*)?$/,
-        loader: "asset",
-        options: {
-          name: "assets/[name]-[hash:8].[ext]",
-          limit: 2048
-        }
-      }
+        test: /\.(eot|woff|woff2|ttf|mp4|webm)(\?\S*)?$/,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(png|jpe?g|gif)(\?\S*)?$/,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 4 * 1024, // 4 KB
+          },
+        },
+      },
+      {
+        test: /\.(svg|xml)$/,
+        type: 'asset/source'
+      },
     ]
   },
 
