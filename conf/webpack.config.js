@@ -75,7 +75,7 @@ const config = {
       // },
       {
         test: /\.html$/,
-        type: 'asset/source'
+        use: 'html-loader'
         // options: {
         //   // minimize: false,
         //   // removeComments: false,
