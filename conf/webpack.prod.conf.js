@@ -32,12 +32,12 @@ config.plugins = (config.plugins || []).concat([
     },
     parallel: true
   }),
-  new webpack.HashedModuleIdsPlugin(),
+  // new webpack.HashedModuleIdsPlugin(),
   // new webpack.NamedModulesPlugin(),
   new HtmlWebpackPlugin({
     title: 'CMS-管理后台',
     filename: 'index.html',
-    template: 'src/template/index_base.html',
+    template: '../src/template/index_base.html',
     minify: {
       minifyJS: true,
       removeComments: true,
