@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { en_US, zh_CN, NzI18nService } from 'ng-zorro-antd';
+import { en_US, zh_CN, NzI18nService } from 'ng-zorro-antd/i18n';
 import { AuthService }   from '@utils/auth/auth.service';
 
 @Component({

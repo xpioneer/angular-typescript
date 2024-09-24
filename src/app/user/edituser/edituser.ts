@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NzNotificationService } from 'ng-zorro-antd';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { UserModel } from '../model/user.model';
 
 import { EditUserService } from './edituser.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-edit-user',
@@ -47,7 +48,7 @@ export class EditUserComponent implements OnInit {
     if (this.form.valid) {
       this.isConfirmLoading = true;
       this.editUserService.updateUser(this.editUser)
-        .finally(() => this.isConfirmLoading = false)
+        .pipe(finalize(() => this.isConfirmLoading = false))
         .subscribe((res: any) => {
           this.router.navigate(['/user']);
         });

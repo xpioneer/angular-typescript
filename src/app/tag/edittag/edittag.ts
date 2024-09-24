@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NzNotificationService } from 'ng-zorro-antd';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { TagModel } from '../model/tag.model';
 
 import { EditTagService } from './edittag.service';
+import { finalize } from 'rxjs';
 
 @Component({
     selector: 'app-edit-tag',
@@ -47,7 +48,7 @@ export class EditTagComponent implements OnInit {
         if (this.form.valid) {
             this.isConfirmLoading = true;
             this.EditTagService.updateTag(this.editTag)
-                .finally(() => this.isConfirmLoading = false)
+                .pipe(finalize(() => this.isConfirmLoading = false))
                 .subscribe((res: any) => {
                     this.router.navigate(['/tag']);
                 }, (err: any) => { });

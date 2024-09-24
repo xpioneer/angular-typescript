@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 // import { NgForm } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { NzNotificationService } from 'ng-zorro-antd';
+import { finalize } from 'rxjs';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import * as Moment from 'moment';
 import { ChartService } from './chart.service';
 import { ISystemLog, IArticleType, IArticleTag } from './model/chart.model';
@@ -75,7 +75,7 @@ export class ChartComponent {
   public changedDate () {
     this.disable = true;
     this.chartService.getSystemLogDate(Moment(this.date).format('YYYY-MM-DD'))
-      .finally(() => this.disable = false)
+      .pipe(finalize(() => this.disable = false))
       .subscribe((res: any) => {
         this.initSystemLogDateChart(res.data);
       }, (err) => {});
@@ -108,7 +108,7 @@ export class ChartComponent {
   }
 
   // 系统日志分时统计
-  private initSystemLogDateChart (dataS: object) {
+  private initSystemLogDateChart (dataS: AnyObject) {
     const sysLogDateChart = Echarts.init(this.systemLogDate.nativeElement);
     const keys = Object.keys(dataS);
     const xAxis = keys.filter((k: string) => k.match(/^\d{1,2}时$/));

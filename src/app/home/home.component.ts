@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { NzNotificationService } from 'ng-zorro-antd';
+// import { Http, Response } from '@angular/http';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthService } from '@utils/auth/auth.service';
 
 const _PROD_ = process.env.NODE_ENV === 'production';

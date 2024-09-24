@@ -1,6 +1,7 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NzNotificationService } from 'ng-zorro-antd';
+import { storage } from '@utils/funs';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Injectable()
 export class HelperService {
@@ -43,9 +44,9 @@ export class HelperService {
       }
       break;
     case 401:
-      this.store.clear();
+      storage.clear();
       this.notification.error('未授权', '请重新登录');
-      this.seStore.setItem('RedirectUrl', location.pathname);
+      sessionStorage.setItem('RedirectUrl', location.pathname);
       setTimeout(() => {
           location.href = 'login';
       }, 1000);

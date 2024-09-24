@@ -1,7 +1,7 @@
 import { CommonModule }  from '@angular/common';
 import { NgModule }      from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+// import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { DateTimeRangeModule } from '@components/datetime-picker/datetime-picker.module';
 import { SystemLogComponent }  from './systemlog.component';
 import { SystemLogListComponent }  from './systemloglist/systemloglist';
@@ -16,7 +16,7 @@ import { SystemLogRouting }       from './systemlog.routing';
     CommonModule,
     SystemLogRouting,
     DateTimeRangeModule,
-    NgZorroAntdModule.forRoot(),
+    // NgZorroAntdModule.forRoot(),
   ],
   declarations: [
     SystemLogComponent,
@@ -28,4 +28,4 @@ import { SystemLogRouting }       from './systemlog.routing';
     SystemLogDetailService,
   ],
 })
-export class SystemLogModule {}
+export default class SystemLogModule {}

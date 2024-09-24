@@ -1,7 +1,7 @@
 import { CommonModule }  from '@angular/common';
 import { NgModule }      from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+// import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { CommentComponent }  from './comment.component';
 import { CommentListComponent }  from './commentlist/commentlist';
 import { CommentListService }  from './commentlist/commentlist.service';
@@ -15,7 +15,7 @@ import { CommentRouting }       from './comment.routing';
     // ReactiveFormsModule,
     CommonModule,
     CommentRouting,
-    NgZorroAntdModule.forRoot(),
+    // NgZorroAntdModule.forRoot(),
   ],
   declarations: [
     CommentComponent,
@@ -27,4 +27,4 @@ import { CommentRouting }       from './comment.routing';
     CommentDetailService,
   ],
 })
-export class CommentModule {}
+export default class CommentModule {}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserListService } from './userlist.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
@@ -33,7 +34,7 @@ export class UserListComponent implements OnInit {
     this.value.per_page = this.per_page;
     this._loading = true;
     this.userListService.getUserList(this.value)
-    .finally(() => { this._loading = false; })
+    .pipe(finalize(() => { this._loading = false; }))
     .subscribe((res: any) => {
       this.dataSet = res.data;
       this.current_page = res.meta.current_page;

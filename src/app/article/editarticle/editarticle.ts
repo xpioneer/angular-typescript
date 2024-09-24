@@ -1,9 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NzNotificationService } from 'ng-zorro-antd';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { ArticleModel, ITag } from '../model/article.model';
 import { EditArticleService } from './editarticle.service';
+import { finalize } from 'rxjs';
 
 @Component({
     selector: 'app-edit-aritcle',
@@ -17,7 +18,7 @@ export class EditArticleComponent implements OnInit {
 
     public tagList: ITag[] = [];
     public _tagList: object[] = [];
-    public checkedTag = {};
+    public checkedTag: AnyObject = {};
     public typeAjaxList: any[] = [];
 
     constructor (
@@ -62,7 +63,7 @@ export class EditArticleComponent implements OnInit {
         if (this.form.valid) {
             this.isConfirmLoading = true;
             this.editArticleService.updateArticle(this.mainModel)
-                .finally(() => this.isConfirmLoading = false)
+                .pipe(finalize(() => this.isConfirmLoading = false))
                 .subscribe((res: any) => {
                     this.router.navigate(['/article']);
                 }, (err: any) => {

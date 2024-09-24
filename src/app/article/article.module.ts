@@ -1,7 +1,7 @@
 import { CommonModule }  from '@angular/common';
 import { NgModule }      from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+// import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { EditorModule } from '@components/editor/editor.module';
 import { UploadFileModule } from '@components/upload-file/upload-file.module';
 import { AddArticleComponent }  from './addarticle/addarticle';
@@ -19,7 +19,7 @@ import { EditArticleService }  from './editarticle/editarticle.service';
     // ReactiveFormsModule,
     CommonModule,
     ArticleRouting,
-    NgZorroAntdModule.forRoot(),
+    // NgZorroAntdModule.forRoot(),
     UploadFileModule,
     EditorModule,
   ],
@@ -35,4 +35,4 @@ import { EditArticleService }  from './editarticle/editarticle.service';
     EditArticleService,
   ],
 })
-export class ArticleModule {}
+export default class ArticleModule {}

@@ -1,7 +1,7 @@
 import { CommonModule }  from '@angular/common';
 import { NgModule }      from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+// import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { AddUserComponent } from './adduser/adduser';
 import { AddUserService }  from './adduser/adduser.service';
 import { EditUserComponent } from './edituser/edituser';
@@ -16,7 +16,7 @@ import { UserListService } from './userlist/userlist.service';
     FormsModule,
     CommonModule,
     UserRouting,
-    NgZorroAntdModule.forRoot(),
+    // NgZorroAntModule.forRoot(),
   ],
   declarations: [
     UserComponent,
@@ -30,4 +30,4 @@ import { UserListService } from './userlist/userlist.service';
     EditUserService,
   ],
 })
-export class UserModule {}
+export default class UserModule {}

@@ -1,7 +1,7 @@
 import { CommonModule }  from '@angular/common';
 import { NgModule }      from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+// import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { AddTagComponent } from './addtag/addtag';
 import { AddTagService }  from './addtag/addtag.service';
 import { EditTagComponent } from './edittag/edittag';
@@ -16,7 +16,7 @@ import { TagListService } from './taglist/taglist.service';
     FormsModule,
     CommonModule,
     TagRouting,
-    NgZorroAntdModule.forRoot(),
+    // NgZorroAntdModule.forRoot(),
   ],
   declarations: [
     TagComponent,
@@ -30,4 +30,4 @@ import { TagListService } from './taglist/taglist.service';
     EditTagService,
   ],
 })
-export class TagModule {}
+export default class TagModule {}

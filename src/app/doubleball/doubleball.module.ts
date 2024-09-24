@@ -1,7 +1,7 @@
 import { CommonModule }  from '@angular/common';
 import { NgModule }      from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+// import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { DoubleBallComponent }         from './doubleball.component';
 import { DoubleBallListComponent }  from './doubleballlist/doubleballlist';
 import { DoubleBallListService }  from './doubleballlist/doubleballlist.service';
@@ -13,7 +13,7 @@ import { DoubleBallDirective }       from './doubleballlist/doubleball.directive
     FormsModule,
     CommonModule,
     DoubleBallRouting,
-    NgZorroAntdModule.forRoot(),
+    // NgZorroAntdModule.forRoot(),
   ],
   declarations: [
     DoubleBallComponent,
@@ -25,4 +25,4 @@ import { DoubleBallDirective }       from './doubleballlist/doubleball.directive
     DoubleBallListService,
   ],
 })
-export class DoubleBallModule {}
+export default class DoubleBallModule {}

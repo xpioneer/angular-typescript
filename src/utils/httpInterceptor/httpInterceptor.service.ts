@@ -7,7 +7,7 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, finalize } from 'rxjs';
 import { HelperService } from './helper.service';
 
 @Injectable()
@@ -28,18 +28,18 @@ export class HttpClientInterceptor implements HttpInterceptor {
       },
       // withCredentials: true, // same origin not use
     });
-    return next.handle(request).do((res: HttpResponse<any>) => {
+    return next.handle(request).pipe((res) => {
       if (res instanceof HttpResponse) {
         this.helper.successHelper(res);
       }
-      return res.body;
-    }, (err: HttpErrorResponse) => {
+      return res;
+    }, (err) => {
       if (err instanceof HttpErrorResponse) {
         this.helper.errorHelper(err);
       }
-      return err.error;
-    }, () => {
+      return err;
+    }, finalize(() => {
       //
-    });
+    }));
   }
 }

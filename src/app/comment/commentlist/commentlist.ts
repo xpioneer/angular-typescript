@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 // import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NzModalService } from 'ng-zorro-antd';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { CommentModel } from '../model/comment.model';
 import { CommentListService } from './commentlist.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-comment-list',
@@ -47,7 +48,7 @@ export class CommentListComponent implements OnInit {
     // clearTimeout(this.timer);
     // this.timer = setTimeout(() => {
     this.commentListService.getCommentList(this.value)
-      .finally(() => { this._loading = false; })
+      .pipe(finalize(() => { this._loading = false; }))
       .subscribe((res: any) => {
         this.dataSet = res.data;
         this.total = res.meta.total;
@@ -86,7 +87,7 @@ export class CommentListComponent implements OnInit {
       nzOnOk () {
         return new Promise((resolve) => {
           that.commentListService.deleteComment(id)
-            .finally(() => { resolve(); })
+            .pipe(finalize(() => { resolve(); }))
             .subscribe((res: any) => { that.query(); }, (err: any) => { });
         });
       },

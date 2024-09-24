@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 // import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { NzModalService } from 'ng-zorro-antd';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { DoubleBallModel } from '../model/doubleball.model';
 import { DoubleBallListService } from './doubleballlist.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-doubleball-list',
@@ -39,7 +40,7 @@ export class DoubleBallListComponent implements OnInit {
   public add () {
     this._loading = true;
     this.doubleBallListService.addDoubleBall()
-      .finally(() => { this._loading = false; })
+      .pipe(finalize(() => { this._loading = false; }))
       .subscribe((res: any) => {
           this.query();
       }, (e) => { });
@@ -50,7 +51,7 @@ export class DoubleBallListComponent implements OnInit {
     this.value.current_page = this.current_page;
     this.value.per_page = this.per_page;
     this.doubleBallListService.getDoubleBallList(this.value)
-    .finally(() => { this._loading = false; })
+    .pipe(finalize(() => { this._loading = false; }))
     .subscribe((res: any) => {
       this.dataSet = res.data;
       this.current_page = res.meta.current_page;
@@ -80,7 +81,7 @@ export class DoubleBallListComponent implements OnInit {
       nzOnOk () {
         return new Promise((resolve) => {
           that.doubleBallListService.deleteDoubleBall(id)
-            .finally(() => { resolve(); })
+            .pipe(finalize(() => { resolve(); }))
             .subscribe((res: any) => { that.query(); }, (err) => { });
         });
       },

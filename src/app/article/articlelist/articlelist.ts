@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NzModalService } from 'ng-zorro-antd';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { ArticleModel } from '../model/article.model';
 import { ArticleListService } from './articlelist.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-article-list',
@@ -40,7 +41,7 @@ export class ArticleListComponent implements OnInit {
     this.value.current_page = this.current_page;
     this.value.per_page = this.per_page;
     this.articleListService.getArticleList(this.value)
-    .finally(() => { this._loading = false; })
+    .pipe(finalize(() => { this._loading = false; }))
     .subscribe((res: any) => {
       this.dataSet = res.data;
       this.current_page = res.meta.current_page;
@@ -70,7 +71,7 @@ export class ArticleListComponent implements OnInit {
       nzOnOk () {
         return new Promise((resolve) => {
           that.articleListService.deleteArticle(id)
-            .finally(() => { resolve(); })
+            .pipe(finalize(() => { resolve(); }))
             .subscribe((res: any) => { that.query(); }, (err) => { });
         });
       },

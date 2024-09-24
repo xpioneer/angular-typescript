@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { forwardRef, Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NzNotificationService } from 'ng-zorro-antd';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-upload-file',
@@ -113,7 +114,7 @@ export class UploadFileComponent implements ControlValueAccessor {
         } else {
           this.uploading = true;
           this.http.post(this.baseUrl, formData)
-            .finally(() => this.uploading = false)
+            .pipe(finalize(() => this.uploading = false))
             .subscribe((res: any) => {
               reader.onload = (e: any) => {
                 this.imgSrc = reader.result;

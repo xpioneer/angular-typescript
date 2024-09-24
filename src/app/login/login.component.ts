@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { AuthService }      from '@utils/auth/auth.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -48,7 +49,7 @@ export class LoginComponent implements OnInit {
       // this.userInfo = new UserModel();
       this.loading = true;
       this.http.post('/login', this.userInfo)
-      .finally(() => { this.loading = false; })
+      .pipe(finalize(() => { this.loading = false; }))
       .subscribe((res: any) => {
         this.authService.isLogged = true;
         localStorage.setItem('ACCESS_TOKEN', res.msg);

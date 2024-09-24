@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NzNotificationService } from 'ng-zorro-antd';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { ArticleModel, ITag } from '../model/article.model';
 import { AddArticleService } from './addarticle.service';
 
@@ -16,7 +16,7 @@ export class AddArticleComponent implements OnInit {
     @ViewChild('form') private form: NgForm;
 
     public tagList: ITag[] = [];
-    public checkedTag: object = {};
+    public checkedTag: AnyObject = {};
     public typeAjaxList: any[] = [];
 
     constructor (

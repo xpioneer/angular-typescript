@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TagListService } from './taglist.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-tag-list',
@@ -29,7 +30,7 @@ export class TagListComponent implements OnInit {
     this.value.per_page = this.per_page;
     this._loading = true;
     this.tagListService.getTagList(this.value)
-      .finally(() => this._loading = false)
+      .pipe(finalize(() => this._loading = false))
       .subscribe((res: any) => {
         this.dataSet = res.data;
         this.current_page = res.meta.current_page;

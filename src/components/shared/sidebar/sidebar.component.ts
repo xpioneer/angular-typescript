@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  public isOpen = {
+  public isOpen: AnyObject<boolean> = {
     one: true,
     two: false,
     three: false,

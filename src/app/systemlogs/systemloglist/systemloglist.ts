@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 // import { NgForm } from '@angular/forms';
 // import { Router } from '@angular/router';
-import { NzModalService } from 'ng-zorro-antd';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { SystemLogModel } from '../model/systemlog.model';
 import { SystemLogListService } from './systemloglist.service';
 import * as Moment from 'moment'
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-systemlog-list',
@@ -53,7 +54,7 @@ export class SystemLogListComponent implements OnInit {
     this.value.per_page = this.per_page;
     this._loading = true;
     this.systemLogListService.getSystemLogList(this.value)
-      .finally(() => { this._loading = false; })
+      .pipe(finalize(() => { this._loading = false; }))
       .subscribe((res: any) => {
         this.dataSet = res.data;
         this.total = res.meta.total;
@@ -102,7 +103,7 @@ export class SystemLogListComponent implements OnInit {
       nzOnOk () {
         return new Promise((resolve) => {
           that.systemLogListService.deleteSystemLog(id)
-            .finally(() => { resolve(); })
+            .pipe(finalize(() => { resolve(); }))
             .subscribe((res: any) => { that.query(undefined); }, (err) => { });
         });
       },
@@ -144,7 +145,7 @@ export class SystemLogListComponent implements OnInit {
   public sync () {
     this._loading = true;
     this.systemLogListService.syncGeoInfo()
-    .finally(() => { this._loading = false; })
+    .pipe(finalize(() => { this._loading = false; }))
     .subscribe((res: any) => {
       this.query(this.current_page);
     }, (e) => { });

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ArticleTypeModel } from '../model/articletype.model';
 import { ArticleTypeListService } from './articletypelist.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-article-list',
@@ -37,7 +38,7 @@ export class ArticleTypeListComponent implements OnInit {
     this.value.current_page = this.current_page;
     this.value.per_page = this.per_page;
     this.articleListService.getArticleTypeList(this.value)
-    .finally(() => { this._loading = false; })
+    .pipe(finalize(() => { this._loading = false; }))
     .subscribe((res: any) => {
         this.dataSet = res.data;
         this.current_page = res.meta.current_page;
