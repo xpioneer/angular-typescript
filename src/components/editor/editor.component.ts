@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { forwardRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NzNotificationService } from 'ng-zorro-antd';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { finalize } from 'rxjs';
 
 const Quill = require('quill');
 
@@ -96,7 +97,7 @@ export class EditorComponent implements ControlValueAccessor {
         const fd = new FormData();
         fd.append('file', file);
         this.http.post(this.baseUrl, fd)
-        .finally(() => {})
+        .pipe(finalize(() => {}))
         .subscribe((res: any) => {
           this.insertToEditor(res.data.path);
         }, (err: any) => {});

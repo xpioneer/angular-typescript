@@ -7,6 +7,7 @@ import { DemosComponent }    from './demos.component';
 import { DemosRouting } from './demos.routing';
 import { OutletComponent }   from './out-let.component';
 import { UploadFileModule } from '@components/upload-file/upload-file.module';
+import { ZorroAntdModule } from '@/antd/ngModule'
 
 @NgModule({
     imports: [
@@ -15,6 +16,7 @@ import { UploadFileModule } from '@components/upload-file/upload-file.module';
         CommonModule,
         DemosRouting,
         // NgZorroAntdModule.forRoot(),
+        ZorroAntdModule,
     ],
     declarations: [
         OutletComponent,

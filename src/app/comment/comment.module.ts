@@ -8,6 +8,7 @@ import { CommentListService }  from './commentlist/commentlist.service';
 import { CommentDetailComponent }  from './commentdetail/commentdetail';
 import { CommentDetailService }  from './commentdetail/commentdetail.service';
 import { CommentRouting }       from './comment.routing';
+import { ZorroAntdModule } from '@/antd/ngModule'
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { CommentRouting }       from './comment.routing';
     CommonModule,
     CommentRouting,
     // NgZorroAntdModule.forRoot(),
+    ZorroAntdModule,
   ],
   declarations: [
     CommentComponent,

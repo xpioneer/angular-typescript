@@ -6,6 +6,7 @@ import { ChartComponent }    from './chart.component';
 import { ChartService } from './chart.service';
 import { ChartRouting } from './chart.routing';
 import { OutletComponent }   from './out-let.component';
+import { ZorroAntdModule } from '@/antd/ngModule'
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { OutletComponent }   from './out-let.component';
     CommonModule,
     ChartRouting,
     // NgZorroAntdModule.forRoot(),
+    ZorroAntdModule,
   ],
   declarations: [
     OutletComponent,

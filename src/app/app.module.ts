@@ -22,7 +22,9 @@ import { AuthGuard }         from '@utils/auth/auth-guard.service';
 import { AuthService }       from '../utils/auth/auth.service';
 import { HelperService }     from '../utils/httpInterceptor/helper.service';
 import { Params }            from '../utils/params.service';
-import { NzMenuModule } from '@/antd/module'
+// import { NzMenuModule, NzPopoverModule } from '@/antd/module'
+// import { NzMenuDirective } from '@/antd/directive'
+import { ZorroAntdModule }  from '@/antd/ngModule'
 
 registerLocaleData(zh);
 const icons: IconDefinition[] = [UserOutline, LockOutline, SettingOutline, AppstoreOutline, CalculatorOutline, LineChartOutline, SmileOutline, BulbOutline, PlusOutline]
@@ -37,6 +39,7 @@ const icons: IconDefinition[] = [UserOutline, LockOutline, SettingOutline, Appst
     SidebarComponent,
     BreadCrumbComponent,
     // NzPageHeaderBreadcrumbDirective,
+    // NzMenuDirective,
   ],
   imports: [
     BrowserModule,
@@ -48,11 +51,13 @@ const icons: IconDefinition[] = [UserOutline, LockOutline, SettingOutline, Appst
     AppRouting,
     //
     // NgZorroAntdModule.forRoot(),
-    NzMenuModule,
+    ZorroAntdModule,
+    // NzMenuModule,
+    // NzPopoverModule,
   ],
   exports: [
 
-    NzMenuModule,
+    // NzMenuModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },

@@ -9,6 +9,7 @@ import { SystemLogListService }  from './systemloglist/systemloglist.service';
 import { SystemLogDetailComponent }  from './systemlogdetail/systemlogdetail';
 import { SystemLogDetailService }  from './systemlogdetail/systemlogdetail.service';
 import { SystemLogRouting }       from './systemlog.routing';
+import { ZorroAntdModule } from '@/antd/ngModule'
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { SystemLogRouting }       from './systemlog.routing';
     SystemLogRouting,
     DateTimeRangeModule,
     // NgZorroAntdModule.forRoot(),
+    ZorroAntdModule,
   ],
   declarations: [
     SystemLogComponent,

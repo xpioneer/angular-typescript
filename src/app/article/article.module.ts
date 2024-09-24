@@ -12,6 +12,7 @@ import { ArticleListComponent } from './articlelist/articlelist';
 import { ArticleListService } from './articlelist/articlelist.service';
 import { EditArticleComponent }  from './editarticle/editarticle';
 import { EditArticleService }  from './editarticle/editarticle.service';
+import { ZorroAntdModule } from '@/antd/ngModule'
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { EditArticleService }  from './editarticle/editarticle.service';
     // NgZorroAntdModule.forRoot(),
     UploadFileModule,
     EditorModule,
+    ZorroAntdModule,
   ],
   declarations: [
     ArticleComponent,

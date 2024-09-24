@@ -10,6 +10,7 @@ import { UserComponent } from './user.component';
 import { UserRouting }       from './user.routing';
 import { UserListComponent } from './userlist/userlist';
 import { UserListService } from './userlist/userlist.service';
+import { ZorroAntdModule } from '@/antd/ngModule'
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { UserListService } from './userlist/userlist.service';
     CommonModule,
     UserRouting,
     // NgZorroAntModule.forRoot(),
+    ZorroAntdModule,
   ],
   declarations: [
     UserComponent,

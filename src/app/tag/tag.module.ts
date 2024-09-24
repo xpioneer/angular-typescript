@@ -10,6 +10,7 @@ import { TagComponent } from './tag.component';
 import { TagRouting }       from './tag.routing';
 import { TagListComponent } from './taglist/taglist';
 import { TagListService } from './taglist/taglist.service';
+import { ZorroAntdModule } from '@/antd/ngModule'
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { TagListService } from './taglist/taglist.service';
     CommonModule,
     TagRouting,
     // NgZorroAntdModule.forRoot(),
+    ZorroAntdModule,
   ],
   declarations: [
     TagComponent,

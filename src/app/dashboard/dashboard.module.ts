@@ -6,6 +6,7 @@ import { Dashboard } from './dashboard.component';
 import { DashboardRouting } from './dashboard.routing';
 import { DashBoardService } from './dashboard.service';
 import { NzSelectModule } from '@/antd/module'
+import { ZorroAntdModule } from '@/antd/ngModule'
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { NzSelectModule } from '@/antd/module'
     CommonModule,
     DashboardRouting,
     // NgZorroAntdModule.forRoot(),
-    NzSelectModule,
+    ZorroAntdModule,
+    // NzSelectModule,
   ],
   declarations: [
     Dashboard,

@@ -28,6 +28,7 @@ const config = {
     extensions: ['.ts', '.js'],
     modules: [path.resolve(process.cwd(), "src"), "node_modules"],
     alias: {
+      '@': path.join(process.cwd(), 'src'),
       '@app': path.join(process.cwd(), 'src/app'),
       '@assets': path.join(process.cwd(), 'src/assets'),
       '@components': path.join(process.cwd(), 'src/components'),

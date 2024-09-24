@@ -7,6 +7,7 @@ import { DoubleBallListComponent }  from './doubleballlist/doubleballlist';
 import { DoubleBallListService }  from './doubleballlist/doubleballlist.service';
 import { DoubleBallRouting }       from './doubleball.routing';
 import { DoubleBallDirective }       from './doubleballlist/doubleball.directive';
+import { ZorroAntdModule } from '@/antd/ngModule'
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { DoubleBallDirective }       from './doubleballlist/doubleball.directive
     CommonModule,
     DoubleBallRouting,
     // NgZorroAntdModule.forRoot(),
+    ZorroAntdModule,
   ],
   declarations: [
     DoubleBallComponent,
