@@ -2,12 +2,20 @@ const { AngularWebpackPlugin } = require('@ngtools/webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 
+const _PROD_ = process.env.NODE_ENV === 'production'
+
 module.exports = {
   devServer: {
-    port: '9101',
-    historyApiFallback: true, // 如果你使用的是 Angular 路由，推荐加上这个
+    port: '9100',
+    historyApiFallback: true,
+    client: {
+      overlay: {
+        warnings: false,
+        errors: true,
+      },
+    },
   },
-  mode: 'development', // 或者 'development'
+  mode: _PROD_ ? 'production' : 'development',
   entry: './demos/app.ts', // 入口文件
   output: {
     path: path.resolve(__dirname, 'dist'),
