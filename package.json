@@ -1,11 +1,12 @@
 {
-  "name": "CMS-FE",
+  "name": "angular-typescript",
   "version": "1.2.0",
-  "description": "angular6 for CMS",
+  "description": "Angular18 for CMS",
   "main": "index.js",
   "author": "xpioneer",
   "keywords": [
-    "angular6",
+    "Angular18",
+    "Typescript",
     "HttpInterceptor",
     "lazyload",
     "ng-zorro-antd",
