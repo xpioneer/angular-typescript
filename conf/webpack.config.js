@@ -173,10 +173,8 @@ const config = {
   // plugins
   plugins: [
     new AngularWebpackPlugin({
-      // tsConfigPath: path.resolve(__dirname, '../tsconfig.json'),
-      // entryModule: path.resolve(__dirname, '../src/app/app.module#AppModule'),
-      // skipCodeGeneration: true,
-      // sourceMap: _DEV_ ? true : false
+      tsconfig: path.resolve(__dirname, '../tsconfig.json'),
+      jitMode: true,
     }),
     new MiniCssExtractPlugin({
       filename: "static/css/[name].[contenthash].css",

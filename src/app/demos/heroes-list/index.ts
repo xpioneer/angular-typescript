@@ -1,16 +1,16 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-heroes-list',
   encapsulation: ViewEncapsulation.Emulated,
-  template: '<router-outlet></router-outlet>',
+  templateUrl: `./heroes-list.component.html`,
 })
-export class AppComponent implements OnInit {
+export class HeroesListComponent implements OnInit {
 
   constructor () {
   }
 
   public ngOnInit () {
-    console.log('app entry')
+    console.log('HeroesListComponent')
   }
 }

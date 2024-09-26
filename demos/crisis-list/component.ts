@@ -1,16 +1,16 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-crisis-list',
   encapsulation: ViewEncapsulation.Emulated,
-  template: '<router-outlet></router-outlet>',
+  templateUrl: `./crisis-list.component.html`,
 })
-export class AppComponent implements OnInit {
+export class CrisisListComponent implements OnInit {
 
   constructor () {
   }
 
   public ngOnInit () {
-    console.log('app entry')
+    console.log('CrisisListComponent')
   }
 }
