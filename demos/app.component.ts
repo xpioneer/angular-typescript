@@ -10,8 +10,6 @@ import { RouterOutlet } from '@angular/router'
   template: `
     <h1>Angular Router Sample</h1>
     <h2>Hello, Angular</h2>
-    <app-crisis-list></app-crisis-list>
-    <app-heroes-list></app-heroes-list>
     <router-outlet></router-outlet>
   `,
 })
