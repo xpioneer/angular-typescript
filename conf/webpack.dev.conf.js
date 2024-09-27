@@ -30,7 +30,11 @@ config.devServer = {
   //   colors: true
   // },
   client: {
-    progress: true,
+    // progress: true,
+    overlay: {
+      warnings: false,
+      errors: true,
+    },
   },
   // hot: true,
   // hotOnly: true,

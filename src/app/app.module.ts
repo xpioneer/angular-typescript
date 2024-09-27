@@ -5,7 +5,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { provideRouter } from '@angular/router';
+import { provideRouter, RouterModule } from '@angular/router';
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { NZ_I18N, zh_CN } from 'ng-zorro-antd/i18n';
 import { IconDefinition } from '@ant-design/icons-angular'
@@ -49,11 +49,7 @@ const icons: IconDefinition[] = [UserOutline, LockOutline, SettingOutline, Appst
     // HttpClientModule,
     // RouterModule,
     // AppRouting,
-    //
-    // NgZorroAntdModule.forRoot(),
     ZorroAntdModule,
-    // NzMenuModule,
-    // NzPopoverModule,
   ],
   exports: [
 

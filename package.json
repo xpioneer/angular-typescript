@@ -36,6 +36,7 @@
     "d3-selection": "^3.0.0",
     "d3-zoom": "^3.0.0",
     "dagre-compound": "^0.0.13",
+    "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
     "echarts": "^3.8.5",
     "monaco-editor": "^0.52.0",

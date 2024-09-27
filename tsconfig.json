@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "node",
     "sourceMap": true,
@@ -8,8 +8,6 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": true,
-    "allowImportingTsExtensions": true,
-    "noEmit": true,
     "lib": [ "es2015", "dom" ],
     "typeRoots": [
       "./node_modules/@types/",

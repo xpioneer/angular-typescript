@@ -41,6 +41,9 @@ dependencies:
   dagre-compound:
     specifier: ^0.0.13
     version: 0.0.13(@types/dagre@0.7.52)(dagre@0.8.5)
+  date-fns:
+    specifier: ^4.1.0
+    version: 4.1.0
   dayjs:
     specifier: ^1.11.13
     version: 1.11.13
@@ -2279,6 +2282,10 @@ packages:
     engines: {node: '>=0.11'}
     dependencies:
       '@babel/runtime': 7.25.6
+    dev: false
+
+  /date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
     dev: false
 
   /dayjs@1.11.13:

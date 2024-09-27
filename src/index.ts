@@ -3,4 +3,5 @@
 // import '@utils/tools'
 // import './polyfills.ts';
 // import './vendor.ts';
-import './app.ts';
+import 'zone.js'
+import './app';
