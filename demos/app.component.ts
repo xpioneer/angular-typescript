@@ -9,6 +9,10 @@ import { RouterOutlet } from '@angular/router'
   ],
   template: `
     <h1>Angular Router Sample</h1>
+    <nav>
+      <a class="button" routerLink="/crisis-list">Crisis Center</a> |
+      <a class="button" routerLink="/heroes-list">Heroes</a>
+    </nav>
     <h2>Hello, Angular</h2>
     <router-outlet></router-outlet>
   `,

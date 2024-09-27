@@ -2,13 +2,11 @@ import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { LOCALE_ID, NgModule, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
-import { provideRouter } from '@angular/router'
+import { provideRouter, RouterModule } from '@angular/router'
 import { AppComponent }   from './app.component';
-import { AppRoutingModule }     from './app.routes';
+import { AppRoutingModule, routes }     from './app.routes';
 import { CrisisModule } from './crisis-list/module'
 import { HeroesModule } from './heroes-list/module'
-import { routes } from './app.routes'
 
 
 registerLocaleData(zh);
@@ -20,15 +18,15 @@ registerLocaleData(zh);
   ],
   imports: [
     BrowserModule,
-    CommonModule,
+    // RouterModule,
+    AppRoutingModule,
     CrisisModule,
     HeroesModule,
-    AppRoutingModule,
   ],
   exports: [
   ],
   providers: [
-    provideRouter(routes),
+    // provideRouter(routes), // use with RouterModule
   ],
   bootstrap: [AppComponent],
 })

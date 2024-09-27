@@ -5,7 +5,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { RouterModule } from '@angular/router';
+import { provideRouter } from '@angular/router';
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { NZ_I18N, zh_CN } from 'ng-zorro-antd/i18n';
 import { IconDefinition } from '@ant-design/icons-angular'
@@ -13,7 +13,7 @@ import { UserOutline, LockOutline, SettingOutline, AppstoreOutline, CalculatorOu
 
 import { BreadCrumbComponent, HeaderComponent, SidebarComponent } from '../components/shared';
 import { AppComponent }   from './app.component';
-import { AppRouting }     from './app.routing';
+import { AppRouting, appRoutes }     from './app.routing';
 import { HomeComponent }  from './home';
 import { LoginComponent } from './login/login.component';
 
@@ -48,7 +48,7 @@ const icons: IconDefinition[] = [UserOutline, LockOutline, SettingOutline, Appst
     ReactiveFormsModule,
     // HttpClientModule,
     // RouterModule,
-    AppRouting,
+    // AppRouting,
     //
     // NgZorroAntdModule.forRoot(),
     ZorroAntdModule,
@@ -60,6 +60,7 @@ const icons: IconDefinition[] = [UserOutline, LockOutline, SettingOutline, Appst
     // NzMenuModule,
   ],
   providers: [
+    provideRouter(appRoutes),
     { provide: NZ_I18N, useValue: zh_CN },
     { provide: NZ_ICONS, useValue: icons },
     {

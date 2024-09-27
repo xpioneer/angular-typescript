@@ -4,6 +4,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 const _PROD_ = process.env.NODE_ENV === 'production'
 
+console.log(`
+  This is mini app with Angular Router.
+`)
+
 module.exports = {
   devServer: {
     port: '9100',
