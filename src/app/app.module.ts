@@ -1,6 +1,6 @@
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -44,8 +44,8 @@ const icons: IconDefinition[] = [UserOutline, LockOutline, SettingOutline, Appst
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
+    // FormsModule,
+    // ReactiveFormsModule,
     // HttpClientModule,
     // RouterModule,
     // AppRouting,
@@ -57,6 +57,7 @@ const icons: IconDefinition[] = [UserOutline, LockOutline, SettingOutline, Appst
   ],
   providers: [
     provideRouter(appRoutes),
+    provideHttpClient(withInterceptorsFromDi()),
     { provide: NZ_I18N, useValue: zh_CN },
     { provide: NZ_ICONS, useValue: icons },
     {
