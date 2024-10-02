@@ -48,8 +48,8 @@ dependencies:
     specifier: ^1.11.13
     version: 1.11.13
   echarts:
-    specifier: ^3.8.5
-    version: 3.8.5
+    specifier: ^5.5.1
+    version: 5.5.1
   monaco-editor:
     specifier: ^0.52.0
     version: 0.52.0
@@ -2477,10 +2477,11 @@ packages:
       stream-shift: 1.0.3
     dev: true
 
-  /echarts@3.8.5:
-    resolution: {integrity: sha512-E+nnROMfCeiLeoT/fZyX8SE8mKzwkTjyemyoBF543oqjRtjTSKQAVDEihMXy4oC6pJS0tYGdMqCA2ATk8onyRg==}
+  /echarts@5.5.1:
+    resolution: {integrity: sha512-Fce8upazaAXUVUVsjgV6mBnGuqgO+JNDlcgF79Dksy4+wgGpQB2lmYoO4TSweFg/mZITdpGHomw/cNBJZj1icA==}
     dependencies:
-      zrender: 3.7.4
+      tslib: 2.3.0
+      zrender: 5.6.0
     dev: false
 
   /ee-first@1.1.1:
@@ -5937,6 +5938,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /tslib@2.3.0:
+    resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
+    dev: false
+
   /tslib@2.7.0:
     resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
 
@@ -6414,6 +6419,8 @@ packages:
   /zone.js@0.15.0:
     resolution: {integrity: sha512-9oxn0IIjbCZkJ67L+LkhYWRyAy7axphb3VgE2MBDlOqnmHMPWGYMxJxBYFueFq/JGY2GMwS0rU+UCLunEmy5UA==}
 
-  /zrender@3.7.4:
-    resolution: {integrity: sha512-5Nz7+L1wIoL0+Pp/iOP56jD6eD017qC9VRSgUBheXBiAHgOBJZ4uh4/g6e83acIwa8RKSyZf/FlceKu5ntUuxQ==}
+  /zrender@5.6.0:
+    resolution: {integrity: sha512-uzgraf4njmmHAbEUxMJ8Oxg+P3fT04O+9p7gY+wJRVxo8Ge+KmYv0WJev945EH4wFuc4OY2NLXz46FZrWS9xJg==}
+    dependencies:
+      tslib: 2.3.0
     dev: false

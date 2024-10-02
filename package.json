@@ -38,7 +38,7 @@
     "dagre-compound": "^0.0.13",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
-    "echarts": "^3.8.5",
+    "echarts": "^5.5.1",
     "monaco-editor": "^0.52.0",
     "ng-zorro-antd": "^18.1.1",
     "quill": "^1.3.2",

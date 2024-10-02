@@ -10,17 +10,17 @@ import { Echarts } from '@utils/echarts';
 import { format } from 'date-fns'
 
 // 引入柱状图
-require('echarts/lib/chart/bar');
-require('echarts/lib/chart/line');
-require('echarts/lib/chart/pie');
+// require('echarts/lib/chart/bar');
+// require('echarts/lib/chart/line');
+// require('echarts/lib/chart/pie');
 // 引入提示框和标题组件
-require('echarts/lib/component/title');
-require('echarts/lib/component/tooltip');
-require('echarts/lib/component/toolbox');
-require('echarts/lib/component/legend');
-require('echarts/lib/component/legend/ScrollableLegendModel');
-require('echarts/lib/component/legend/ScrollableLegendAction');
-require('echarts/lib/component/legend/ScrollableLegendView');
+// require('echarts/lib/component/title');
+// require('echarts/lib/component/tooltip');
+// require('echarts/lib/component/toolbox');
+// require('echarts/lib/component/legend');
+// require('echarts/lib/component/legend/ScrollableLegendModel');
+// require('echarts/lib/component/legend/ScrollableLegendAction');
+// require('echarts/lib/component/legend/ScrollableLegendView');
 
 @Component({
     selector: 'app-charts',
@@ -75,7 +75,7 @@ export class ChartComponent {
   // 日期选择
   public changedDate () {
     this.disable = true;
-    this.chartService.getSystemLogDate(format(this.date, 'YYYY-MM-DD'))
+    this.chartService.getSystemLogDate(format(this.date, 'yyyy-MM-dd'))
       .pipe(finalize(() => this.disable = false))
       .subscribe((res: any) => {
         this.initSystemLogDateChart(res.data);

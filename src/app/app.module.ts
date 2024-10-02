@@ -47,7 +47,7 @@ const icons: IconDefinition[] = [UserOutline, LockOutline, SettingOutline, Appst
     // FormsModule,
     // ReactiveFormsModule,
     // HttpClientModule,
-    // RouterModule,
+    RouterModule,
     // AppRouting,
     ZorroAntdModule,
   ],

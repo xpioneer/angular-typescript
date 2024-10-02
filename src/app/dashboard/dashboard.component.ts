@@ -4,16 +4,16 @@ import { Echarts } from '@utils/echarts';
 
 // const echarts = require('echarts/lib/echarts');
 // 引入中国地图
-require('echarts/map/js/china');
-require('echarts/lib/component/visualMap');
+// require('echarts/map/js/china');
+// require('echarts/lib/component/visualMap');
 // 引入提示框和标题组件
-require('echarts/lib/component/title');
-require('echarts/lib/component/tooltip');
-require('echarts/lib/component/toolbox');
-require('echarts/lib/component/legend');
-require('echarts/lib/component/legend/ScrollableLegendModel');
-require('echarts/lib/component/legend/ScrollableLegendAction');
-require('echarts/lib/component/legend/ScrollableLegendView');
+// require('echarts/lib/component/title');
+// require('echarts/lib/component/tooltip');
+// require('echarts/lib/component/toolbox');
+// require('echarts/lib/component/legend');
+// require('echarts/lib/component/legend/ScrollableLegendModel');
+// require('echarts/lib/component/legend/ScrollableLegendAction');
+// require('echarts/lib/component/legend/ScrollableLegendView');
 
 @Component({
   selector: 'dashboard',
@@ -32,6 +32,11 @@ export class Dashboard {
   }
 
   public ngOnInit () {
+    // this.initSystemChinaChart([]);
+    // this.changedSource();
+  }
+
+  ngAfterViewInit() {
     this.initSystemChinaChart([]);
     this.changedSource();
   }
