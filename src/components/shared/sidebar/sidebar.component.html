@@ -1,6 +1,5 @@
 <ul nz-menu nzTheme="dark" nzMode="inline">
-  <li nz-submenu [(nzOpen)]="isOpen.one" (nzOpenChange)="openChange('one')">
-    <span title><i class="anticon anticon-appstore"></i> 博客管理</span>
+  <li nz-submenu nzTitle="博客管理" nzIcon="appstore" [(nzOpen)]="isOpen.one" (nzOpenChange)="openChange('one')">
     <ul>
       <li nz-menu-item [routerLink]="['/article']" routerLinkActive="active">文章列表</li>
       <li nz-menu-item [routerLink]="['/articletype']" routerLinkActive="active">文章类型</li>
@@ -9,26 +8,22 @@
       <li nz-menu-item [routerLink]="['/comment']" routerLinkActive="active">评论管理</li>
     </ul>
   </li>
-  <li nz-submenu [(nzOpen)]="isOpen.two" (nzOpenChange)="openChange('two')">
-    <span title><i class="anticon anticon-calculator"></i> 日志管理</span>
+  <li nz-submenu nzTitle="日志管理" nzIcon="calculator" [(nzOpen)]="isOpen.two" (nzOpenChange)="openChange('two')">
     <ul>
       <li nz-menu-item [routerLink]="['/systemlog']" routerLinkActive="active">系统日志</li>
     </ul>
   </li>
-  <li nz-submenu [(nzOpen)]="isOpen.three" (nzOpenChange)="openChange('three')">
-    <span title><i class="anticon anticon-line-chart"></i> 图表管理</span>
+  <li nz-submenu nz-submenu nzTitle="图表管理" nzIcon="line-chart" [(nzOpen)]="isOpen.three" (nzOpenChange)="openChange('three')">
     <ul>
       <li nz-menu-item [routerLink]="['/charts']" routerLinkActive="active">图表统计</li>
     </ul>
   </li>
-  <li nz-submenu [(nzOpen)]="isOpen.four" (nzOpenChange)="openChange('four')">
-    <span title><i class="anticon anticon-smile-o"></i> 无聊集锦</span>
+  <li nz-submenu nz-submenu nzTitle="无聊集锦" nzIcon="smile-o" [(nzOpen)]="isOpen.four" (nzOpenChange)="openChange('four')">
     <ul>
       <li nz-menu-item [routerLink]="['/doubleball']" routerLinkActive="active">双色球</li>
     </ul>
   </li>
-  <li nz-submenu [(nzOpen)]="isOpen.five" (nzOpenChange)="openChange('five')">
-    <span title><i class="anticon anticon-bulb"></i> 测试</span>
+  <li nz-submenu nz-submenu nzTitle="测试" nzIcon="bulb" [(nzOpen)]="isOpen.five" (nzOpenChange)="openChange('five')">
     <ul>
       <li nz-menu-item [routerLink]="['/demos']" routerLinkActive="active">测试用例</li>
     </ul>
