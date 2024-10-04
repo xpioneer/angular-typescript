@@ -9,6 +9,13 @@ import { Params } from '../../utils/params.service';
 @Component({
     selector: 'app-demos',
     templateUrl: './demos.html',
+    styles: `
+    .block {
+        margin-bottom: 20px;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;padding: 10px 0;
+        padding: 20px;
+    }
+    `
 })
 export class DemosComponent {
     // @ViewChild('form') private form: NgForm;
