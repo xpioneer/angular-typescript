@@ -51,11 +51,12 @@ export class DemosComponent {
             this.notification.warning('警告', '请输入正确格式的状态码');
             return;
         }
-        this.http.post('/test/status/' + this.status, {}).subscribe((res) => {
-            console.log(res);
-        }, (err) => {
-            console.log(err);
-        });
+        console.log("this.status:", this.status)
+        // this.http.post('/test/status/' + this.status, {}).subscribe((res) => {
+        //     console.log(res);
+        // }, (err) => {
+        //     console.log(err);
+        // });
     }
 
     public queryIPGeo () {

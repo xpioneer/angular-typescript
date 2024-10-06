@@ -3,18 +3,12 @@
 <form nz-form style="margin-top: 20px;">
   <!-- http状态码测试 -->
   <div class="block">
-    <nz-form-item nz-row>
-      <h3>http状态码测试</h3>
-      <div nz-col nzSm="24" nzXl="24">
-        <nz-form-label nzRequired nzSpan="4">测试状态码</nz-form-label>
-        <nz-form-control nzSpan="4">
-          <input nz-input name="status" required [(ngModel)]="status" pattern="^[1-5]\d{2}$">
-        </nz-form-control>
-        <div nzSpan="4" nzOffset="2">
-          <button nz-button nzType="primary" (click)="testStatus()" >发送</button>
-        </div>
-      </div>
-    </nz-form-item>
+    <h3>http状态码测试</h3>
+    <nz-space>
+      <div *nzSpaceItem nzSpan="4">测试状态码</div>
+      <input *nzSpaceItem nz-input name="status" required [(ngModel)]="status" pattern="^[1-5]\d{2}$">
+      <button *nzSpaceItem nz-button nzType="primary" (click)="testStatus()" >发送</button>
+    </nz-space>
   </div>
 
   <!-- ip地址测试 -->
@@ -39,16 +33,20 @@
   </div>
 
   <!-- 文件上传测试 -->
-  <div nz-row  class="block">
+  <div class="block">
     <h3>文件上传测试</h3>
-    <nz-form-item nz-row>
+    <nz-space>
+      <div *nzSpaceItem nzSpan="4">文件上传测试</div>
+      <app-upload-file *nzSpaceItem [(ngModel)]="uploadFile" maxSize="100" name="uploadFile" />
+    </nz-space>
+    <!-- <nz-form-item nz-row>
       <div nz-col nzSm="24" nzXl="24">
         <nz-form-label nzRequired nzSpan="4">文件上传测试</nz-form-label>
         <nz-form-control nzSpan="8">
           <app-upload-file [(ngModel)]="uploadFile" maxSize="100" name="uploadFile"></app-upload-file>
         </nz-form-control>
       </div>
-    </nz-form-item>
+    </nz-form-item> -->
   </div>
 
   <!-- api接口测试 -->
