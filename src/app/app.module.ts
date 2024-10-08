@@ -44,8 +44,8 @@ const icons: IconDefinition[] = [UserOutline, LockOutline, SettingOutline, Appst
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    // FormsModule,
-    // ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     // HttpClientModule,
     RouterModule,
     // AppRouting,

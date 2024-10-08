@@ -1,31 +1,35 @@
 <!-- <canvas #canvas></canvas> -->
-<form nz-form class="login-form" #form="ngForm">
+<form nz-form [formGroup]="loginForm" class="login-form" #form="ngForm" (ngSubmit)="onSubmit()">
   <h1>CMS</h1>
   <nz-form-item>
-    <nz-form-control [nzValidateStatus]="Name.control">
-      <nz-input-group [nzPrefix]="prefixUser">
-        <input type="text" nz-input required [(ngModel)]="userInfo.username" #Name="ngModel" placeholder="Username" name="username"/>
-        <ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
+    <nz-form-control
+      nzErrorTip="Please enter your username!"
+      [nzValidateStatus]="loginForm.controls['username']">
+      <nz-input-group nzPrefixIcon="user">
+        <input type="text" nz-input required formControlName="username" placeholder="Username"/>
       </nz-input-group>
-      <nz-form-explain *ngIf="Name.dirty&&Name.invalid">Please enter your username!</nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-control [nzValidateStatus]="Pwd.control">
-      <nz-input-group [nzPrefix]="prefixLock">
-        <input type="password" nz-input required [(ngModel)]="userInfo.password" #Pwd="ngModel" placeholder="Password" name="password"/>
-        <ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
+    <nz-form-control
+      nzErrorTip="Please enter your password!"
+      [nzValidateStatus]="loginForm.controls['password']">
+      <nz-input-group nzPrefixIcon="lock">
+        <input type="password" nz-input required formControlName="password" placeholder="Password" />
       </nz-input-group>
-      <nz-form-explain *ngIf="Pwd.dirty&&Pwd.invalid">Please enter the password!</nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
     <nz-form-control>
-      <label nz-checkbox>
+      <label nz-checkbox formControlName="remember">
         <span>Remember me</span>
       </label>
-      <!-- <a class="login-form-forgot" class="login-form-forgot">忘记密码</a> -->
-      <button nz-button class="login-form-button" nzType="primary" nzSize="large" (click)="login()" [disabled]="form.invalid" [nzLoading]="loading">Login</button>
+      <a class="login-form-forgot">忘记密码</a>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <button nz-button class="login-form-button" nzType="primary" nzSize="large" [nzLoading]="loading">Login</button>
       <!-- <a href="">立即注册!</a> -->
     </nz-form-control>
   </nz-form-item>

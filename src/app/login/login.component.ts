@@ -1,12 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NgForm } from '@angular/forms';
+import { NgForm, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { AuthService }      from '@utils/auth/auth.service';
 import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
+  // styleUrl: './style.less',
   styles: [`
     .login-form {
       max-width: 300px;
@@ -28,23 +29,49 @@ export class LoginComponent implements OnInit {
   @ViewChild('canvas') private canvas: ElementRef;
   @ViewChild('form') private form: NgForm;
   public userInfo: UserModel = new UserModel();
+  loginForm: ValidateForm<LoginForm>;
 
-  constructor (private http: HttpClient, private authService: AuthService) {
+  constructor (
+    private http: HttpClient,
+    private authService: AuthService,
+    private fb: NonNullableFormBuilder
+  ) {
     if (this.authService.isLogged) {
       location.href = '/dashboard';
     }
+    this.loginForm = this.fb.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      remember: [false]
+    });
   }
 
   public ngOnInit () {
     //
   }
 
-  public login () {
-    for (const i in this.form.controls) {
-      this.form.controls[ i ].markAsDirty();
-      this.form.controls[ i ].updateValueAndValidity();
+  onSubmit() {
+    if (this.loginForm.valid) {
+      // 表单数据提交逻辑
+      console.log(this.loginForm.value);
+    } else {
+      const controls = this.loginForm.controls
+      Object.values(controls).forEach(control => {
+        control.markAsDirty();
+        control.updateValueAndValidity();
+      })
     }
-    if (this.form.valid) {
+  }
+
+  public login () {
+    const form = this.form.form
+    const controls = form.controls
+    console.log(form.valid, controls)
+    for (const i in controls) {
+      controls[ i ].markAsDirty();
+      controls[ i ].updateValueAndValidity();
+    }
+    if (form.valid) {
       // this.authService.login(this.userInfo);
       // this.userInfo = new UserModel();
       this.loading = true;
