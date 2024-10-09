@@ -17,7 +17,8 @@ import { drawBubbles } from './bubble'
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to bottom, #87ceeb55, #87ceeb);
+      background: #f7f7f7;
+      // background: linear-gradient(to bottom, #87ceeb55, #87ceeb);
     }
     .login-form {
       position: relative;
