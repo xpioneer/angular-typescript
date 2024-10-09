@@ -3,14 +3,25 @@ import { HttpClient } from '@angular/common/http';
 import { NgForm, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { AuthService }      from '@utils/auth/auth.service';
 import { finalize } from 'rxjs';
+import { drawBubbles } from './bubble'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
   // styleUrl: './style.less',
   styles: [`
+    canvas {
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, #87ceeb55, #87ceeb);
+    }
     .login-form {
-      max-width: 300px;
+      position: relative;
+      width: 300px;
       margin: 0 auto;
     }
 
@@ -26,7 +37,7 @@ import { finalize } from 'rxjs';
 export class LoginComponent implements OnInit {
   public loading: boolean = false;
   public _window: any;
-  @ViewChild('canvas') private canvas: ElementRef;
+  @ViewChild('canvas') private canvas: ElementRef<HTMLCanvasElement>;
   @ViewChild('form') private form: NgForm;
   public userInfo: UserModel = new UserModel();
   loginForm: ValidateForm<LoginForm>;
@@ -48,6 +59,10 @@ export class LoginComponent implements OnInit {
 
   public ngOnInit () {
     //
+  }
+  
+  ngAfterViewInit() {
+    drawBubbles(this.canvas.nativeElement)
   }
 
   onSubmit() {
