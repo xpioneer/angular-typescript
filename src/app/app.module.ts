@@ -9,7 +9,7 @@ import { provideRouter, RouterModule } from '@angular/router';
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { NZ_I18N, zh_CN } from 'ng-zorro-antd/i18n';
 import { IconDefinition } from '@ant-design/icons-angular'
-import { UserOutline, LockOutline, SettingOutline, AppstoreOutline, CalculatorOutline, LineChartOutline, SmileOutline, BulbOutline, PlusOutline } from '@ant-design/icons-angular/icons'
+import { UserOutline, LockOutline, SettingOutline, AppstoreOutline, CalculatorOutline, LineChartOutline, SmileOutline, BulbOutline, PlusOutline, GlobalOutline } from '@ant-design/icons-angular/icons'
 
 import { BreadCrumbComponent, HeaderComponent, SidebarComponent } from '../components/shared';
 import { AppComponent }   from './app.component';
@@ -22,12 +22,14 @@ import { AuthGuard }         from '@utils/auth/auth-guard.service';
 import { AuthService }       from '../utils/auth/auth.service';
 import { HelperService }     from '../utils/httpInterceptor/helper.service';
 import { Params }            from '../utils/params.service';
-// import { NzMenuModule, NzPopoverModule } from '@/antd/module'
-// import { NzMenuDirective } from '@/antd/directive'
 import { ZorroAntdModule }  from '@/antd/ngModule'
 
 registerLocaleData(zh);
-const icons: IconDefinition[] = [UserOutline, LockOutline, SettingOutline, AppstoreOutline, CalculatorOutline, LineChartOutline, SmileOutline, BulbOutline, PlusOutline]
+const icons: IconDefinition[] = [
+  UserOutline, LockOutline, SettingOutline, AppstoreOutline,
+  CalculatorOutline, LineChartOutline, SmileOutline, BulbOutline,
+  PlusOutline, GlobalOutline,
+]
 
 @NgModule({
   // schemas: [],

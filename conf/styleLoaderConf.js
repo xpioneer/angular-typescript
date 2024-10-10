@@ -36,7 +36,18 @@ const styleRules = [
       'style-loader',
       'css-loader',
       postcssLoader,
-      'less-loader'
+      {
+        loader: 'less-loader',
+        options: {
+          lessOptions: {
+            modifyVars: {
+              '@primary-color': '#8514f5',
+              '@link-color': '#8514f5',
+            },
+            javascriptEnabled: true
+          }
+        }
+      }
     ]
   },
   {

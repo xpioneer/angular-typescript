@@ -9,8 +9,8 @@ import { AuthService }   from '@utils/auth/auth.service';
   styles: [`
     header{position: relative}
     .logo{
-      display: inline-block;
-      margin: 10px;
+      // display: inline-block;
+      // margin: 10px;
       width:44px;
       height:44px;
       // animation: rotate 6s linear 0s infinite normal running;
@@ -22,9 +22,9 @@ import { AuthService }   from '@utils/auth/auth.service';
     .sys-name{
       font-size: 16px;
       color: #fff;
-      margin: 28px 0 0;
-      display: inline-block;
-      vertical-align: top;
+      // margin: 28px 0 0;
+      // display: inline-block;
+      // vertical-align: top;
     }
     // .user-info{
     //   float: right;
@@ -63,6 +63,7 @@ export class HeaderComponent implements OnInit {
   public store: any;
   public noticeOpened: boolean;
   public userInfo: object = {};
+  public isVertical = false
 
   constructor (private authService: AuthService, private nzI18nService: NzI18nService) {
     this.store = localStorage;
