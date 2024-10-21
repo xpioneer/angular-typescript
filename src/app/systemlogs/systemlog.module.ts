@@ -10,6 +10,8 @@ import { SystemLogDetailComponent }  from './systemlogdetail/systemlogdetail';
 import { SystemLogDetailService }  from './systemlogdetail/systemlogdetail.service';
 import { SystemLogRouting }       from './systemlog.routing';
 import { ZorroAntdModule } from '@/antd/ngModule'
+import { NzFlexDirective, } from 'ng-zorro-antd/flex'
+import { NzGridModule, NzColDirective, NzRowDirective } from 'ng-zorro-antd/grid'
 
 @NgModule({
   imports: [
@@ -19,6 +21,9 @@ import { ZorroAntdModule } from '@/antd/ngModule'
     DateTimeRangeModule,
     // NgZorroAntdModule.forRoot(),
     ZorroAntdModule,
+    // NzFlexDirective,
+    NzGridModule,
+    // NzColDirective,
   ],
   declarations: [
     SystemLogComponent,

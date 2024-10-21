@@ -6,6 +6,7 @@ import { SystemLogModel } from '../model/systemlog.model';
 import { SystemLogListService } from './systemloglist.service';
 // import * as Moment from 'moment'
 import { finalize } from 'rxjs';
+// import {  } from 'ng-zorro-antd/flex'
 
 @Component({
   selector: 'app-systemlog-list',
@@ -27,6 +28,9 @@ export class SystemLogListComponent implements OnInit {
   public endDate: string;
 
   public options: object[];
+
+  nzSpan = 6
+  nzGutter = [12, 12]
 
   constructor (
     // private router: Router,
