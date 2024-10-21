@@ -9,6 +9,7 @@ const postcssLoader = {
     sourceMap: _PROD_ ? false : true,
     postcssOptions: {
       plugins: [
+        require('tailwindcss'),
         ['postcss-preset-env', {
           browsers: '> 0.5%, not dead, iOS >= 12, Android >= 4.5'
         }]
