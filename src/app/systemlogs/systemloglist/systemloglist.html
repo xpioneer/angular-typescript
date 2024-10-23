@@ -19,7 +19,7 @@
     </div>
     <div nz-col [nzSpan]="nzSpan">
       <!-- <app-datetime-range name="created_at" xSize="large" xFormat="YYYY-MM-DD HH:mm:ss" [(ngModel)]="value.created_at.val"></app-datetime-range> -->
-      <nz-range-picker name="created_at" nzFormat="YYYY-MM-DD" [(ngModel)]="value.created_at.val"></nz-range-picker>
+      <nz-range-picker class="w-full" name="created_at" [(ngModel)]="value.created_at.val"></nz-range-picker>
     </div>
     <div nz-col [nzSpan]="nzSpan">
       <input nz-input placeholder="客户端" [(ngModel)]="value.client_version.val" name="value.client_version.val"/>
