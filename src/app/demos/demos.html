@@ -1,6 +1,6 @@
 
 <h2>测试用例</h2>
-<form nz-form style="margin-top: 20px;">
+<div>
   <!-- http状态码测试 -->
   <div class="block">
     <h3>http状态码测试</h3>
@@ -50,9 +50,64 @@
   </div>
 
   <!-- api接口测试 -->
-  <div  class="block">
+  <form class="block" nz-form [formGroup]="apiForm" (ngSubmit)="apiSubmit()">
     <h3>api接口测试</h3>
-    <nz-form-item nz-row>
+    <nz-form-item>
+      <nz-form-control [nzSm]="14" [nzOffset]="3">
+        <button nz-button nzType="primary">Send</button>
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="url">url</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid url!">
+            <input nz-input formControlName="url" id="url" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label [nzSm]="12" nzRequired nzFor="method">Method</nz-form-label>
+          <nz-form-control [nzSm]="12">
+            <nz-select formControlName="method">
+              @for (option of methods; track option) {
+                <nz-option [nzLabel]="option | uppercase" [nzValue]="option"></nz-option>
+              }
+              <!-- <nz-option nzLabel="GET" [nzValue]="GET"> </nz-option>
+              <nz-option nzLabel="POST" [nzValue]="POST"> </nz-option>
+              <nz-option nzLabel="PUT" [nzValue]="PUT"> </nz-option>
+              <nz-option nzLabel="DELETE" [nzValue]="DELETE"> </nz-option> -->
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <!-- <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="method">Method</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-select formControlName="method">
+          <nz-option nzLabel="GET" [nzValue]="GET"> </nz-option>
+          <nz-option nzLabel="POST" [nzValue]="POST"> </nz-option>
+          <nz-option nzLabel="PUT" [nzValue]="PUT"> </nz-option>
+          <nz-option nzLabel="DELETE" [nzValue]="DELETE"> </nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item> -->
+    <nz-form-item>
+      <nz-form-label [nzSm]="3" [nzXs]="24" nzRequired nzFor="params">参数(json格式)</nz-form-label>
+      <nz-form-control [nzSm]="15" [nzXs]="24">
+        <textarea nz-input formControlName="params" rows="4" nzPlaceHolder='如：{"id":123,"name":"keefe"}'></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="3" [nzXs]="24" nzRequired nzFor="res">返回结果</nz-form-label>
+      <nz-form-control [nzSm]="15" [nzXs]="24">
+        <textarea nz-input formControlName="res" rows="30" nzPlaceHolder="返回内容"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+<!-- 
+    <nz-form-item>
       <div nz-col nzSm="24" nzXl="24">
         <nz-form-label nzRequired nzSpan="4">url</nz-form-label>
         <nz-form-control nzSpan="12">
@@ -83,8 +138,8 @@
       <div nz-col nzSm="16" nzXl="16" nzOffset="4">
         <textarea nz-input name="jsonData" [(ngModel)]="jsonData" rows="30" nzPlaceHolder="返回结果"></textarea>
       </div>
-    </nz-form-item>
-  </div>
+    </nz-form-item> -->
+  </form>
 
   <!-- <nz-form-item nz-row>
     <nz-form-control nz-col nzSpan="20" nzOffset="2">
@@ -92,4 +147,4 @@
     </nz-form-control>
   </nz-form-item> -->
 
-</form>
+</div>

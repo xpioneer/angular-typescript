@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { NgForm, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { Observable, catchError, map,  } from 'rxjs';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { UrlModel } from './models/demo.model';
 import { Params } from '../../utils/params.service';
+import { APIForm } from '@/types/demo';
 
 @Component({
     selector: 'app-demos',
@@ -34,12 +35,23 @@ export class DemosComponent {
     public uploadFile: string;
     public urlObj: UrlModel = new UrlModel();
     public jsonData: string;
+    methods = ['get', 'post', 'put', 'delete']
+
+    apiForm: ValidateForm<APIForm>
 
     constructor (
         private http: HttpClient,
         private params: Params,
         private notification: NzNotificationService,
+        private fb: NonNullableFormBuilder
     ) {
+        this.apiForm = this.fb.group<APIForm>({
+            email: '',
+            url: '',
+            method: 'get',
+            params: '',
+            res: '',
+        })
     }
 
     public ngOnInit () {
@@ -119,6 +131,25 @@ export class DemosComponent {
                 break;
         }
         return request;
+    }
+
+    apiSubmit() {
+      if (this.apiForm.valid) {
+        console.log('submit', this.apiForm.value);
+        const { url, method, params } = this.apiForm.value
+        const data = this.http.get(url).pipe(map(res => {
+          console.log(res, '...')
+          return res
+        }))
+        console.log("data:", data)
+      } else {
+        Object.values(this.apiForm.controls).forEach(control => {
+          if (control.invalid) {
+            control.markAsDirty();
+            control.updateValueAndValidity({ onlySelf: true });
+          }
+        });
+      }
     }
 
 }
