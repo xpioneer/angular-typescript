@@ -20,8 +20,10 @@ export class HttpClientInterceptor implements HttpInterceptor {
   }
 
   public intercept (req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const isHttpEntry = /^http/.test(req.url)
+    const url = `${isHttpEntry ? '' : this.baseUrl}${req.url}`
     const request = req.clone({
-      url: this.baseUrl + req.url,
+      url,
       setHeaders: {
         'X-Requested-With': 'XMLHttpRequest',
         'Authorization-User': this.store.getItem('ACCESS_TOKEN') || 'no_token',

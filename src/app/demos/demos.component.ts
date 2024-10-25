@@ -1,11 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NgForm, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { Observable, catchError, map,  } from 'rxjs';
+import { Observable, catchError, map, of, filter } from 'rxjs';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { UrlModel } from './models/demo.model';
 import { Params } from '../../utils/params.service';
 import { APIForm } from '@/types/demo';
+import { DemosService } from './demos.service'
 
 @Component({
     selector: 'app-demos',
@@ -41,9 +42,10 @@ export class DemosComponent {
 
     constructor (
         private http: HttpClient,
+        private service: DemosService,
         private params: Params,
         private notification: NzNotificationService,
-        private fb: NonNullableFormBuilder
+        private fb: NonNullableFormBuilder,
     ) {
         this.apiForm = this.fb.group<APIForm>({
             email: '',
@@ -63,12 +65,18 @@ export class DemosComponent {
             this.notification.warning('警告', '请输入正确格式的状态码');
             return;
         }
-        console.log("this.status:", this.status)
-        // this.http.post('/test/status/' + this.status, {}).subscribe((res) => {
-        //     console.log(res);
-        // }, (err) => {
-        //     console.log(err);
-        // });
+        this.service.testStatus(new HttpParams().set('status', this.status)).subscribe({
+            next(res){
+                console.log(res);
+            },
+            // error: console.error,
+            error(err){
+                console.log(err);
+            },
+            complete(){
+                console.log('compelete...')
+            }
+        });
     }
 
     public queryIPGeo () {
@@ -134,14 +142,25 @@ export class DemosComponent {
     }
 
     apiSubmit() {
+        // const observable$ = of(1, 2, 3);
+        // const modifiedObservable$ = observable$.pipe(
+        //     map(value => value * 2),
+        //     filter(value => value > 1)
+        // );
+        // modifiedObservable$.subscribe(console.log);
       if (this.apiForm.valid) {
         console.log('submit', this.apiForm.value);
         const { url, method, params } = this.apiForm.value
-        const data = this.http.get(url).pipe(map(res => {
-          console.log(res, '...')
-          return res
-        }))
-        console.log("data:", data)
+        this.service.testApi(url, params).subscribe({
+            next: (res) => {
+                this.apiForm.controls.res.setValue(JSON.stringify(res, null, 4))
+            },
+            error: (res) => {
+                this.notification.error('Error', res.toString())
+            },
+            complete: () => {
+            }
+        })
       } else {
         Object.values(this.apiForm.controls).forEach(control => {
           if (control.invalid) {

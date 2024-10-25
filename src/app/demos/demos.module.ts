@@ -8,6 +8,7 @@ import { DemosRouting } from './demos.routing';
 import { OutletComponent }   from './out-let.component';
 import { UploadFileModule } from '@components/upload-file/upload-file.module';
 import { ZorroAntdModule } from '@/antd/ngModule'
+import { DemosService } from './demos.service';
 
 @NgModule({
     imports: [
@@ -22,6 +23,8 @@ import { ZorroAntdModule } from '@/antd/ngModule'
         OutletComponent,
         DemosComponent,
     ],
-    providers: [ ],
+    providers: [
+        DemosService
+    ],
 })
 export default class DemosModule {}
