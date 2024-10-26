@@ -3,7 +3,7 @@
 <div>
   <!-- http状态码测试 -->
   <div class="block">
-    <h3>http状态码测试</h3>
+    <h3 class="mb-3">http状态码测试</h3>
     <nz-space>
       <div *nzSpaceItem nzSpan="4">测试状态码</div>
       <input *nzSpaceItem nz-input name="status" required [(ngModel)]="status" pattern="^[1-5]\d{2}$">
@@ -14,20 +14,18 @@
   <!-- ip地址测试 -->
   <div class="block">
     <h3>ip地址测试</h3>
-    <nz-form-item nz-row>
-      <div nz-col nzSm="24" nzXl="24">
-        <nz-form-label nzRequired nzSpan="4">ip</nz-form-label>
+    <nz-form-item>
+        <nz-form-label nzRequired nzSpan="3">ip</nz-form-label>
         <nz-form-control nzSpan="6">
-          <input nz-input name="ip" required [(ngModel)]="ip" nzPlaceHolder="请输入ip地址，如：1.1.1.1"/>
+          <input nz-input name="ip" required [(ngModel)]="ip" placeHolder="请输入ip地址，如：1.1.1.1"/>
         </nz-form-control>
-        <div nzSpan="4" nzOffset="2">
+        <div class="ml-2">
           <button nz-button nzType="primary" (click)="queryIPGeo()" >发送</button>
         </div>
-      </div>
     </nz-form-item>
-    <div nz-form-item nz-row >
-      <div nz-col [nzSm]="16" [nzXl]="16" [nzOffset]="4">
-        <textarea nz-input name="ipGeo" [(ngModel)]="ipGeo" rows="25" nzPlaceHolder="ip地理位置"></textarea>
+    <div nz-form-item>
+      <div nz-col [nzSm]="16" [nzXl]="16" [nzOffset]="3">
+        <textarea nz-input name="ipGeo" [(ngModel)]="ipGeo" rows="25" placeHolder="ip地理位置"></textarea>
       </div>
     </div>
   </div>
