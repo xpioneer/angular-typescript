@@ -8,8 +8,8 @@ import { NzFlexDirective } from 'ng-zorro-antd/flex';
  */
 @Component({
   selector: 'app-your-component',
-  templateUrl: './your-component.component.html',
-  styleUrls: ['./your-component.component.css']
+  template: '<div></div>',
+  styles: ['']
 })
 export class YourComponent {
   // ...

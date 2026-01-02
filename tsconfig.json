@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES2020",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "sourceMap": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": true,
-    "lib": [ "es2015", "dom" ],
+    "lib": [ "es2020", "dom" ],
     "baseUrl": "./src",
     "paths": {
       "@/*": ["*"],
@@ -16,10 +16,17 @@
       "@assets/*": ["assets/*"],
       "@components/*": ["components/*"],
       "@utils/*": ["utils/*"]
-    }
+    },
+    "types": ["vite/client"],
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "compileOnSave": true,
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }
