@@ -21,7 +21,7 @@ import { Echarts } from '@utils/echarts';
 })
 export class Dashboard {
 
-  @ViewChild('systemChina') public systemChina: ElementRef;
+  @ViewChild('systemChina') public systemChina!: ElementRef;
 
   public source: string = '';
   public sourceType = [{name: '不限', value: ''}, {name: 'v2', value: 'v2'}, {name: 'cms', value: 'cms'}];
